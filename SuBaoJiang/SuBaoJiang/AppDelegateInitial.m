@@ -82,6 +82,8 @@
         //  Back Ground Fetch
         [application setMinimumBackgroundFetchInterval:60*3] ;
 
+    
+    //测3432432423423
     }
     return self;
 }
