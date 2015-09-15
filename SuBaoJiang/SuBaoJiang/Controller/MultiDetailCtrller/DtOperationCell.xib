@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DtOperationCell" rowHeight="118" id="KGk-i7-Jjw" customClass="DtOperationCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="118"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bof-DP-IUF" userLabel="topline">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="3"/>
+                        <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="3" id="2PH-Ap-G2r"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 条评论  1 次赞" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgY-ug-0hr">
+                        <rect key="frame" x="12" y="15" width="160" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="4IF-9T-N9i"/>
+                            <constraint firstAttribute="width" constant="160" id="GUY-Yq-0Sw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="topics &amp; comments" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XwD-fI-AMD" customClass="WPHotspotLabel">
+                        <rect key="frame" x="12" y="49" width="296" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="ubq-h0-Yao"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REx-Ka-wFs" userLabel="likebt">
+                        <rect key="frame" x="12" y="79" width="44" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="WD0-YJ-nFX"/>
+                            <constraint firstAttribute="width" constant="44" id="oQK-e6-gax"/>
+                        </constraints>
+                        <state key="normal" image="unlike_d">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="selected" image="like_d"/>
+                        <connections>
+                            <action selector="likeButtonClickAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wca-KW-WfH"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NwI-sZ-sdZ" userLabel="morebt">
+                        <rect key="frame" x="280" y="79" width="28" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="IAZ-Z9-xM7"/>
+                            <constraint firstAttribute="width" constant="28" id="JYj-OK-wED"/>
+                        </constraints>
+                        <state key="normal" image="moreLiker">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="moreButtonClickAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="b3S-9N-OKk"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzZ-6q-twO" userLabel="sharebt">
+                        <rect key="frame" x="274" y="11" width="35" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="ZiH-xU-MyC"/>
+                            <constraint firstAttribute="height" constant="23" id="krH-cy-yP0"/>
+                        </constraints>
+                        <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" image="shareNormal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted" image="shareHighlight"/>
+                        <connections>
+                            <action selector="shareButtonClickAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="avB-s8-RdK"/>
+                            <action selector="shareButtonTouchDown:" destination="KGk-i7-Jjw" eventType="touchDown" id="brw-Qf-Xfa"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="75M-j5-9qN" userLabel="deletebt">
+                        <rect key="frame" x="236" y="11" width="35" height="23"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="23" id="6Jg-W1-eSQ"/>
+                            <constraint firstAttribute="width" constant="35" id="xtU-h7-rcj"/>
+                        </constraints>
+                        <color key="tintColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <state key="normal" image="deleteNomal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <state key="highlighted" image="deleteHighlight"/>
+                        <connections>
+                            <action selector="deleteButtonClickAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cU6-6W-hXh"/>
+                            <action selector="deleteButtonTouchDown:" destination="KGk-i7-Jjw" eventType="touchDown" id="ahc-Iz-vXj"/>
+                        </connections>
+                    </button>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dds-tr-OlV">
+                        <rect key="frame" x="62" y="79" width="212" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="vSq-zj-J3G"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="P5V-X3-YXw">
+                            <size key="itemSize" width="25" height="25"/>
+                            <size key="headerReferenceSize" width="0.0" height="1"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="OzZ-6q-twO" firstAttribute="leading" secondItem="75M-j5-9qN" secondAttribute="trailing" constant="3" id="9dK-VT-aLW"/>
+                    <constraint firstItem="XwD-fI-AMD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="ELv-Hw-HkX"/>
+                    <constraint firstItem="OzZ-6q-twO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Fvb-LG-7OR"/>
+                    <constraint firstItem="Bof-DP-IUF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Hh8-lT-cFY"/>
+                    <constraint firstItem="Bof-DP-IUF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="J93-OW-AYK"/>
+                    <constraint firstItem="REx-Ka-wFs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="Kji-Zy-KNx"/>
+                    <constraint firstItem="VgY-ug-0hr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="QL6-3j-XM6"/>
+                    <constraint firstAttribute="trailing" secondItem="XwD-fI-AMD" secondAttribute="trailing" constant="12" id="RIk-AT-7Mr"/>
+                    <constraint firstItem="75M-j5-9qN" firstAttribute="top" secondItem="OzZ-6q-twO" secondAttribute="top" id="Uri-85-oSi"/>
+                    <constraint firstItem="REx-Ka-wFs" firstAttribute="top" secondItem="dds-tr-OlV" secondAttribute="top" id="YQJ-Hg-zFv"/>
+                    <constraint firstItem="dds-tr-OlV" firstAttribute="leading" secondItem="REx-Ka-wFs" secondAttribute="trailing" constant="6" id="dkG-Ea-V0C"/>
+                    <constraint firstItem="NwI-sZ-sdZ" firstAttribute="leading" secondItem="dds-tr-OlV" secondAttribute="trailing" constant="6" id="dpH-TN-RWA"/>
+                    <constraint firstItem="REx-Ka-wFs" firstAttribute="top" secondItem="XwD-fI-AMD" secondAttribute="bottom" constant="13" id="kul-DS-yLI"/>
+                    <constraint firstItem="REx-Ka-wFs" firstAttribute="top" secondItem="NwI-sZ-sdZ" secondAttribute="top" id="m3A-41-IIL"/>
+                    <constraint firstAttribute="trailing" secondItem="OzZ-6q-twO" secondAttribute="trailing" constant="11" id="maT-aO-EKs"/>
+                    <constraint firstItem="XwD-fI-AMD" firstAttribute="top" secondItem="VgY-ug-0hr" secondAttribute="bottom" constant="19" id="oIR-Sl-NND"/>
+                    <constraint firstAttribute="trailing" secondItem="NwI-sZ-sdZ" secondAttribute="trailing" constant="12" id="paY-5F-BHB"/>
+                    <constraint firstItem="VgY-ug-0hr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="rCT-O1-aty"/>
+                    <constraint firstAttribute="trailing" secondItem="Bof-DP-IUF" secondAttribute="trailing" id="xCe-m6-a4k"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bt_delete" destination="75M-j5-9qN" id="fSw-qv-iKg"/>
+                <outlet property="bt_like" destination="REx-Ka-wFs" id="uqt-iY-AOw"/>
+                <outlet property="bt_more" destination="NwI-sZ-sdZ" id="wND-zF-Zd7"/>
+                <outlet property="bt_share" destination="OzZ-6q-twO" id="njO-aB-0ex"/>
+                <outlet property="collection_praisers" destination="dds-tr-OlV" id="tYE-zS-Iak"/>
+                <outlet property="lb_countOfCmtAndPraise" destination="VgY-ug-0hr" id="Ohe-Mg-bDz"/>
+                <outlet property="lb_topicsAndContent" destination="XwD-fI-AMD" id="BhQ-8a-1HV"/>
+                <outlet property="topLine" destination="Bof-DP-IUF" id="wh1-3y-0FB"/>
+            </connections>
+            <point key="canvasLocation" x="209" y="163.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="deleteHighlight" width="31" height="23"/>
+        <image name="deleteNomal" width="31" height="23"/>
+        <image name="like_d" width="43" height="28"/>
+        <image name="moreLiker" width="28" height="28"/>
+        <image name="shareHighlight" width="31" height="23"/>
+        <image name="shareNormal" width="31" height="23"/>
+        <image name="unlike_d" width="43" height="28"/>
+    </resources>
+</document>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SEMCollectionCell" id="gTV-IL-0wX" customClass="SEMCollectionCell">
+            <rect key="frame" x="0.0" y="0.0" width="142" height="197"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="142" height="197"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog" translatesAutoresizingMaskIntoConstraints="NO" id="Haz-0I-GOe" userLabel="Image View_base">
+                        <rect key="frame" x="0.0" y="0.0" width="142" height="142"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Haz-0I-GOe" secondAttribute="height" multiplier="1:1" id="kbC-xP-BcZ"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Afw-JQ-MQ8" userLabel="Image View_up">
+                        <rect key="frame" x="0.0" y="0.0" width="142" height="142"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="Afw-JQ-MQ8" secondAttribute="height" multiplier="1:1" id="1kO-6F-Im1"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJm-79-ugX">
+                        <rect key="frame" x="8" y="174" width="29" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="29" id="fyj-IQ-iBs"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="topicStatus_ing" translatesAutoresizingMaskIntoConstraints="NO" id="Wo5-46-b8u">
+                        <rect key="frame" x="45" y="173" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="15" id="2SV-AW-xbd"/>
+                            <constraint firstAttribute="height" constant="15" id="WYX-dJ-Tg5"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e4m-Kd-13T">
+                        <rect key="frame" x="8" y="154" width="134" height="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="Haz-0I-GOe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="3Tt-HF-pkP"/>
+                <constraint firstAttribute="trailing" secondItem="Haz-0I-GOe" secondAttribute="trailing" id="4ck-xo-NPm"/>
+                <constraint firstAttribute="bottom" secondItem="Wo5-46-b8u" secondAttribute="bottom" constant="9" id="6bP-tz-1rS"/>
+                <constraint firstItem="Afw-JQ-MQ8" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="C0C-hj-5iH"/>
+                <constraint firstItem="e4m-Kd-13T" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="NYE-B4-2lF"/>
+                <constraint firstItem="Wo5-46-b8u" firstAttribute="leading" secondItem="wJm-79-ugX" secondAttribute="trailing" constant="8" id="Qvb-B8-QSn"/>
+                <constraint firstItem="wJm-79-ugX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ZdV-zK-QQd"/>
+                <constraint firstAttribute="trailing" secondItem="e4m-Kd-13T" secondAttribute="trailing" id="gne-HI-XCI"/>
+                <constraint firstItem="Haz-0I-GOe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hXk-7O-z8i"/>
+                <constraint firstItem="e4m-Kd-13T" firstAttribute="top" secondItem="Afw-JQ-MQ8" secondAttribute="bottom" constant="12" id="mld-dj-jk8"/>
+                <constraint firstItem="wJm-79-ugX" firstAttribute="top" secondItem="e4m-Kd-13T" secondAttribute="bottom" constant="6" id="p3u-VF-qwn"/>
+                <constraint firstAttribute="trailing" secondItem="Afw-JQ-MQ8" secondAttribute="trailing" id="ru9-Ub-tmT"/>
+                <constraint firstItem="Afw-JQ-MQ8" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="sLa-Uz-BSL"/>
+                <constraint firstAttribute="bottom" secondItem="wJm-79-ugX" secondAttribute="bottom" constant="9" id="xaX-z1-7Pc"/>
+            </constraints>
+            <size key="customSize" width="211" height="215"/>
+            <connections>
+                <outlet property="img" destination="Haz-0I-GOe" id="GwQ-8U-KWu"/>
+                <outlet property="img_status" destination="Wo5-46-b8u" id="Fui-yT-s6X"/>
+                <outlet property="img_topicType" destination="Afw-JQ-MQ8" id="gx5-MF-ue9"/>
+                <outlet property="lb_status" destination="wJm-79-ugX" id="2Ec-db-HlI"/>
+                <outlet property="lb_topicContent" destination="e4m-Kd-13T" id="8SX-Gf-BYa"/>
+            </connections>
+            <point key="canvasLocation" x="316" y="321.5"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="dog" width="64" height="64"/>
+        <image name="topicStatus_ing" width="15" height="15"/>
+    </resources>
+</document>

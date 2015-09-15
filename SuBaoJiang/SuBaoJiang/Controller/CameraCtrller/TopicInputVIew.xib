@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TopicInputVIew">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="48"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ERV-e6-N4g">
+                    <rect key="frame" x="7" y="7" width="306" height="34"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NSh-Bu-gku">
+                            <rect key="frame" x="6" y="6" width="14" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="14" id="lhV-tM-KRP"/>
+                                <constraint firstAttribute="height" constant="21" id="tUY-pk-zKd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="来这里输入创建新的话题哟~" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="izR-CR-jxM">
+                            <rect key="frame" x="25" y="0.0" width="281" height="34"/>
+                            <color key="backgroundColor" red="0.40000000600000002" green="0.80000001190000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="T5f-23-mTS"/>
+                            </constraints>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="34" id="1fd-ZK-k2V"/>
+                        <constraint firstItem="NSh-Bu-gku" firstAttribute="top" secondItem="ERV-e6-N4g" secondAttribute="top" constant="6" id="8oq-zU-fnF"/>
+                        <constraint firstItem="izR-CR-jxM" firstAttribute="top" secondItem="ERV-e6-N4g" secondAttribute="top" id="GYX-rY-cqz"/>
+                        <constraint firstItem="NSh-Bu-gku" firstAttribute="leading" secondItem="ERV-e6-N4g" secondAttribute="leading" constant="6" id="HXh-8u-wUE"/>
+                        <constraint firstAttribute="bottom" secondItem="izR-CR-jxM" secondAttribute="bottom" id="IID-Ru-w6O"/>
+                        <constraint firstItem="izR-CR-jxM" firstAttribute="leading" secondItem="NSh-Bu-gku" secondAttribute="trailing" constant="5" id="lsg-kO-hub"/>
+                        <constraint firstAttribute="trailing" secondItem="izR-CR-jxM" secondAttribute="trailing" id="pW0-o0-JdP"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ERV-e6-N4g" secondAttribute="bottom" constant="7" id="Orf-f9-jqn"/>
+                <constraint firstItem="ERV-e6-N4g" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="7" id="PkV-uc-hwv"/>
+                <constraint firstAttribute="trailing" secondItem="ERV-e6-N4g" secondAttribute="trailing" constant="7" id="WKu-Er-kqp"/>
+                <constraint firstItem="ERV-e6-N4g" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="7" id="oev-dh-nUj"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="bgView" destination="ERV-e6-N4g" id="fzJ-IK-5IP"/>
+                <outlet property="lb_symbol" destination="NSh-Bu-gku" id="7m4-HZ-YPp"/>
+                <outlet property="textfield" destination="izR-CR-jxM" id="exa-X7-yoa"/>
+            </connections>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="PostMoreCell" rowHeight="126" id="KGk-i7-Jjw" customClass="PostMoreCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="126"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8o2-3X-ZEO" userLabel="topflex">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="26"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="joh-x1-Ho7"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="postMore_addition" translatesAutoresizingMaskIntoConstraints="NO" id="zMn-UQ-6UN">
+                        <rect key="frame" x="30" y="40" width="70" height="70"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="70" id="5Bz-Q2-SYv"/>
+                            <constraint firstAttribute="width" constant="70" id="snI-sC-5mp"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击添加更多图文内容" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhZ-Qr-PVF">
+                        <rect key="frame" x="125" y="64" width="157" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="157" id="XmW-UE-2um"/>
+                            <constraint firstAttribute="height" constant="21" id="z2V-iK-feV"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.6588235294117647" green="0.6588235294117647" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="zMn-UQ-6UN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="6ej-mc-112"/>
+                    <constraint firstAttribute="trailing" secondItem="8o2-3X-ZEO" secondAttribute="trailing" id="Dld-CS-QL9"/>
+                    <constraint firstItem="lhZ-Qr-PVF" firstAttribute="top" secondItem="8o2-3X-ZEO" secondAttribute="bottom" constant="38" id="T58-4D-lav"/>
+                    <constraint firstItem="zMn-UQ-6UN" firstAttribute="top" secondItem="8o2-3X-ZEO" secondAttribute="bottom" constant="14" id="YFO-Y9-UDr"/>
+                    <constraint firstItem="8o2-3X-ZEO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="hWw-Xy-WQr"/>
+                    <constraint firstItem="8o2-3X-ZEO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vTK-Jt-1OG"/>
+                    <constraint firstItem="lhZ-Qr-PVF" firstAttribute="leading" secondItem="zMn-UQ-6UN" secondAttribute="trailing" constant="25" id="yaH-oG-CL2"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="topbar" destination="8o2-3X-ZEO" id="xgg-lh-fGT"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="postMore_addition" width="70" height="70"/>
+    </resources>
+</document>

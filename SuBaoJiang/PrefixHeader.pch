@@ -1,0 +1,75 @@
+//
+//  PrefixHeader.pch
+//  SuBaoJiang
+//
+//  Created by apple on 15/6/2.
+//  Copyright (c) 2015年 teason. All rights reserved.
+//
+
+#ifndef SuBaoJiang_PrefixHeader_pch
+#define SuBaoJiang_PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "ColorsHeader.h"
+#import "WordsHeader.h"
+#import "PictureHeader.h"
+#import "ArchiveHeader.h"
+#import "KeyChainHeader.h"
+
+
+/*
+ * Version 1.20.1 in Build 1.29.6 upload is Checked SWITH IN NO STATUS .
+ 1.29.7 is Beta test .
+ * 20150910 uploaded By Teason
+ * DEVELOPER MODE SWITCHER
+ * BOOL Args , DEFAULT is NO, BECOME YES WHEN TEST AND DEBUG MODE
+ */
+#define DEVELOPER_MODE_SWITCHER         YES
+
+/*
+ * judge iOS VERSION more than this .
+ * X -- float
+ * e.g. ios7.0 , ios7.1
+ */
+#define IS_IOS_VERSION(FLOAT_X)         ([[[UIDevice currentDevice] systemVersion] floatValue] >= FLOAT_X)
+
+/*
+ * Under iOS VERSION <
+ * X -- float
+ * e.g. ios7.0 , ios7.1
+ */
+#define UNDER_IOS_VERSION(FLOAT_X)      ([[[UIDevice currentDevice] systemVersion] floatValue] < FLOAT_X)
+
+/*
+ * judge iPhone5 type
+ */
+#define DEVICE_IS_IPHONE5               ([[UIScreen mainScreen] bounds].size.height >= 568)
+
+//Global App Frame
+#define APPFRAME                        [UIScreen mainScreen].bounds
+
+//Origin NavigationBar Height
+#define NAVIGATIONBAR_HEIGHT            44.0f
+
+//Origin StatusBar Height
+#define STATUSBAR_HEIGHT                20.0f
+
+//global pulldown wating time
+#define WAIT_TIME                       0.68f
+
+//all CORNER RADIUS
+#define CORNER_RADIUS_ALL               6.0f
+
+//custom height of tabbar
+#define MY_TABBAR_HEIGHT                50.0            //58
+
+//1像素的边框
+#define ONE_PIXEL_VALUE                 0.5f
+
+#endif
+
+

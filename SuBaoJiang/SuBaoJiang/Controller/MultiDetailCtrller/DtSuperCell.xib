@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DtSuperCell" rowHeight="380" id="KGk-i7-Jjw" customClass="DtSuperCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="380"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nai-BN-a8B">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="nai-BN-a8B" secondAttribute="height" multiplier="1:1" id="LfA-ZI-BXm"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RBS-Bx-6uU">
+                        <rect key="frame" x="14" y="338" width="292" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="1ej-Pn-mJy"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="nai-BN-a8B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2nn-Ac-Kds"/>
+                    <constraint firstAttribute="trailing" secondItem="nai-BN-a8B" secondAttribute="trailing" id="AUi-z9-Un0"/>
+                    <constraint firstItem="RBS-Bx-6uU" firstAttribute="top" secondItem="nai-BN-a8B" secondAttribute="bottom" constant="18" id="NWQ-X1-TkX"/>
+                    <constraint firstItem="RBS-Bx-6uU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="Q2h-mi-nVD"/>
+                    <constraint firstItem="nai-BN-a8B" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="n7S-ec-xrn"/>
+                    <constraint firstAttribute="trailing" secondItem="RBS-Bx-6uU" secondAttribute="trailing" constant="14" id="usA-7P-dk1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="imgView" destination="nai-BN-a8B" id="n4X-HA-A6P"/>
+                <outlet property="lb_Content" destination="RBS-Bx-6uU" id="o6F-yW-Nn4"/>
+            </connections>
+            <point key="canvasLocation" x="227" y="261"/>
+        </tableViewCell>
+    </objects>
+</document>

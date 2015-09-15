@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GuideThirdCtrller">
+            <connections>
+                <outlet property="img" destination="eZj-An-1QD" id="igh-h0-sYP"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="word1" destination="DMy-N3-XPY" id="ap3-u1-JrM"/>
+                <outlet property="word2" destination="w6F-Vh-znS" id="ZMU-xe-bGw"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide3_bg" translatesAutoresizingMaskIntoConstraints="NO" id="4LO-Ao-gXP">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide3_word1" translatesAutoresizingMaskIntoConstraints="NO" id="DMy-N3-XPY">
+                    <rect key="frame" x="40" y="41" width="240" height="68"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="240" id="Lxv-xe-lCT"/>
+                        <constraint firstAttribute="height" constant="68" id="bKS-Ma-B7z"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide3_word2" translatesAutoresizingMaskIntoConstraints="NO" id="w6F-Vh-znS">
+                    <rect key="frame" x="40" y="487" width="240" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="1v8-Rj-mhK"/>
+                        <constraint firstAttribute="width" constant="240" id="Hf3-2A-2Kl"/>
+                    </constraints>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide3_img" translatesAutoresizingMaskIntoConstraints="NO" id="eZj-An-1QD">
+                    <rect key="frame" x="40" y="147" width="240" height="273"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="eZj-An-1QD" secondAttribute="height" multiplier="80:91" id="Ryh-Tj-JU7"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="DMy-N3-XPY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="41" id="4Ws-fo-6DD"/>
+                <constraint firstItem="eZj-An-1QD" firstAttribute="top" secondItem="DMy-N3-XPY" secondAttribute="bottom" constant="38" id="GzK-4w-88c"/>
+                <constraint firstAttribute="bottom" secondItem="w6F-Vh-znS" secondAttribute="bottom" constant="44" id="H2L-8m-YPs"/>
+                <constraint firstAttribute="trailing" secondItem="4LO-Ao-gXP" secondAttribute="trailing" id="Jfo-m0-R90"/>
+                <constraint firstAttribute="centerY" secondItem="eZj-An-1QD" secondAttribute="centerY" id="Nsn-dW-TTf"/>
+                <constraint firstAttribute="centerX" secondItem="w6F-Vh-znS" secondAttribute="centerX" id="U5F-ov-Ed5"/>
+                <constraint firstItem="4LO-Ao-gXP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="WOx-Ui-JOS"/>
+                <constraint firstAttribute="centerX" secondItem="eZj-An-1QD" secondAttribute="centerX" id="aHI-sm-RRi"/>
+                <constraint firstAttribute="centerX" secondItem="DMy-N3-XPY" secondAttribute="centerX" id="de8-9W-g1n"/>
+                <constraint firstItem="4LO-Ao-gXP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ipH-9V-GUp"/>
+                <constraint firstAttribute="bottom" secondItem="4LO-Ao-gXP" secondAttribute="bottom" id="xwY-nz-YwH"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="guide3_bg" width="375" height="667"/>
+        <image name="guide3_img" width="307" height="422"/>
+        <image name="guide3_word1" width="239" height="68"/>
+        <image name="guide3_word2" width="212" height="38"/>
+    </resources>
+</document>

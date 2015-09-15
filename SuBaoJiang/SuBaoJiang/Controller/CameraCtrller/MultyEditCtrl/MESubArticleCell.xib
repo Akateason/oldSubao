@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MESubArticleCell" rowHeight="234" id="KGk-i7-Jjw" customClass="MESubArticleCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zId-u5-UYI" userLabel="upSection">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="179"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xBE-fn-ZuT">
+                                <rect key="frame" x="22" y="15" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="eHU-Xf-igJ"/>
+                                    <constraint firstAttribute="height" constant="100" id="me7-gQ-jov"/>
+                                </constraints>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EVs-ys-h23" userLabel="titletextView" customClass="PlaceHolderTextView">
+                                <rect key="frame" x="144" y="15" width="154" height="45"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="PaG-MW-weT"/>
+                                </constraints>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                            </textView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSt-22-m5O" userLabel="contentTextView" customClass="PlaceHolderTextView">
+                                <rect key="frame" x="144" y="70" width="154" height="99"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yXl-bP-eyP" userLabel="ButtonEditImg">
+                                <rect key="frame" x="22" y="75" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="G7p-OK-fHV"/>
+                                    <constraint firstAttribute="height" constant="40" id="OKz-Ei-UvW"/>
+                                </constraints>
+                                <state key="normal" image="btEditPicture">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="editPictureBtPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Kqr-9G-8pl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JeI-ok-5ES" userLabel="move_up">
+                                <rect key="frame" x="298" y="0.0" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="22" id="8u3-FT-akz"/>
+                                    <constraint firstAttribute="height" constant="22" id="Nwb-ge-e3e"/>
+                                </constraints>
+                                <state key="normal" image="bt_sub_arrow_up">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="moveUpBtClickAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="fIT-sW-Dwq"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.52633822200000002" green="0.73633854830000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="EVs-ys-h23" secondAttribute="trailing" constant="22" id="EjJ-m9-QmZ"/>
+                            <constraint firstAttribute="trailing" secondItem="JeI-ok-5ES" secondAttribute="trailing" id="FXS-IG-ZHi"/>
+                            <constraint firstItem="JeI-ok-5ES" firstAttribute="top" secondItem="zId-u5-UYI" secondAttribute="top" id="K3m-w9-9Q9"/>
+                            <constraint firstItem="fSt-22-m5O" firstAttribute="top" secondItem="EVs-ys-h23" secondAttribute="bottom" constant="10" id="LCu-xH-PbJ"/>
+                            <constraint firstAttribute="trailing" secondItem="fSt-22-m5O" secondAttribute="trailing" constant="22" id="QBO-ae-Dt8"/>
+                            <constraint firstItem="fSt-22-m5O" firstAttribute="leading" secondItem="xBE-fn-ZuT" secondAttribute="trailing" constant="22" id="VgH-PH-0Wh"/>
+                            <constraint firstItem="EVs-ys-h23" firstAttribute="top" secondItem="zId-u5-UYI" secondAttribute="top" constant="15" id="cnf-36-JEw"/>
+                            <constraint firstItem="yXl-bP-eyP" firstAttribute="top" secondItem="zId-u5-UYI" secondAttribute="top" constant="75" id="gAp-13-c71"/>
+                            <constraint firstAttribute="height" constant="179" id="hol-AL-ZXD"/>
+                            <constraint firstItem="xBE-fn-ZuT" firstAttribute="top" secondItem="zId-u5-UYI" secondAttribute="top" constant="15" id="jkE-SU-U6J"/>
+                            <constraint firstItem="EVs-ys-h23" firstAttribute="leading" secondItem="xBE-fn-ZuT" secondAttribute="trailing" constant="22" id="kMQ-4d-Kd8"/>
+                            <constraint firstItem="xBE-fn-ZuT" firstAttribute="leading" secondItem="zId-u5-UYI" secondAttribute="leading" constant="22" id="kgD-eg-EZW"/>
+                            <constraint firstAttribute="bottom" secondItem="fSt-22-m5O" secondAttribute="bottom" constant="10" id="ml8-TV-xH4"/>
+                            <constraint firstItem="yXl-bP-eyP" firstAttribute="leading" secondItem="zId-u5-UYI" secondAttribute="leading" constant="22" id="qd4-iH-sg3"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z5s-uD-nwa" userLabel="downSection">
+                        <rect key="frame" x="0.0" y="179" width="320" height="50"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nM9-kt-6kr" userLabel="del">
+                                <rect key="frame" x="108" y="7" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="7dQ-El-iPg"/>
+                                    <constraint firstAttribute="height" constant="36" id="pXG-fQ-olC"/>
+                                </constraints>
+                                <state key="normal" image="bt_sub_del">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteBtClickAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="zqt-a7-qyX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V4F-l8-zBV" userLabel="add">
+                                <rect key="frame" x="177" y="7" width="36" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="36" id="LS1-Dd-Unz"/>
+                                    <constraint firstAttribute="height" constant="36" id="mfC-Oh-nl2"/>
+                                </constraints>
+                                <state key="normal" image="bt_sub_add">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addBtClickAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="s9j-uN-aGk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5S-WJ-rEj" userLabel="move_down">
+                                <rect key="frame" x="298" y="28" width="22" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="Bkl-LC-scu"/>
+                                    <constraint firstAttribute="width" constant="22" id="Lit-xq-AwC"/>
+                                </constraints>
+                                <state key="normal" image="bt_sub_arrow_down">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="moveDownBtClickAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="tdh-MJ-PSz"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="0.52685877010000004" blue="0.77493597410000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="nM9-kt-6kr" firstAttribute="top" secondItem="z5s-uD-nwa" secondAttribute="top" constant="7" id="5MU-2U-I8d"/>
+                            <constraint firstItem="V4F-l8-zBV" firstAttribute="top" secondItem="z5s-uD-nwa" secondAttribute="top" constant="7" id="6R5-nR-gvV"/>
+                            <constraint firstAttribute="height" constant="50" id="XhE-Re-gPu"/>
+                            <constraint firstAttribute="centerX" secondItem="V4F-l8-zBV" secondAttribute="centerX" constant="-35" id="a6N-4g-C0v"/>
+                            <constraint firstAttribute="trailing" secondItem="X5S-WJ-rEj" secondAttribute="trailing" id="bbS-k0-kFK"/>
+                            <constraint firstItem="V4F-l8-zBV" firstAttribute="leading" secondItem="nM9-kt-6kr" secondAttribute="trailing" constant="33" id="iTC-ve-o91"/>
+                            <constraint firstItem="V4F-l8-zBV" firstAttribute="leading" secondItem="nM9-kt-6kr" secondAttribute="trailing" constant="33" id="nsB-sx-lE9"/>
+                            <constraint firstAttribute="centerX" secondItem="nM9-kt-6kr" secondAttribute="centerX" constant="34" id="uJS-2a-Xv8"/>
+                            <constraint firstAttribute="bottom" secondItem="X5S-WJ-rEj" secondAttribute="bottom" id="v3U-6g-kvy"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="zId-u5-UYI" secondAttribute="trailing" id="1T3-99-bMq"/>
+                    <constraint firstAttribute="trailing" secondItem="z5s-uD-nwa" secondAttribute="trailing" id="7tY-Cy-dpn"/>
+                    <constraint firstItem="zId-u5-UYI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="AVo-ZP-SNX"/>
+                    <constraint firstItem="zId-u5-UYI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="INb-Vb-5cO"/>
+                    <constraint firstItem="z5s-uD-nwa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="cjw-LK-Wpe"/>
+                    <constraint firstItem="z5s-uD-nwa" firstAttribute="top" secondItem="zId-u5-UYI" secondAttribute="bottom" id="hA1-ZK-j5t"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="bt_moveDown" destination="X5S-WJ-rEj" id="Ztu-lw-51Q"/>
+                <outlet property="bt_moveUp" destination="JeI-ok-5ES" id="Dor-vs-lkq"/>
+                <outlet property="downSec" destination="z5s-uD-nwa" id="c5V-20-L9R"/>
+                <outlet property="imgView" destination="xBE-fn-ZuT" id="882-TY-pZy"/>
+                <outlet property="tv_content" destination="fSt-22-m5O" id="CkQ-ck-lGx"/>
+                <outlet property="tv_title" destination="EVs-ys-h23" id="Ebk-3Y-ZOt"/>
+                <outlet property="upSec" destination="zId-u5-UYI" id="sUI-dc-Yc8"/>
+            </connections>
+            <point key="canvasLocation" x="225" y="199"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="btEditPicture" width="20" height="20"/>
+        <image name="bt_sub_add" width="37" height="37"/>
+        <image name="bt_sub_arrow_down" width="10" height="6"/>
+        <image name="bt_sub_arrow_up" width="10" height="6"/>
+        <image name="bt_sub_del" width="36" height="36"/>
+    </resources>
+</document>
