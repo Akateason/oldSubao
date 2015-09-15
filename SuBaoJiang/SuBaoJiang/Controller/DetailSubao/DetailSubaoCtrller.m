@@ -32,13 +32,13 @@
 #import "ReplyCell.h"
 #import "SaveAlbumnCtrller.h"
 
-#define SIZE_OF_PAGE            50
+#define SIZE_OF_PAGE                            50
 
-#define TAG_ACSHEET_DEL_ART     88871
-#define TAG_ACSHEET_DEL_CMT     88872
-#define TAG_ACSHEET_REPORT      88873
+#define TAG_ACSHEET_DEL_ART                     88871
+#define TAG_ACSHEET_DEL_CMT                     88872
+#define TAG_ACSHEET_REPORT                      88873
 
-#define LINE_HEIGHT             0.0f
+#define LINE_HEIGHT                             0.0f
 
 #define OBSERVER_KEY_PATH_CURRENT_ARTICLE       @"OBSERVER_KEY_PATH_CURRENT_ARTICLE"
 
@@ -486,8 +486,6 @@
 {
     _isMultiType = isMultiType ;
     
-//    self.wordView.hidden = isMultiType ;
-//    self.flex_bottom.constant = isMultiType ? 0.0f : 48.0f ;
     dispatch_async(dispatch_get_main_queue(), ^{
 
         self.flex_bottom.constant = 48.0f ;
@@ -498,7 +496,6 @@
         self.btNav_Share.hidden = !isMultiType ;
 
     }) ;
-    
     
     if (!isMultiType && !t_Label)
     {
@@ -747,14 +744,6 @@
     
     _flex_bottom.constant = 48.0f ;
     self.wordView.hidden = NO ;
-
-//    self.wordView.isHidden = NO ;
-//    if (self.wordView.isHidden == existReplyCell)
-//    {
-//        _flex_bottom.constant = existReplyCell ? 48.0f : 0.0f ;
-//        self.wordView.hidden = !existReplyCell ;
-//        [XTAnimation animationEaseOut:self.wordView] ;
-//    }
 }
 
 #pragma mark --
@@ -920,7 +909,6 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.wordView.textView becomeFirstResponder] ;
     }) ;
-    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -1115,6 +1103,7 @@
 {
     [self.table reloadData] ;
 }
+
 //长按子图,保存图片
 - (void)longPressedCallback:(Article *)article
 {
@@ -1300,7 +1289,6 @@
     
     alertView.positionStyle = SIALertViewPositionBottom ;
     [alertView show];
-    
 }
 
 // 举报
