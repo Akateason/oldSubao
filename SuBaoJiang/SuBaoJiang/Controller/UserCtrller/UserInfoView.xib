@@ -9,7 +9,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="YDL-zd-fLT" customClass="UserInfoView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aFS-WV-nKl">
@@ -49,16 +49,28 @@
                     <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <size key="shadowOffset" width="0.0" height="1"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUV-vv-UQv">
+                    <rect key="frame" x="100" y="182" width="120" height="30"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="编辑个人资料">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="editBtClickAction:" destination="YDL-zd-fLT" eventType="touchUpInside" id="g79-tA-q4g"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="aFS-WV-nKl" secondAttribute="centerY" constant="37" id="4k6-i7-8TW"/>
-                <constraint firstAttribute="centerY" secondItem="9Yz-XQ-rIk" secondAttribute="centerY" constant="-6" id="B7v-fR-eiV"/>
+                <constraint firstAttribute="centerY" secondItem="aFS-WV-nKl" secondAttribute="centerY" constant="52" id="4k6-i7-8TW"/>
+                <constraint firstAttribute="centerY" secondItem="9Yz-XQ-rIk" secondAttribute="centerY" constant="9" id="B7v-fR-eiV"/>
                 <constraint firstItem="rup-fO-GQq" firstAttribute="leading" secondItem="YDL-zd-fLT" secondAttribute="leading" constant="38" id="C8A-mG-EXB"/>
                 <constraint firstAttribute="centerX" secondItem="9Yz-XQ-rIk" secondAttribute="centerX" id="Ihg-kU-Wik"/>
                 <constraint firstAttribute="trailing" secondItem="rup-fO-GQq" secondAttribute="trailing" constant="38" id="MMj-Bc-2Os"/>
-                <constraint firstAttribute="centerY" secondItem="rup-fO-GQq" secondAttribute="centerY" constant="-24.5" id="TUV-CT-67s"/>
-                <constraint firstAttribute="centerY" secondItem="4kn-lX-Bjf" secondAttribute="centerY" constant="-43" id="V8d-Kf-Sw3"/>
+                <constraint firstAttribute="centerY" secondItem="rup-fO-GQq" secondAttribute="centerY" constant="-9.5" id="TUV-CT-67s"/>
+                <constraint firstAttribute="centerY" secondItem="4kn-lX-Bjf" secondAttribute="centerY" constant="-28" id="V8d-Kf-Sw3"/>
                 <constraint firstAttribute="centerX" secondItem="aFS-WV-nKl" secondAttribute="centerX" id="W3n-YC-C6W"/>
                 <constraint firstAttribute="trailing" secondItem="4kn-lX-Bjf" secondAttribute="trailing" constant="43" id="cDS-sO-82o"/>
                 <constraint firstItem="4kn-lX-Bjf" firstAttribute="leading" secondItem="YDL-zd-fLT" secondAttribute="leading" constant="43" id="itN-Hf-Pdr"/>
@@ -67,6 +79,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="bt_edit" destination="UUV-vv-UQv" id="ejv-2v-dO0"/>
                 <outlet property="img_head" destination="aFS-WV-nKl" id="PK5-4B-b8E"/>
                 <outlet property="lb_uname" destination="9Yz-XQ-rIk" id="uZ2-RK-zPS"/>
                 <outlet property="lb_userInfo" destination="4kn-lX-Bjf" id="CGh-H6-FLx"/>

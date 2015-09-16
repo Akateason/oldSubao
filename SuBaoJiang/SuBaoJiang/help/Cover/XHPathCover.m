@@ -196,8 +196,8 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     
     _bannerView = [[UIView alloc] initWithFrame:self.bounds];
     _bannerView.clipsToBounds = YES;
-    UITapGestureRecognizer *tapGestureRecongnizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecongnizerHandle:)];
-    [_bannerView addGestureRecognizer:tapGestureRecongnizer];
+//    UITapGestureRecognizer *tapGestureRecongnizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecongnizerHandle:)];
+//    [_bannerView addGestureRecognizer:tapGestureRecongnizer];
     
     _bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -self.parallaxHeight, CGRectGetWidth(_bannerView.frame), CGRectGetHeight(_bannerView.frame) + self.parallaxHeight * 2)];
     _bannerImageView.contentMode = UIViewContentModeScaleAspectFit;

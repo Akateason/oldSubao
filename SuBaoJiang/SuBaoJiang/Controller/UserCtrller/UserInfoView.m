@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *img_head;
 @property (weak, nonatomic) IBOutlet UILabel *lb_uname;
 @property (weak, nonatomic) IBOutlet UIView *v_line;
+@property (weak, nonatomic) IBOutlet UIButton *bt_edit;
 @end
 
 @implementation UserInfoView
@@ -59,9 +60,17 @@
     
     [XTCornerView setRoundHeadPicWithView:_img_head] ;
     
+    [XTCornerView setRoundHeadPicWithView:_bt_edit] ;
+    
+    _bt_edit.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4] ;
+    
     self.backgroundColor = nil ;
 }
 
+- (IBAction)editBtClickAction:(id)sender
+{
+    NSLog(@"编辑个人嘻嘻") ;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

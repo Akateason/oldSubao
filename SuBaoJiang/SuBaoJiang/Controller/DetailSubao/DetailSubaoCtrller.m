@@ -92,7 +92,7 @@
 {
     [self jump2DetailSubaoCtrller:ctrller
                  AndWithArticleID:aID
-                 AndWithCommentID:0] ;
+                 AndWithCommentID:0] ; ///
 }
 
 + (void)jump2DetailSubaoCtrller:(UIViewController *)ctrller

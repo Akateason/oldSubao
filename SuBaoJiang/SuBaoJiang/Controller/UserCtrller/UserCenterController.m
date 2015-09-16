@@ -301,7 +301,7 @@
 //    [self.table pulldownManually] ;
     [self _refreshing] ;
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(APPFRAME), 200)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(APPFRAME), 230)];
     _pathCover.userObj = self.theUser ;
     [self fetchUserHead] ;
     _pathCover.isZoomingEffect = YES;
@@ -696,7 +696,6 @@
     
     return 1 ;
 }
-
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
