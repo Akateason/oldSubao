@@ -61,15 +61,19 @@
     BOOL bExist = [[PicUploadTB shareInstance] ExistNotUploadPicture] ;
     if (!bExist) return ;
     NSLog(@"exist picture to uploading") ;
-    NSArray *listWillUpdate = [[PicUploadTB shareInstance] getAllNotUploadedPictures] ;
-    [listWillUpdate makeObjectsPerformSelector:@selector(uploadPic)] ;
+    
+    dispatch_queue_t queue = dispatch_queue_create("uploadPicQueue", NULL) ;
+    dispatch_async(queue, ^{
+        NSArray *listWillUpdate = [[PicUploadTB shareInstance] getAllNotUploadedPictures] ;
+        [listWillUpdate makeObjectsPerformSelector:@selector(uploadPic)] ;
+    }) ;
 }
 
 - (void)deleInLoops
 {
     if (!_timerDelete)
     {
-        _timerDelete = [NSTimer scheduledTimerWithTimeInterval:60*60
+        _timerDelete = [NSTimer scheduledTimerWithTimeInterval:10 // 60*10
                                                   target:self
                                                 selector:@selector(delRubbish)
                                                 userInfo:nil
@@ -82,7 +86,21 @@
 - (void)delRubbish
 {
     NSArray *listWillDelete = [[PicUploadTB shareInstance] getAllUploaded] ;
-    [listWillDelete makeObjectsPerformSelector:@selector(deleteThisResource)] ;
+//    [listWillDelete makeObjectsPerformSelector:@selector(deleteThisResource)] ;
+    //
+    
+    dispatch_queue_t queueAsync = dispatch_queue_create("asyncQ", NULL) ;
+    dispatch_async(queueAsync, ^{
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) ;
+        size_t count = listWillDelete.count ;
+        dispatch_apply(count, queue, ^(size_t i) {
+            @autoreleasepool {
+                PicWillUpload *pic = listWillDelete[i] ;
+                [pic deleteThisResource] ;
+            }
+        }) ;
+    }) ;
+    
 }
 
 @end
