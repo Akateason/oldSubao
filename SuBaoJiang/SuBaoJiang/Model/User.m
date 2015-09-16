@@ -5,7 +5,7 @@
 //  Created by apple on 15/6/5.
 //  Copyright (c) 2015年 teason. All rights reserved.
 //
-
+#import "DigitInformation.h"
 #import "User.h"
 
 @implementation User
@@ -29,9 +29,18 @@
         }
         
     }
+    
     return self;
 }
 
-
+- (BOOL)isCurrentUserBeOwner
+{
+    if (self.u_id != 0 && self.u_id == G_USER.u_id)
+    {
+        return YES ;
+    }
+    
+    return NO ;
+}
 
 @end

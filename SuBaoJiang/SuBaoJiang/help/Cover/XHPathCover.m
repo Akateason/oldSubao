@@ -1,6 +1,5 @@
 
 #import "XHPathCover.h"
-#import "UserInfoView.h"
 
 NSString *const XHUserNameKey = @"XHUserName";
 NSString *const XHBirthdayKey = @"XHBirthday";
@@ -9,23 +8,18 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 #import <float.h>
 
 
-@interface XHPathCover () {
+@interface XHPathCover () 
+{
     BOOL normal, paste, hasStop;
     BOOL isrefreshed;
 }
-
 @property (nonatomic, strong) UIView *bannerView;
-
 @property (nonatomic, strong) UIView *showView;
-
-@property (nonatomic, strong) UserInfoView *infoView ;
-
 @end
 
 @implementation XHPathCover
 
 #pragma mark - Publish Api
-
 - (void)animateStart
 {
     [self.infoView animationForUserHead] ;
@@ -74,6 +68,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
          CGRect rectInfo = _infoView.frame ;
         rectInfo.size.width = APPFRAME.size.width ;
         _infoView.frame = rectInfo ;
+        _infoView.delegate = self ;
     }
 
     return _infoView ;
@@ -189,26 +184,20 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 
 - (void)_setup
 {
-    self.parallaxHeight = 200;
-    self.isLightEffect = YES;
-    self.lightEffectPadding = 80;
-    self.lightEffectAlpha = 1.15;
+    self.parallaxHeight = self.bounds.size.height ;
     
     _bannerView = [[UIView alloc] initWithFrame:self.bounds];
     _bannerView.clipsToBounds = YES;
-//    UITapGestureRecognizer *tapGestureRecongnizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecongnizerHandle:)];
-//    [_bannerView addGestureRecognizer:tapGestureRecongnizer];
     
-    _bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, -self.parallaxHeight, CGRectGetWidth(_bannerView.frame), CGRectGetHeight(_bannerView.frame) + self.parallaxHeight * 2)];
+    _bannerImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, - self.parallaxHeight, CGRectGetWidth(_bannerView.frame), CGRectGetHeight(_bannerView.frame) + self.parallaxHeight * 2)];
+
     _bannerImageView.contentMode = UIViewContentModeScaleAspectFit;
     _bannerImageView.backgroundColor = COLOR_MAIN ;
     [_bannerView addSubview:self.bannerImageView];
     [self addSubview:self.bannerView];
-
-//    _waterDropRefresh = [[XHWaterDropRefresh alloc] initWithFrame:CGRectZero];
-//    [self addSubview:self.waterDropRefresh];
     
-    _showView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), 0)];
+    _showView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds))];
+    
     _showView.backgroundColor = nil ;
     
     [self infoView] ;
@@ -216,6 +205,9 @@ NSString *const XHBirthdayKey = @"XHBirthday";
     if (![_infoView superview]) {
         [_showView addSubview:_infoView] ;
     }
+    
+//    UITapGestureRecognizer *tapGestureRecongnizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapGestureRecongnizerHandle:)];
+//    [self.infoView addGestureRecognizer:tapGestureRecongnizer];
     
     [self addSubview:self.showView];
 }
@@ -254,12 +246,12 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 //}
 
 #pragma mark - previte method
-- (void)tapGestureRecongnizerHandle:(UITapGestureRecognizer *)tapGestureRecongnizer
-{
-    if (self.handleTapBackgroundImageEvent) {
-        self.handleTapBackgroundImageEvent();
-    }
-}
+//- (void)tapGestureRecongnizerHandle:(UITapGestureRecognizer *)tapGestureRecongnizer
+//{
+//    if (self.handleTapBackgroundImageEvent) {
+//        self.handleTapBackgroundImageEvent();
+//    }
+//}
 
 - (void)setIsRefreshed:(BOOL)b
 {

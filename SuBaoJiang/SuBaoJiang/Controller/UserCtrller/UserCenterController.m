@@ -30,7 +30,7 @@
 #define SIZE_OF_PAGE    10
 #define KVO_THE_USER    @"KVO_THE_USER"
 
-@interface UserCenterController () <TeaSegmentDelegate,MyCellDelegate>
+@interface UserCenterController () <TeaSegmentDelegate,MyCellDelegate,UserInfoViewDelegate>
 {
     BOOL                _reloadingHead      ;
 
@@ -199,6 +199,19 @@
     return _segment ;
 }
 
+#pragma mark - UserInfoViewDelegate
+- (void)userInfoTappedBackground
+{
+    if ( (!G_TOKEN || !G_USER.u_id) && (_noBottom == NO) ) {
+        [NavLogCtller modalLogCtrllerWithCurrentController:self] ;
+    }
+}
+
+- (void)editBtClick
+{
+    NSLog(@"编辑呀?") ;
+}
+
 #pragma mark - My Cell Delegate ( MySubao MyComments Mypraised )
 - (void)jump2Article:(int)a_id
 {
@@ -306,17 +319,12 @@
     [self fetchUserHead] ;
     _pathCover.isZoomingEffect = YES;
     self.table.tableHeaderView = self.pathCover;
+    _pathCover.infoView.delegate = self ;
+    
     __weak UserCenterController *wself = self;
     [_pathCover setHandleRefreshEvent:^{
         [wself _refreshing];
     }];
-    
-    [_pathCover setHandleTapBackgroundImageEvent:^{
-        // 未登录,且在用户中心
-        if ( (!G_TOKEN || !G_USER.u_id) && (_noBottom == NO) ) {
-            [NavLogCtller modalLogCtrllerWithCurrentController:wself] ;
-        }
-    }] ;
     
     [_pathCover animateStart] ;
 

@@ -16,5 +16,5 @@
 @property (nonatomic,copy)      NSString        *u_description ;
 
 - (instancetype)initWithDic:(NSDictionary *)dic ;
-
+- (BOOL)isCurrentUserBeOwner ;
 @end

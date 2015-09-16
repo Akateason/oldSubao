@@ -9,7 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
+@protocol UserInfoViewDelegate <NSObject>
+- (void)userInfoTappedBackground ;
+- (void)editBtClick ;
+@end
+
 @interface UserInfoView : UIView
+@property (nonatomic,strong) id <UserInfoViewDelegate> delegate ;
 @property (nonatomic,strong)User *theUser ;
 - (void)animationForUserHead ;
 @end

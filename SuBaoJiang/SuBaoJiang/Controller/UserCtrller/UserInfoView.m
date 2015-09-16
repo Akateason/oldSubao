@@ -33,7 +33,6 @@
         [viewShaker shake] ;
         
     }) ;
-    
 }
 
 
@@ -49,27 +48,39 @@
     [_img_head sd_setImageWithURL:[NSURL URLWithString:theUser.u_headpic]
                  placeholderImage:IMG_HEAD_NO] ;
     
+    BOOL isOwner = [theUser isCurrentUserBeOwner] ;
+    _bt_edit.hidden = !isOwner ;
 }
 
 - (void)awakeFromNib
 {
     // Initialization code
     
+    self.backgroundColor = nil ;
+    
     _img_head.layer.borderColor = [UIColor whiteColor].CGColor ;
     _img_head.layer.borderWidth = 1.0 ;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMe:)] ;
+    [self addGestureRecognizer:tap] ;
     
     [XTCornerView setRoundHeadPicWithView:_img_head] ;
     
     [XTCornerView setRoundHeadPicWithView:_bt_edit] ;
     
     _bt_edit.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4] ;
+    _bt_edit.hidden = YES ;
     
-    self.backgroundColor = nil ;
+}
+
+- (void)tapMe:(UITapGestureRecognizer *)tap
+{
+    [self.delegate userInfoTappedBackground] ;
 }
 
 - (IBAction)editBtClickAction:(id)sender
 {
-    NSLog(@"编辑个人嘻嘻") ;
+    [self.delegate editBtClick] ;
 }
 
 /*
