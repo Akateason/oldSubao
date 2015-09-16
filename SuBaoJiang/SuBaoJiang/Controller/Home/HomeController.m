@@ -409,7 +409,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.edgesForExtendedLayout = UIRectEdgeNone;    
+//    self.edgesForExtendedLayout = UIRectEdgeNone;    
     
     // initial
     [self setup] ;
@@ -791,6 +791,14 @@
     if (self.topicID != 0) {
         [self showPostButtonIfNeccessary] ; // SHOW POST BUTTON
     }
+    
+    if ( IS_IOS_VERSION(7.1) )   //   Unsupport  7.0
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //                [self makeTabBarHidden:NO animated:YES] ;
+            self.tabBarController.tabBar.hidden = NO ;
+        }) ;
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
@@ -817,17 +825,21 @@
         {
             [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
             [self.navigationController setNavigationBarHidden:NO animated:YES] ;
-//            dispatch_async(dispatch_get_main_queue(), ^{
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
 //                [self makeTabBarHidden:NO animated:YES] ;
-//            }) ;
+                self.tabBarController.tabBar.hidden = NO ;
+            }) ;
         }
         else if (translation.y < - flex)
         {
             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone] ;
             [self.navigationController setNavigationBarHidden:YES animated:YES] ;
-//            dispatch_async(dispatch_get_main_queue(), ^{
+
+            dispatch_async(dispatch_get_main_queue(), ^{
 //                [self makeTabBarHidden:YES animated:YES] ;
-//            }) ;
+                self.tabBarController.tabBar.hidden = YES ;
+            }) ;
         }
     }
 }

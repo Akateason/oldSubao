@@ -80,11 +80,10 @@
          // delete in DB
          BOOL bSuccess = [[PicUploadTB shareInstance] uploadFinishedPictureWithPictureID:self.id_PicWillUpload] ;
          // delete cache in local
-//         if (bSuccess) [MyFileManager deleteFileWithFileName:self.path] ;
+//         if (bSuccess) [XTFileManager deleteFileWithFileName:self.path] ;
          // delete sdWebimageCache
-         if (bSuccess) {
-             [[SDImageCache sharedImageCache] removeImageForKey:[self qiNiuPath] fromDisk:YES] ;
-         }
+         if (bSuccess) [[SDImageCache sharedImageCache] removeImageForKey:[self qiNiuPath] fromDisk:YES] ;
+         
          
      } option:nil] ;
 }

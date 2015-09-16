@@ -33,4 +33,5 @@
 - (void)cachePicNotLocal:(UIImage *)image ;
 - (void)uploadPic ;
 - (void)deleteThisResource ;
+
 @end

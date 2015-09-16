@@ -224,7 +224,7 @@
         newFrame = CGRectMake(APPFRAME.origin.x,
                                        APPFRAME.origin.y,
                                        APPFRAME.size.width,
-                                       APPFRAME.size.height - self.tabBarController.tabBar.frame.size.height) ;
+                                       APPFRAME.size.height - MY_TABBAR_HEIGHT) ;
     }
     
     if (animated)
@@ -252,3 +252,4 @@
 */
 
 @end
+

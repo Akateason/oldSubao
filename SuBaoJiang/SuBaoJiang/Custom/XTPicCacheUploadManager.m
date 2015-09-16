@@ -64,8 +64,10 @@
     
     dispatch_queue_t queue = dispatch_queue_create("uploadPicQueue", NULL) ;
     dispatch_async(queue, ^{
-        NSArray *listWillUpdate = [[PicUploadTB shareInstance] getAllNotUploadedPictures] ;
-        [listWillUpdate makeObjectsPerformSelector:@selector(uploadPic)] ;
+        @autoreleasepool {
+            NSArray *listWillUpdate = [[PicUploadTB shareInstance] getAllNotUploadedPictures] ;
+            [listWillUpdate makeObjectsPerformSelector:@selector(uploadPic)] ;
+        }
     }) ;
 }
 
@@ -73,7 +75,7 @@
 {
     if (!_timerDelete)
     {
-        _timerDelete = [NSTimer scheduledTimerWithTimeInterval:10 // 60*10
+        _timerDelete = [NSTimer scheduledTimerWithTimeInterval:60*10
                                                   target:self
                                                 selector:@selector(delRubbish)
                                                 userInfo:nil
@@ -87,7 +89,6 @@
 {
     NSArray *listWillDelete = [[PicUploadTB shareInstance] getAllUploaded] ;
 //    [listWillDelete makeObjectsPerformSelector:@selector(deleteThisResource)] ;
-    //
     
     dispatch_queue_t queueAsync = dispatch_queue_create("asyncQ", NULL) ;
     dispatch_async(queueAsync, ^{
