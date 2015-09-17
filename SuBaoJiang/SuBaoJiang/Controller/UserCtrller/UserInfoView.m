@@ -17,6 +17,7 @@
 @interface UserInfoView ()
 @property (weak, nonatomic) IBOutlet UILabel *lb_userInfo;
 @property (weak, nonatomic) IBOutlet UIImageView *img_head;
+@property (weak, nonatomic) IBOutlet UIImageView *img_sex;
 @property (weak, nonatomic) IBOutlet UILabel *lb_uname;
 @property (weak, nonatomic) IBOutlet UIView *v_line;
 @property (weak, nonatomic) IBOutlet UIButton *bt_edit;
@@ -48,8 +49,13 @@
     [_img_head sd_setImageWithURL:[NSURL URLWithString:theUser.u_headpic]
                  placeholderImage:IMG_HEAD_NO] ;
     
+    NSString *genderImgStr = [theUser getUserSexImageString] ;
+    _img_sex.hidden = (!genderImgStr) ;
+    if (genderImgStr) _img_sex.image = [UIImage imageNamed:genderImgStr] ;
+    
     BOOL isOwner = [theUser isCurrentUserBeOwner] ;
     _bt_edit.hidden = !isOwner ;
+    
 }
 
 - (void)awakeFromNib

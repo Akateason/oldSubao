@@ -659,7 +659,7 @@
                 forKey:@"max_id"] ;
     [paramer setObject:[NSNumber numberWithInt:count]
                 forKey:@"count"] ;
-
+    
     return [self getJsonWithURLstr:[self getFinalUrl:URL_OTHER_HOMEPAGE] AndWithParamer:paramer AndWithMode:GET_MODE] ;
 }
 

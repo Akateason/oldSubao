@@ -139,12 +139,14 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
 - (void)showForFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     [ServerRequest getNoReadMsgCountSuccess:^(id json) {
+        
         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
         [self setTabbarUI:result] ;
         [self setNoteCountInTable:result] ;
         [self setLocalRemote:result] ;
         
         completionHandler(UIBackgroundFetchResultNewData) ;
+        
     } fail:^{
         completionHandler(UIBackgroundFetchResultFailed) ;
     }] ;

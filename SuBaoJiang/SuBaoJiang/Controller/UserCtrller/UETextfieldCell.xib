@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UETextfieldCell" rowHeight="55" id="KGk-i7-Jjw" customClass="UETextfieldCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="55"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="用户名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4I4-a1-egh">
+                        <rect key="frame" x="24" y="16" width="51" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="bQI-a6-q89"/>
+                            <constraint firstAttribute="width" constant="51" id="efc-Kn-wEA"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.074509803920000006" green="0.074509803920000006" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="heheda" minimumFontSize="15" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Vfk-YG-Cqi">
+                        <rect key="frame" x="90" y="12" width="206" height="30"/>
+                        <color key="backgroundColor" red="0.0" green="0.70980393886566162" blue="0.94509810209274292" alpha="1" colorSpace="deviceRGB"/>
+                        <color key="textColor" red="0.32549019607843138" green="0.32549019607843138" blue="0.32549019607843138" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <textInputTraits key="textInputTraits"/>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Vfk-YG-Cqi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="4aa-oq-odQ"/>
+                    <constraint firstItem="4I4-a1-egh" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="OBN-7C-zFh"/>
+                    <constraint firstAttribute="trailing" secondItem="Vfk-YG-Cqi" secondAttribute="trailing" constant="24" id="chA-8x-9pe"/>
+                    <constraint firstItem="4I4-a1-egh" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="qJP-83-Ozd"/>
+                    <constraint firstItem="Vfk-YG-Cqi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="90" id="uUe-mG-0Gb"/>
+                    <constraint firstAttribute="bottom" secondItem="Vfk-YG-Cqi" secondAttribute="bottom" constant="12" id="ufr-Da-WGw"/>
+                </constraints>
+            </tableViewCellContentView>
+            <point key="canvasLocation" x="300" y="329.5"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1082,6 +1082,7 @@
                     <connections>
                         <outlet property="table" destination="v9q-WF-8E7" id="tKF-IW-eKk"/>
                         <segue destination="AUW-An-Uvx" kind="push" identifier="user2setting" id="2Wk-Wr-LYu"/>
+                        <segue destination="qwQ-Kl-Pmu" kind="push" identifier="user2useredit" id="R3b-xX-NRm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PiI-8Q-3Jy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1123,7 +1124,42 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZkV-Zj-aBj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1518" y="5356"/>
+            <point key="canvasLocation" x="1866" y="5128"/>
+        </scene>
+        <!--编辑个人资料-->
+        <scene sceneID="CSO-Yk-Rv7">
+            <objects>
+                <viewController id="qwQ-Kl-Pmu" customClass="UserEditController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rKc-ru-egw"/>
+                        <viewControllerLayoutGuide type="bottom" id="PFm-cE-dxC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tp6-PF-kPq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="OWp-GK-9Zd">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="OWp-GK-9Zd" firstAttribute="top" secondItem="Tp6-PF-kPq" secondAttribute="top" id="9gf-0e-Hrm"/>
+                            <constraint firstItem="OWp-GK-9Zd" firstAttribute="leading" secondItem="Tp6-PF-kPq" secondAttribute="leading" id="Kbp-ay-nqP"/>
+                            <constraint firstItem="PFm-cE-dxC" firstAttribute="top" secondItem="OWp-GK-9Zd" secondAttribute="bottom" id="QqM-Oq-ENO"/>
+                            <constraint firstAttribute="trailing" secondItem="OWp-GK-9Zd" secondAttribute="trailing" id="dry-Cv-lyK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="编辑个人资料" id="2UF-iT-lcc"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="table" destination="OWp-GK-9Zd" id="mRm-5g-w7S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PpX-1b-CrB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1866" y="5842"/>
         </scene>
         <!--意见反馈-->
         <scene sceneID="T6U-pA-WAZ">

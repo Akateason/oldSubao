@@ -63,8 +63,8 @@
 @property (nonatomic,strong) NSArray    *segList ;
 
 @property (nonatomic,strong) User       *theUser ; // 设置为看别人, 不设置为自己
-
 @end
+
 
 @implementation UserCenterController
 
@@ -209,7 +209,7 @@
 
 - (void)editBtClick
 {
-    NSLog(@"编辑呀?") ;
+    [self performSegueWithIdentifier:@"user2useredit" sender:nil] ;
 }
 
 #pragma mark - My Cell Delegate ( MySubao MyComments Mypraised )

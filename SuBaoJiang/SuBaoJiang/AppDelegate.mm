@@ -42,8 +42,10 @@
 #pragma mark - back ground fetch
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:NSNOTIFICATION_BG_FETCH_NOTES object:completionHandler] ;
+    [[NSNotificationCenter defaultCenter] postNotificationName:NSNOTIFICATION_BG_FETCH_NOTES
+                                                        object:completionHandler] ;
 }
+
 #pragma mark - didReceiveLocalNotification
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
@@ -65,7 +67,7 @@
 
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
-    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    BOOL result = [UMSocialSnsService handleOpenURL:url] ;
     if (result == FALSE) {
         //调用其他SDK，例如新浪微博SDK等
         return [WeiboSDK handleOpenURL:url delegate:self] ;
@@ -120,7 +122,8 @@
 //    [[UIApplication sharedApplication] scheduleLocalNotification:localNofify];//注册
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
 }
 

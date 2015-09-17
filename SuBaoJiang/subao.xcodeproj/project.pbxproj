@@ -422,6 +422,13 @@
 		D70FD7F51B68A0C400B4159D /* SEMCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D70FD7F31B68A0C400B4159D /* SEMCollectionCell.m */; };
 		D70FD7F61B68A0C400B4159D /* SEMCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70FD7F41B68A0C400B4159D /* SEMCollectionCell.xib */; };
 		D70FD7F91B68AC7800B4159D /* TopicCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D70FD7F81B68AC7800B4159D /* TopicCategory.m */; };
+		D733EB4C1BA9826600363235 /* UserEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = D733EB4B1BA9826600363235 /* UserEditController.m */; };
+		D733EB5B1BAA6B2700363235 /* UEHeadPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D733EB591BAA6B2700363235 /* UEHeadPicCell.m */; };
+		D733EB5C1BAA6B2700363235 /* UEHeadPicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D733EB5A1BAA6B2700363235 /* UEHeadPicCell.xib */; };
+		D733EB601BAA6F7800363235 /* UETextfieldCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D733EB5E1BAA6F7800363235 /* UETextfieldCell.m */; };
+		D733EB611BAA6F7800363235 /* UETextfieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D733EB5F1BAA6F7800363235 /* UETextfieldCell.xib */; };
+		D733EB651BAA783B00363235 /* UEchoosenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D733EB631BAA783B00363235 /* UEchoosenCell.m */; };
+		D733EB661BAA783B00363235 /* UEchoosenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D733EB641BAA783B00363235 /* UEchoosenCell.xib */; };
 		D7674D351B6A0CDE0090B760 /* TopicCategoryCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = D7674D341B6A0CDE0090B760 /* TopicCategoryCtrller.m */; };
 		D7674D391B6A11A50090B760 /* TopicCateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7674D371B6A11A50090B760 /* TopicCateCell.m */; };
 		D7674D3A1B6A11A50090B760 /* TopicCateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7674D381B6A11A50090B760 /* TopicCateCell.xib */; };
@@ -1209,6 +1216,17 @@
 		D70FD7F41B68A0C400B4159D /* SEMCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SEMCollectionCell.xib; path = Controller/TalkCtrller/SEMCollectionCell.xib; sourceTree = "<group>"; };
 		D70FD7F71B68AC7800B4159D /* TopicCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicCategory.h; path = Model/TopicCategory.h; sourceTree = "<group>"; };
 		D70FD7F81B68AC7800B4159D /* TopicCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicCategory.m; path = Model/TopicCategory.m; sourceTree = "<group>"; };
+		D733EB4A1BA9826600363235 /* UserEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEditController.h; path = Controller/UserCtrller/UserEditController.h; sourceTree = "<group>"; };
+		D733EB4B1BA9826600363235 /* UserEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserEditController.m; path = Controller/UserCtrller/UserEditController.m; sourceTree = "<group>"; };
+		D733EB581BAA6B2700363235 /* UEHeadPicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UEHeadPicCell.h; path = Controller/UserCtrller/UEHeadPicCell.h; sourceTree = "<group>"; };
+		D733EB591BAA6B2700363235 /* UEHeadPicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UEHeadPicCell.m; path = Controller/UserCtrller/UEHeadPicCell.m; sourceTree = "<group>"; };
+		D733EB5A1BAA6B2700363235 /* UEHeadPicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UEHeadPicCell.xib; path = Controller/UserCtrller/UEHeadPicCell.xib; sourceTree = "<group>"; };
+		D733EB5D1BAA6F7800363235 /* UETextfieldCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UETextfieldCell.h; path = Controller/UserCtrller/UETextfieldCell.h; sourceTree = "<group>"; };
+		D733EB5E1BAA6F7800363235 /* UETextfieldCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UETextfieldCell.m; path = Controller/UserCtrller/UETextfieldCell.m; sourceTree = "<group>"; };
+		D733EB5F1BAA6F7800363235 /* UETextfieldCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UETextfieldCell.xib; path = Controller/UserCtrller/UETextfieldCell.xib; sourceTree = "<group>"; };
+		D733EB621BAA783B00363235 /* UEchoosenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UEchoosenCell.h; path = Controller/UserCtrller/UEchoosenCell.h; sourceTree = "<group>"; };
+		D733EB631BAA783B00363235 /* UEchoosenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UEchoosenCell.m; path = Controller/UserCtrller/UEchoosenCell.m; sourceTree = "<group>"; };
+		D733EB641BAA783B00363235 /* UEchoosenCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UEchoosenCell.xib; path = Controller/UserCtrller/UEchoosenCell.xib; sourceTree = "<group>"; };
 		D7674D331B6A0CDE0090B760 /* TopicCategoryCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicCategoryCtrller.h; path = Controller/TalkCtrller/TopicCategoryCtrller.h; sourceTree = "<group>"; };
 		D7674D341B6A0CDE0090B760 /* TopicCategoryCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicCategoryCtrller.m; path = Controller/TalkCtrller/TopicCategoryCtrller.m; sourceTree = "<group>"; };
 		D7674D361B6A11A50090B760 /* TopicCateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicCateCell.h; path = Controller/TalkCtrller/TopicCateCell.h; sourceTree = "<group>"; };
@@ -1738,14 +1756,8 @@
 			children = (
 				187CCEED1B26DEB300360B54 /* UserCenterController.h */,
 				187CCEEE1B26DEB300360B54 /* UserCenterController.m */,
-				18B65AA61B96E39800228E02 /* UserInfoView.h */,
-				18B65AA71B96E39800228E02 /* UserInfoView.m */,
-				18B65AA41B96E24F00228E02 /* UserInfoView.xib */,
-				18C2C5B61B50EE9D00A27429 /* MyCell.h */,
-				18C2C5B71B50EE9D00A27429 /* MyCell.m */,
-				18DC51ED1B2ED27800A2BEFF /* mySubao */,
-				18DC51F31B2FC12D00A2BEFF /* myComment */,
-				18DC51E71B2EBA1800A2BEFF /* myPraised */,
+				D733EB4D1BA9829C00363235 /* SubUserCenterCtrl */,
+				D733EB491BA9823400363235 /* UserEditController */,
 			);
 			name = UserCenterCtrller;
 			sourceTree = "<group>";
@@ -3042,6 +3054,39 @@
 			path = CropImageView;
 			sourceTree = "<group>";
 		};
+		D733EB491BA9823400363235 /* UserEditController */ = {
+			isa = PBXGroup;
+			children = (
+				D733EB4A1BA9826600363235 /* UserEditController.h */,
+				D733EB4B1BA9826600363235 /* UserEditController.m */,
+				D733EB581BAA6B2700363235 /* UEHeadPicCell.h */,
+				D733EB591BAA6B2700363235 /* UEHeadPicCell.m */,
+				D733EB5A1BAA6B2700363235 /* UEHeadPicCell.xib */,
+				D733EB5D1BAA6F7800363235 /* UETextfieldCell.h */,
+				D733EB5E1BAA6F7800363235 /* UETextfieldCell.m */,
+				D733EB5F1BAA6F7800363235 /* UETextfieldCell.xib */,
+				D733EB621BAA783B00363235 /* UEchoosenCell.h */,
+				D733EB631BAA783B00363235 /* UEchoosenCell.m */,
+				D733EB641BAA783B00363235 /* UEchoosenCell.xib */,
+			);
+			name = UserEditController;
+			sourceTree = "<group>";
+		};
+		D733EB4D1BA9829C00363235 /* SubUserCenterCtrl */ = {
+			isa = PBXGroup;
+			children = (
+				18B65AA61B96E39800228E02 /* UserInfoView.h */,
+				18B65AA71B96E39800228E02 /* UserInfoView.m */,
+				18B65AA41B96E24F00228E02 /* UserInfoView.xib */,
+				18C2C5B61B50EE9D00A27429 /* MyCell.h */,
+				18C2C5B71B50EE9D00A27429 /* MyCell.m */,
+				18DC51ED1B2ED27800A2BEFF /* mySubao */,
+				18DC51F31B2FC12D00A2BEFF /* myComment */,
+				18DC51E71B2EBA1800A2BEFF /* myPraised */,
+			);
+			name = SubUserCenterCtrl;
+			sourceTree = "<group>";
+		};
 		D7674D321B6A0CA70090B760 /* TopicCategoryCtrller */ = {
 			isa = PBXGroup;
 			children = (
@@ -3155,6 +3200,7 @@
 				1848A7FB1B33BBE00063C177 /* UMSCommentDetailController.xib in Resources */,
 				18C589D21B2AC08F00B8A5EB /* TopicCell.xib in Resources */,
 				18A69AF91B560A2D00152743 /* CameraGroupCell.xib in Resources */,
+				D733EB661BAA783B00363235 /* UEchoosenCell.xib in Resources */,
 				187CCEDF1B25545700360B54 /* UserSimpleCell.xib in Resources */,
 				18D690D81B1C440000BC9475 /* Main.storyboard in Resources */,
 				D70FD7F61B68A0C400B4159D /* SEMCollectionCell.xib in Resources */,
@@ -3188,6 +3234,7 @@
 				18D965741B390D84007A9CC1 /* GuideFirstCtrller.xib in Resources */,
 				18A4D60D1B7DFA5400CCE555 /* ShareAlertView.xib in Resources */,
 				18E3CEFD1B7072EF00F4DB52 /* TopicInputVIew.xib in Resources */,
+				D733EB611BAA6F7800363235 /* UETextfieldCell.xib in Resources */,
 				18B65B1B1B9FED5000228E02 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				18A4D5FA1B7B77B400CCE555 /* DtSubCell.xib in Resources */,
 				1848A7FD1B33BBE00063C177 /* UMSCommentInputControlleriPad.xib in Resources */,
@@ -3212,6 +3259,7 @@
 				18E3CEFB1B7072B000F4DB52 /* AlbumnCell.xib in Resources */,
 				18D699CC1B1C714A00BC9475 /* flotageBackgroud@2x.png in Resources */,
 				18D690DD1B1C440000BC9475 /* LaunchScreen.xib in Resources */,
+				D733EB5C1BAA6B2700363235 /* UEHeadPicCell.xib in Resources */,
 				187CCE7F1B1FEB3400360B54 /* FlywordInputView.xib in Resources */,
 				18E3CF0B1B709D2000F4DB52 /* pg_edit_sdk_resource.bundle in Resources */,
 				D7674D441B6B4E710090B760 /* SEintroCell.xib in Resources */,
@@ -3285,6 +3333,7 @@
 				18D965BE1B3A669C007A9CC1 /* UIImageView+HighlightedWebCache.m in Sources */,
 				18D699E41B1C714A00BC9475 /* EYLargePhoto.m in Sources */,
 				18DC51E51B2EB95500A2BEFF /* MyPraisedCell.m in Sources */,
+				D733EB4C1BA9826600363235 /* UserEditController.m in Sources */,
 				187CCEA41B203B8400360B54 /* AFHTTPRequestOperation.m in Sources */,
 				18D699DD1B1C714A00BC9475 /* ELCImagePickerController.m in Sources */,
 				18D699B91B1C714A00BC9475 /* Reachability.m in Sources */,
@@ -3327,6 +3376,7 @@
 				18A4D6151B7DFA9700CCE555 /* ReuseCellContent.m in Sources */,
 				18D699EE1B1C714A00BC9475 /* JsonToModel.m in Sources */,
 				18DC51E01B2EB77600A2BEFF /* MySubaoCell.m in Sources */,
+				D733EB5B1BAA6B2700363235 /* UEHeadPicCell.m in Sources */,
 				182318581B1DC4D8001CE919 /* DetailSubaoCtrller.m in Sources */,
 				18DC51EB1B2EBA4800A2BEFF /* PraisedCollectionCell.m in Sources */,
 				18D965BA1B3A669C007A9CC1 /* UIButton+WebCache.m in Sources */,
@@ -3357,6 +3407,7 @@
 				18A4D60E1B7DFA5400CCE555 /* ShareCollectionCell.m in Sources */,
 				18C589DB1B2AD16600B8A5EB /* TopicHeader.m in Sources */,
 				18D965B41B3A669C007A9CC1 /* SDWebImageCompat.m in Sources */,
+				D733EB651BAA783B00363235 /* UEchoosenCell.m in Sources */,
 				18D965B51B3A669C007A9CC1 /* SDWebImageDecoder.m in Sources */,
 				18D699931B1C714A00BC9475 /* MyTextView.m in Sources */,
 				18D699BA1B1C714A00BC9475 /* ASIS3Bucket.m in Sources */,
@@ -3539,6 +3590,7 @@
 				18D69A131B1C714A00BC9475 /* SBJsonStreamWriter.m in Sources */,
 				1823184F1B1DA553001CE919 /* XTHudManager.m in Sources */,
 				18BABBF71B3D5E4D0024E871 /* QNUserAgent.m in Sources */,
+				D733EB601BAA6F7800363235 /* UETextfieldCell.m in Sources */,
 				18B65A981B959C7E00228E02 /* ALAssetsLibrary+CustomPhotoAlbum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

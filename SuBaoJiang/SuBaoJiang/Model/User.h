@@ -14,7 +14,10 @@
 @property (nonatomic,copy)      NSString        *u_headpic ;
 @property (nonatomic,copy)      NSString        *u_nickname ;
 @property (nonatomic,copy)      NSString        *u_description ;
+@property (nonatomic)           int             gender ; // 0-无,1-男,2-女
 
 - (instancetype)initWithDic:(NSDictionary *)dic ;
 - (BOOL)isCurrentUserBeOwner ;
+- (NSString *)getUserSex ;
+- (NSString *)getUserSexImageString ;
 @end

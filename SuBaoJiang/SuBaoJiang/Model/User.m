@@ -7,6 +7,7 @@
 //
 #import "DigitInformation.h"
 #import "User.h"
+#import "CommonFunc.h"
 
 @implementation User
 
@@ -41,6 +42,31 @@
     }
     
     return NO ;
+}
+
+- (NSString *)getUserSex
+{
+    return [CommonFunc boyGirlNum2Str:self.gender] ;
+}
+
+- (NSString *)getUserSexImageString
+{
+    NSString *result = @"" ;
+    if (!self.gender) return nil ;
+    
+    switch (self.gender)
+    {
+        case 1:
+            result = @"u_male" ;
+            break;
+        case 2:
+            result = @"u_female" ;
+            break;
+        default:
+            break;
+    }
+
+    return result ;
 }
 
 @end
