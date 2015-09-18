@@ -41,6 +41,10 @@
                     <constraint firstAttribute="bottom" secondItem="Vfk-YG-Cqi" secondAttribute="bottom" constant="12" id="ufr-Da-WGw"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="lb_key" destination="4I4-a1-egh" id="HlY-QE-Ylg"/>
+                <outlet property="tf_val" destination="Vfk-YG-Cqi" id="fuF-AK-AZy"/>
+            </connections>
             <point key="canvasLocation" x="300" y="329.5"/>
         </tableViewCell>
     </objects>

@@ -60,6 +60,9 @@
                     <constraint firstItem="nfV-cv-6bt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="31" id="uY7-cO-fYt"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="imgHead" destination="uz7-Yk-A3g" id="GcQ-uW-Fj4"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

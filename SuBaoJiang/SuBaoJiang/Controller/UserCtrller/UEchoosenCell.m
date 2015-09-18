@@ -8,10 +8,23 @@
 
 #import "UEchoosenCell.h"
 
+@interface UEchoosenCell ()
+@property (weak, nonatomic) IBOutlet UILabel *lb_show;
+@end
+
 @implementation UEchoosenCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
+    
+}
+
+- (void)setStrShow:(NSString *)strShow
+{
+    _strShow = strShow ;
+    
+    self.lb_show.text = strShow ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

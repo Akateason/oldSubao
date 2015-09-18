@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UEchoosenCell : UITableViewCell
-
+@property (nonatomic,strong) NSString *strShow ;
 @end

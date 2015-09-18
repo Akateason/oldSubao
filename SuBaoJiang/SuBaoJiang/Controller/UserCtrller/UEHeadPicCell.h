@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UEHeadPicCell : UITableViewCell
-
+@property (nonatomic,strong) UIImage *picHead ;
 @end

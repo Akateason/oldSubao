@@ -22,13 +22,13 @@
 
 
 /*
- * Version 1.20.1 in Build 1.29.6 upload is Checked SWITH IN NO STATUS .
+ * Version 1.20.1 in Build 1.29.8 upload is Checked SWITH IN NO STATUS .
  1.29.7 is Beta test .
  * 20150910 uploaded By Teason
  * DEVELOPER MODE SWITCHER
  * BOOL Args , DEFAULT is NO, BECOME YES WHEN TEST AND DEBUG MODE
  */
-#define DEVELOPER_MODE_SWITCHER         YES
+#define DEVELOPER_MODE_SWITCHER         NO
 
 /*
  * judge iOS VERSION more than this .

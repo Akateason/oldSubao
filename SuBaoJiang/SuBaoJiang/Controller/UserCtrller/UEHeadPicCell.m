@@ -7,11 +7,26 @@
 //
 
 #import "UEHeadPicCell.h"
+#import "UIImageView+WebCache.h"
+#import "XTCornerView.h"
 
+
+@interface UEHeadPicCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *imgHead;
+@end
 @implementation UEHeadPicCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
+    [XTCornerView setRoundHeadPicWithView:self.imgHead] ;
+}
+
+- (void)setPicHead:(UIImage *)picHead
+{
+    _picHead = picHead ;
+    
+    _imgHead.image = picHead ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

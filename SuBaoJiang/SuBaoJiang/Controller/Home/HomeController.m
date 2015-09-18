@@ -107,6 +107,7 @@
     HomeController *homeCtrller = [story instantiateViewControllerWithIdentifier:@"HomeController"] ;
     homeCtrller.topic = topic ;
     [homeCtrller setHidesBottomBarWhenPushed:YES] ;
+    homeCtrller.tabBarController.tabBar.hidden = YES ;
     [ctrller.navigationController pushViewController:homeCtrller
                                             animated:animated] ;
 }
@@ -342,7 +343,6 @@
         default:
             break;
     }
-    
 }
 
 
@@ -790,6 +790,8 @@
 {
     if (self.topicID != 0) {
         [self showPostButtonIfNeccessary] ; // SHOW POST BUTTON
+        
+        return ; // BREAK IN topic ctrller
     }
     
     if ( IS_IOS_VERSION(7.1) )   //   Unsupport  7.0

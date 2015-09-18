@@ -155,6 +155,7 @@
 - (void)saveBtPressedAction
 {
     NSLog(@"save") ;
+    
     [CommonFunc saveImageToLibrary:self.currentImage] ;
 }
 
@@ -189,7 +190,8 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO] ;
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

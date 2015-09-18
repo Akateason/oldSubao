@@ -51,6 +51,9 @@
                     <constraint firstItem="2NN-Fg-PYB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="l71-Lu-LSr"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="lb_show" destination="2NN-Fg-PYB" id="rvO-WT-8SQ"/>
+            </connections>
         </tableViewCell>
     </objects>
     <resources>

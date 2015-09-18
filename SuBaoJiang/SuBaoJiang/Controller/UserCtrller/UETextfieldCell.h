@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UETextfieldCell : UITableViewCell
-
+@property (nonatomic,copy) NSString *strKey ;
+@property (nonatomic,copy) NSString *strWillShow ;
 @end

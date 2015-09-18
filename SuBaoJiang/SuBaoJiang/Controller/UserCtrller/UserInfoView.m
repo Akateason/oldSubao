@@ -42,8 +42,10 @@
 {
     _theUser = theUser ;
     
+    _lb_uname.hidden = !theUser ;
     _lb_uname.text = (!theUser.u_id) ? @"点我登录" : theUser.u_nickname ;
-    
+
+    _lb_userInfo.hidden = !theUser ;
     _lb_userInfo.text = ( !theUser.u_description || ![theUser.u_description length] ) ? @"暂无简介" : theUser.u_description ;
     
     [_img_head sd_setImageWithURL:[NSURL URLWithString:theUser.u_headpic]
@@ -53,8 +55,8 @@
     _img_sex.hidden = (!genderImgStr) ;
     if (genderImgStr) _img_sex.image = [UIImage imageNamed:genderImgStr] ;
     
-    BOOL isOwner = [theUser isCurrentUserBeOwner] ;
-    _bt_edit.hidden = !isOwner ;
+//    BOOL isOwner = [theUser isCurrentUserBeOwner] ;
+//    _bt_edit.hidden = !isOwner ;
     
 }
 
@@ -72,9 +74,9 @@
     
     [XTCornerView setRoundHeadPicWithView:_img_head] ;
     
-    [XTCornerView setRoundHeadPicWithView:_bt_edit] ;
+//    [XTCornerView setRoundHeadPicWithView:_bt_edit] ;    
+//    _bt_edit.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4] ;
     
-    _bt_edit.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4] ;
     _bt_edit.hidden = YES ;
     
 }
@@ -86,7 +88,7 @@
 
 - (IBAction)editBtClickAction:(id)sender
 {
-    [self.delegate editBtClick] ;
+//    [self.delegate editBtClick] ;
 }
 
 /*

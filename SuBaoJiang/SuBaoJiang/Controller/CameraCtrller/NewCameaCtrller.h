@@ -8,6 +8,7 @@
 
 #import "RootCtrl.h"
 #import "AlbumnCell.h"
+
 #define MAX_SELECT_COUNT    50
 
 @class Article ;
