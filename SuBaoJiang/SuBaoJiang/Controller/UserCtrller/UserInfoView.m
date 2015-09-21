@@ -36,7 +36,6 @@
     }) ;
 }
 
-
 #pragma mark - Properties
 - (void)setTheUser:(User *)theUser
 {
@@ -55,8 +54,8 @@
     _img_sex.hidden = (!genderImgStr) ;
     if (genderImgStr) _img_sex.image = [UIImage imageNamed:genderImgStr] ;
     
-//    BOOL isOwner = [theUser isCurrentUserBeOwner] ;
-//    _bt_edit.hidden = !isOwner ;
+    BOOL isOwner = [theUser isCurrentUserBeOwner] ;
+    _bt_edit.hidden = !isOwner ;
     
 }
 
@@ -74,11 +73,9 @@
     
     [XTCornerView setRoundHeadPicWithView:_img_head] ;
     
-//    [XTCornerView setRoundHeadPicWithView:_bt_edit] ;    
-//    _bt_edit.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4] ;
-    
+    [XTCornerView setRoundHeadPicWithView:_bt_edit] ;    
+    _bt_edit.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4] ;
     _bt_edit.hidden = YES ;
-    
 }
 
 - (void)tapMe:(UITapGestureRecognizer *)tap
@@ -88,7 +85,7 @@
 
 - (IBAction)editBtClickAction:(id)sender
 {
-//    [self.delegate editBtClick] ;
+    [self.delegate editBtClick] ;
 }
 
 /*

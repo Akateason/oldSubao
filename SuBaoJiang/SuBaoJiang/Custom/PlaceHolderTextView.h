@@ -21,4 +21,5 @@
 @property (nonatomic)           int         maxWordsRange ;
 @property (nonatomic, copy)     NSString    *strPlaceHolder ;
 @property (nonatomic)           BOOL        isWhiteBG ; // default is NO ;
+- (void)textviewEmpty:(BOOL)bEmpty ;
 @end

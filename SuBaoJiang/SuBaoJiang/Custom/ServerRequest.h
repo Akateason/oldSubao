@@ -12,6 +12,7 @@
 #import "XTRequest.h"
 #import "ResultParsered.h"
 #import "PublicEnum.h"
+@class User ;
 
 @interface ServerRequest : XTRequest
 
@@ -252,6 +253,12 @@
                              count:(int)count ;
 
 #pragma mark -- 我的主页
+//更新个人主页信息
++ (void)updateUserInfo:(User *)user
+        success:(void (^)(id json))success
+           fail:(void (^)())fail ;
+
+
 //获取我的主页个人信息
 + (ResultParsered *)getMyIndexPersonalInfo ;
 

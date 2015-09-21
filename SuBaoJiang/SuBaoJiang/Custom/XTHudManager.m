@@ -26,7 +26,7 @@ static XTHudManager *instance ;
 #pragma mark - SHOW HUD
 + (void)showWordHudWithTitle:(NSString *)title
 {
-    [self showWordHudWithTitle:title delay:1.3f] ;
+    [self showWordHudWithTitle:title delay:1.1f] ;
 }
 
 + (void)showWordHudWithTitle:(NSString *)title

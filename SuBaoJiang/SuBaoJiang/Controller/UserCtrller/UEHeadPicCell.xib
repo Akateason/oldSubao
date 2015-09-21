@@ -25,17 +25,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ue_arrow" translatesAutoresizingMaskIntoConstraints="NO" id="3qt-lq-D3B">
-                        <rect key="frame" x="284" y="34" width="8" height="15"/>
+                        <rect key="frame" x="288" y="34" width="8" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="H39-Ng-7LG"/>
                             <constraint firstAttribute="width" constant="8" id="HPd-KC-ZUd"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="headNo" translatesAutoresizingMaskIntoConstraints="NO" id="uz7-Yk-A3g">
-                        <rect key="frame" x="95" y="14" width="55" height="55"/>
+                        <rect key="frame" x="95" y="15" width="54" height="54"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="55" id="IEk-lD-bQD"/>
-                            <constraint firstAttribute="height" constant="55" id="LC0-Yl-QPH"/>
+                            <constraint firstAttribute="width" constant="54" id="IEk-lD-bQD"/>
+                            <constraint firstAttribute="height" constant="54" id="LC0-Yl-QPH"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="修改头像" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfV-cv-6bt">
@@ -50,13 +50,13 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="uz7-Yk-A3g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="7Xf-sF-FX3"/>
+                    <constraint firstItem="uz7-Yk-A3g" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="7Xf-sF-FX3"/>
                     <constraint firstItem="3qt-lq-D3B" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="34" id="86y-20-T3z"/>
                     <constraint firstItem="5FX-Vd-5Xs" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="31" id="IkN-j2-RZR"/>
-                    <constraint firstAttribute="trailing" secondItem="3qt-lq-D3B" secondAttribute="trailing" constant="28" id="O5U-Yz-b6h"/>
+                    <constraint firstAttribute="trailing" secondItem="3qt-lq-D3B" secondAttribute="trailing" constant="24" id="O5U-Yz-b6h"/>
                     <constraint firstItem="5FX-Vd-5Xs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="ZvN-bE-9kn"/>
                     <constraint firstItem="uz7-Yk-A3g" firstAttribute="leading" secondItem="5FX-Vd-5Xs" secondAttribute="trailing" constant="29" id="hz2-eE-N62"/>
-                    <constraint firstItem="3qt-lq-D3B" firstAttribute="leading" secondItem="nfV-cv-6bt" secondAttribute="trailing" constant="18" id="k0A-jn-b4g"/>
+                    <constraint firstItem="3qt-lq-D3B" firstAttribute="leading" secondItem="nfV-cv-6bt" secondAttribute="trailing" constant="22" id="k0A-jn-b4g"/>
                     <constraint firstItem="nfV-cv-6bt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="31" id="uY7-cO-fYt"/>
                 </constraints>
             </tableViewCellContentView>

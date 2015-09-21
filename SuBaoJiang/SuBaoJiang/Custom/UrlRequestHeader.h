@@ -80,7 +80,8 @@
 //获取话题页——话题分类列表（话题分类，内容分类）
 #define URL_TOPIC_CATE          @"topic/get_by_topic_cate"
 
-
+//更新个人信息
+#define URL_UPDATE_PERSON_INFO  @"personal/update_userinfo"
 //获取我的主页 个人信息
 #define URL_PERSONAL_INFO       @"personal/info"
 //获取我的主页 我的速报

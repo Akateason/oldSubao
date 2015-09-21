@@ -52,7 +52,6 @@
     int                 m_lastPraisedID ;
     NSMutableArray      *m_praiseList ;
     
-    
     UIButton            *m_btSetting ;
 }
 
@@ -250,7 +249,7 @@
 //        [_table pulldownManually] ;
         [self _refreshing] ;
     }
-        
+    
 }
 
 - (void)setup
@@ -317,13 +316,13 @@
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(APPFRAME), 230)];
     _pathCover.userObj = self.theUser ;
     [self fetchUserHead] ;
-    _pathCover.isZoomingEffect = YES;
-    self.table.tableHeaderView = self.pathCover;
+    _pathCover.isZoomingEffect = YES ;
+    self.table.tableHeaderView = self.pathCover ;
     _pathCover.infoView.delegate = self ;
     
-    __weak UserCenterController *wself = self;
+    __weak UserCenterController *wself = self ;
     [_pathCover setHandleRefreshEvent:^{
-        [wself _refreshing];
+        [wself _refreshing] ;
     }];
     
     [_pathCover animateStart] ;
@@ -340,14 +339,14 @@
     
     UIImage *headImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.theUser.u_headpic
                                                                     withCacheWidth:APPFRAME.size.width] ;
-    if (!headImage) {
+    if (!headImage)
+    {
         [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:self.theUser.u_headpic]
                                                               options:0
                                                              progress:nil
                                                             completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
                                                                 [self makeBlurOn:image] ;
                                                             }] ;
-
     }
     else {
         [self makeBlurOn:headImage] ;

@@ -8,6 +8,6 @@
 
 #import "RootCtrl.h"
 
-@interface UserEditController : RootCtrl
+@interface UserEditController : RootCtrl <UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 @end

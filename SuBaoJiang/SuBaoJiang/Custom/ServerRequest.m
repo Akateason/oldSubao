@@ -10,6 +10,7 @@
 #import "XTRequest.h"
 #import "UrlRequestHeader.h"
 #import "DigitInformation.h"
+#import "User.h"
 
 #import "SBJson.h"
 #import "ASIFormDataRequest.h"
@@ -590,6 +591,31 @@
 
 
 #pragma mark -- 我的主页
+//更新个人主页信息
++ (void)updateUserInfo:(User *)user
+               success:(void (^)(id json))success
+                  fail:(void (^)())fail
+{
+    NSMutableDictionary *paramer = [self getParameters] ;
+    
+    [paramer setObject:user.u_nickname forKey:@"nickname"] ;
+    [paramer setObject:user.u_headpic forKey:@"headpic"] ;
+    [paramer setObject:@(user.gender) forKey:@"gender"] ;
+    [paramer setObject:user.u_description forKey:@"description"] ;
+    
+    NSString *urlStr = [self getFinalUrl:URL_UPDATE_PERSON_INFO] ;
+    
+    [XTRequest POSTWithUrl:urlStr
+                       hud:NO
+                parameters:paramer
+                   success:^(id json) {
+        if (success) success(json);
+    } fail:^{
+        if (fail) fail();
+    }] ;
+}
+
+
 //获取我的主页个人信息
 + (ResultParsered *)getMyIndexPersonalInfo
 {

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UEchoosenCell : UITableViewCell
-@property (nonatomic,strong) NSString *strShow ;
+@interface UEKeyValCell : UITableViewCell
+@property (nonatomic,copy) NSString *strKey ;
+@property (nonatomic,copy) NSString *strVal ;
 @end
