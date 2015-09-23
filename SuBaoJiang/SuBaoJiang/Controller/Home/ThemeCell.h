@@ -14,7 +14,7 @@
 @end
 
 @interface ThemeCell : UITableViewCell
-@property (nonatomic,strong) id <ThemeCellDelegate> delegate ;
+@property (nonatomic,weak) id <ThemeCellDelegate> delegate ;
 @property (nonatomic,strong) NSArray *themesList ;
 + (CGFloat)calculateThemesHeight ;
 @end

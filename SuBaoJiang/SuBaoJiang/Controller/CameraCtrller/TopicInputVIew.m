@@ -16,9 +16,9 @@
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
-    if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tfDidChange) name:UITextFieldTextDidChangeNotification object:nil] ;
-
+    if (self)
+    {
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tfDidChange) name:UITextFieldTextDidChangeNotification object:nil] ;
     }
     return self;
 }
@@ -37,18 +37,20 @@
 }
 
 
-
-
 - (void)awakeFromNib
 {
     // Initialization code
-    
     self.backgroundColor = COLOR_INPUTBORDER ;
     _bgView.backgroundColor = [UIColor whiteColor] ;
     _lb_symbol.textColor = COLOR_MAIN ;
     _textfield.tintColor = COLOR_MAIN ;
     _textfield.backgroundColor = [UIColor whiteColor] ;
     _textfield.delegate = self ;
+    
+    [self.textfield addTarget:self
+                       action:@selector(textFieldChanged:)
+             forControlEvents:UIControlEventEditingChanged];
+    
 }
 
 
@@ -62,16 +64,26 @@
         [XTHudManager showWordHudWithTitle:WD_WORDS_OVERFLOW] ;
         return NO ;
     }
-    
-    [self.delegate newTopicConfirmed:textField.text] ;
-    
+//    [self.delegate newTopicConfirmed:textField.text] ;
     return YES;
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField
-{
-    [self.delegate newTopicConfirmed:textField.text] ;
-}
+//- (void)textFieldDidEndEditing:(UITextField *)textField
+//{
+////    [self.delegate newTopicConfirmed:textField.text] ;
+//}
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string   // return NO to not change text
+//{
+//    if ([string isEqualToString:@"\n"]) {
+//        [textField resignFirstResponder] ;
+//        return NO ;
+//    }
+//    
+//    [self.delegate newTopicConfirmed:_textfield.text] ;
+//
+//    return YES ;
+//}
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {
@@ -80,11 +92,19 @@
     return YES ;
 }
 
-- (void)tfDidChange
-{
-    [self.delegate newTopicConfirmed:_textfield.text] ;
-}
+//- (void)tfDidChange
+//{
+//    NSLog(@"tfDidChange") ;
+//    
+//    [self.delegate newTopicConfirmed:_textfield.text] ;
+//}
 
+- (void)textFieldChanged:(UITextField *)textField
+{
+    NSLog(@"textFieldChanged") ;
+    
+    [self.delegate newTopicConfirmed:textField.text] ;
+}
 
 /*
 // Only override drawRect: if you perform custom drawing.

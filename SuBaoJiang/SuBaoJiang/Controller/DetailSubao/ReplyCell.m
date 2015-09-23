@@ -39,6 +39,11 @@
     _lb_date.textColor = COLOR_GRAY_CONTENT ;
 }
 
+- (void)dealloc
+{
+    self.comment = nil ;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 

@@ -51,7 +51,7 @@
                  placeholderImage:IMG_HEAD_NO] ;
     
     NSString *genderImgStr = [theUser getUserSexImageString] ;
-    _img_sex.hidden = (!genderImgStr) ;
+    _img_sex.hidden = (genderImgStr == nil) ;
     if (genderImgStr) _img_sex.image = [UIImage imageNamed:genderImgStr] ;
     
     BOOL isOwner = [theUser isCurrentUserBeOwner] ;

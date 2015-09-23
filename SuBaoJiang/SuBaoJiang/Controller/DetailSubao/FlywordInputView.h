@@ -15,13 +15,13 @@
 @end
 
 @interface FlywordInputView : UIView
-@property (nonatomic,retain) id <FlywordInputViewDelegate> delegate ;
+@property (nonatomic,weak) id <FlywordInputViewDelegate> delegate ;
 @property (nonatomic,strong) User *userReply ;
 
 // set flyword color
-@property (nonatomic,copy)      NSString    *flyword ;
-@property (nonatomic,retain)    UIColor     *flycolor ;
-@property (nonatomic,retain)    UIFont      *flyfont ;
+@property (nonatomic,copy)    NSString    *flyword ;
+@property (nonatomic,strong)    UIColor     *flycolor ;
+@property (nonatomic,strong)    UIFont      *flyfont ;
 
 @property (nonatomic)   FLYWORD_COLOR_TYPE  typecolor ;
 @property (nonatomic)   FLYWORD_SIZE_TYPE   typesize ;

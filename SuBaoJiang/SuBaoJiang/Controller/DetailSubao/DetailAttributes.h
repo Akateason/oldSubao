@@ -10,8 +10,8 @@
 
 @interface DetailAttributes : NSObject
 
-+ (NSMutableParagraphStyle *)paragraph ;
++ (NSMutableParagraphStyle *)paragraphWithLineSpace:(CGFloat)lineSpace ;
 
-+ (NSDictionary *)attributes ;
++ (NSDictionary *)attributesWithLineSpace:(CGFloat)lineSpace ;
 
 @end

@@ -54,22 +54,28 @@
 }
 
 #pragma mark -- save images to library
-+ (void)saveImageToLibrary:(UIImage*)savedImage
++ (void)saveImageToLibrary:(UIImage *)savedImage
 {
-    NSLog(@"size : %@",NSStringFromCGSize(savedImage.size)) ;
+//    NSLog(@"size : %@",NSStringFromCGSize(savedImage.size)) ;
 //    UIImageWriteToSavedPhotosAlbum(savedImage, nil, nil, NULL);
-    savedImage = [self getSuBaoJiangWaterMask:savedImage] ;
     
-    ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init] ;
-    [library saveImage:savedImage
-               toAlbum:@"速报酱"
-   withCompletionBlock:^(NSError *error) {
-       if (!error) {
-           dispatch_async(dispatch_get_main_queue(), ^{
-               [XTHudManager showWordHudWithTitle:WD_HUD_PIC_SAVE_SUCCESS] ;
-           }) ;
-       }
-   }] ;
+    __block UIImage *imgSave = savedImage ;
+    
+    dispatch_queue_t queue = dispatch_queue_create("pictureSaveInAlbum", NULL) ;
+    dispatch_async(queue, ^{
+        imgSave = [self getSuBaoJiangWaterMask:imgSave] ;
+        ALAssetsLibrary *library = [[ALAssetsLibrary alloc] init] ;
+        [library saveImage:imgSave
+                   toAlbum:@"速报酱"
+       withCompletionBlock:^(NSError *error) {
+           if (!error) {
+               dispatch_async(dispatch_get_main_queue(), ^{
+                   [XTHudManager showWordHudWithTitle:WD_HUD_PIC_SAVE_SUCCESS] ;
+               }) ;
+           }
+       }] ;
+    }) ;
+
 }
 
 + (UIImage *)getSuBaoJiangWaterMask:(UIImage *)orgImage

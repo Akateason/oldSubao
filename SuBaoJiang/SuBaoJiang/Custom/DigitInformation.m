@@ -36,10 +36,6 @@ static int timeCount = 0 ;
 {
     if (!_g_token)
     {
-//        return @"492e71bd1ddb1e3e5dffa8fb7af0a0b0" ;
-//        return @"8ddac5454a1bea9ab41fbf0aabb0c77c" ;
-//        return @"1edb40569d3f1498316ae4c22ab0ea3f" ;
-        
         NSString *homePath = NSHomeDirectory() ;
         NSString *path     = [homePath stringByAppendingPathComponent:PATH_TOKEN_SAVE] ;
         if ([XTFileManager is_file_exist:path])

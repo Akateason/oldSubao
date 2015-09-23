@@ -96,6 +96,8 @@
 - (void)dealloc
 {
     [self startOrCloseFlyword:NO] ;
+    
+    self.barrageView = nil ;
 }
 
 - (void)awakeFromNib
@@ -128,7 +130,7 @@
 {
     CGFloat imgHeight = APPFRAME.size.width ;
     
-    UIFont *font = [UIFont systemFontOfSize:14.0f];
+    UIFont *font = [UIFont systemFontOfSize:16.0f];
     CGSize size = CGSizeMake(APPFRAME.size.width - 14.0 * 2, 2000.0f);
     CGSize labelsize = [article.a_content
                         sizeWithFont:font

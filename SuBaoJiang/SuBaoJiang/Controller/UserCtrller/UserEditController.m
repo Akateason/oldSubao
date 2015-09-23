@@ -17,6 +17,8 @@
 #import "PicWillUpload.h"
 #import "XTTickConvert.h"
 #import "NotificationCenterHeader.h"
+#import "UIImage+AddFunction.h"
+#import "CommonFunc.h"
 
 #define NONE_HEIGHT                     1.0
 
@@ -104,7 +106,8 @@
     
     PicWillUpload *pic = [[PicWillUpload alloc] initNewWithUserID:self.userOwner.u_id tick:[XTTickConvert getTickWithDate:[NSDate date]]] ;
     self.userOwner.u_headpic = [pic qiNiuPath] ;
-    [pic cachePic:originUserHeadPic] ;
+    [pic cacheHeadPic:originUserHeadPic] ;
+    
 }
 
 - (UIImage *)originUserHeadPic

@@ -45,6 +45,12 @@
     [self.delegate topicSelected:[[self.article articleTopicList] firstObject]] ;
 }
 
+- (void)dealloc
+{
+    [m_barrageView stop] ;
+    m_barrageView = nil ;
+}
+
 - (void)awakeFromNib
 {
     // Initialization code
@@ -61,8 +67,9 @@
 - (void)setupMultiple
 {
     _multiSuperView.backgroundColor = nil ;
+    _multiSuperView.clipsToBounds = YES ;
     _lb_type.layer.cornerRadius = CORNER_RADIUS_ALL ;
-    _lb_type.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5] ;
+    _lb_type.backgroundColor = [UIColor colorWithWhite:0 alpha:0.35] ;
     _lb_type.layer.borderWidth = ONE_PIXEL_VALUE ;
     _lb_type.layer.borderColor = [UIColor colorWithWhite:1 alpha:0.1].CGColor ;
     _lb_type.layer.masksToBounds = YES ;
@@ -126,6 +133,7 @@
     
     //flyword
     [m_barrageView setDataArray:_article.articleCommentList];
+    
     if (_isflywordShow) [m_barrageView start] ;
     
     //multiple
@@ -185,7 +193,7 @@
 
 + (CGFloat)calculateHomeCellHeight:(NSString *)content
 {
-    UIFont *font = [UIFont systemFontOfSize:14.0f];
+    UIFont *font = [UIFont systemFontOfSize:16.0f];
     CGSize size = CGSizeMake(APPFRAME.size.width - 12 * 2,200);
     CGSize labelsize = [content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
     

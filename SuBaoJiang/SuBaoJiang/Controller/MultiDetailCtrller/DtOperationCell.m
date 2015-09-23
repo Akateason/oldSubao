@@ -254,7 +254,7 @@
 #pragma mark --
 + (CGFloat)calculateHeightWithCmtStr:(NSString *)cmtStr
 {
-    UIFont *font = [UIFont systemFontOfSize:14.0f];
+    UIFont *font = [UIFont systemFontOfSize:16.0f];
     CGSize size = CGSizeMake(APPFRAME.size.width - 12 * 2,200);
     CGSize labelsize = [cmtStr sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
     CGFloat wordH = labelsize.height ;

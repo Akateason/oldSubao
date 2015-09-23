@@ -42,15 +42,16 @@
 }
 
 #pragma mark --
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     // Initialization code
-    
     _textView.backgroundColor = [UIColor whiteColor] ;
     _textView.textColor = [UIColor darkGrayColor] ;
     
     _textView.isWhiteBG = YES ;
     _textView.myDelegate = self ;
 
+    [_textView becomeFirstResponder] ;
 }
 
 - (void)layoutSubviews

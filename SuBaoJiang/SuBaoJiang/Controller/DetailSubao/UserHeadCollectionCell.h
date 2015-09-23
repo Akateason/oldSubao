@@ -10,8 +10,6 @@
 @class ArticlePraise ;
 
 @interface UserHeadCollectionCell : UICollectionViewCell
-
-@property (nonatomic,strong)         ArticlePraise        *praise ;
-@property (weak, nonatomic) IBOutlet UIImageView *img_head;
-
+@property (nonatomic,strong)         ArticlePraise      *praise ;
+@property (weak, nonatomic) IBOutlet UIImageView        *img_head;
 @end

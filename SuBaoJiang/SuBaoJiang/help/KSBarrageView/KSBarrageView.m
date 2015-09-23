@@ -10,6 +10,7 @@
 #import "UIView+Sizes.h"
 #import "KSBarrageItemView.h"
 #import "ArticleComment.h"
+#import "HWWeakTimer.h"
 
 #define ITEMTAG 1543
 
@@ -18,20 +19,20 @@ static const CGFloat speed_Min      = 100.0 ;
 static const CGFloat seperateTime   = 0.3 ;
 static const CGFloat basicSpeed     = 15.0 ;
 
+@interface KSBarrageView ()
+@property (nonatomic, weak) NSTimer *timer;
+@end
+
 @implementation KSBarrageView
 {
-    UIImageView *_avatarView;
-    UIImageView *_giftView;
-    
-    NSTimer     *_timer;
+//    UIImageView *_avatarView;
+//    UIImageView *_giftView;
     NSInteger    _curIndex;
 }
 
 - (void)dealloc
 {
-    if (!_timer) return ;
-    
-    if ([_timer isValid]) [self stop] ;
+    [self stop] ;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -68,22 +69,26 @@ static const CGFloat basicSpeed     = 15.0 ;
     {
         if (!_timer)
         {
-            _timer = [NSTimer scheduledTimerWithTimeInterval:seperateTime target:self selector:@selector(postView) userInfo:nil repeats:YES];
+            _timer = [HWWeakTimer scheduledTimerWithTimeInterval:seperateTime
+                                                           block:^(id userInfo) {
+                                                            [self postView] ;
+            }
+                                                        userInfo:@"Fire"
+                                                         repeats:YES];
+            [_timer fire] ;
         }
     }
 }
 
 - (void)stop
 {
-    if (_timer)
-    {
-        [_timer invalidate];
-        _timer = nil;
-    }
+    [_timer invalidate];
 }
 
 - (void)postView
 {
+//    NSLog(@"barrage is on .") ;
+    
     if (_dataArray && _dataArray.count > 0)
     {
         int indexPath = random()%(int)((self.frame.size.height) / 30);

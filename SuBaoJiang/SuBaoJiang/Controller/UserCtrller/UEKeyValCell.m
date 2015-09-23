@@ -20,6 +20,7 @@
     // Initialization code
     _lb_key.text = self.strKey ;
     _lb_val.text = self.strVal ;
+    self.tintColor = COLOR_MAIN ;
 }
 
 - (void)setStrKey:(NSString *)strKey

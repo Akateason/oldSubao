@@ -8,13 +8,14 @@
 
 #import "XTlineSpaceLabel.h"
 #import<CoreText/CoreText.h>
+#import "DetailAttributes.h"
 
 #define MAX_HEIGHT_LENGTH   2000
 
 @interface XTlineSpaceLabel()
 
 @property (nonatomic,strong) NSAttributedString        *attributedString ;
-@property (nonatomic,strong) NSDictionary *attributes ;
+@property (nonatomic,strong) NSDictionary              *attributes ;
 @property (nonatomic,strong) NSMutableParagraphStyle   *paragraph ;
 
 @end
@@ -49,16 +50,18 @@
     _linesSpacing = linesSpacing ;
     
     [self paragraph] ;
-    _paragraph.lineSpacing = linesSpacing ;
+//    _paragraph.lineSpacing = linesSpacing ;
 }
 
 - (NSMutableParagraphStyle *)paragraph
 {
     if (!_paragraph)
     {
-        _paragraph = [[NSMutableParagraphStyle alloc ] init] ;
-        _paragraph.alignment = NSTextAlignmentLeft ;
-        _paragraph.lineSpacing = self.linesSpacing ;
+//        _paragraph = [[NSMutableParagraphStyle alloc ] init] ;
+//        _paragraph.alignment = NSTextAlignmentLeft ;
+//        _paragraph.lineSpacing = self.linesSpacing ;
+        
+        _paragraph = [DetailAttributes paragraphWithLineSpace:self.linesSpacing] ;
     }
     
     return _paragraph ;
@@ -68,11 +71,16 @@
 {
     if (!_attributes)
     {
-        _attributes = @{
-                        NSForegroundColorAttributeName : self.textColor ,
-                         NSParagraphStyleAttributeName : self.paragraph ,
-                                   NSFontAttributeName : [UIFont systemFontOfSize:14]
-                        } ;
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithDictionary:[DetailAttributes attributesWithLineSpace:self.linesSpacing]] ;
+        [dic setObject:self.textColor forKey:NSForegroundColorAttributeName] ;
+        
+        _attributes = dic ;
+        
+//        _attributes = @{
+//                        NSForegroundColorAttributeName : self.textColor ,
+//                         NSParagraphStyleAttributeName : self.paragraph ,
+//                                   NSFontAttributeName : [UIFont systemFontOfSize:16.0]
+//                        } ;
     }
     
     return _attributes ;

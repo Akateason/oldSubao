@@ -92,7 +92,7 @@
 {
     [self jump2DetailSubaoCtrller:ctrller
                  AndWithArticleID:aID
-                 AndWithCommentID:0] ; ///
+                 AndWithCommentID:0] ;
 }
 
 + (void)jump2DetailSubaoCtrller:(UIViewController *)ctrller
@@ -644,6 +644,23 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    if ([self.view window] == nil)
+    {
+        // Add code to preserve data stored in the views that might be
+        // needed later.
+        self.allPhotoList = nil ;
+        self.allComments = nil ;
+        
+        // Add code to clean up other strong references to the view in
+        // the view hierarchy.
+        self.wordView = nil ;
+        self.imgAnimateView = nil ;
+        self.cacheImage = nil ;
+        self.imgArticleSend = nil ;
+        self.table = nil ;
+        self.view = nil ;
+    }
 }
 
 #pragma mark --
@@ -877,8 +894,8 @@
     // replyLists
     else if (section == self.articleSuper.childList.count + 2)
     {
-        NSString *strCmt =  ((ArticleComment *)self.allComments[indexPath.row]).showStrComment ;
-
+        NSString *strCmt = ((ArticleComment *)self.allComments[indexPath.row]).showStrComment ;
+        
         return [ReplyCell calculateHeightWithCmtStr:strCmt] ;
     }
     
@@ -890,14 +907,14 @@
 {
     NSInteger section   = indexPath.section ;
     NSInteger row       = indexPath.row ;
- 
+    
     // replyLists
     if (section != self.articleSuper.childList.count + 2) return ;
     
     ArticleComment *cmt = (ArticleComment *)self.allComments[row] ;
     
     if (G_USER.u_id == cmt.userCurrent.u_id) return ; // return when pressed cmt posted by myself ;
-
+    
     [self replyWithCmt:cmt] ;
 }
 

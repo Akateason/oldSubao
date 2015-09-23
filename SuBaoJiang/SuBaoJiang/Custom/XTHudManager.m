@@ -14,10 +14,11 @@
 static XTHudManager *instance ;
 
 @implementation XTHudManager
+
 + (XTHudManager *)shareInstance
 {
-    if (instance == nil) {
-        instance = [[[self class] alloc] init];
+    if (!instance) {
+        instance = [[XTHudManager alloc] init];
     }
     return instance;
 }
@@ -32,10 +33,14 @@ static XTHudManager *instance ;
 + (void)showWordHudWithTitle:(NSString *)title
                        delay:(float)delay
 {
-    //自定义view
+    if ([UIApplication sharedApplication].keyWindow == nil) return ;
+    
     if (![XTHudManager shareInstance].HUD)
     {
-        [XTHudManager shareInstance].HUD = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow];
+        [XTHudManager shareInstance].HUD = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow] ;
+    }
+    
+    if (![[XTHudManager shareInstance].HUD superview]) {
         [[UIApplication sharedApplication].keyWindow addSubview:[XTHudManager shareInstance].HUD];
     }
     
@@ -47,9 +52,6 @@ static XTHudManager *instance ;
     [XTHudManager shareInstance].HUD.mode = MBProgressHUDModeText ;
     [[XTHudManager shareInstance].HUD hide:YES afterDelay:delay] ;
 }
-
-
-
 
 + (void)showHudWhileExecutingBlock:(dispatch_block_t)block AndComplete:(dispatch_block_t)complete AndWithMinSec:(float)sec
 {

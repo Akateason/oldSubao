@@ -25,13 +25,13 @@
 
 @interface WordSendView : UIView
 // properties
-@property (nonatomic,retain) id <WordSendViewDelegate> delegate ;
-@property (nonatomic,strong) ArticleComment *comment ;
+@property (nonatomic,weak) id <WordSendViewDelegate> delegate ;
+@property (nonatomic,weak) ArticleComment *comment ;
 // views
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 @property (weak, nonatomic) IBOutlet UIButton *btSend;
 @property (weak, nonatomic) IBOutlet FlywordLabel *lb_placeholder;
-@property (nonatomic,strong) FlywordInputView *flywordInputView ;
+@property (strong, nonatomic) FlywordInputView *flywordInputView ;
 // func
 - (void)resetToOrigin ;
 - (void)reloadPlaceHolder ;

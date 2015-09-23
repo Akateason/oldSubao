@@ -10,21 +10,20 @@
 
 @implementation DetailAttributes
 
-+ (NSMutableParagraphStyle *)paragraph
++ (NSMutableParagraphStyle *)paragraphWithLineSpace:(CGFloat)lineSpace
 {
     NSMutableParagraphStyle *_paragraph = [[NSMutableParagraphStyle alloc ] init] ;
     _paragraph.alignment = NSTextAlignmentLeft ;
-    _paragraph.lineSpacing = 7.0 ;
+    _paragraph.lineSpacing = lineSpace ;
     
     return _paragraph ;
 }
 
-+ (NSDictionary *)attributes
++ (NSDictionary *)attributesWithLineSpace:(CGFloat)lineSpace
 {
     NSDictionary *_attributes = @{
-                        //NSForegroundColorAttributeName : textColor ,
-                        NSParagraphStyleAttributeName : [self paragraph] ,
-                        NSFontAttributeName : [UIFont systemFontOfSize:14]
+                        NSParagraphStyleAttributeName : [self paragraphWithLineSpace:lineSpace] ,
+                        NSFontAttributeName : [UIFont systemFontOfSize:16.0]
                         } ;
     
     return _attributes ;

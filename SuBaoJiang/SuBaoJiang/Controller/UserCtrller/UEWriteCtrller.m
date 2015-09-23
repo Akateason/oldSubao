@@ -49,8 +49,6 @@
     }
 }
 
-
-
 #pragma mark --
 - (void)setup
 {
@@ -70,7 +68,6 @@
 
 - (void)finishButtonAction
 {
-//    NSLog(@"完成了呀") ;
     
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0] ;
     UETextViewCell *cell = (UETextViewCell *)[self.table cellForRowAtIndexPath:indexPath] ;
@@ -151,7 +148,6 @@
             cell.strPlaceHolder = @"请输入昵称" ;
             cell.maxOverFlowCount = 20 ;
             cell.textView.text = self.userInfoWillChange.u_nickname ;
-
         }
             break;
         case type_description:
@@ -159,7 +155,6 @@
             cell.strPlaceHolder = @"请输入您的个人简介" ;
             cell.maxOverFlowCount = 250 ;
             cell.textView.text = self.userInfoWillChange.u_description ;
-
         }
             break;
         default:
@@ -178,14 +173,13 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
     cell.row = row ;
-//    cell.delegate = self ;
+    cell.accessoryType = (self.userInfoWillChange.gender == row + 1) ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone ;
     
     return cell ;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    long row = indexPath.row ;
     if (self.type == type_sex) {
         return 55.0f ;
     }

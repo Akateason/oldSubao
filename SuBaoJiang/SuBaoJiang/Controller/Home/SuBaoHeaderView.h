@@ -16,7 +16,7 @@
 
 
 @interface SuBaoHeaderView : UIView
-@property (nonatomic,retain) id <SuBaoHeaderViewDelegate> delegate ;
+@property (nonatomic,weak) id <SuBaoHeaderViewDelegate> delegate ;
 @property (nonatomic,strong) Article *article ;
 
 @end

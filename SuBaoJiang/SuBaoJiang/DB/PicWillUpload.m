@@ -121,6 +121,31 @@
     
 }
 
+- (void)cacheHeadPic:(UIImage *)image
+{
+    __block UIImage *img = image ;
+    
+    dispatch_queue_t queue = dispatch_queue_create("cachePic", NULL) ;
+    dispatch_async(queue, ^{
+        
+        img = [UIImage compressQualityWithOriginImage:img] ;
+        
+        [self cachePicInloal:img] ;
+        [self cachePicInSDWebImageCache:img] ;
+        [self saveHeadPic:img] ;
+        [self cachePicInDB] ;
+        
+    }) ;
+}
+
+- (void)saveHeadPic:(UIImage *)image
+{
+    image = [image imageCompressForWidth:image targetWidth:54.0] ;
+    NSString *storeString = [self qiNiuPath] ;
+    NSString *picInHomePage = [CommonFunc dealQiNiuUrl:storeString imgViewSize:CGSizeMake(54.0, 0)] ;
+    [[SDImageCache sharedImageCache] storeImage:image forKey:picInHomePage] ;
+}
+
 - (void)cachePicNotLocal:(UIImage *)image
 {
     __block UIImage *img = image ;

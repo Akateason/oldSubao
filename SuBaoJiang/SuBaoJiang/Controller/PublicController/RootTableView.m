@@ -57,12 +57,10 @@
 #pragma mark -- Public
 - (void)pulldownManually
 {
-    if (_reloadingHead) {
-        return ;
-    }
+    if (_reloadingHead) return ;
     
-    [self reloadTableViewDataSource]    ;
-    [self doneLoadingTableViewData]     ;
+    [self reloadTableViewDataSource] ;
+    [self doneLoadingTableViewData] ;
 }
 
 - (void)rootTableScrollDidScroll:(UIScrollView *)scrollView
@@ -73,35 +71,46 @@
 - (void)rootTableScrollDidEndDragging:(UIScrollView *)scrollView
 {
     // refresh more
-    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
+    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView] ;
     
     // load more
-    [self loadMoreWithScrollView:scrollView] ;
+    if (!self.shutDownManualPullFooter) {
+        [self loadMoreWithScrollView:scrollView] ;
+    }
+    
 }
+
 
 - (void)loadMoreWithScrollView:(UIScrollView *)scrollView
 {
-    if (_reloadingFoot || _reloadingHead) return ; // protect loading only once . if in loading break
 
-    
+    if (_reloadingFoot || _reloadingHead) return ; // protect loading only once . if in loading break
     CGPoint offset = scrollView.contentOffset;
     CGRect bounds = scrollView.bounds;
     CGSize contentsize = scrollView.contentSize;
     UIEdgeInsets inset = scrollView.contentInset;
     CGFloat currentOffset = offset.y + bounds.size.height - inset.bottom;
     CGFloat maximumOffset = contentsize.height;
-//    NSLog(@"maximumOffset : %f",maximumOffset) ;
-//    NSLog(@"currentOffset : %f",currentOffset) ;
-    
-    if (contentsize.height <= bounds.size.height) return ;
-    
-    CGFloat alarmDistance = self.canBeAutoLoadingMore ? maximumOffset / 4.0 : 0 ;
-
-    if (maximumOffset <= currentOffset + alarmDistance || maximumOffset <= currentOffset)
+    if (contentsize.height <= bounds.size.height) return;
+//    CGFloat alarmDistance = self.canBeAutoLoadingMore ? maximumOffset / 4.0 : 0 ;
+//    if (maximumOffset <= currentOffset + alarmDistance || maximumOffset <= currentOffset)
+    if ( maximumOffset <= currentOffset)
     {
-        [self loadMoreAction];
+        [self loadMoreAction] ;
+    }
+
+}
+
+- (void)loadFooterInTableWillDisplayCellWithCurrentIndexRowOrSection:(NSInteger)currentIndex ListCount:(NSInteger)count
+{
+    if (_reloadingFoot || _reloadingHead) return ; // protect loading only once . if in loading break
+
+    if (count - currentIndex < 10 && count > 0 && currentIndex > 1)
+    {
+        [self loadMoreAction] ;
     }
 }
+
 
 - (void)loadMoreAction
 {
@@ -109,7 +118,9 @@
     
     dispatch_queue_t queue = dispatch_queue_create("LoadMore", NULL) ;
     dispatch_async(queue, ^{
+        
         BOOL b = [self.rootDelegate doSthWhenfreshingFooter] ;
+      
         if (b)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -120,8 +131,8 @@
         else
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self showNothing] ;
                 _reloadingFoot = NO ;
+                [self showNothing] ;
             }) ;
         }
     }) ;
@@ -167,7 +178,10 @@
 {
     if (_refreshHeaderView == nil)
     {
-        _refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, - self.bounds.size.height, self.frame.size.width, self.bounds.size.height)];
+        _refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,
+                                                                                         - self.bounds.size.height,
+                                                                                         self.frame.size.width,
+                                                                                         self.bounds.size.height)];
         _refreshHeaderView.delegate = self;
         [self addSubview:_refreshHeaderView];
     }
@@ -215,13 +229,12 @@
 {
     __block BOOL bSuccess ;
     
-    dispatch_queue_t queue = dispatch_get_global_queue(0, 0) ;
+    dispatch_queue_t queue = dispatch_queue_create("queueDoneLoadTableViewData", NULL) ;
+//    dispatch_queue_t queue = dispatch_get_global_queue(0, 0) ;
+
     dispatch_async(queue, ^{
-        
         __block unsigned int seconds = [self logTimeTakenToRunBlock:^{
-            
             bSuccess = [self dataOperationWhenHeaderLoading] ;
-            
         } withPrefix:@"result time"] ;
         
         float smallsec = seconds / 1000.0f ;
@@ -229,7 +242,6 @@
         if (WAIT_TIME > smallsec)
         {
             float sleepTime = WAIT_TIME - smallsec ;
-            
             dispatch_async(dispatch_get_main_queue(), ^() {
                 sleep(sleepTime) ;
                 [self finishPullUpMainThreadUIWithSuccess:bSuccess] ;

@@ -22,6 +22,10 @@
     _img_head.layer.borderWidth = ONE_PIXEL_VALUE ;
 }
 
+- (void)dealloc
+{
+    self.praise = nil ;
+}
 
 #pragma mark --
 #pragma mark - setter
@@ -29,8 +33,8 @@
 {
     _praise = praise ;
     
-//    [_img_head setImageWithURL:[NSURL URLWithString:_praise.user.u_headpic] AndSaleSize:CGSizeMake(50, 50)] ;
-    [_img_head sd_setImageWithURL:[NSURL URLWithString:_praise.user.u_headpic] placeholderImage:IMG_HEAD_NO] ;
+    [_img_head sd_setImageWithURL:[NSURL URLWithString:_praise.user.u_headpic]
+                 placeholderImage:IMG_HEAD_NO] ;
 }
 
 @end

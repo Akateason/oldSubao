@@ -314,9 +314,6 @@
 		18D699F71B1C714A00BC9475 /* NSObject+MKBlockTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D698F31B1C714A00BC9475 /* NSObject+MKBlockTimer.m */; };
 		18D69A081B1C714A00BC9475 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D6991A1B1C714A00BC9475 /* TencentOpenAPI.framework */; };
 		18D69A091B1C714A00BC9475 /* RFSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6991D1B1C714A00BC9475 /* RFSegmentView.m */; };
-		18D69A0A1B1C714A00BC9475 /* RQShineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D699201B1C714A00BC9475 /* RQShineLabel.m */; };
-		18D69A0B1B1C714A00BC9475 /* Guide2View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D699221B1C714A00BC9475 /* Guide2View.xib */; };
-		18D69A0C1B1C714A00BC9475 /* Guide4View.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D699231B1C714A00BC9475 /* Guide4View.xib */; };
 		18D69A0D1B1C714A00BC9475 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D699251B1C714A00BC9475 /* NSObject+SBJson.m */; };
 		18D69A0E1B1C714A00BC9475 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D699281B1C714A00BC9475 /* SBJsonParser.m */; };
 		18D69A0F1B1C714A00BC9475 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6992A1B1C714A00BC9475 /* SBJsonStreamParser.m */; };
@@ -437,6 +434,7 @@
 		D7FDB7AF1BAFABC5004046A6 /* UEWriteCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7AE1BAFABC5004046A6 /* UEWriteCtrller.m */; settings = {ASSET_TAGS = (); }; };
 		D7FDB7B31BAFAF2A004046A6 /* UETextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B21BAFAF2A004046A6 /* UETextViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		D7FDB7B61BAFAF7A004046A6 /* UESelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B51BAFAF7A004046A6 /* UESelectCell.m */; settings = {ASSET_TAGS = (); }; };
+		D7FDB7BC1BB15BA7004046A6 /* HWWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7BB1BB15BA7004046A6 /* HWWeakTimer.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1023,10 +1021,6 @@
 		18D6991A1B1C714A00BC9475 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		18D6991C1B1C714A00BC9475 /* RFSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFSegmentView.h; sourceTree = "<group>"; };
 		18D6991D1B1C714A00BC9475 /* RFSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFSegmentView.m; sourceTree = "<group>"; };
-		18D6991F1B1C714A00BC9475 /* RQShineLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RQShineLabel.h; sourceTree = "<group>"; };
-		18D699201B1C714A00BC9475 /* RQShineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RQShineLabel.m; sourceTree = "<group>"; };
-		18D699221B1C714A00BC9475 /* Guide2View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Guide2View.xib; sourceTree = "<group>"; };
-		18D699231B1C714A00BC9475 /* Guide4View.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Guide4View.xib; sourceTree = "<group>"; };
 		18D699241B1C714A00BC9475 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		18D699251B1C714A00BC9475 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		18D699261B1C714A00BC9475 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -1242,6 +1236,8 @@
 		D7FDB7B21BAFAF2A004046A6 /* UETextViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UETextViewCell.m; path = Controller/UserCtrller/UETextViewCell.m; sourceTree = "<group>"; };
 		D7FDB7B41BAFAF7A004046A6 /* UESelectCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UESelectCell.h; path = Controller/UserCtrller/UESelectCell.h; sourceTree = "<group>"; };
 		D7FDB7B51BAFAF7A004046A6 /* UESelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UESelectCell.m; path = Controller/UserCtrller/UESelectCell.m; sourceTree = "<group>"; };
+		D7FDB7BA1BB15BA7004046A6 /* HWWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWWeakTimer.h; sourceTree = "<group>"; };
+		D7FDB7BB1BB15BA7004046A6 /* HWWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWWeakTimer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2248,6 +2244,7 @@
 		18D697CB1B1C714900BC9475 /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				D7FDB7B91BB15BA7004046A6 /* HWWeakerTimer */,
 				18B65AAF1B9D374900228E02 /* SGFoucusImageFrame */,
 				184C1D9B1B8D692F0033CC4C /* libWeiboSDK */,
 				184C1D911B8B13310033CC4C /* FMMoveTable */,
@@ -2288,7 +2285,6 @@
 				18D698F11B1C714A00BC9475 /* MKBlockTimer */,
 				18D699191B1C714A00BC9475 /* QQsdk */,
 				18D6991B1B1C714A00BC9475 /* RFSegmentView */,
-				18D6991E1B1C714A00BC9475 /* RQShineLabel */,
 				18D699211B1C714A00BC9475 /* SBJson */,
 				18D6997E1B1C714A00BC9475 /* TalkingData */,
 				18D699811B1C714A00BC9475 /* UICollectionViewLeftAlignedLayout */,
@@ -2643,20 +2639,9 @@
 			path = RFSegmentView;
 			sourceTree = "<group>";
 		};
-		18D6991E1B1C714A00BC9475 /* RQShineLabel */ = {
-			isa = PBXGroup;
-			children = (
-				18D6991F1B1C714A00BC9475 /* RQShineLabel.h */,
-				18D699201B1C714A00BC9475 /* RQShineLabel.m */,
-			);
-			path = RQShineLabel;
-			sourceTree = "<group>";
-		};
 		18D699211B1C714A00BC9475 /* SBJson */ = {
 			isa = PBXGroup;
 			children = (
-				18D699221B1C714A00BC9475 /* Guide2View.xib */,
-				18D699231B1C714A00BC9475 /* Guide4View.xib */,
 				18D699241B1C714A00BC9475 /* NSObject+SBJson.h */,
 				18D699251B1C714A00BC9475 /* NSObject+SBJson.m */,
 				18D699261B1C714A00BC9475 /* SBJson.h */,
@@ -3117,6 +3102,15 @@
 			name = UEWriteCtrl;
 			sourceTree = "<group>";
 		};
+		D7FDB7B91BB15BA7004046A6 /* HWWeakerTimer */ = {
+			isa = PBXGroup;
+			children = (
+				D7FDB7BA1BB15BA7004046A6 /* HWWeakTimer.h */,
+				D7FDB7BB1BB15BA7004046A6 /* HWWeakTimer.m */,
+			);
+			path = HWWeakerTimer;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3240,7 +3234,6 @@
 				18C065BF1B6795010094FF5D /* SEMChooseButton.xib in Resources */,
 				D7674D3F1B6A13B90090B760 /* TCateCollectionCell.xib in Resources */,
 				18E3CEF81B70713C00F4DB52 /* NoteAlamCell.xib in Resources */,
-				18D69A0B1B1C714A00BC9475 /* Guide2View.xib in Resources */,
 				D7674D3A1B6A11A50090B760 /* TopicCateCell.xib in Resources */,
 				18DC51E61B2EB95500A2BEFF /* MyPraisedCell.xib in Resources */,
 				18B65AA51B96E24F00228E02 /* UserInfoView.xib in Resources */,
@@ -3262,7 +3255,6 @@
 				18D699D21B1C714A00BC9475 /* blueArrow.png in Resources */,
 				18B65B021B9E901300228E02 /* GuideFourthCtrller.xib in Resources */,
 				18EC3E7F1B71CEFF0041E9DB /* PasterChooseView.xib in Resources */,
-				18D69A0C1B1C714A00BC9475 /* Guide4View.xib in Resources */,
 				1848A7CA1B329A290063C177 /* ThirdLoginCtrller.xib in Resources */,
 				1848A8011B33BBE00063C177 /* UMSnsAccountViewController.xib in Resources */,
 				18D699E01B1C714A00BC9475 /* ELCAssetPicker.xib in Resources */,
@@ -3573,6 +3565,7 @@
 				18D699B11B1C714A00BC9475 /* ASINetworkQueue.m in Sources */,
 				18D3F40C1B622F3700B35AC3 /* ShareUtils.m in Sources */,
 				187CCEA61B203B8400360B54 /* AFHTTPSessionManager.m in Sources */,
+				D7FDB7BC1BB15BA7004046A6 /* HWWeakTimer.m in Sources */,
 				18D9658A1B396637007A9CC1 /* AboutUsCtrller.m in Sources */,
 				18D699F21B1C714A00BC9475 /* NLPullDownRefreshView.m in Sources */,
 				184C1D831B85E0AB0033CC4C /* EditContentCtrller.m in Sources */,
@@ -3601,7 +3594,6 @@
 				18D69A0E1B1C714A00BC9475 /* SBJsonParser.m in Sources */,
 				18D699C71B1C714A00BC9475 /* UIBarButtonItem+Badge.m in Sources */,
 				18D699AC1B1C714A00BC9475 /* ASIDataDecompressor.m in Sources */,
-				18D69A0A1B1C714A00BC9475 /* RQShineLabel.m in Sources */,
 				18A4D60A1B7DFA5400CCE555 /* AlertBackgroundView.m in Sources */,
 				18D699CB1B1C714A00BC9475 /* BATableViewIndex.m in Sources */,
 				18D69A131B1C714A00BC9475 /* SBJsonStreamWriter.m in Sources */,

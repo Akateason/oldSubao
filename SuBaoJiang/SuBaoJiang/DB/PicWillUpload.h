@@ -30,6 +30,7 @@
 - (NSString *)qiNiuPath ;
 
 - (void)cachePic:(UIImage *)image ;
+- (void)cacheHeadPic:(UIImage *)image ;
 - (void)cachePicNotLocal:(UIImage *)image ;
 - (void)uploadPic ;
 - (void)deleteThisResource ;

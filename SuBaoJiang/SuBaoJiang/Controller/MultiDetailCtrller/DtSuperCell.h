@@ -15,9 +15,9 @@
 @end
 
 @interface DtSuperCell : UITableViewCell
-@property (nonatomic,retain) id <DtSuperCellDelegate> delegate ;
+@property (nonatomic,weak) id <DtSuperCellDelegate> delegate ;
 @property (nonatomic,strong) Article *article ;
-@property (nonatomic)        BOOL    isflywordShow ; // 弹幕开关
+@property (nonatomic,assign) BOOL    isflywordShow ; // 弹幕开关
 - (void)startOrCloseFlyword:(BOOL)bSwitch ;
 + (CGFloat)calculateHeight:(Article *)article ;
 @end

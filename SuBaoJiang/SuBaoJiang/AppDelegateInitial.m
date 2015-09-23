@@ -82,6 +82,7 @@
         //  Back Ground Fetch
         [application setMinimumBackgroundFetchInterval:60*3] ;
     }
+    
     return self;
 }
 

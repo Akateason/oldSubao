@@ -29,6 +29,9 @@
             _u_description = [dic objectForKey:@"u_description"] ;
         }
         
+        if (![[dic objectForKey:@"u_gender"] isKindOfClass:[NSNull class]]) {
+            _gender = [[dic objectForKey:@"u_gender"] intValue];
+        }
     }
     
     return self;
@@ -53,7 +56,7 @@
 {
     NSString *result = @"" ;
     if (!self.gender) return nil ;
-    
+    //u_femaie
     switch (self.gender)
     {
         case 1:

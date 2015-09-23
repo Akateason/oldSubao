@@ -17,7 +17,7 @@
 @end
 
 @interface HomeCell : UITableViewCell
-@property (nonatomic,strong) id <HomeCellDelegate> delegate ;
+@property (nonatomic,weak) id <HomeCellDelegate> delegate ;
 @property (nonatomic,strong) Article    *article ;
 @property (nonatomic)        BOOL       isflywordShow ; // 弹幕开关 . 通过ctrller控制
 

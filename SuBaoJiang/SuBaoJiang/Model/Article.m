@@ -24,6 +24,15 @@
 
 @implementation Article
 
+- (void)dealloc
+{
+    self.userCurrent = nil ;
+    self.articleTopicList = nil ;
+    self.praiseList = nil ;
+    self.childList = nil ;
+    self.realImage = nil ;
+}
+
 + (NSString *)getPathInLocal:(NSString *)realImagePath
 {
     return [NSString stringWithFormat:@"%@/%@",[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject], [NSString stringWithFormat:@"%@.jpg",realImagePath]] ;
@@ -188,15 +197,18 @@
 #pragma mark - public
 - (NSDictionary *)getStyle
 {
+    __weak typeof(self) weakSelf = self ;
+    
     return  @{
               @"body" : [UIFont systemFontOfSize:14.0f] ,
+              @"content" : [UIFont systemFontOfSize:16.0f] ,
               @"light" : COLOR_HOME_LIGHT_WORDS ,
               @"dark" : COLOR_BLACK_DARK ,
               @"red"  : COLOR_MAIN ,
               @"darkRed" : COLOR_HOME_CMT_NUMBER ,
               @"topic" : [WPAttributedStyleAction styledActionWithAction:^{
                   NSLog(@"TOPIC CLICK !") ;
-                  [self.delegate topicHotPotClicked] ;
+                  [weakSelf.delegate topicHotPotClicked] ;
               }] ,
               @"link" : COLOR_MAIN
             };
@@ -238,11 +250,11 @@
     NSString *strAttriComment = @"" ;
     if (!self.articleTopicList.count)
     {
-        strAttriComment = [NSString stringWithFormat:@"<dark>%@</dark>",self.a_content];
+        strAttriComment = [NSString stringWithFormat:@"<content><dark>%@</dark></content>",self.a_content];
     }
     else
     {
-        strAttriComment = [NSString stringWithFormat:@"<topic>#%@#</topic><dark>%@</dark>",[self getTopicStr],self.a_content] ;
+        strAttriComment = [NSString stringWithFormat:@"<content><topic>#%@#</topic><dark>%@</dark></content>",[self getTopicStr],self.a_content] ;
     }
     
     return strAttriComment ;

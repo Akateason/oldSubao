@@ -19,14 +19,18 @@
 {
     NSMutableArray *m_topicList ;
     NSArray        *m_myTopicList ;
-    
+
     BOOL            bCreateOrSelect ; // default is NO --> select , YES -- > create
     
     int            m_currentPage ;
+    
+    TopicHeader    *header ;
 }
-@property (weak, nonatomic) IBOutlet UIView *upView;
-@property (weak, nonatomic) IBOutlet RootTableView *table;
+@property (weak, nonatomic) IBOutlet UIView *upView ;
+@property (weak, nonatomic) IBOutlet RootTableView *table ;
 @property (nonatomic, strong)TopicInputVIew *topicInputVIew ;
+@property (atomic, strong)   NSArray        *m_myTopicList ;
+
 @end
 
 @implementation SelectTalkCtrller
@@ -37,7 +41,8 @@
     {
         _topicInputVIew = [[[NSBundle mainBundle] loadNibNamed:@"TopicInputVIew" owner:self options:nil] lastObject] ;
         _topicInputVIew.delegate = self ;
-        if (![_topicInputVIew superview]) {
+        if (![_topicInputVIew superview])
+        {
             [self.upView addSubview:_topicInputVIew] ;
         }
     }
@@ -188,7 +193,10 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    TopicHeader *header = (TopicHeader *)[[[NSBundle mainBundle] loadNibNamed:@"TopicHeader" owner:self options:nil] lastObject] ;
+    if (!header) {
+        header = (TopicHeader *)[[[NSBundle mainBundle] loadNibNamed:@"TopicHeader" owner:self options:nil] lastObject] ;
+    }
+    
     header.title = bCreateOrSelect ? @"相关" : @"热门" ;
     
     return header ;
@@ -227,41 +235,34 @@
 #pragma mark -- TopicInputViewDelegate
 - (void)newTopicConfirmed:(NSString *)topicStr
 {
-    if ([_topicInputVIew.textfield.text isEqualToString:@""])
+    @synchronized (m_myTopicList)
     {
-        @synchronized (m_myTopicList)
+        if (!_topicInputVIew.textfield.text.length)
         {
             bCreateOrSelect = NO ;
             m_myTopicList = @[] ;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [_table reloadData] ;
-//                [_table setRefreshViewFrame] ;
             }) ;
             return ;
         }
-    }
-    
-    bCreateOrSelect = [_topicInputVIew.textfield.text length] ;
-    
-    ArticleTopic *topicCustom = [[ArticleTopic alloc] initEmptyTopicWithContent:topicStr] ;
-    
-    if (bCreateOrSelect)
-    {
-        @synchronized (m_myTopicList)
-        {
-            m_myTopicList = @[topicCustom] ;
-        }
-    }
-    else return ;
-
-    // Search topic list
-    [ServerRequest searchTalkListWithContent:topicStr page:1 count:50 success:^(id json)
-    {
-        ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
-        NSArray *topicList = [ArticleTopic getTopicListWithDictList:[result.info objectForKey:@"topics"]] ;
-        [self operateNewTopicList:topicList topicStr:topicStr] ;
         
-    } fail:nil] ;
+        bCreateOrSelect = [_topicInputVIew.textfield.text length] ;
+        
+        ArticleTopic *topicCustom = [[ArticleTopic alloc] initEmptyTopicWithContent:topicStr] ;
+        
+        if (bCreateOrSelect) m_myTopicList = @[topicCustom] ;
+        else                 return ;
+        
+        // Search topic list
+        [ServerRequest searchTalkListWithContent:topicStr page:1 count:50 success:^(id json)
+         {
+             ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
+             NSArray *topicList = [ArticleTopic getTopicListWithDictList:[result.info objectForKey:@"topics"]] ;
+             [self operateNewTopicList:topicList topicStr:topicStr] ;
+             
+         } fail:nil] ;
+    }
     
 }
 
@@ -270,15 +271,28 @@
 {
     @synchronized (m_myTopicList)
     {
-        BOOL hasSame = false ;
-        for (ArticleTopic *topi in topicList)
-            if ([topi.t_content isEqualToString:topicStr]) hasSame = true ;
+        BOOL hasSame = NO ;
+        
+        for (ArticleTopic *topi in topicList) {
+            if ([topi.t_content isEqualToString:topicStr])
+            {
+                hasSame = YES ;
+                break ;
+            }
+        }
+        
+        for (ArticleTopic *topi in m_myTopicList) {
+            if ([topi.t_content isEqualToString:topicStr])
+            {
+                hasSame = YES ;
+                break ;
+            }
+        }
         
         m_myTopicList = hasSame ? topicList : [m_myTopicList arrayByAddingObjectsFromArray:topicList] ;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [_table reloadData] ;
-//            [_table setRefreshViewFrame] ;
         }) ;
     }
 }

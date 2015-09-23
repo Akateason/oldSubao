@@ -18,8 +18,8 @@
 @end
 
 @interface DtSubCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet XTlineSpaceLabel   *lb_subContent;
-@property (nonatomic,retain) id <DtSubCellDelegate> delegate ;
+@property (weak, nonatomic) IBOutlet XTlineSpaceLabel *lb_subContent;
+@property (nonatomic,weak) id <DtSubCellDelegate> delegate ;
 @property (nonatomic,strong) Article *subArticle ;
 @property (nonatomic)        BOOL    isflywordShow ; // 弹幕开关
 - (void)startOrCloseFlyword:(BOOL)bSwitch ;

@@ -106,7 +106,7 @@
                                    [self.delegate imgDownloadFinished] ;
                                }
                                
-                               CGFloat resultImgHeight = 100 ; // defaultHeight
+                               CGFloat resultImgHeight = 200 ; // defaultHeight
                                if (image != nil)
                                {
                                    // down load finished , will fixing new size of this imageView .
@@ -141,6 +141,7 @@
     NSString *labelString = subArticle.a_content;
     NSString *myString = [labelString stringByReplacingOccurrencesOfString:@"\r\n" withString:@"\n"] ;
     _lb_subContent.text = myString ;
+
     
     //flyword
     [self.barrageView setDataArray:subArticle.articleCommentList];
@@ -171,7 +172,7 @@
     // get content height
     BOOL hasSubContent = !( !subArticle.a_content || [subArticle.a_content isEqualToString:@""] ) ;
     
-    CGFloat lbHeight = [XTlineSpaceLabel getAttributedStringHeightWidthValue:APPFRAME.size.width - 14.0 * 2 content:subArticle.a_content attributes:[DetailAttributes attributes]] ;
+    CGFloat lbHeight = [XTlineSpaceLabel getAttributedStringHeightWidthValue:APPFRAME.size.width - 14.0 * 2 content:subArticle.a_content attributes:[DetailAttributes attributesWithLineSpace:7.0]] ;
     
     if (lbHeight < 17.0)
     {
@@ -185,6 +186,7 @@
 - (void)dealloc
 {
     [self startOrCloseFlyword:NO] ;
+    self.barrageView = nil ;
 }
 
 - (void)awakeFromNib

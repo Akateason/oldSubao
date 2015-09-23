@@ -48,12 +48,11 @@
     BOOL                bMoveToTop          ;
     
     long long           m_lastUpdateTime    ; // 首页最新的updateTime && 话题页
-    
 }
 
 @property (weak, nonatomic) IBOutlet RootTableView *table;
 @property (weak, nonatomic) IBOutlet NavTitleView  *titleView;
-@property (nonatomic, strong)        UIButton      *bt_go2post ;
+@property (nonatomic,strong)         UIButton      *bt_go2post ;
 @property (atomic, strong)  NSMutableArray         *m_articleList ; // 文章 datasource
 @property (atomic, strong)  NSMutableArray         *m_themesList  ; // 主题list
 
@@ -220,6 +219,8 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+    
+    _table = nil ;
 }
 
 #pragma mark -- Notificaiton center
@@ -364,7 +365,8 @@
     _table.rootDelegate = self ;
     _table.rootFinished = self ;
     
-    _table.canBeAutoLoadingMore = (!_topicID) ;
+//    _table.canBeAutoLoadingMore = (!_topicID) ;
+    _table.shutDownManualPullFooter = (_topicID != 0) ;
 
     if (!_topicID)
     {
@@ -404,6 +406,7 @@
 }
 
 #pragma mark --
+#pragma mark - Life
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -439,6 +442,27 @@
     
 }
 
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+    
+    if ([self.view window] == nil)
+    {
+        // Add code to preserve data stored in the views that might be
+        // needed later.
+        self.m_articleList = nil ;
+        self.m_themesList = nil ;
+        
+        // Add code to clean up other strong references to the view in
+        // the view hierarchy.
+        m_switchButton = nil ;
+        self.bt_go2post = nil ;
+        self.table = nil ;
+        self.view = nil ;
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
@@ -451,6 +475,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES] ;
     [[UIApplication sharedApplication] setStatusBarHidden:NO] ;
 }
+
 
 #pragma mark --
 #pragma mark - parser Home Info
@@ -686,7 +711,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    [XTAnimation smallBigBestInCell:cell.contentView] ;
+    [self.table loadFooterInTableWillDisplayCellWithCurrentIndexRowOrSection:indexPath.section ListCount:self.m_articleList.count + 1] ;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
