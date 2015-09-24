@@ -16,7 +16,7 @@
 @end
 
 @interface PasterChooseView : UIView
-@property (nonatomic,strong) id <PasterChooseViewDelegate> delegate ;
+@property (nonatomic,weak)   id <PasterChooseViewDelegate> delegate ;
 @property (nonatomic,strong) Paster *aPaster ;
 //@property (nonatomic,copy) NSString *pasterName ;
 @end

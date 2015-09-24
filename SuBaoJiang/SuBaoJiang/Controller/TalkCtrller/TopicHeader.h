@@ -15,7 +15,7 @@
 @end
 
 @interface TopicHeader : UIView
-@property (nonatomic,strong) id <TopicHeaderDelegate> delegate ;
+@property (nonatomic,weak)   id <TopicHeaderDelegate> delegate ;
 @property (nonatomic)        BOOL           isCateOrDefault ; // 话题分类, 或添加中
 @property (nonatomic,strong) Acategory      *acate ;
 @property (nonatomic,copy)   NSString       *title ;

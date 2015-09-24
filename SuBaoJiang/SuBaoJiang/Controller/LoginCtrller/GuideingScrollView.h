@@ -15,7 +15,7 @@
 @end
 
 @interface GuideingScrollView : UIScrollView
-@property (nonatomic,strong) id <GuideingScrollViewDelegate> guidingDelegate ;
+@property (nonatomic, weak) id <GuideingScrollViewDelegate> guidingDelegate ;
 @property (nonatomic) BOOL isAboutUS ;
-@property (nonatomic,strong) UIViewController *currentCtrller ;
+@property (nonatomic, strong) UIViewController *currentCtrller ;
 @end

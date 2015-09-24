@@ -11,7 +11,6 @@
 
 
 @interface XTHudManager : NSObject
-
 //hud
 @property (nonatomic,retain)    MBProgressHUD   *HUD ;
 

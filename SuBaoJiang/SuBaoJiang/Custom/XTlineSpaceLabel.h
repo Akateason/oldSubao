@@ -10,7 +10,7 @@
 
 @interface XTlineSpaceLabel : UILabel
 
-@property(nonatomic,assign) long        linesSpacing ;
+@property(nonatomic) long linesSpacing ;
 
 + (int)getAttributedStringHeightWidthValue:(int)width content:(NSString *)content attributes:(NSDictionary *)attribute ;
 

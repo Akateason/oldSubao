@@ -12,5 +12,5 @@
 @end
 
 @interface AlertBackgroundView : UIView
-@property (nonatomic,strong) id <AlertBackgroundViewDelegate> delegate ;
+@property (nonatomic,weak) id <AlertBackgroundViewDelegate> delegate ;
 @end

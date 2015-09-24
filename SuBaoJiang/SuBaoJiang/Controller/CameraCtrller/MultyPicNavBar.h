@@ -15,5 +15,5 @@
 
 @interface MultyPicNavBar : UIView
 @property (nonatomic)   BOOL isChoosen ;
-@property (nonatomic,strong) id <MultyPicNavBarDelegate> delegate ;
+@property (nonatomic,weak) id <MultyPicNavBarDelegate> delegate ;
 @end

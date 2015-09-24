@@ -30,8 +30,8 @@
     BOOL                        _reloadingFoot      ;
 }
 
-@property (nonatomic,retain) id <RootTableViewDelegate> rootDelegate ;
-@property (nonatomic,retain) id <RootTableViewFinished> rootFinished ;
+@property (nonatomic,weak) id <RootTableViewDelegate> rootDelegate ;
+@property (nonatomic,weak) id <RootTableViewFinished> rootFinished ;
 
 //@property (nonatomic)       BOOL canBeAutoLoadingMore ; // DEFAULT IS FALSE ;
 @property (nonatomic)       BOOL    shutDownManualPullFooter ;

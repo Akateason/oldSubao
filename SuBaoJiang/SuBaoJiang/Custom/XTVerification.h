@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface XTVerification : NSObject
-
-
 //邮箱
 + (BOOL) validateEmail:(NSString *)email;
 

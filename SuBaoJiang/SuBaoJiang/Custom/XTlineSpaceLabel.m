@@ -50,7 +50,6 @@
     _linesSpacing = linesSpacing ;
     
     [self paragraph] ;
-//    _paragraph.lineSpacing = linesSpacing ;
 }
 
 - (NSMutableParagraphStyle *)paragraph
@@ -116,7 +115,6 @@
     
     return total_height ;
 }
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

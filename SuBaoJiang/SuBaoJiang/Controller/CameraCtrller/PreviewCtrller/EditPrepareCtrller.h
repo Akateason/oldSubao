@@ -16,7 +16,7 @@
 @property (nonatomic,copy)   NSString *topicStr ;
 @property (nonatomic,strong) UIImage  *imgSend ;
 @property (nonatomic)        BOOL     isEditingPicture ;
-@property (nonatomic,strong) id <EditPrepareCtrllerDelegate> delegate ;
+@property (nonatomic,weak)   id <EditPrepareCtrllerDelegate> delegate ;
 
 + (void)jump2EditPrepareCtrllerFromCtrller:(UIViewController *)ctrller
                                   AndImage:(UIImage *)imageResource

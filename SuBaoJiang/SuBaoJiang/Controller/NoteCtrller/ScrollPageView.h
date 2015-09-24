@@ -22,12 +22,12 @@
 
 @interface ScrollPageView : UIView<UIScrollViewDelegate>
 {
-    BOOL        mNeedUseDelegate    ;
+    BOOL mNeedUseDelegate    ;
 }
 
 @property (nonatomic,retain) UIScrollView   *scrollView;
 @property (nonatomic,retain) NSMutableArray *contentItems;
-@property (nonatomic,assign) id<ScrollPageViewDelegate> delegate;
+@property (nonatomic,weak) id<ScrollPageViewDelegate> delegate;
 
 @property (nonatomic) NSInteger mCurrentPage ;
 

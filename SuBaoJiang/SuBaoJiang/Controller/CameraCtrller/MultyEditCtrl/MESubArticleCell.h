@@ -30,7 +30,7 @@ typedef NS_ENUM(NSInteger, TypeOfSubArticleQueueSection)
 @end
 
 @interface MESubArticleCell : FMMoveTableViewCell
-@property (nonatomic,strong) id <MESubArticleCellDelegate> delegate ;
+@property (nonatomic,weak)   id <MESubArticleCellDelegate> delegate ;
 @property (nonatomic)        int                           row ; // row in cell indexpath.row
 @property (nonatomic)        TypeOfSubArticleQueueSection  queueType ; // ctrl UIs of moving Bts
 @property (nonatomic,strong) Article                       *subArticle ;

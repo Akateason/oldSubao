@@ -13,7 +13,7 @@
 @end
 
 @interface CutCtrller : RootCtrl
-@property (nonatomic,strong) id <CutCtrllerDelegate> delegate ;
+@property (nonatomic,weak)   id <CutCtrllerDelegate> delegate ;
 @property (nonatomic,strong) UIImage *imgBringIn ;
 @property (nonatomic,strong) UIImage *whiteSideImg ;
 @end

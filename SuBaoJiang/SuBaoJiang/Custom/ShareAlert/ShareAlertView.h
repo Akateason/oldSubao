@@ -14,5 +14,5 @@
 @end
 
 @interface ShareAlertView : UIView
-@property (nonatomic,strong) id <ShareAlertViewDelegate> delegate ;
+@property (nonatomic,weak) id <ShareAlertViewDelegate> delegate ;
 @end

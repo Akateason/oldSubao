@@ -16,6 +16,6 @@
 @end
 
 @interface SEMchooseCell : UITableViewCell
-@property (nonatomic,strong) id <SEMchooseCellDelegate> delegate ;
+@property (nonatomic,weak) id <SEMchooseCellDelegate> delegate ;
 - (void)animationForIcon ;
 @end

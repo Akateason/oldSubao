@@ -13,5 +13,5 @@
 @end
 
 @interface SelectTalkCtrller : RootCtrl
-@property (nonatomic,retain) id <SelectTalkCtrllerDelegate> delegate ;
+@property (nonatomic,weak) id <SelectTalkCtrllerDelegate> delegate ;
 @end

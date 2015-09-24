@@ -13,6 +13,6 @@
 @end
 
 @interface SpinCtrller : RootCtrl
-@property (nonatomic,strong) id <SpinCtrllerDelegate> delegate ;
+@property (nonatomic,weak)   id <SpinCtrllerDelegate> delegate ;
 @property (nonatomic,strong) UIImage *imgBringIn ;
 @end

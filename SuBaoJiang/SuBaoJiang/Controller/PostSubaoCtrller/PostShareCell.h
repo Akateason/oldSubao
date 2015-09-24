@@ -13,5 +13,5 @@
 @end
 
 @interface PostShareCell : UITableViewCell
-@property (nonatomic,strong) id <PostShareCellDelegate> delegate ;
+@property (nonatomic,weak) id <PostShareCellDelegate> delegate ;
 @end

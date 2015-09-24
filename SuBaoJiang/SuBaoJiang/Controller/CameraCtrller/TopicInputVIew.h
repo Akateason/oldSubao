@@ -12,7 +12,7 @@
 @end
 
 @interface TopicInputVIew : UIView <UITextFieldDelegate>
-@property (nonatomic,retain) id <TopicInputVIewDelegate> delegate ;
+@property (nonatomic,weak) id <TopicInputVIewDelegate> delegate ;
 
 @property (weak, nonatomic) IBOutlet UIView *bgView;
 @property (weak, nonatomic) IBOutlet UILabel *lb_symbol;

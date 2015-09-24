@@ -15,7 +15,7 @@
 @end
 
 @interface UserInfoView : UIView
-@property (nonatomic,strong) id <UserInfoViewDelegate> delegate ;
+@property (nonatomic,weak)  id <UserInfoViewDelegate> delegate ;
 @property (nonatomic,strong)User *theUser ;
 - (void)animationForUserHead ;
 @end

@@ -378,10 +378,9 @@ static long photoCount = 0 ;
     NSInteger row = indexPath.row ;
     
     // Set up the reuse identifier
-    AlbumnCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"AlbumnCell" forIndexPath:indexPath];
-    
+    AlbumnCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"AlbumnCell"
+                                                                 forIndexPath:indexPath] ;
     cell.bTakePhoto = NO ;
-    
     cell.fetchMode = self.fetchMode ;
 
     if (self.fetchMode == mode_single || self.fetchMode == mode_addSingle)
@@ -395,7 +394,7 @@ static long photoCount = 0 ;
         }
         
         ALAsset *asset = (ALAsset *)self.imageList[row - 1] ;
-        CGImageRef thum = [asset thumbnail];
+        CGImageRef thum = [asset thumbnail] ;
         cell.img.image = [UIImage imageWithCGImage:thum] ;
     }
     else
@@ -416,10 +415,19 @@ static long photoCount = 0 ;
     return CGSizeMake(slider, slider) ;
 }
 
+// The view that is returned must be retrieved from a call to -dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:
+//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+//           viewForSupplementaryElementOfKind:(NSString *)kind
+//                                 atIndexPath:(NSIndexPath *)indexPath
+//{
+//    
+//}
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger row = indexPath.row ;
-    NSLog(@"ROW : %@",@(row)) ;
+    NSNumber *numRow = [NSNumber numberWithInteger:row] ;
+    NSLog(@"ROW : %@",numRow) ;
     
     if (!G_TOKEN || !G_USER.u_id)
     {
@@ -444,7 +452,7 @@ static long photoCount = 0 ;
     {
         if ([self thisPhotoIsSelectedWithRow:row])
         {
-            [self.multySelectedImageList removeObject:@(row)] ;
+            [self.multySelectedImageList removeObject:numRow] ;
         }
         else
         {
@@ -458,7 +466,7 @@ static long photoCount = 0 ;
                 }) ;
                 return ;
             }
-            [self.multySelectedImageList addObject:@(row)] ;
+            [self.multySelectedImageList addObject:numRow] ;
         }
         
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]] ;
@@ -508,8 +516,8 @@ static long photoCount = 0 ;
     opt.saveToAlbum = NO ;
     opt.regionViewColor = RGB(51, 51, 51);
     
-    TuSDKPFCameraViewController *controller = opt.viewController;
-    controller.delegate = self;
+    TuSDKPFCameraViewController *controller = opt.viewController ;
+    controller.delegate = self ;
     [self presentViewController:controller animated:YES completion:^{}] ;
 }
 
@@ -521,7 +529,7 @@ static long photoCount = 0 ;
         [self go2CuttingVC:result.image] ;
     }] ;
 
-    lsqLDebug(@"onTuSDKPFCamera: %@", result);
+    lsqLDebug(@"onTuSDKPFCamera: %@", result) ;
 }
 
 - (void)go2CuttingVC:(UIImage *)imageResult

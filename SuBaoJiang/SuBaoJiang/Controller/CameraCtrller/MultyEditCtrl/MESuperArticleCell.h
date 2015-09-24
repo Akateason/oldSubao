@@ -20,7 +20,7 @@
 
 @interface MESuperArticleCell : UITableViewCell
 
-@property (nonatomic, retain)   id <MESuperArticleCellDelegate> delegate ;
+@property (nonatomic, weak)     id <MESuperArticleCellDelegate> delegate ;
 @property (nonatomic, retain)   Article     *articleSuper ;
 @property (nonatomic, copy)     NSString    *topicStr ;
 - (void)mainTitleAnimateAction ;

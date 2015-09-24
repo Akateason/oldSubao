@@ -68,6 +68,7 @@
 {
     _multiSuperView.backgroundColor = nil ;
     _multiSuperView.clipsToBounds = YES ;
+    
     _lb_type.layer.cornerRadius = CORNER_RADIUS_ALL ;
     _lb_type.backgroundColor = [UIColor colorWithWhite:0 alpha:0.35] ;
     _lb_type.layer.borderWidth = ONE_PIXEL_VALUE ;

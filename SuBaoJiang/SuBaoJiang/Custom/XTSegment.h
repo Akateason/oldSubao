@@ -16,7 +16,7 @@
 
 @interface XTSegment : UIView
 
-@property (nonatomic,strong) id <TeaSegmentDelegate> delegate ;
+@property (nonatomic,weak)   id <TeaSegmentDelegate> delegate ;
 @property (nonatomic)        int     currentIndex ;
 @property (nonatomic,strong) NSArray *dataList ;
 @property (nonatomic,strong) UIImage *imgBG_sel ;

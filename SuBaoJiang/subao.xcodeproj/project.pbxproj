@@ -94,8 +94,6 @@
 		187CCEDF1B25545700360B54 /* UserSimpleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187CCEDD1B25545700360B54 /* UserSimpleCell.xib */; };
 		187CCEE11B2591A400360B54 /* NoWifiView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 187CCEE01B2591A400360B54 /* NoWifiView.xib */; };
 		187CCEE41B26D2B200360B54 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = 187CCEE31B26D2B100360B54 /* UIView+Sizes.m */; };
-		187CCEEA1B26D2F900360B54 /* KSBarrageItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187CCEE71B26D2F900360B54 /* KSBarrageItemView.m */; };
-		187CCEEB1B26D2F900360B54 /* KSBarrageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187CCEE91B26D2F900360B54 /* KSBarrageView.m */; };
 		187CCEEF1B26DEB300360B54 /* UserCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 187CCEEE1B26DEB300360B54 /* UserCenterController.m */; };
 		18A4D5E71B78761300CCE555 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4D5E61B78761300CCE555 /* UIColor+HexString.m */; };
 		18A4D5EF1B7B4FBD00CCE555 /* DetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4D5ED1B7B4FBD00CCE555 /* DetailTitleCell.m */; };
@@ -435,6 +433,8 @@
 		D7FDB7B31BAFAF2A004046A6 /* UETextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B21BAFAF2A004046A6 /* UETextViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		D7FDB7B61BAFAF7A004046A6 /* UESelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B51BAFAF7A004046A6 /* UESelectCell.m */; settings = {ASSET_TAGS = (); }; };
 		D7FDB7BC1BB15BA7004046A6 /* HWWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7BB1BB15BA7004046A6 /* HWWeakTimer.m */; settings = {ASSET_TAGS = (); }; };
+		D7FDB7CA1BB3FA28004046A6 /* KSBarrageItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7C71BB3FA28004046A6 /* KSBarrageItemView.m */; settings = {ASSET_TAGS = (); }; };
+		D7FDB7CB1BB3FA28004046A6 /* KSBarrageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7C91BB3FA28004046A6 /* KSBarrageView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -621,10 +621,6 @@
 		187CCEE01B2591A400360B54 /* NoWifiView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoWifiView.xib; sourceTree = "<group>"; };
 		187CCEE21B26D2B100360B54 /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
 		187CCEE31B26D2B100360B54 /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
-		187CCEE61B26D2F900360B54 /* KSBarrageItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSBarrageItemView.h; sourceTree = "<group>"; };
-		187CCEE71B26D2F900360B54 /* KSBarrageItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSBarrageItemView.m; sourceTree = "<group>"; };
-		187CCEE81B26D2F900360B54 /* KSBarrageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSBarrageView.h; sourceTree = "<group>"; };
-		187CCEE91B26D2F900360B54 /* KSBarrageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSBarrageView.m; sourceTree = "<group>"; };
 		187CCEED1B26DEB300360B54 /* UserCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserCenterController.h; path = Controller/UserCtrller/UserCenterController.h; sourceTree = "<group>"; };
 		187CCEEE1B26DEB300360B54 /* UserCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserCenterController.m; path = Controller/UserCtrller/UserCenterController.m; sourceTree = "<group>"; };
 		18A4D5E51B78761300CCE555 /* UIColor+HexString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+HexString.h"; sourceTree = "<group>"; };
@@ -1238,6 +1234,10 @@
 		D7FDB7B51BAFAF7A004046A6 /* UESelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UESelectCell.m; path = Controller/UserCtrller/UESelectCell.m; sourceTree = "<group>"; };
 		D7FDB7BA1BB15BA7004046A6 /* HWWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWWeakTimer.h; sourceTree = "<group>"; };
 		D7FDB7BB1BB15BA7004046A6 /* HWWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWWeakTimer.m; sourceTree = "<group>"; };
+		D7FDB7C61BB3FA28004046A6 /* KSBarrageItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSBarrageItemView.h; sourceTree = "<group>"; };
+		D7FDB7C71BB3FA28004046A6 /* KSBarrageItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSBarrageItemView.m; sourceTree = "<group>"; };
+		D7FDB7C81BB3FA28004046A6 /* KSBarrageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSBarrageView.h; sourceTree = "<group>"; };
+		D7FDB7C91BB3FA28004046A6 /* KSBarrageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSBarrageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1635,6 +1635,7 @@
 		187CCE851B1FFB2E00360B54 /* UIs */ = {
 			isa = PBXGroup;
 			children = (
+				D7FDB7C51BB3FA28004046A6 /* XTBarrageView */,
 				184C1D7C1B8588FE0033CC4C /* Utility */,
 				184C1D7B1B8588B20033CC4C /* Inherit */,
 				184C1D7A1B8588930033CC4C /* Category */,
@@ -1738,17 +1739,6 @@
 				187CCEDD1B25545700360B54 /* UserSimpleCell.xib */,
 			);
 			name = PraisedCtrller;
-			sourceTree = "<group>";
-		};
-		187CCEE51B26D2F900360B54 /* KSBarrageView */ = {
-			isa = PBXGroup;
-			children = (
-				187CCEE61B26D2F900360B54 /* KSBarrageItemView.h */,
-				187CCEE71B26D2F900360B54 /* KSBarrageItemView.m */,
-				187CCEE81B26D2F900360B54 /* KSBarrageView.h */,
-				187CCEE91B26D2F900360B54 /* KSBarrageView.m */,
-			);
-			path = KSBarrageView;
 			sourceTree = "<group>";
 		};
 		187CCEEC1B26DE6300360B54 /* UserCenterCtrller */ = {
@@ -2261,7 +2251,6 @@
 				1848A7DE1B33BBE00063C177 /* UMSocial_Sdk_4.2.3 */,
 				1848A7BF1B3262560063C177 /* CHTCollectionViewWaterfallLayout */,
 				18DC51CE1B2E804600A2BEFF /* MenuHrizontal */,
-				187CCEE51B26D2F900360B54 /* KSBarrageView */,
 				187CCE901B203B8400360B54 /* AFNetworking */,
 				187CCE891B2009F500360B54 /* PCStackMenu */,
 				18D697CC1B1C714900BC9475 /* AFViewShaker */,
@@ -3111,6 +3100,17 @@
 			path = HWWeakerTimer;
 			sourceTree = "<group>";
 		};
+		D7FDB7C51BB3FA28004046A6 /* XTBarrageView */ = {
+			isa = PBXGroup;
+			children = (
+				D7FDB7C61BB3FA28004046A6 /* KSBarrageItemView.h */,
+				D7FDB7C71BB3FA28004046A6 /* KSBarrageItemView.m */,
+				D7FDB7C81BB3FA28004046A6 /* KSBarrageView.h */,
+				D7FDB7C91BB3FA28004046A6 /* KSBarrageView.m */,
+			);
+			path = XTBarrageView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3355,6 +3355,7 @@
 				18A69AF31B56000500152743 /* CameraGroupCtrller.m in Sources */,
 				18D69A091B1C714A00BC9475 /* RFSegmentView.m in Sources */,
 				18B65B011B9E901300228E02 /* GuideFourthCtrller.m in Sources */,
+				D7FDB7CB1BB3FA28004046A6 /* KSBarrageView.m in Sources */,
 				18D699981B1C714A00BC9475 /* XTCornerView.m in Sources */,
 				18A823A01B438FD7000E275F /* AboutCell.m in Sources */,
 				18A4D5F41B7B70DE00CCE555 /* DtSuperCell.m in Sources */,
@@ -3404,7 +3405,6 @@
 				182318481B1D95A8001CE919 /* HomeCell.m in Sources */,
 				18D699E61B1C714A00BC9475 /* UIImage+EYFixOrientation.m in Sources */,
 				18D699991B1C714A00BC9475 /* UIButton+Badges.m in Sources */,
-				187CCEEB1B26D2F900360B54 /* KSBarrageView.m in Sources */,
 				18D699F61B1C714A00BC9475 /* MyMD5.m in Sources */,
 				18D699901B1C714A00BC9475 /* XTFileManager.m in Sources */,
 				18D69A161B1C714A00BC9475 /* SBJsonTokeniser.m in Sources */,
@@ -3485,11 +3485,11 @@
 				182318611B1EB9DD001CE919 /* UserHeadCollectionCell.m in Sources */,
 				18D699F71B1C714A00BC9475 /* NSObject+MKBlockTimer.m in Sources */,
 				18B65AAB1B9BEE6F00228E02 /* XTlineSpaceLabel.m in Sources */,
+				D7FDB7CA1BB3FA28004046A6 /* KSBarrageItemView.m in Sources */,
 				18D69A3E1B1C714B00BC9475 /* FBShimmeringView.m in Sources */,
 				18A4D61A1B7DFF3D00CCE555 /* SaveAlbumnCtrller.m in Sources */,
 				18B3BD751B74569E0092DA79 /* PostMainCell.m in Sources */,
 				18BABBF51B3D5E4D0024E871 /* QNResponseInfo.m in Sources */,
-				187CCEEA1B26D2F900360B54 /* KSBarrageItemView.m in Sources */,
 				18D965B31B3A669C007A9CC1 /* SDImageCache.m in Sources */,
 				18723E171B7333B90071D4C3 /* XTPasterView.m in Sources */,
 				18D6999A1B1C714A00BC9475 /* XTVerification.m in Sources */,

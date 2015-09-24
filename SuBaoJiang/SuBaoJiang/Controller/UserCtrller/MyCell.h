@@ -13,5 +13,5 @@
 @end
 
 @interface MyCell : UITableViewCell
-@property (nonatomic,strong) id <MyCellDelegate> delegate ;
+@property (nonatomic,weak) id <MyCellDelegate> delegate ;
 @end

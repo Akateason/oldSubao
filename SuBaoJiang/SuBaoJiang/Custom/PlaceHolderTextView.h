@@ -17,7 +17,7 @@
 @end
 
 @interface PlaceHolderTextView : UITextView
-@property (nonatomic, strong)   id <PlaceHolderTextViewDelegate> myDelegate ;
+@property (nonatomic, weak)   id <PlaceHolderTextViewDelegate> myDelegate ;
 @property (nonatomic)           int         maxWordsRange ;
 @property (nonatomic, copy)     NSString    *strPlaceHolder ;
 @property (nonatomic)           BOOL        isWhiteBG ; // default is NO ;

@@ -13,6 +13,6 @@
 @end
 
 @interface ShareAlertV : AlertBackgroundView
-@property (nonatomic,strong) id <ShareAlertVDelegate> aDelegate ;
+@property (nonatomic,weak) id <ShareAlertVDelegate> aDelegate ;
 - (instancetype)initWithController:(UIViewController *)controller ;
 @end

@@ -19,7 +19,7 @@
 @property (nonatomic,strong)    UIImage *imagePaster ;
 @property (nonatomic)           int     pasterID ;
 @property (nonatomic)           BOOL    isOnFirst ;
-@property (nonatomic,strong)    id <XTPasterViewDelegate> delegate ;
+@property (nonatomic,weak)    id <XTPasterViewDelegate> delegate ;
 - (instancetype)initWithBgView:(XTPasterStageView *)bgView
                       pasterID:(int)pasterID
                            img:(UIImage *)img ;

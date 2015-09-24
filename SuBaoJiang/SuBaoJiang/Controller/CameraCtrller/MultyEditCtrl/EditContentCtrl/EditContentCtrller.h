@@ -14,7 +14,7 @@
 @end
 
 @interface EditContentCtrller : RootCtrl
-@property (nonatomic,strong) id <EditContentCtrllerDelegate> delegate ;
+@property (nonatomic,weak)   id <EditContentCtrllerDelegate> delegate ;
 @property (nonatomic,strong) Article *article ;
 @property (nonatomic)        int     maxCount ;
 @end

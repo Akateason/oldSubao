@@ -1,10 +1,3 @@
-//
-//  KSBarrageItemView.m
-//  KwSing
-//
-//  Created by yuchenghai on 14/12/24.
-//  Copyright (c) 2014年 kuwo.cn. All rights reserved.
-//
 
 #import "KSBarrageItemView.h"
 #import "UIView+Sizes.h"

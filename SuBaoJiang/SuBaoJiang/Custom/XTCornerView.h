@@ -9,11 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface XTCornerView : UIView
-
-
 //切圆角图片
 + (void)setRoundHeadPicWithView:(UIView*)v;
-
-
-
 @end

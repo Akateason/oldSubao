@@ -16,6 +16,6 @@
 @end
 
 @interface TopicCateCell : UITableViewCell
-@property (nonatomic,strong) id <TopicCateCellDelegate> delegate ;
+@property (nonatomic,weak) id <TopicCateCellDelegate> delegate ;
 @property (nonatomic,strong) NSArray *topicList ;
 @end

@@ -22,7 +22,7 @@
 
 //ADDITION
 @property (nonatomic)   BOOL    bAboutUs ; // DEFAULT IS NO;
-@property (nonatomic,strong) id <ThirdLoginCtrllerDelegate> delegate ;
+@property (nonatomic,weak) id <ThirdLoginCtrllerDelegate> delegate ;
 
 @property (nonatomic)   BOOL    bLaunchInNav ;
 - (void)startAnimate ;

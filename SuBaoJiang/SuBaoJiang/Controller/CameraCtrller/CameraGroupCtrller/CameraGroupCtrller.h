@@ -14,6 +14,6 @@
 - (void)selectAlbumnGroup:(ALAssetsGroup *)group ;
 @end
 @interface CameraGroupCtrller : RootCtrl
-@property (nonatomic,strong) id <CameraGroupCtrllerDelegate> delegate ;
+@property (nonatomic, weak)   id <CameraGroupCtrllerDelegate> delegate ;
 @property (nonatomic, strong) ALAssetsLibrary *assetsLibrary ;
 @end

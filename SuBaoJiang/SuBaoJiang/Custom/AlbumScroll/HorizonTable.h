@@ -13,7 +13,7 @@
 @end
 
 @interface HorizonTable : UITableView <UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic,strong) id <HorizonTableDelegate> myDelegate ;
+@property (nonatomic,weak) id <HorizonTableDelegate> myDelegate ;
 @property (nonatomic)        NSInteger  currentIndex ;
 
 - (instancetype)initWithFrame:(CGRect)frame

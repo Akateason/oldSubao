@@ -72,6 +72,8 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     
     [ServerRequest readMsg:readList msgType:mode success:^(id json) {
         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
+        if (!result) return ;
+
         if (!result.errCode)
         {
             NSLog(@"read update success") ;
@@ -141,6 +143,8 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     [ServerRequest getNoReadMsgCountSuccess:^(id json) {
         
         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
+        if (!result) return ;
+
         [self setTabbarUI:result] ;
         [self setNoteCountInTable:result] ;
         [self setLocalRemote:result] ;
@@ -157,6 +161,8 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
 - (void)changeBadgeInRunloop:(NSNotification *)notification
 {
     ResultParsered *result = notification.object ;
+    if (!result) return ;
+
     [self setTabbarUI:result] ;
     [self setNoteCountInTable:result] ;
 }
@@ -166,6 +172,8 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     [ServerRequest getNoReadMsgCountSuccess:^(id json) {
         
         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
+        if (!result) return ;
+        
         [self setTabbarUI:result] ;
         [self setNoteCountInTable:result] ;
         
@@ -179,6 +187,8 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     _table.backgroundColor  = COLOR_BACKGROUND ;
     _table.separatorColor   = COLOR_TABLE_SEP ;
     _table.separatorInset   = UIEdgeInsetsMake(0, 22.0, 0, 0) ;
+
+    [_table deselectRowAtIndexPath:[_table indexPathForSelectedRow] animated:YES];
 
     _table.rootDelegate     = self ;
     
@@ -277,30 +287,33 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark --
 #pragma mark - parser System Note
 - (BOOL)parserResult:(ResultParsered *)result
               getNew:(BOOL)bGetNew
 {
-    if (bGetNew) {
-        [self.noteList removeAllObjects] ;
-    }
-    
-    //1 get sys list
-    NSArray *tempList = [result.info objectForKey:@"system_item"] ;
-    if (!tempList.count) return NO ;
-    for (NSDictionary *tDic in tempList)
+    @synchronized(self.noteList)
     {
-        Msg *cmt = [[Msg alloc] initWithDic:tDic] ;
-        [self.noteList addObject:cmt] ;
+        if (bGetNew)
+        {
+            [self.noteList removeAllObjects] ;
+        }
+        
+        //1 get sys list
+        NSArray *tempList = [result.info objectForKey:@"system_item"] ;
+        if (!tempList.count) return NO ;
+        for (NSDictionary *tDic in tempList)
+        {
+            Msg *cmt = [[Msg alloc] initWithDic:tDic] ;
+            [self.noteList addObject:cmt] ;
+        }
+        
+        //2 get last sys id
+        m_lastMsgID = ((Msg *)[self.noteList lastObject]).msg_id ;
+        
+        [[self class] updateAlreadyReadMsglist:self.noteList
+                                          mode:mode_sys] ;
     }
-    
-    //2 get last sys id
-    m_lastMsgID = ((Msg *)[self.noteList lastObject]).msg_id ;
-    
-    [[self class] updateAlreadyReadMsglist:self.noteList
-                                      mode:mode_sys] ;
     
     return YES ;
 }
@@ -317,7 +330,7 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     if (!result) return NO;
     BOOL bHas = [self parserResult:result
                             getNew:bUpDown] ;
-
+    
     if (!bUpDown && !bHas) return NO ;
     
     return YES   ;
@@ -371,8 +384,14 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     {
         cell = [_table dequeueReusableCellWithIdentifier:IDENTIFIER_NoteInfoCell] ;
     }
-    cell.msg = self.noteList[row] ;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone ;
+    
+    @autoreleasepool {
+        cell.msg = (Msg *)self.noteList[row] ;
+        cell.selectedBackgroundView = [[UIView alloc] init];
+        cell.selectedBackgroundView.backgroundColor = COLOR_NOTE_BACKGROUND ;
+    }
+    
+//    cell.selectionStyle = UITableViewCellSelectionStyleNone ;
 
     return cell ;
 }
@@ -416,13 +435,16 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
+    NSInteger row = indexPath.row ;
+    NSInteger section = indexPath.section ;
+    
+    if (section == 0)
     {
         return HeightForNoteAlarmCell ;
     }
-    else if (indexPath.section == 1)
+    else if (section == 1)
     {
-        return [NoteInfoCell calculateHeightWithMsg:self.noteList[indexPath.row]] ;
+        return [NoteInfoCell calculateHeightWithMsg:(Msg *)(self.noteList[row])] ;
     }
     
     return 0.0f ;
@@ -445,7 +467,7 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     }
     else
     {
-        Msg *systemMsg = self.noteList[row] ;
+        Msg *systemMsg = (Msg *)self.noteList[row] ;
         if (!systemMsg.msg_skipType) return ;
         
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;

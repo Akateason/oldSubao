@@ -1,16 +1,11 @@
-//
-//  KSBarrageView.m
-//  KwSing
-//
-//  Created by yuchenghai on 14/12/22.
-//  Copyright (c) 2014年 kuwo.cn. All rights reserved.
-//
+
 
 #import "KSBarrageView.h"
 #import "UIView+Sizes.h"
 #import "KSBarrageItemView.h"
 #import "ArticleComment.h"
 #import "HWWeakTimer.h"
+//#import "MSWeakTimer.h"
 
 #define ITEMTAG 1543
 
@@ -71,10 +66,11 @@ static const CGFloat basicSpeed     = 15.0 ;
         {
             _timer = [HWWeakTimer scheduledTimerWithTimeInterval:seperateTime
                                                            block:^(id userInfo) {
-                                                            [self postView] ;
+                [self postView] ;
             }
                                                         userInfo:@"Fire"
                                                          repeats:YES];
+            
             [_timer fire] ;
         }
     }
@@ -87,7 +83,12 @@ static const CGFloat basicSpeed     = 15.0 ;
 
 - (void)postView
 {
-//    NSLog(@"barrage is on .") ;
+    NSLog(@"barrage is on .") ;
+    
+    if (self.window == nil) {
+        [self stop] ;
+        return ;
+    }
     
     if (_dataArray && _dataArray.count > 0)
     {

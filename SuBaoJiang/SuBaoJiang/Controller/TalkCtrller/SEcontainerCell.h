@@ -14,7 +14,7 @@
 @end
 
 @interface SEcontainerCell : UITableViewCell
-@property (nonatomic,strong) id <SEcontainerCellDelegate> delegate ;
+@property (nonatomic,weak) id <SEcontainerCellDelegate> delegate ;
 @property (nonatomic,copy) NSMutableArray *topicList ;
 + (CGFloat)calculateHeightWithTopicList:(NSArray *)list ;
 @end

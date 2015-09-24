@@ -19,7 +19,7 @@
 
 @interface PostMainCell : UITableViewCell
 
-@property (nonatomic, retain) id <PostMainCellDelegate> delegate ;
+@property (nonatomic, weak) id <PostMainCellDelegate> delegate ;
 
 @property (weak, nonatomic) IBOutlet PlaceHolderTextView *textview;
 

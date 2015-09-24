@@ -17,7 +17,7 @@
 
 @interface MultyPicChooseBar : UIView
 @property (nonatomic) NSInteger count ;
-@property (nonatomic,strong) id <MultyPicChooseBarDelegate> delegate ;
+@property (nonatomic,weak) id <MultyPicChooseBarDelegate> delegate ;
 - (instancetype)initWithFrame:(CGRect)frame ;
 - (void)previewStyle ;
 @end

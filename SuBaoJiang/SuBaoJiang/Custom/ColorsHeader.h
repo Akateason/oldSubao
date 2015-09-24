@@ -54,6 +54,9 @@
 //Multi Cell Border
 #define COLOR_MULTY_CELL_BORD   [UIColor colorWithRed:244.0/255.0 green:156.0/255.0  blue:166.0/255.0 alpha:1]
 
+//note cell background
+#define COLOR_NOTE_BACKGROUND   [UIColor colorWithRed:229.0/255.0 green:229.0/255.0  blue:229.0/255.0 alpha:1]
+
 
 /*
  * COLOR FLYWORD

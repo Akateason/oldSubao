@@ -14,6 +14,6 @@
 @end
 
 @interface EditPreviewCtrl : RootCtrl
-@property (nonatomic,strong) id <EditPreviewCtrlDelegate> delegate ;
+@property (nonatomic,weak)   id <EditPreviewCtrlDelegate> delegate ;
 @property (nonatomic,strong) Article *articleSuper ;
 @end

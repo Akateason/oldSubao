@@ -52,12 +52,13 @@
 
 + (CGFloat)calculateHeight:(Article *)article
 {
-//    ArticleTopic *topic = [article.articleTopicList firstObject] ;
-//    BOOL bSuEx = topic.t_cate == t_cate_type_suExperience ;
+    ArticleTopic *topic = [article.articleTopicList firstObject] ;
+    BOOL bSuEx = topic.t_cate == t_cate_type_suExperience ;
     
     UIFont *font = [UIFont systemFontOfSize:20.0f];
 //    CGSize size = bSuEx ? CGSizeMake(APPFRAME.size.width - 90.0 - 8.0 - 32.0, 55.0) : CGSizeMake(APPFRAME.size.width - 90.0 - 8.0 - 8.0f, 55.0) ;
-    CGSize size = CGSizeMake(APPFRAME.size.width - 8.0 - 8.0f, 55.0) ;
+    CGSize size = bSuEx ? CGSizeMake(APPFRAME.size.width - 8.0 - 32.0, 55.0) : CGSizeMake(APPFRAME.size.width - 8.0 - 8.0f, 55.0) ;
+    
     CGSize labelsize = [article.a_title sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
     
     CGFloat lbHeight = labelsize.height ;

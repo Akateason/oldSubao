@@ -19,7 +19,7 @@
 @property (nonatomic,strong) User *userReply ;
 
 // set flyword color
-@property (nonatomic,copy)    NSString    *flyword ;
+@property (nonatomic,copy)      NSString    *flyword ;
 @property (nonatomic,strong)    UIColor     *flycolor ;
 @property (nonatomic,strong)    UIFont      *flyfont ;
 

@@ -12,5 +12,5 @@
 @end
 
 @interface MyTabbarCtrller : UITabBarController <UITabBarControllerDelegate>
-@property (nonatomic,strong) id <MyTabbarCtrllerDelegate> homePageDelegate ;
+@property (nonatomic,weak) id <MyTabbarCtrllerDelegate> homePageDelegate ;
 @end

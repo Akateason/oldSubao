@@ -39,7 +39,6 @@
 #define SEintroCellID       @"SEintroCell"
 
 
-
 @interface HomeController () <UITableViewDataSource,UITableViewDelegate,SuBaoHeaderViewDelegate,RootTableViewDelegate,RootTableViewFinished,HomeCellDelegate,ThemeCellDelegate,MyTabbarCtrllerDelegate,SEintroCellDelegate>
 {
     BOOL                bSwitchFlyword      ; // 弹幕开关   DEFAULT IS TRUE
@@ -48,6 +47,8 @@
     BOOL                bMoveToTop          ;
     
     long long           m_lastUpdateTime    ; // 首页最新的updateTime && 话题页
+    
+    BOOL                m_isFirstTime       ; // default is false ; if false -> firsttime
 }
 
 @property (weak, nonatomic) IBOutlet RootTableView *table;
@@ -144,6 +145,12 @@
     _topic = topic ;
     
     self.topicID = topic.t_id ;
+    
+    if (!_topic && !m_isFirstTime) {
+        m_isFirstTime = YES ;
+        [CommonFunc updateLatestVersion] ;
+    }
+    
 }
 
 - (void)setTopicID:(int)topicID
@@ -429,7 +436,6 @@
     // home status
     else
     {
-        [CommonFunc updateLatestVersion] ;
         self.myTitle = @"首页" ;
     }
     

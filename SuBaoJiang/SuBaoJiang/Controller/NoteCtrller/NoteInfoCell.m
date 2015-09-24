@@ -27,7 +27,7 @@
 
 + (CGFloat)calculateHeightWithMsg:(Msg *)msg
 {
-    BOOL emptyAdvImage = (!msg.img || [msg.img isEqualToString:@""]) ;
+    BOOL emptyAdvImage = (!msg.img || !msg.img.length) ;
     
     CGFloat width_lbContent = APPFRAME.size.width - 86.0 - 20.0 ;
     UIFont *font = [UIFont systemFontOfSize:15.0f];
@@ -67,6 +67,9 @@
     _lb_name.text = (!msg.user.u_nickname) ? @"速报酱" : msg.user.u_nickname ;
     // lb content
     _lb_content.text = msg.msg_content ;
+    _lb_content.highlightedTextColor = COLOR_MAIN ;
+
+    
     // lb date
     _lb_date.text = [XTTickConvert timeInfoWithDate:[XTTickConvert getNSDateWithTick:msg.msg_sendtime]] ;
     // img advertise

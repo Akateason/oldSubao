@@ -22,5 +22,5 @@ typedef NS_ENUM(NSInteger, MODE_TypeOfUserInfo) {
 @interface UEWriteCtrller : RootCtrl
 @property (nonatomic)           MODE_TypeOfUserInfo type ;
 @property (nonatomic,strong)    User                *userInfoWillChange ;
-@property (nonatomic,strong)    id <UEWriteCtrllerDelegate> delegate ;
+@property (nonatomic,weak)      id <UEWriteCtrllerDelegate> delegate ;
 @end

@@ -13,5 +13,5 @@
 @end
 
 @interface MESuperAddCell : UITableViewCell
-@property (nonatomic,retain) id <MESuperAddCellDelegate> delegate ;
+@property (nonatomic,weak) id <MESuperAddCellDelegate> delegate ;
 @end
