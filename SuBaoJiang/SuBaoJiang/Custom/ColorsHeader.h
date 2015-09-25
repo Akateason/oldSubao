@@ -57,6 +57,7 @@
 //note cell background
 #define COLOR_NOTE_BACKGROUND   [UIColor colorWithRed:229.0/255.0 green:229.0/255.0  blue:229.0/255.0 alpha:1]
 
+#define COLOR_GRAY_NOTE_WORD    [UIColor colorWithRed:101.0/255.0 green:101.0/255.0  blue:101.0/255.0 alpha:1]
 
 /*
  * COLOR FLYWORD

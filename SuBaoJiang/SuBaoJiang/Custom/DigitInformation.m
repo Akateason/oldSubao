@@ -125,7 +125,7 @@ static int timeCount = 0 ;
 
 - (NSArray *)cateColors
 {
-    if (!_cateColors)
+    if (!_cateColors || !_cateColors.count)
     {
         _cateColors = [[NSArray alloc] init] ;
         

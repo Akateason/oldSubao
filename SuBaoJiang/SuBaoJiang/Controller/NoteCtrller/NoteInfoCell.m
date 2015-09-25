@@ -67,8 +67,8 @@
     _lb_name.text = (!msg.user.u_nickname) ? @"速报酱" : msg.user.u_nickname ;
     // lb content
     _lb_content.text = msg.msg_content ;
-    _lb_content.highlightedTextColor = COLOR_MAIN ;
-
+    _lb_content.textColor = (!msg.msg_status) ? COLOR_MAIN : COLOR_GRAY_NOTE_WORD ;
+//    _lb_content.highlightedTextColor = COLOR_MAIN ;
     
     // lb date
     _lb_date.text = [XTTickConvert timeInfoWithDate:[XTTickConvert getNSDateWithTick:msg.msg_sendtime]] ;

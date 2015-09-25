@@ -33,18 +33,22 @@ static XTHudManager *instance ;
 + (void)showWordHudWithTitle:(NSString *)title
                        delay:(float)delay
 {
-    if ([UIApplication sharedApplication].keyWindow == nil) return ;
+//    if ([UIApplication sharedApplication].keyWindow == nil) return ;
     
     if (![XTHudManager shareInstance].HUD)
     {
-        [XTHudManager shareInstance].HUD = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow] ;
+//        [XTHudManager shareInstance].HUD = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow] ;
+        [XTHudManager shareInstance].HUD = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].delegate.window] ;
+
     }
     
     if (![[XTHudManager shareInstance].HUD superview]) {
-        [[UIApplication sharedApplication].keyWindow addSubview:[XTHudManager shareInstance].HUD];
+//        [[UIApplication sharedApplication].keyWindow addSubview:[XTHudManager shareInstance].HUD];
+        [[UIApplication sharedApplication].delegate.window addSubview:[XTHudManager shareInstance].HUD];
     }
     
-    [[UIApplication sharedApplication].keyWindow bringSubviewToFront:[XTHudManager shareInstance].HUD] ;
+//    [[UIApplication sharedApplication].keyWindow bringSubviewToFront:[XTHudManager shareInstance].HUD] ;
+    [[UIApplication sharedApplication].delegate.window bringSubviewToFront:[XTHudManager shareInstance].HUD] ;
     [[XTHudManager shareInstance].HUD show:YES] ;
     
     [XTHudManager shareInstance].HUD.detailsLabelText = title ;
@@ -53,7 +57,9 @@ static XTHudManager *instance ;
     [[XTHudManager shareInstance].HUD hide:YES afterDelay:delay] ;
 }
 
-+ (void)showHudWhileExecutingBlock:(dispatch_block_t)block AndComplete:(dispatch_block_t)complete AndWithMinSec:(float)sec
++ (void)showHudWhileExecutingBlock:(dispatch_block_t)block
+                       AndComplete:(dispatch_block_t)complete
+                     AndWithMinSec:(float)sec
 {
     
     dispatch_queue_t queue = dispatch_get_global_queue(0, 0) ;

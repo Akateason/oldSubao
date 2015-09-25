@@ -10,16 +10,17 @@
 #import "UIImageView+WebCache.h"
 #import "Article.h"
 #import "KSBarrageView.h"
+#import "XTlineSpaceLabel.h"
+#import "DetailAttributes.h"
 
 @interface DtSuperCell ()
-@property (weak, nonatomic) IBOutlet UIImageView    *imgView;
-@property (weak, nonatomic) IBOutlet UILabel        *lb_Content;
-@property (strong, nonatomic)        KSBarrageView  *barrageView ;
-@property (nonatomic,strong)         UIButton       *btSelect ;
+@property (weak, nonatomic) IBOutlet UIImageView            *imgView ;
+@property (weak, nonatomic) IBOutlet XTlineSpaceLabel       *lb_Content ;
+@property (strong, nonatomic)        KSBarrageView          *barrageView ;
+@property (nonatomic,strong)         UIButton               *btSelect ;
 @end
 
 @implementation DtSuperCell
-
 #pragma mark --
 #pragma mark - switch fly word
 - (void)startOrCloseFlyword:(BOOL)bSwitch
@@ -104,9 +105,9 @@
 {
     // Initialization code
     self.imgView.userInteractionEnabled = YES ;
-    
+    //
     [self longpressRecognizer] ;
-    //弹幕
+    //
     [self barrageView] ;
     //
     [self btSelect] ;
@@ -130,14 +131,7 @@
 {
     CGFloat imgHeight = APPFRAME.size.width ;
     
-    UIFont *font = [UIFont systemFontOfSize:16.0f];
-    CGSize size = CGSizeMake(APPFRAME.size.width - 14.0 * 2, 2000.0f);
-    CGSize labelsize = [article.a_content
-                        sizeWithFont:font
-                        constrainedToSize:size
-                        lineBreakMode:UILineBreakModeWordWrap];
-    
-    CGFloat lbHeight = labelsize.height ;
+    CGFloat lbHeight = [XTlineSpaceLabel getAttributedStringHeightWidthValue:APPFRAME.size.width - 14.0 * 2 content:article.a_content attributes:[DetailAttributes attributesWithLineSpace:7.0]] ;
     
     if (lbHeight < 17.0)
     {

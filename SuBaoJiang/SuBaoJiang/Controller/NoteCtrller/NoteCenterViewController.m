@@ -304,14 +304,14 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
         if (!tempList.count) return NO ;
         for (NSDictionary *tDic in tempList)
         {
-            Msg *cmt = [[Msg alloc] initWithDic:tDic] ;
-            [self.noteList addObject:cmt] ;
+            Msg *msg = [[Msg alloc] initWithDic:tDic] ;
+            [self.noteList addObject:msg] ;
         }
         
         //2 get last sys id
         m_lastMsgID = ((Msg *)[self.noteList lastObject]).msg_id ;
         
-        [[self class] updateAlreadyReadMsglist:self.noteList
+        [NoteCenterViewController updateAlreadyReadMsglist:self.noteList
                                           mode:mode_sys] ;
     }
     
@@ -386,7 +386,10 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     }
     
     @autoreleasepool {
-        cell.msg = (Msg *)self.noteList[row] ;
+        if (self.noteList != nil) {
+            cell.msg = (Msg *)(self.noteList[row]) ;
+        }
+        
         cell.selectedBackgroundView = [[UIView alloc] init];
         cell.selectedBackgroundView.backgroundColor = COLOR_NOTE_BACKGROUND ;
     }
@@ -444,7 +447,9 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     }
     else if (section == 1)
     {
-        return [NoteInfoCell calculateHeightWithMsg:(Msg *)(self.noteList[row])] ;
+        @synchronized(self.noteList) {
+            return [NoteInfoCell calculateHeightWithMsg:((Msg *)(self.noteList[row]))] ;
+        }
     }
     
     return 0.0f ;

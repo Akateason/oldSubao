@@ -31,7 +31,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.myTitle = @"多图结果预览页" ;
-
+    
     [self setupSth] ;
     
     self.articleSuper.userCurrent = G_USER ;
@@ -222,8 +222,6 @@
     cell.isflywordShow = NO ;
     return cell ;
 }
-
-
 
 /*
 #pragma mark - Navigation

@@ -61,7 +61,7 @@
         cell.contentView.transform = CGAffineTransformMakeRotation(M_PI_2);
     }
     cell.dataObject = self.dataList[indexPath.row] ;
-
+    
     return cell ;
 }
 

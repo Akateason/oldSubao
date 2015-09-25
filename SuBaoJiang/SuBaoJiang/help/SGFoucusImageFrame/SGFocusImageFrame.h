@@ -15,7 +15,6 @@
 @optional
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item didSelectPage:(int)index ;
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame currentItem:(int)index;
-
 @end
 
 

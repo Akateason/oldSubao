@@ -58,6 +58,10 @@
         {
             [self.view addSubview:_hTable] ;
         }
+        
+        [self btFinish] ;
+        [self btSave] ;
+        [self lb_pageInfo] ;
     }
     
     return _hTable ;
@@ -142,6 +146,12 @@
     return _btSave ;
 }
 
+- (void)setImgUrlsList:(NSArray *)imgUrlsList
+{
+    _imgUrlsList = imgUrlsList ;
+    
+    [self.hTable reloadData] ;
+}
 
 #pragma mark --
 #pragma mark - Actions
@@ -168,10 +178,8 @@
     // Do any additional setup after loading the view.
     self.myTitle = @"多图图片保存页" ;
 
-    [self hTable] ;
-    [self btFinish] ;
-    [self btSave] ;
-    [self lb_pageInfo] ;
+//    [self hTable] ;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated

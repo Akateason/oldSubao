@@ -444,7 +444,7 @@
             </objects>
             <point key="canvasLocation" x="879" y="2034"/>
         </scene>
-        <!--预览-->
+        <!--Edit Prepare Ctrller-->
         <scene sceneID="Btr-LG-6ys">
             <objects>
                 <viewController storyboardIdentifier="EditPrepareCtrller" useStoryboardIdentifierAsRestorationIdentifier="YES" id="isc-eJ-c0z" customClass="EditPrepareCtrller" sceneMemberID="viewController">
@@ -587,7 +587,7 @@
                             <constraint firstAttribute="trailing" secondItem="3OH-wz-ltA" secondAttribute="trailing" id="yoB-VI-4Z0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="预览" id="DsG-WB-XRQ"/>
+                    <navigationItem key="navigationItem" id="DsG-WB-XRQ"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>

@@ -48,7 +48,7 @@
 //    if (self.type == mode_imgUrl)
     if ([dataObj isKindOfClass:[NSString class]])
     {
-        [imgScrollView.imageView sd_setImageWithURL:[NSURL URLWithString:dataObj]] ;
+        [imgScrollView.imageView sd_setImageWithURL:[NSURL URLWithString:(NSString *)dataObj]] ;
     }
 //    else if (self.type == mode_asset)
     else if ([dataObj isKindOfClass:[ALAsset class]])

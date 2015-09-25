@@ -224,6 +224,7 @@
     _table.delegate = self ;
     _table.dataSource = self ;
     _table.separatorColor = COLOR_TABLE_SEP ;
+//    _table.separatorStyle = UITableViewCellSeparatorStyleNone ;
     _table.rootDelegate = self ;
     
     // long press gesture
@@ -459,7 +460,6 @@
 - (void)setArticleSuper:(Article *)articleSuper
 {
     _articleSuper = articleSuper ;
-
 
     // multitype
     self.isMultiType = [articleSuper isMultyStyle] ;
@@ -995,16 +995,21 @@
 - (DtSuperCell *)getDtSuperCell
 {
     static  NSString  *CellIdentiferId = @"DtSuperCell";
-    DtSuperCell * cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId] ;
+    DtSuperCell *cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId] ;
     if (!cell)
     {
         [_table registerNib:[UINib nibWithNibName:CellIdentiferId bundle:nil] forCellReuseIdentifier:CellIdentiferId];
         cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    cell.article = self.articleSuper ;
+
+    if (self.articleSuper != nil) {
+        cell.article = self.articleSuper ;
+    }
+    
     cell.isflywordShow = bSwitchFlyword ;
     cell.delegate = self ;
+    
     return cell ;
 }
 

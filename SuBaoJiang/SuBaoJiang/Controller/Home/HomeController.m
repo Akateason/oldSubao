@@ -323,27 +323,27 @@
 }
 
 #pragma mark -- ThemeCellDelegate
-- (void)bannerSelectedTheme:(int)indexSelected
+//- (void)bannerSelectedTheme:(int)indexSelected
+- (void)bannerSelectedTheme:(Themes *)theme
 {
-    Themes *themeSelect = self.m_themesList[indexSelected] ;
+//    Themes *themeSelect = self.m_themesList[indexSelected] ;
     
-    switch (themeSelect.themeCate)
+    switch (theme.themeCate)
     {
         case mode_advertise:
         case mode_activity :
         {
             MyWebController *webCtrller = [[MyWebController alloc] init] ;
-            webCtrller.urlStr = themeSelect.th_href ;
+            webCtrller.urlStr = theme.th_href ;
             [webCtrller setHidesBottomBarWhenPushed:YES] ;
             [self.navigationController pushViewController:webCtrller animated:YES] ;
         }
             break;
-            
         case mode_topic :
         {
-            UIStoryboard   *story         = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
-            HomeController *homeCtrller   = [story instantiateViewControllerWithIdentifier:@"HomeController"] ;
-            homeCtrller.topicID = themeSelect.t_id ;
+            UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
+            HomeController *homeCtrller = [story instantiateViewControllerWithIdentifier:@"HomeController"] ;
+            homeCtrller.topicID = theme.t_id ;
             [homeCtrller setHidesBottomBarWhenPushed:YES] ;
             [self.navigationController pushViewController:homeCtrller animated:YES] ;
         }

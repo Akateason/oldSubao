@@ -10,7 +10,6 @@
 
 @implementation UIImage (AddFunction)
 
-
 //图片剪切
 - (UIImage *)cutImageWithCircleWithBorderWidth:(CGFloat)margin
                             AndWithBorderColor:(UIColor *)borderColor
@@ -105,8 +104,6 @@
     return newPic;
 }
 
-
-
 #pragma mark --
 #pragma mark - 2.裁剪正方
 //2.裁剪正方
@@ -164,7 +161,6 @@
     return image;
 }
 
-
 #pragma mark --
 #pragma mark - 3.添加水印
 // 画水印
@@ -190,7 +186,6 @@
     
     return newPic;
 }
-
 
 #pragma mark --
 #pragma mark - 4.缩略图
@@ -349,11 +344,11 @@
 {
     ALAssetRepresentation *repr = [asset defaultRepresentation];
     CGImageRef orgImage = [repr fullScreenImage] ;
-    UIImage *fullImage = [UIImage imageWithCGImage:orgImage scale:0.4 orientation:(UIImageOrientation)[repr orientation]] ;
+//    UIImage *fullImage = [UIImage imageWithCGImage:orgImage scale:0.4 orientation:(UIImageOrientation)[repr orientation]] ;
+    UIImage *fullImage = [UIImage imageWithCGImage:orgImage scale:0.4 orientation:UIImageOrientationUp] ;
 
     return fullImage ;
 }
-
 
 #pragma mark --
 #pragma mark - 5.拍完照片的自适应旋转(和相机一起用)
@@ -488,8 +483,6 @@
     return returnImage;
 }
 
-
-
 #pragma mark --
 #pragma mark - UIimage转换NSdata
 //1.UIimage转换NSdata
@@ -505,7 +498,6 @@
     return dataVphoto;
 }
 
-
 #pragma mark --
 #pragma mark - NSdata转换UIimage
 //2.NSdata转换UIimage
@@ -513,10 +505,5 @@
 {
     return [UIImage imageWithData:_data];
 }
-
-
-
-
-
 
 @end

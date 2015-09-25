@@ -83,7 +83,7 @@ static const CGFloat basicSpeed     = 15.0 ;
 
 - (void)postView
 {
-    NSLog(@"barrage is on .") ;
+//    NSLog(@"barrage is on .") ;
     
     if (self.window == nil) {
         [self stop] ;

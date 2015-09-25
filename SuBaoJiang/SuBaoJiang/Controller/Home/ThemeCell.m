@@ -38,6 +38,7 @@ static const CGFloat heightForThemesCellInIphone6 = 420.0 ;
     _themesList = themesList ;
     
     if (!m_sgfi_bannerView) {
+        
         int length = (int)themesList.count ;
 
         NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:length + 2] ;
@@ -45,21 +46,30 @@ static const CGFloat heightForThemesCellInIphone6 = 420.0 ;
         if (length > 1)
         {
             Themes *tempTheme = [themesList objectAtIndex:length - 1] ;
-            SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:tempTheme.th_content image:tempTheme.th_img tag: - 1] ;
+//            SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:tempTheme.th_content
+//                                                                       image:tempTheme.th_img
+//                                                                         tag: - 1] ;
+            SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTheme:tempTheme] ;
             [itemArray addObject:item];
         }
         
         for (int i = 0; i < length; i++)
         {
             Themes *tempTheme = [themesList objectAtIndex:i];
-            SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:tempTheme.th_content image:tempTheme.th_img tag:i] ;
+//            SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:tempTheme.th_content
+//                                                                       image:tempTheme.th_img
+//                                                                         tag:i] ;
+            SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTheme:tempTheme] ;
             [itemArray addObject:item] ;
         }
         //添加第一张图 用于循环
         if (length > 1)
         {
             Themes *tempTheme = [themesList objectAtIndex:0];
-            SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:tempTheme.th_content image:tempTheme.th_img tag:length] ;
+//            SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTitle:tempTheme.th_content
+//                                                                       image:tempTheme.th_img
+//                                                                         tag:length] ;
+            SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithTheme:tempTheme] ;
             [itemArray addObject:item];
         }
         
@@ -77,7 +87,6 @@ static const CGFloat heightForThemesCellInIphone6 = 420.0 ;
             [self addSubview:m_sgfi_bannerView] ;
         }
     }
-    
 
 }
 
@@ -91,9 +100,12 @@ static const CGFloat heightForThemesCellInIphone6 = 420.0 ;
 #pragma mark - SGFocusImageFrameDelegate
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item didSelectPage:(int)index
 {
-    NSLog(@"%s \n click===>%@",__FUNCTION__,item.title);
-    NSLog(@"page : %d",index) ;
-    [self.delegate bannerSelectedTheme:index] ;
+//    NSLog(@"%s \n click===>%@",__FUNCTION__,item.title) ;
+    NSLog(@"click page : %d",index) ;
+    
+    [self.delegate bannerSelectedTheme:item.atheme] ;
+    
+//    [self.delegate bannerSelectedTheme:index] ;
 }
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame currentItem:(int)index;
 {

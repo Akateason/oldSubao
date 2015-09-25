@@ -120,7 +120,7 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 8.0; //switch interval time
         SGFocusImageItem *item = [imageItems objectAtIndex:i];
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(i * _scrollView.frame.size.width+space, space, _scrollView.frame.size.width-space*2, _scrollView.frame.size.height-2*space-size.height)];
         //加载图片
-        [imageView sd_setImageWithURL:[NSURL URLWithString:item.image]] ;
+        [imageView sd_setImageWithURL:[NSURL URLWithString:item.atheme.th_img]] ;
 
         [_scrollView addSubview:imageView];
         [imageView release];
@@ -204,13 +204,13 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 8.0; //switch interval time
     //    NSLog(@"%f %d",_scrollView.contentOffset.x,page);
     if ([imageItems count] > 1)
     {
-        page --;
+        page -- ;
         if (page >= _pageControl.numberOfPages)
         {
-            page = 0;
-        }else if(page <0)
+            page = 0 ;
+        }else if(page < 0)
         {
-            page = _pageControl.numberOfPages - 1 ;
+            page = (int)_pageControl.numberOfPages - 1 ;
         }
     }
     if (page!= _pageControl.currentPage)

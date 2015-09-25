@@ -10,7 +10,8 @@
 #import "Themes.h"
 
 @protocol ThemeCellDelegate <NSObject>
-- (void)bannerSelectedTheme:(int)indexSelected ;
+//- (void)bannerSelectedTheme:(int)indexSelected ;
+- (void)bannerSelectedTheme:(Themes *)theme ;
 @end
 
 @interface ThemeCell : UITableViewCell

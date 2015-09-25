@@ -15,9 +15,9 @@
 
 
 @interface ImageScrollView : UIScrollView <UIScrollViewDelegate>
-@property (nonatomic, weak) UIImageView *imageView;
+@property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, assign) int indexBeSend; //  current index
-@property (nonatomic, assign) id <ImageScrollViewDelegate> delegateImageSV;
+@property (nonatomic, weak) id <ImageScrollViewDelegate> delegateImageSV;
 
 - (id)initWithFrame:(CGRect)frame ;
 - (void)resetToOrigin ;

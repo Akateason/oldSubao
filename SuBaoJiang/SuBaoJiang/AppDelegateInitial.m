@@ -76,8 +76,11 @@
         //  Upload Pictures RunLoop
         [self runloopForUploadPictures] ;
         
-        //initial paseter manegement and get pasterlist from server
+        //  initial paseter manegement and get pasterlist from server
         [self initialPastermanagement] ;
+        
+        //  initial cate colors
+        [self initailCateColors] ;
         
         //  Back Ground Fetch
         [application setMinimumBackgroundFetchInterval:60*3] ;
@@ -276,6 +279,15 @@
     dispatch_queue_t queue = dispatch_queue_create("pasterInitial", NULL) ;
     dispatch_async(queue, ^{
         [[PasterManagement shareInstance] allPastersList] ;
+    }) ;
+}
+
+// initail Cate Colors
+- (void)initailCateColors
+{
+    dispatch_queue_t queue = dispatch_queue_create("getCateColorsQueue", NULL) ;
+    dispatch_async(queue, ^{
+        [[DigitInformation shareInstance] cateColors] ;
     }) ;
 }
 
