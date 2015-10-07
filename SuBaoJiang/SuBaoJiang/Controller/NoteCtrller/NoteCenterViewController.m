@@ -325,7 +325,7 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     }
     
     ResultParsered *result = [ServerRequest getMsgSystemMaxID:m_lastMsgID
-                                                        Count: SIZE_OF_PAGE] ;
+                                                        Count:SIZE_OF_PAGE] ;
     
     if (!result) return NO;
     BOOL bHas = [self parserResult:result

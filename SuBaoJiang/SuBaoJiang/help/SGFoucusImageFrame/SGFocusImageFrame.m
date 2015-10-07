@@ -147,12 +147,12 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 8.0; //switch interval time
                                              selector:@selector(switchFocusImageItems)
                                                object:nil] ;
     
-    CGFloat targetX = _scrollView.contentOffset.x + _scrollView.frame.size.width;
-    NSArray *imageItems = objc_getAssociatedObject(self, (const void *)SG_FOCUS_ITEM_ASS_KEY);
-    targetX = (int)(targetX/ITEM_WIDTH) * ITEM_WIDTH;
+    CGFloat targetX = _scrollView.contentOffset.x + _scrollView.frame.size.width ;
+    NSArray *imageItems = objc_getAssociatedObject(self, (const void *)SG_FOCUS_ITEM_ASS_KEY) ;
+    targetX = (int)(targetX/ITEM_WIDTH) * ITEM_WIDTH ;
     [self moveToTargetPosition:targetX];
     
-    if ([imageItems count]>1 && _isAutoPlay)
+    if ([imageItems count] > 1 && _isAutoPlay)
     {
         [self performSelector:@selector(switchFocusImageItems)
                    withObject:nil
@@ -215,6 +215,10 @@ static CGFloat SWITCH_FOCUS_PICTURE_INTERVAL = 8.0; //switch interval time
     }
     if (page!= _pageControl.currentPage)
     {
+        // 20151005 ADD @TEASON BEGIN
+        if (!self.delegate) return ;
+        // 20151005 ADD @TEASON END
+        
         if ([self.delegate respondsToSelector:@selector(foucusImageFrame:currentItem:)])
         {
             [self.delegate foucusImageFrame:self currentItem:page];

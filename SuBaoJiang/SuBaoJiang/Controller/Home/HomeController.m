@@ -225,9 +225,7 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
-    
-    _table = nil ;
+    [[NSNotificationCenter defaultCenter] removeObserver:self] ;    
 }
 
 #pragma mark -- Notificaiton center

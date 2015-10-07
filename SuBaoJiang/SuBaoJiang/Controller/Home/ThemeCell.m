@@ -27,6 +27,12 @@ static const CGFloat heightForThemesCellInIphone6 = 420.0 ;
     // Initialization code
 }
 
+- (void)dealloc
+{
+    m_sgfi_bannerView.delegate = nil ;
+    m_sgfi_bannerView = nil ;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
@@ -101,15 +107,16 @@ static const CGFloat heightForThemesCellInIphone6 = 420.0 ;
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame didSelectItem:(SGFocusImageItem *)item didSelectPage:(int)index
 {
 //    NSLog(@"%s \n click===>%@",__FUNCTION__,item.title) ;
-    NSLog(@"click page : %d",index) ;
+//    NSLog(@"click page : %d",index) ;
     
     [self.delegate bannerSelectedTheme:item.atheme] ;
     
 //    [self.delegate bannerSelectedTheme:index] ;
 }
+
 - (void)foucusImageFrame:(SGFocusImageFrame *)imageFrame currentItem:(int)index;
 {
-    NSLog(@"%s \n scrollToIndex===>%d",__FUNCTION__,index);
+//    NSLog(@"%s \n scrollToIndex===>%d",__FUNCTION__,index) ;
 }
 
 
