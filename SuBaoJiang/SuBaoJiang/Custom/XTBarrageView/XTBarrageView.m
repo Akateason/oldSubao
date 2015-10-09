@@ -1,8 +1,8 @@
 
 
-#import "KSBarrageView.h"
+#import "XTBarrageView.h"
 #import "UIView+Sizes.h"
-#import "KSBarrageItemView.h"
+#import "XTBarrageItemView.h"
 #import "ArticleComment.h"
 #import "HWWeakTimer.h"
 //#import "MSWeakTimer.h"
@@ -14,11 +14,11 @@ static const CGFloat speed_Min      = 100.0 ;
 static const CGFloat seperateTime   = 0.3 ;
 static const CGFloat basicSpeed     = 15.0 ;
 
-@interface KSBarrageView ()
+@interface XTBarrageView ()
 @property (nonatomic, weak) NSTimer *timer;
 @end
 
-@implementation KSBarrageView
+@implementation XTBarrageView
 {
 //    UIImageView *_avatarView;
 //    UIImageView *_giftView;
@@ -96,7 +96,7 @@ static const CGFloat basicSpeed     = 15.0 ;
         int top = indexPath * 30;
         
         UIView *view = [self viewWithTag:indexPath + ITEMTAG];
-        if (view && [view isKindOfClass:[KSBarrageItemView class]]) return ;
+        if (view && [view isKindOfClass:[XTBarrageItemView class]]) return ;
         
         ArticleComment *cmt = nil;
         if (_dataArray.count > _curIndex)
@@ -111,7 +111,7 @@ static const CGFloat basicSpeed     = 15.0 ;
             _curIndex++;
         }
         
-        for (KSBarrageItemView *view in self.subviews)
+        for (XTBarrageItemView *view in self.subviews)
         {
             if ([view isKindOfClass:[KSBarrageItemView class]] && view.itemIndex == _curIndex-1)
             {
@@ -119,7 +119,7 @@ static const CGFloat basicSpeed     = 15.0 ;
             }
         }
         
-        KSBarrageItemView *item = [[KSBarrageItemView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width, top, 10, 40)] ;
+        XTBarrageItemView *item = [[XTBarrageItemView alloc] initWithFrame:CGRectMake([[UIScreen mainScreen] bounds].size.width, top, 10, 40)] ;
         
         [item setFlywordWithComment:cmt] ;
         

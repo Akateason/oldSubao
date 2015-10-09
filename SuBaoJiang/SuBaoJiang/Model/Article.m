@@ -139,7 +139,7 @@
     NSString *path = [[self class] getPathInLocal:[[self class] getPicPath:tick aid:self.client_AID]] ;
     
     picture = [UIImage compressQualityWithOriginImage:picture] ;
-    picture = [picture imageCompressForSize:picture targetSize:CGSizeMake(640, 640)] ;
+//    picture = [picture imageCompressForSize:picture targetSize:CGSizeMake(640, 640)] ;
     
     [XTFileManager savingPicture:picture path:path] ;
 }

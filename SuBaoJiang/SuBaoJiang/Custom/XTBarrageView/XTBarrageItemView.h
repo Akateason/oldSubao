@@ -3,7 +3,7 @@
 #import <UIKit/UIKit.h>
 #import "ArticleComment.h"
 
-@interface KSBarrageItemView : UIView
+@interface XTBarrageItemView : UIView
 
 @property (nonatomic, copy)   NSString  *strWillShow ;
 @property (assign, nonatomic) NSInteger itemIndex;

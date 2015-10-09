@@ -166,6 +166,7 @@
                                                      name:UIKeyboardWillChangeFrameNotification
                                                    object:nil];
     }
+    
     return self;
 }
 
@@ -384,7 +385,6 @@
 
 #pragma mark --
 #pragma mark - Properties
-
 - (UIImageView *)imgAnimateView
 {
     if (!_imgAnimateView) {
@@ -407,19 +407,18 @@
         
         if (self.isMultiType)
         {
-            _allComments = self.articleSuper.articleCommentList ;   // cmts in super article
-            for (Article *subArticle in self.articleSuper.childList)
-            {
-                [_allComments addObjectsFromArray:subArticle.articleCommentList] ;
-            }
+            _allComments = self.articleSuper.articleCommentList ; // cmts in super article
             
-            NSArray *resultList = [_allComments sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2)
-            {
+            [self.articleSuper.childList enumerateObjectsUsingBlock:^(Article *subArticle, NSUInteger idx, BOOL * _Nonnull stop) {
+                [_allComments addObjectsFromArray:subArticle.articleCommentList] ;
+            }] ;
+            
+            NSArray *resultList = [_allComments sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
                 ArticleComment *cmt1 = obj1 ;
                 ArticleComment *cmt2 = obj2 ;
                 NSComparisonResult result = [@(cmt1.c_createtime) compare:@(cmt2.c_createtime)] ;
                 return result == NSOrderedAscending ;
-            }];
+            }] ;
             
             _allComments = [NSMutableArray arrayWithArray:resultList] ;
         }
@@ -436,10 +435,11 @@
 {
     if (!_allPhotoList && self.isMultiType) {
         NSMutableArray *templist = [NSMutableArray array] ;
-        for (Article *subArticle in self.articleSuper.childList)
-        {
+        
+        [self.articleSuper.childList enumerateObjectsUsingBlock:^(Article *subArticle, NSUInteger idx, BOOL * _Nonnull stop) {
             [templist addObject:subArticle.img] ;
-        }
+        }] ;
+        
         [templist insertObject:self.articleSuper.img atIndex:0] ;
         _allPhotoList = templist ;
     }
@@ -465,9 +465,12 @@
     self.isMultiType = [articleSuper isMultyStyle] ;
     // bt nav like
     if (self.isMultiType) self.btNav_Like.selected = articleSuper.has_praised ;
-    
+
     // reload table
-    [self.table reloadData] ;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.table reloadData] ;
+    }) ;
+    
     // get last id
     [self getlastCommentID] ;
     // cache image for share
@@ -494,7 +497,7 @@
         self.navBg.hidden = NO ;
         self.btNav_Like.hidden = !isMultiType ;
         self.btNav_Share.hidden = !isMultiType ;
-
+        
     }) ;
     
     if (!isMultiType && !t_Label)
@@ -531,7 +534,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             self.table.hidden = NO ;
         }) ;
-
+        
     } fail:^{
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -628,7 +631,6 @@
     [self resetWordViewFrame] ;
     
     [self imageSendAnimation] ;
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -637,7 +639,8 @@
 
     isFirstTime = NO ;
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:NSNOTIFICATION_ARTICLE_REFRESH object:self.articleSuper] ;
+    [[NSNotificationCenter defaultCenter] postNotificationName:NSNOTIFICATION_ARTICLE_REFRESH
+                                                        object:self.articleSuper] ;
 }
 
 - (void)didReceiveMemoryWarning
@@ -647,13 +650,13 @@
     
     if ([self.view window] == nil)
     {
-        // Add code to preserve data stored in the views that might be
-        // needed later.
+        // Add code to preserve data stored in the views that might be .
+        // needed later .
         self.allPhotoList = nil ;
         self.allComments = nil ;
         
-        // Add code to clean up other strong references to the view in
-        // the view hierarchy.
+        // Add code to clean up other strong references to the view in .
+        // the view hierarchy .
         self.wordView = nil ;
         self.imgAnimateView = nil ;
         self.cacheImage = nil ;
@@ -669,8 +672,10 @@
 {
     ResultParsered *result = [ServerRequest getArticleDetailWithArticleID:self.superArticleID] ;
 
-    self.table.hidden = NO ;
-
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.table.hidden = NO ;
+    }) ;
+    
     if (!result) return NO ;
     
     BOOL bHas = [self parserResult:result] ;
@@ -827,7 +832,7 @@
     NSInteger section   = indexPath.section ;
     NSInteger row       = indexPath.row ;
     
-    // SUPER ARTICLE ;
+    // SUPER ARTICLE
     if (section == 0)
     {
         // 1. title IF EXIST
@@ -1005,6 +1010,7 @@
 
     if (self.articleSuper != nil) {
         cell.article = self.articleSuper ;
+        cell.allCommentsList = self.allComments ;
     }
     
     cell.isflywordShow = bSwitchFlyword ;
@@ -1108,22 +1114,24 @@
 #pragma mark - DtSuperCellDelegate - DtSubCellDelegate
 - (void)selectedTheImageWithAritcleID:(int)a_id
 {
-    if (![self.articleSuper isMultyStyle]) return ;
+//    if (![self.articleSuper isMultyStyle]) return ;
     
     self.focusOn_aid = a_id ;
     
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.wordView.textView becomeFirstResponder] ;
+        
+        if (self.wordView.hidden) {
+            self.wordView.hidden = NO ;
+        }
     }) ;
-    
-    if (self.wordView.hidden) {
-        self.wordView.hidden = NO ;
-    }
 }
 
 - (void)imgDownloadFinished
 {
-    [self.table reloadData] ;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.table reloadData] ;
+    }) ;
 }
 
 //长按子图,保存图片
@@ -1136,16 +1144,15 @@
                           handler:^(SIAlertView *alertView) {
                               UIImage *picWillSave = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:article.img withCacheWidth:APPFRAME.size.width] ;
                               [CommonFunc saveImageToLibrary:picWillSave] ;
-                          }];
+                          }] ;
     [alertView addButtonWithTitle:WD_CANCEL
                              type:SIAlertViewButtonTypeDestructive
                           handler:^(SIAlertView *alertView) {
                               // NSLog(@"cancel Clicked");
-                          }];
+                          }] ;
     
     alertView.positionStyle = SIALertViewPositionBottom ;
-    [alertView show];
-    
+    [alertView show] ;
 }
 
 #pragma mark - SuBaoHeaderViewDelegate - ReplyCellDelegate
@@ -1246,12 +1253,9 @@
     // 要跳的链接
     NSString *strUrl = [NSString stringWithFormat:SHARE_DETAIL_URL,a_id] ;
     
-//    NSString *strShareTxt = m_bWeiboSelect ? [SHARE_CONTENT stringByAppendingString:strUrl] : SHARE_CONTENT ;
-    
     // share to weibo       if needed
     if (m_bWeiboSelect)
     {
-//        NSString *strShow = [WD_SHARE_CONTENT stringByAppendingString:strShareTxt] ;
         NSString *strShow = [ShareUtils shareContent:self.articleSuper
                                               urlStr:strUrl
                                              isMulty:self.isMultiType
@@ -1305,9 +1309,7 @@
                           }];
     [alertView addButtonWithTitle:WD_CANCEL
                              type:SIAlertViewButtonTypeDestructive
-                          handler:^(SIAlertView *alertView) {
-                              //NSLog(@"cancel Clicked");
-                          }];
+                          handler:nil];
     
     alertView.positionStyle = SIALertViewPositionBottom ;
     [alertView show];
@@ -1330,9 +1332,7 @@
                           }];
     [alertView addButtonWithTitle:WD_CANCEL
                              type:SIAlertViewButtonTypeDestructive
-                          handler:^(SIAlertView *alertView) {
-                              //NSLog(@"cancel Clicked");
-                          }];
+                          handler:nil];
     
     alertView.positionStyle = SIALertViewPositionBottom ;
     [alertView show];
@@ -1366,7 +1366,7 @@
         if (!result.errCode)
         {
             // NSLog(@"删除成功") ;
-            // 跳回去,删除数据源, 并刷新
+            // 跳回去,删除数据源,并刷新
             [XTHudManager showWordHudWithTitle:WD_DELETE_SUCCESS] ;
             
             [self.navigationController popViewControllerAnimated:YES] ;
@@ -1393,31 +1393,30 @@
     NSInteger sectionReply = self.articleSuper.childList.count + 2 ;
     
     [self.allComments removeObjectAtIndex:row] ;
+    
+    
     if (self.isMultiType)
     {
-        for (Article *subArticle in self.articleSuper.childList)
-        {
-            if (subArticle.a_id == cmtWillDelete.a_id)
-            {
-                int index = 0 ;
-                for (ArticleComment *cmt in subArticle.articleCommentList)
-                {
-                    if (cmt.c_id == cmtWillDelete.c_id)
-                    {
-                        [subArticle.articleCommentList removeObjectAtIndex:index] ;
-                        break ;
+        [self.articleSuper.childList enumerateObjectsUsingBlock:^(Article *subArticle, NSUInteger idx, BOOL * _Nonnull stopArt) {
+            if (subArticle.a_id == cmtWillDelete.a_id) {
+                [subArticle.articleCommentList enumerateObjectsUsingBlock:^(ArticleComment *cmt, NSUInteger idxCmt, BOOL * _Nonnull stopCmt) {
+                    if (cmt.c_id == cmtWillDelete.c_id) {
+                        [subArticle.articleCommentList removeObjectAtIndex:idxCmt] ;
+                       
+                        *stopCmt = YES ;
                     }
-                    index ++ ;
-                }
-                break ;
+                }] ;
+
+                *stopArt = YES ;
             }
-        }
+        }] ;
+        
     }
     else
     {
         [self.articleSuper.articleCommentList removeObject:cmtWillDelete] ;
     }
-    
+
     [_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:sectionReply]] withRowAnimation:UITableViewRowAnimationAutomatic];
     
     [ServerRequest deleteMyCmt:cmtWillDelete.c_id
@@ -1425,6 +1424,9 @@
                            
                            ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
                            NSLog(@"err code %@ : %@",@(result.errCode),result.message) ;
+                           
+                           self.articleSuper.article_comments_count-- ;
+                           
                            [_table reloadData] ;
                            
                        } fail:^{
@@ -1586,8 +1588,9 @@
     
     // show in view
     NSString *showContentStr = (!self.wordView.comment) ? content : [NSString stringWithFormat:@"回复%@:%@",self.wordView.comment.userCurrent.u_nickname,content] ;
+    
     showContentStr = [showContentStr minusReturnStr] ;
-
+    
     ArticleComment *cmt = [[ArticleComment alloc] initWithCommentID:cmtID
                                                      AndWithContent:showContentStr
                                                     AndWithColorStr:colorStr
@@ -1603,47 +1606,53 @@
     // insert new comt in sub article
     if (self.focusOn_aid != self.superArticleID)
     {
-        for (Article *subArticle in self.articleSuper.childList)
-        {
+        [self.articleSuper.childList enumerateObjectsUsingBlock:^(Article *subArticle, NSUInteger idx, BOOL * _Nonnull stop) {
             if (subArticle.a_id == self.focusOn_aid)
             {
                 [subArticle.articleCommentList insertObject:cmt atIndex:0] ;
-                break ;
+                subArticle.article_comments_count++ ;
+                *stop = YES ;
             }
-        }
+        }] ;
+        
     }
     // insert new comt in super article
     else
     {
         [self.articleSuper.articleCommentList insertObject:cmt atIndex:0] ;
     }
-    
+
     // insert new reply in sub article
     if (isReply)
     {
-        for (Article *subArticle in self.articleSuper.childList)
-        {
+        [self.articleSuper.childList enumerateObjectsUsingBlock:^(Article *subArticle, NSUInteger idx, BOOL * _Nonnull stop) {
             if (subArticle.a_id == aid)
             {
                 [subArticle.articleCommentList insertObject:cmt atIndex:0] ;
-                break ;
+                subArticle.article_comments_count++ ;
+                *stop = YES ;
             }
-        }
+        }] ;
+        
     }
     
-    // reload table
-    [self.table reloadData] ;
-    
-    // resign keyboards
-    [self.wordView.textView resignFirstResponder] ;
+    self.articleSuper.article_comments_count++ ;
     
     // fresh last number
     [self getlastCommentID] ;
     
-    // reset to origin
-    [self.wordView resetToOrigin] ;
-    
     self.focusOn_aid = 0 ;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        // reload table
+        [self.table reloadData] ;
+        // resign keyboards
+        [self.wordView.textView resignFirstResponder] ;
+        // reset to origin
+        [self.wordView resetToOrigin] ;
+
+    }) ;
+
 }
 
 #pragma mark --

@@ -10,7 +10,7 @@
 #import "Article.h"
 #import "ArticleTopic.h"
 #import "Acategory.h"
-#import "KSBarrageView.h"
+#import "XTBarrageView.h"
 
 @interface DetailTitleCell ()
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *flex_left_title;

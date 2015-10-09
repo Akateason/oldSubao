@@ -38,7 +38,7 @@
     EditPrepareCtrller *editCtrller = [story instantiateViewControllerWithIdentifier:@"EditPrepareCtrller"] ;
     editCtrller.imgSend = imageResource ;
     editCtrller.isEditingPicture = isEdit ;
-    editCtrller.delegate = ctrller ;
+    editCtrller.delegate = (id <EditPrepareCtrllerDelegate>)ctrller ;
     [ctrller.navigationController pushViewController:editCtrller animated:YES] ;
 }
 
@@ -66,7 +66,8 @@
 #pragma mark - Properties
 - (void)setImgSend:(UIImage *)imgSend
 {
-    _imgSend = [imgSend imageCompressForSize:imgSend targetSize:CGSizeMake(640, 640)] ;
+    _imgSend = imgSend ;
+//    _imgSend = [imgSend imageCompressForSize:imgSend targetSize:CGSizeMake(640, 640)] ;
 }
 
 - (UIImageView *)imgView
@@ -119,7 +120,7 @@
     NSLog(@" finished edition for picture ") ;
 //    UIImage *resultImage = self.currentImageCache ;
     UIImage *resultImage = self.whiteSideImageCache ;
-
+    
     // 完成 .
     if (!self.isEditingPicture)
     {
@@ -134,7 +135,6 @@
         [self.delegate editFinishCallBackWithImage:resultImage] ;
         [self.navigationController popViewControllerAnimated:YES] ;
     }
-    
 }
 
 - (IBAction)btSpinAction:(id)sender
@@ -184,8 +184,8 @@
             obje.pCSA_fullImage = originalSizeImage ;
         }
         editCtl = [[pg_edit_sdk_controller alloc] initWithEditObject:obje
-                                                        withDelegate:self];
-
+                                                        withDelegate:self] ;
+        
     }
     NSAssert(editCtl, @"Error");
     if (editCtl)
@@ -257,8 +257,7 @@
     
     // middle line
     CGFloat width_bt = APPFRAME.size.width / 4.0 ;
-    for (int i = 0; i < 3; i++)
-    {
+    for (int i = 0; i < 3; i++) {
         UIView *line = [[UIView alloc] init] ;
         line.backgroundColor = COLOR_IMG_EDITOR_BG ;
         line.frame = CGRectMake(width_bt * (i + 1), 0.0, 1.0, _bottomBar.frame.size.height) ;
@@ -289,6 +288,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
 
 @end

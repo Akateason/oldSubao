@@ -164,7 +164,6 @@
 
 #pragma mark --
 #pragma mark - table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -244,7 +243,6 @@
     return NONE_HEIGHT ;
 }
 
-
 #pragma mark --
 #pragma mark - UIScrollViewDelegate Methods
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -269,7 +267,6 @@
     m_currentPage ++ ;
     return [self getTopicsAndCatagoriesFromServerWithPullUpDown:NO] ;
 }
-
 
 /*
 #pragma mark - Navigation

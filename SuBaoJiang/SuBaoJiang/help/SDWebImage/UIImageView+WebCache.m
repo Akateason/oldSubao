@@ -55,7 +55,6 @@ static char imageURLKey;
         url = [NSURL URLWithString:strurl] ;
         //ADD BY @TEASON END 20150817
         
-        
         __weak __typeof(self)wself = self;
         id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager downloadImageWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             if (!wself) return;

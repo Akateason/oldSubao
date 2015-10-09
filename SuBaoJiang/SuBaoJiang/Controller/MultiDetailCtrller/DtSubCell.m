@@ -9,7 +9,7 @@
 #import "DtSubCell.h"
 #import "Article.h"
 #import "UIImageView+WebCache.h"
-#import "KSBarrageView.h"
+#import "XTBarrageView.h"
 #import "CommonFunc.h"
 #import "DetailAttributes.h"
 
@@ -23,7 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView        *imgView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *height_imageView;
 //Attrs
-@property (strong, nonatomic)        KSBarrageView      *barrageView ;
+@property (strong, nonatomic)        XTBarrageView      *barrageView ;
 @property (nonatomic,strong)         UIButton           *btSelect ;
 @end
 
@@ -62,11 +62,11 @@
     [self.delegate selectedTheImageWithAritcleID:self.subArticle.a_id] ;
 }
 
-- (KSBarrageView *)barrageView
+- (XTBarrageView *)barrageView
 {
     if (!_barrageView)
     {
-        _barrageView = [[KSBarrageView alloc] initWithFrame:CGRectMake(0, 0, APPFRAME.size.width, self.imgView.frame.size.height)] ;
+        _barrageView = [[XTBarrageView alloc] initWithFrame:CGRectMake(0, 0, APPFRAME.size.width, self.imgView.frame.size.height)] ;
         _barrageView.backgroundColor = nil ;
     }
     

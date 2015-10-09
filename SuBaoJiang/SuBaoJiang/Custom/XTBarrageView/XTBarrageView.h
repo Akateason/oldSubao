@@ -2,7 +2,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface KSBarrageView : UIView
+@interface XTBarrageView : UIView
 
 /**
  *  dataArray's object is NSDictionary

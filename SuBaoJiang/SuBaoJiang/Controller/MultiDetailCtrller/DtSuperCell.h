@@ -17,6 +17,7 @@
 @interface DtSuperCell : UITableViewCell
 @property (nonatomic,weak) id <DtSuperCellDelegate> delegate ;
 @property (nonatomic,strong) Article *article ;
+@property (nonatomic,strong) NSArray *allCommentsList ;
 @property (nonatomic,assign) BOOL    isflywordShow ; // 弹幕开关
 - (void)startOrCloseFlyword:(BOOL)bSwitch ;
 + (CGFloat)calculateHeight:(Article *)article ;

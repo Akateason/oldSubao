@@ -156,12 +156,11 @@
 - (void)setTopicID:(int)topicID
 {
     _topicID = topicID ;
-    
-    if (topicID)
-    {
+
+    //1 post button type
+    if (topicID) {
         // ADD 2 Post Button
-        switch (_topic.t_cate)
-        {
+        switch (_topic.t_cate) {
             case t_cate_type_default:
             {
                 [self.bt_go2post setImage:[UIImage imageNamed:@"bt_postTopic_normal"]
@@ -178,6 +177,14 @@
                 break;
         }
     }
+    //2 root table shutDownManualPullFooter
+//    self.table.shutDownManualPullFooter = (_topicID != 0) ;
+    //3 tabbar ctrller
+    if (!_topicID) {
+        //双击Homepage tabbarItem delegate
+        ((MyTabbarCtrller *)(self.tabBarController)).homePageDelegate = self ;
+    }
+    
 }
 
 - (void)setM_articleList:(NSMutableArray *)m_articleList
@@ -321,11 +328,8 @@
 }
 
 #pragma mark -- ThemeCellDelegate
-//- (void)bannerSelectedTheme:(int)indexSelected
 - (void)bannerSelectedTheme:(Themes *)theme
 {
-//    Themes *themeSelect = self.m_themesList[indexSelected] ;
-    
     switch (theme.themeCate)
     {
         case mode_advertise:
@@ -355,7 +359,6 @@
 #pragma mark -- setup
 - (void)setup
 {
-    
         [_table registerNib:[UINib nibWithNibName:ThemeCellID bundle:nil]
      forCellReuseIdentifier:ThemeCellID] ;
         [_table registerNib:[UINib nibWithNibName:HomeCellID bundle:nil]
@@ -369,16 +372,6 @@
     _table.backgroundColor = COLOR_BACKGROUND ;
     _table.rootDelegate = self ;
     _table.rootFinished = self ;
-    
-//    _table.canBeAutoLoadingMore = (!_topicID) ;
-    _table.shutDownManualPullFooter = (_topicID != 0) ;
-
-    if (!_topicID)
-    {
-        //双击Homepage tabbarItem delegate
-        ((MyTabbarCtrller *)(self.tabBarController)).homePageDelegate = self ;
-    }
-    
 }
 
 
@@ -387,7 +380,10 @@
 {
     bSwitchFlyword = YES ;
 
-    m_switchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"fw_hide"] style:UIBarButtonItemStylePlain target:self action:@selector(switchButtonPressedAction:)] ;
+    m_switchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"fw_hide"]
+                                                      style:UIBarButtonItemStylePlain
+                                                     target:self
+                                                     action:@selector(switchButtonPressedAction:)] ;
     self.navigationItem.rightBarButtonItem = m_switchButton ;
 }
 
@@ -462,7 +458,6 @@
         // the view hierarchy.
         m_switchButton = nil ;
         self.bt_go2post = nil ;
-        self.table = nil ;
         self.view = nil ;
     }
 }
@@ -623,7 +618,6 @@
     {
         return self.m_articleList.count + 1 ;
     }
-
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -639,6 +633,7 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"nil"];
     }
+    
     return cell ;
 }
 
@@ -715,7 +710,10 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.table loadFooterInTableWillDisplayCellWithCurrentIndexRowOrSection:indexPath.section ListCount:self.m_articleList.count + 1] ;
+    if (!self.topicID) {
+        [self.table loadFooterInTableWillDisplayCellWithCurrentIndexRowOrSection:indexPath.section
+                                                                       ListCount:self.m_articleList.count + 1] ;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -893,7 +891,6 @@
     }
 }
 
-
 #pragma mark - Navigation
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -902,6 +899,5 @@
     // Pass the selected object to the new view controller.
     [segue.destinationViewController setHidesBottomBarWhenPushed:YES] ;
 }
-
 
 @end

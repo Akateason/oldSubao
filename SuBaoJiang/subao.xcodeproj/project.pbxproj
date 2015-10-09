@@ -433,8 +433,8 @@
 		D7FDB7B31BAFAF2A004046A6 /* UETextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B21BAFAF2A004046A6 /* UETextViewCell.m */; settings = {ASSET_TAGS = (); }; };
 		D7FDB7B61BAFAF7A004046A6 /* UESelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B51BAFAF7A004046A6 /* UESelectCell.m */; settings = {ASSET_TAGS = (); }; };
 		D7FDB7BC1BB15BA7004046A6 /* HWWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7BB1BB15BA7004046A6 /* HWWeakTimer.m */; settings = {ASSET_TAGS = (); }; };
-		D7FDB7CA1BB3FA28004046A6 /* KSBarrageItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7C71BB3FA28004046A6 /* KSBarrageItemView.m */; settings = {ASSET_TAGS = (); }; };
-		D7FDB7CB1BB3FA28004046A6 /* KSBarrageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7C91BB3FA28004046A6 /* KSBarrageView.m */; settings = {ASSET_TAGS = (); }; };
+		D7FDB7CA1BB3FA28004046A6 /* XTBarrageItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7C71BB3FA28004046A6 /* XTBarrageItemView.m */; settings = {ASSET_TAGS = (); }; };
+		D7FDB7CB1BB3FA28004046A6 /* XTBarrageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7C91BB3FA28004046A6 /* XTBarrageView.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1234,10 +1234,10 @@
 		D7FDB7B51BAFAF7A004046A6 /* UESelectCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UESelectCell.m; path = Controller/UserCtrller/UESelectCell.m; sourceTree = "<group>"; };
 		D7FDB7BA1BB15BA7004046A6 /* HWWeakTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HWWeakTimer.h; sourceTree = "<group>"; };
 		D7FDB7BB1BB15BA7004046A6 /* HWWeakTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HWWeakTimer.m; sourceTree = "<group>"; };
-		D7FDB7C61BB3FA28004046A6 /* KSBarrageItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSBarrageItemView.h; sourceTree = "<group>"; };
-		D7FDB7C71BB3FA28004046A6 /* KSBarrageItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSBarrageItemView.m; sourceTree = "<group>"; };
-		D7FDB7C81BB3FA28004046A6 /* KSBarrageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSBarrageView.h; sourceTree = "<group>"; };
-		D7FDB7C91BB3FA28004046A6 /* KSBarrageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSBarrageView.m; sourceTree = "<group>"; };
+		D7FDB7C61BB3FA28004046A6 /* XTBarrageItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTBarrageItemView.h; sourceTree = "<group>"; };
+		D7FDB7C71BB3FA28004046A6 /* XTBarrageItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTBarrageItemView.m; sourceTree = "<group>"; };
+		D7FDB7C81BB3FA28004046A6 /* XTBarrageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTBarrageView.h; sourceTree = "<group>"; };
+		D7FDB7C91BB3FA28004046A6 /* XTBarrageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTBarrageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3103,10 +3103,10 @@
 		D7FDB7C51BB3FA28004046A6 /* XTBarrageView */ = {
 			isa = PBXGroup;
 			children = (
-				D7FDB7C61BB3FA28004046A6 /* KSBarrageItemView.h */,
-				D7FDB7C71BB3FA28004046A6 /* KSBarrageItemView.m */,
-				D7FDB7C81BB3FA28004046A6 /* KSBarrageView.h */,
-				D7FDB7C91BB3FA28004046A6 /* KSBarrageView.m */,
+				D7FDB7C61BB3FA28004046A6 /* XTBarrageItemView.h */,
+				D7FDB7C71BB3FA28004046A6 /* XTBarrageItemView.m */,
+				D7FDB7C81BB3FA28004046A6 /* XTBarrageView.h */,
+				D7FDB7C91BB3FA28004046A6 /* XTBarrageView.m */,
 			);
 			path = XTBarrageView;
 			sourceTree = "<group>";
@@ -3355,7 +3355,7 @@
 				18A69AF31B56000500152743 /* CameraGroupCtrller.m in Sources */,
 				18D69A091B1C714A00BC9475 /* RFSegmentView.m in Sources */,
 				18B65B011B9E901300228E02 /* GuideFourthCtrller.m in Sources */,
-				D7FDB7CB1BB3FA28004046A6 /* KSBarrageView.m in Sources */,
+				D7FDB7CB1BB3FA28004046A6 /* XTBarrageView.m in Sources */,
 				18D699981B1C714A00BC9475 /* XTCornerView.m in Sources */,
 				18A823A01B438FD7000E275F /* AboutCell.m in Sources */,
 				18A4D5F41B7B70DE00CCE555 /* DtSuperCell.m in Sources */,
@@ -3485,7 +3485,7 @@
 				182318611B1EB9DD001CE919 /* UserHeadCollectionCell.m in Sources */,
 				18D699F71B1C714A00BC9475 /* NSObject+MKBlockTimer.m in Sources */,
 				18B65AAB1B9BEE6F00228E02 /* XTlineSpaceLabel.m in Sources */,
-				D7FDB7CA1BB3FA28004046A6 /* KSBarrageItemView.m in Sources */,
+				D7FDB7CA1BB3FA28004046A6 /* XTBarrageItemView.m in Sources */,
 				18D69A3E1B1C714B00BC9475 /* FBShimmeringView.m in Sources */,
 				18A4D61A1B7DFF3D00CCE555 /* SaveAlbumnCtrller.m in Sources */,
 				18B3BD751B74569E0092DA79 /* PostMainCell.m in Sources */,

@@ -77,34 +77,32 @@
     if (!self.shutDownManualPullFooter) {
         [self loadMoreWithScrollView:scrollView] ;
     }
-    
 }
-
 
 - (void)loadMoreWithScrollView:(UIScrollView *)scrollView
 {
-
     if (_reloadingFoot || _reloadingHead) return ; // protect loading only once . if in loading break
-    CGPoint offset = scrollView.contentOffset;
-    CGRect bounds = scrollView.bounds;
-    CGSize contentsize = scrollView.contentSize;
-    UIEdgeInsets inset = scrollView.contentInset;
-    CGFloat currentOffset = offset.y + bounds.size.height - inset.bottom;
-    CGFloat maximumOffset = contentsize.height;
-    if (contentsize.height <= bounds.size.height) return;
+    CGPoint offset = scrollView.contentOffset ;
+    CGRect bounds = scrollView.bounds ;
+    CGSize contentsize = scrollView.contentSize ;
+    UIEdgeInsets inset = scrollView.contentInset ;
+    CGFloat currentOffset = offset.y + bounds.size.height - inset.bottom ;
+    CGFloat maximumOffset = contentsize.height ;
+    if (contentsize.height <= bounds.size.height) return ;
+    
 //    CGFloat alarmDistance = self.canBeAutoLoadingMore ? maximumOffset / 4.0 : 0 ;
 //    if (maximumOffset <= currentOffset + alarmDistance || maximumOffset <= currentOffset)
+    
     if ( maximumOffset <= currentOffset)
     {
         [self loadMoreAction] ;
     }
-
 }
 
 - (void)loadFooterInTableWillDisplayCellWithCurrentIndexRowOrSection:(NSInteger)currentIndex ListCount:(NSInteger)count
 {
     if (_reloadingFoot || _reloadingHead) return ; // protect loading only once . if in loading break
-
+    
     if (count - currentIndex < 10 && count > 0 && currentIndex > 1)
     {
         [self loadMoreAction] ;
@@ -230,7 +228,6 @@
     __block BOOL bSuccess ;
     
     dispatch_queue_t queue = dispatch_queue_create("queueDoneLoadTableViewData", NULL) ;
-//    dispatch_queue_t queue = dispatch_get_global_queue(0, 0) ;
 
     dispatch_async(queue, ^{
         __block unsigned int seconds = [self logTimeTakenToRunBlock:^{

@@ -33,9 +33,7 @@
 @property (nonatomic,weak) id <RootTableViewDelegate> rootDelegate ;
 @property (nonatomic,weak) id <RootTableViewFinished> rootFinished ;
 
-//@property (nonatomic)       BOOL canBeAutoLoadingMore ; // DEFAULT IS FALSE ;
 @property (nonatomic)       BOOL    shutDownManualPullFooter ;
-
 
 /*
  ** default NO ;
@@ -56,7 +54,6 @@
 
 // set refresh view frame ;
 //- (void)setRefreshViewFrame ;
-
 
 /*
  ** write in tableview delegate

@@ -8,6 +8,7 @@
 
 #import "PasterChooseView.h"
 #import "UIImageView+WebCache.h"
+#import "CommonFunc.h"
 
 @interface PasterChooseView ()
 @property (weak, nonatomic) IBOutlet UIImageView    *imgPaster;
@@ -22,20 +23,35 @@
     _aPaster = aPaster ;
     
     _lb_namePaster.text = aPaster.name ;
-    [_imgPaster sd_setImageWithURL:[NSURL URLWithString:aPaster.url]] ;
+    
+    UIImage *headImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:aPaster.url
+                                                                    withCacheWidth:640] ;
+    if (!headImage) {
+        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:aPaster.url]
+                                                              options:0
+                                                             progress:nil
+                                                            completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                                                                
+                                                                NSString *key = [CommonFunc dealQiNiuUrl:aPaster.url imgViewSize:CGSizeMake(640, 0)] ;
+                                                                [[SDImageCache sharedImageCache] storeImage:image forKey:key] ;
+                                                                
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    _imgPaster.image = image ;
+                                                                }) ;
+                                                                
+                                                            }] ;
+    }
+    else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            _imgPaster.image = headImage ;
+        }) ;
+    }
+    
+//    [_imgPaster sd_setImageWithURL:[NSURL URLWithString:aPaster.url] ] ;
 }
-
-//- (void)setPasterName:(NSString *)pasterName
-//{
-//    _pasterName = pasterName ;
-//    
-//    _lb_namePaster.text = pasterName ;
-//    _imgPaster.image = [UIImage imageNamed:pasterName] ;
-//}
 
 - (IBAction)btBackgroundClickAction:(id)sender
 {
-//    [self.delegate pasterClick:self.pasterName] ;
     [self.delegate pasterClick:self.aPaster] ;
 }
 

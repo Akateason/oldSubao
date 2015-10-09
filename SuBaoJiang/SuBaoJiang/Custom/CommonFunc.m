@@ -94,7 +94,6 @@
 {
     if ([str hasPrefix:URL_QINIU_HEAD])
     {
-//        int seeWidth = (int)imgSize.width * 2 ;
         int seeWidth = ((int)imgSize.width * 2 > 640.0) ? 640 : (int)imgSize.width * 2 ;
         str = IMG_PHONE_WID(str, seeWidth) ;
     }

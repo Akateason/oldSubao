@@ -12,7 +12,7 @@
 - (void)editFinishCallBackWithImage:(UIImage *)image ;
 @end
 
-@interface EditPrepareCtrller : RootCtrl
+@interface EditPrepareCtrller : RootCtrl // 视图编辑
 @property (nonatomic,copy)   NSString *topicStr ;
 @property (nonatomic,strong) UIImage  *imgSend ;
 @property (nonatomic)        BOOL     isEditingPicture ;

@@ -397,13 +397,13 @@
         [XTHudManager showWordHudWithTitle:WD_NOT_LOGIN] ;
     }
     
+    self.tabBarController.tabBar.hidden = NO ;
     [self.navigationController setNavigationBarHidden:NO animated:NO] ;
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated] ;
-        
     
     if (m_btSetting != nil)
     {

@@ -41,6 +41,7 @@ static long photoCount = 0 ;
 @end
 
 @implementation NewCameaCtrller
+
 @synthesize fetchMode = _fetchMode ;
 
 #pragma mark --
@@ -262,6 +263,7 @@ static long photoCount = 0 ;
 #pragma mark - Func
 - (void)getAllPictures
 {
+    
     // enumerate groups
     [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop)
     {
@@ -322,7 +324,10 @@ static long photoCount = 0 ;
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+
+    [ALAssetsLibrary disableSharedPhotoStreamsSupport]; // 开启 Photo Stream 容易导致 exception
+
+
     self.myTitle = @"相册照相页" ;
 
     [TuSDKTKLocation shared].requireAuthor = NO ;
@@ -392,17 +397,28 @@ static long photoCount = 0 ;
             
             return cell ;
         }
-        
+
         ALAsset *asset = (ALAsset *)self.imageList[row - 1] ;
-        CGImageRef thum = [asset thumbnail] ;
+//        cell.img.image = [UIImage fetchFromLibrary:asset] ;
+
+//        CGImageRef thum = [asset thumbnail] ;
+//        cell.img.image = [UIImage imageWithCGImage:thum] ;
+        
+        CGImageRef thum = [asset aspectRatioThumbnail] ;
         cell.img.image = [UIImage imageWithCGImage:thum] ;
+
     }
     else
     {
         cell.picSelected = [self thisPhotoIsSelectedWithRow:row] ;
         
         ALAsset *asset = (ALAsset *)self.imageList[row] ;
-        CGImageRef thum = [asset thumbnail];
+//        cell.img.image = [UIImage fetchFromLibrary:asset] ;
+
+//        CGImageRef thum = [asset aspectRatioThumbnail];
+//        cell.img.image = [UIImage imageWithCGImage:thum] ;
+        
+        CGImageRef thum = [asset aspectRatioThumbnail] ;
         cell.img.image = [UIImage imageWithCGImage:thum] ;
     }
     
@@ -568,7 +584,12 @@ static long photoCount = 0 ;
     else if ([segue.identifier isEqualToString:@"camera2Preview"])
     {
         EditPrepareCtrller *cuttingCtrller = (EditPrepareCtrller *)[segue destinationViewController] ;
-        cuttingCtrller.imgSend = (UIImage *)sender ;
+        UIImage *sendImage = (UIImage *)sender ;
+        if (self.fetchMode == mode_single || self.fetchMode == mode_addSingle)
+        {
+            sendImage = [sendImage imageCompressForSize:sendImage targetSize:CGSizeMake(640, 640)] ;
+        }
+        cuttingCtrller.imgSend = sendImage ;
         cuttingCtrller.topicStr = self.topicStr ;
     }
     else if ([segue.identifier isEqualToString:@"camera2multypreview"])

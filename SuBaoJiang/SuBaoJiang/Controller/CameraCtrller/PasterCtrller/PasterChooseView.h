@@ -10,13 +10,10 @@
 #import "Paster.h"
 
 @protocol PasterChooseViewDelegate <NSObject>
-//- (void)pasterClick:(NSString *)pasterName ;
 - (void)pasterClick:(Paster *)paster ;
-
 @end
 
 @interface PasterChooseView : UIView
 @property (nonatomic,weak)   id <PasterChooseViewDelegate> delegate ;
 @property (nonatomic,strong) Paster *aPaster ;
-//@property (nonatomic,copy) NSString *pasterName ;
 @end

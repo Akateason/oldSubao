@@ -26,15 +26,10 @@ static const CGFloat width_pasterChoose = 110.0f ;
 
 @implementation PasterCtrller
 
-#pragma mark - PasterChooseViewDelegate 
-//- (void)pasterClick:(NSString *)pasterName
-//{
-//    [_stageView addPasterWithImg:[UIImage imageNamed:pasterName]] ;
-//}
-
+#pragma mark - PasterChooseViewDelegate
 - (void)pasterClick:(Paster *)paster
 {
-    UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:paster.url withCacheWidth:100] ;
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:paster.url withCacheWidth:640] ;
 
     if (!image) return ;
     

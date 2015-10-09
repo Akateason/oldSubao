@@ -238,7 +238,8 @@
     CGFloat scaledWidth = targetWidth;
     CGFloat scaledHeight = targetHeight;
     CGPoint thumbnailPoint = CGPointMake(0.0, 0.0);
-    if(CGSizeEqualToSize(imageSize, size) == NO){
+    
+    if(CGSizeEqualToSize(imageSize, size) == NO) {
         CGFloat widthFactor = targetWidth / width;
         CGFloat heightFactor = targetHeight / height;
         if(widthFactor > heightFactor){
@@ -329,7 +330,7 @@
     
     if (UIImageJPEGRepresentation(sourceImage, 1) != nil)
     {
-        dataVphoto = UIImageJPEGRepresentation(sourceImage, 0.2);
+        dataVphoto = UIImageJPEGRepresentation(sourceImage, 0.4);
     }
     else
     {

@@ -18,8 +18,7 @@
 @interface SelectTalkCtrller ()<UITableViewDelegate,UITableViewDataSource,RootTableViewDelegate,TopicInputVIewDelegate>
 {
     NSMutableArray *m_topicList ;
-    NSArray        *m_myTopicList ;
-
+    
     BOOL            bCreateOrSelect ; // default is NO --> select , YES -- > create
     
     int            m_currentPage ;
@@ -29,11 +28,40 @@
 @property (weak, nonatomic) IBOutlet UIView *upView ;
 @property (weak, nonatomic) IBOutlet RootTableView *table ;
 @property (nonatomic, strong)TopicInputVIew *topicInputVIew ;
-@property (atomic, strong)   NSArray        *m_myTopicList ;
+@property (nonatomic, strong)NSArray        *myTopicList ;
 
 @end
 
 @implementation SelectTalkCtrller
+@synthesize myTopicList = _myTopicList ;
+
+- (NSArray *)myTopicList
+{
+    if (!_myTopicList) {
+        _myTopicList = [NSArray array] ;
+    }
+    
+    return _myTopicList ;
+}
+
+- (void)setMyTopicList:(NSArray *)myTopicList
+{
+
+//    if (myTopicList.count) {
+//        for (int i = 0; i < myTopicList.count; i++) {
+//            for (int j = i+1; j < myTopicList.count - 1; j++) {
+//                ArticleTopic *topic1 = myTopicList[i] ;
+//                ArticleTopic *topic2 = myTopicList[j] ;
+//                if (topic1.t_id && topic2.t_id && topic1.t_id == topic2.t_id) {
+//                    return ;
+//                }
+//            }
+//        }
+//    }
+    
+    _myTopicList = myTopicList ;
+
+}
 
 - (TopicInputVIew *)topicInputVIew
 {
@@ -59,16 +87,13 @@
     _table.rootDelegate = self ;
     _table.separatorColor     = COLOR_TABLE_SEP ;
     _table.separatorInset     = UIEdgeInsetsMake(0, 26, 0, 0) ;
-
 }
 
 - (void)setupDataSource
 {
     m_topicList     = [NSMutableArray array] ;
-    m_myTopicList   = [NSArray array] ;
     m_currentPage   = 1 ;
 }
-
 
 - (void)viewDidLoad
 {
@@ -155,13 +180,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    @synchronized(self.myTopicList) {
+        return bCreateOrSelect ? [self.myTopicList count] : [m_topicList count] ;
+    }
     
-    return bCreateOrSelect ? [m_myTopicList count] : [m_topicList count] ;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static  NSString  *CellIdentiferId = @"TopicCell";
+    static NSString *CellIdentiferId = @"TopicCell";
     TopicCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentiferId] ;
     if (!cell)
     {
@@ -169,8 +196,10 @@
         cell = [tableView dequeueReusableCellWithIdentifier:CellIdentiferId];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-
-    cell.topic = bCreateOrSelect ? m_myTopicList[indexPath.row] : m_topicList[indexPath.row] ;
+    
+    @synchronized(self.myTopicList) {
+        cell.topic = bCreateOrSelect ? self.myTopicList[indexPath.row] : m_topicList[indexPath.row] ;
+    }
     
     return cell;
 }
@@ -184,7 +213,7 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *strTopicContent = (bCreateOrSelect) ? ((ArticleTopic *)m_myTopicList[indexPath.row]).t_content : ((ArticleTopic *)m_topicList[indexPath.row]).t_content ;
+    NSString *strTopicContent = (bCreateOrSelect) ? ((ArticleTopic *)self.myTopicList[indexPath.row]).t_content : ((ArticleTopic *)m_topicList[indexPath.row]).t_content ;
 
     NSLog(@"select topic : %@",strTopicContent) ;
     [self.delegate talkContentSelected:strTopicContent] ;
@@ -235,68 +264,72 @@
 #pragma mark -- TopicInputViewDelegate
 - (void)newTopicConfirmed:(NSString *)topicStr
 {
-    @synchronized (m_myTopicList)
-    {
-        if (!_topicInputVIew.textfield.text.length)
-        {
-            bCreateOrSelect = NO ;
-            m_myTopicList = @[] ;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [_table reloadData] ;
-            }) ;
-            return ;
-        }
-        
-        bCreateOrSelect = [_topicInputVIew.textfield.text length] ;
-        
-        ArticleTopic *topicCustom = [[ArticleTopic alloc] initEmptyTopicWithContent:topicStr] ;
-        
-        if (bCreateOrSelect) m_myTopicList = @[topicCustom] ;
-        else                 return ;
-        
-        // Search topic list
-        [ServerRequest searchTalkListWithContent:topicStr page:1 count:50 success:^(id json)
-         {
-             ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
-             NSArray *topicList = [ArticleTopic getTopicListWithDictList:[result.info objectForKey:@"topics"]] ;
-             [self operateNewTopicList:topicList topicStr:topicStr] ;
-             
-         } fail:nil] ;
-    }
-    
+    [[self class] cancelPreviousPerformRequestsWithTarget:self selector:@selector(dosth:) object:topicStr] ;
+    [self performSelector:@selector(dosth:) withObject:topicStr afterDelay:0.5f] ;
 }
 
-- (void)operateNewTopicList:(NSArray *)topicList
-                   topicStr:(NSString *)topicStr
+- (void)dosth:(NSString *)topicStr
 {
-    @synchronized (m_myTopicList)
+    if (!_topicInputVIew.textfield.text.length)
     {
-        BOOL hasSame = NO ;
-        
-        for (ArticleTopic *topi in topicList) {
-            if ([topi.t_content isEqualToString:topicStr])
-            {
-                hasSame = YES ;
-                break ;
-            }
-        }
-        
-        for (ArticleTopic *topi in m_myTopicList) {
-            if ([topi.t_content isEqualToString:topicStr])
-            {
-                hasSame = YES ;
-                break ;
-            }
-        }
-        
-        m_myTopicList = hasSame ? topicList : [m_myTopicList arrayByAddingObjectsFromArray:topicList] ;
+        bCreateOrSelect = NO ;
+        self.myTopicList = @[] ;
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [_table reloadData] ;
         }) ;
+        return ;
     }
+    
+    bCreateOrSelect = [_topicInputVIew.textfield.text length] ;
+    
+    ArticleTopic *topicCustom = [[ArticleTopic alloc] initEmptyTopicWithContent:topicStr] ;
+    
+    if (!bCreateOrSelect) return ;
+    
+    self.myTopicList = @[topicCustom] ;
+    
+    // Search topic list
+    [ServerRequest searchTalkListWithContent:topicStr page:1 count:50 success:^(id json)
+     {
+         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
+         NSArray *searchList = [ArticleTopic getTopicListWithDictList:[result.info objectForKey:@"topics"]] ;
+         [self operateNewTopicList:searchList topicStr:topicStr] ;
+         
+     } fail:nil] ;
+    
 }
 
+
+- (void)operateNewTopicList:(NSArray *)searchList
+                   topicStr:(NSString *)topicStr
+{
+    BOOL hasSame = NO ;
+    
+    if ([searchList count])
+    {
+        for (ArticleTopic *topi in searchList) {
+            if ([topi.t_content isEqualToString:topicStr])
+            {
+                hasSame = YES ;
+                break ;
+            }
+        }
+    }
+    
+    if (hasSame) {
+        self.myTopicList = searchList ;
+    } else {
+//            [m_myTopicList addObjectsFromArray:searchList] ;
+        if ([searchList count]) {
+            self.myTopicList = [self.myTopicList arrayByAddingObjectsFromArray:searchList] ;
+        }
+    }
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [_table reloadData] ;
+    }) ;
+}
 
 /*
 #pragma mark - Navigation

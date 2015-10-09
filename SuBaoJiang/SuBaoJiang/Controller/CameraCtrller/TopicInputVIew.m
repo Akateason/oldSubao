@@ -26,7 +26,7 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
+//    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
 }
 
 - (void)hideKeyboard
@@ -48,7 +48,7 @@
     _textfield.delegate = self ;
     
     [self.textfield addTarget:self
-                       action:@selector(textFieldChanged:)
+                       action:@selector(myTextFieldChanged:)
              forControlEvents:UIControlEventEditingChanged];
     
 }
@@ -92,18 +92,11 @@
     return YES ;
 }
 
-//- (void)tfDidChange
-//{
-//    NSLog(@"tfDidChange") ;
-//    
-//    [self.delegate newTopicConfirmed:_textfield.text] ;
-//}
-
-- (void)textFieldChanged:(UITextField *)textField
+- (void)myTextFieldChanged:(UITextField *)tf
 {
-    NSLog(@"textFieldChanged") ;
+    NSLog(@"myTextFieldChanged") ;
     
-    [self.delegate newTopicConfirmed:textField.text] ;
+    [self.delegate newTopicConfirmed:tf.text] ;
 }
 
 /*

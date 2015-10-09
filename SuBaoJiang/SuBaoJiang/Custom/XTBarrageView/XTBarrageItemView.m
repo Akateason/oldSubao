@@ -1,11 +1,11 @@
 
-#import "KSBarrageItemView.h"
+#import "XTBarrageItemView.h"
 #import "UIView+Sizes.h"
 #import "THLabel.h"
 #import "NSString+Extend.h"
 
 
-@implementation KSBarrageItemView
+@implementation XTBarrageItemView
 {
     THLabel *_contentLabel;
 }

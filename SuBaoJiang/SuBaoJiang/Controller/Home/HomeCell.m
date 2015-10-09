@@ -14,14 +14,14 @@
 #import "WPHotspotLabel.h"
 #import "ArticleTopic.h"
 #import "ServerRequest.h"
-#import "KSBarrageView.h"
+#import "XTBarrageView.h"
 #import "DigitInformation.h"
 #import "Acategory.h"
 
 
 @interface HomeCell () <ArticleDelegate>
 {
-    KSBarrageView       *m_barrageView ;
+    XTBarrageView       *m_barrageView ;
 }
 // single photo
 @property (weak, nonatomic) IBOutlet UIImageView *img_big;
@@ -82,7 +82,7 @@
     {
         CGRect rectBarrage = CGRectMake(0, 0, APPFRAME.size.width, APPFRAME.size.width) ;
         
-        m_barrageView = [[KSBarrageView alloc] initWithFrame:rectBarrage] ;
+        m_barrageView = [[XTBarrageView alloc] initWithFrame:rectBarrage] ;
         m_barrageView.backgroundColor = nil ;
     }
     

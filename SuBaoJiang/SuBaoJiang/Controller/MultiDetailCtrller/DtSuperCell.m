@@ -9,14 +9,14 @@
 #import "DtSuperCell.h"
 #import "UIImageView+WebCache.h"
 #import "Article.h"
-#import "KSBarrageView.h"
+#import "XTBarrageView.h"
 #import "XTlineSpaceLabel.h"
 #import "DetailAttributes.h"
 
 @interface DtSuperCell ()
 @property (weak, nonatomic) IBOutlet UIImageView            *imgView ;
 @property (weak, nonatomic) IBOutlet XTlineSpaceLabel       *lb_Content ;
-@property (strong, nonatomic)        KSBarrageView          *barrageView ;
+@property (strong, nonatomic)        XTBarrageView          *barrageView ;
 @property (nonatomic,strong)         UIButton               *btSelect ;
 @end
 
@@ -51,11 +51,11 @@
     [self.delegate selectedTheImageWithAritcleID:self.article.a_id] ;
 }
 
-- (KSBarrageView *)barrageView
+- (XTBarrageView *)barrageView
 {
     if (!_barrageView)
     {
-        _barrageView = [[KSBarrageView alloc] initWithFrame:CGRectMake(0, 0, APPFRAME.size.width, APPFRAME.size.width)] ;
+        _barrageView = [[XTBarrageView alloc] initWithFrame:CGRectMake(0, 0, APPFRAME.size.width, APPFRAME.size.width)] ;
         _barrageView.backgroundColor = nil ;
     }
     
@@ -83,16 +83,24 @@
     
     if (article.isUploaded) {
         [_imgView sd_setImageWithURL:[NSURL URLWithString:article.img]
-                    placeholderImage:IMG_NOPIC] ;
+                    placeholderImage:IMG_NOPIC
+                           completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL){}] ;
     }
     else {
         _imgView.image = article.realImage ;
     }
     
+}
+
+- (void)setAllCommentsList:(NSArray *)allCommentsList
+{
+    _allCommentsList = allCommentsList ;
+    
     //flyword
-    [self.barrageView setDataArray:article.articleCommentList];
+    [self.barrageView setDataArray:allCommentsList];
     if (self.isflywordShow) [self.barrageView start] ;
 }
+
 
 - (void)dealloc
 {
