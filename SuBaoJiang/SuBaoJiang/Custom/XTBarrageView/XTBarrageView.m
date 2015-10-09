@@ -113,7 +113,7 @@ static const CGFloat basicSpeed     = 15.0 ;
         
         for (XTBarrageItemView *view in self.subviews)
         {
-            if ([view isKindOfClass:[KSBarrageItemView class]] && view.itemIndex == _curIndex-1)
+            if ([view isKindOfClass:[XTBarrageItemView class]] && view.itemIndex == _curIndex-1)
             {
                 return ;
             }

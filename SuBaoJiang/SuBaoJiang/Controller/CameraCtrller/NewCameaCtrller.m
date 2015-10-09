@@ -192,19 +192,20 @@ static long photoCount = 0 ;
         CHTCollectionViewWaterfallLayout *layout = [[CHTCollectionViewWaterfallLayout alloc] init] ;
         layout.columnCount = COLUMN_NUMBER ;
         layout.sectionInset = UIEdgeInsetsMake(COLUMN_FLEX, COLUMN_FLEX, COLUMN_FLEX, COLUMN_FLEX) ;
-        layout.headerHeight = COLUMN_FLEX ;
-        layout.footerHeight = 0 ;
+//        layout.headerHeight = COLUMN_FLEX ;
+//        layout.footerHeight = 0 ;
         layout.minimumColumnSpacing = COLUMN_FLEX ;
         layout.minimumInteritemSpacing = COLUMN_FLEX ;
         
         CGRect rect = self.view.bounds ;
         rect.size.height -= (self.fetchMode == mode_multip || self.fetchMode == mode_addMulty) ? 45.0f : 0.0f ;
         _collectionView = [[UICollectionView alloc] initWithFrame:rect collectionViewLayout:layout] ;
-
-        UINib *nib = [UINib nibWithNibName:@"AlbumnCell"
+        
+        static NSString *cellIDentifierAlbum = @"AlbumnCell" ;
+        UINib *nib = [UINib nibWithNibName:cellIDentifierAlbum
                                     bundle:[NSBundle mainBundle]] ;
         [_collectionView registerNib:nib
-          forCellWithReuseIdentifier:@"AlbumnCell"] ;
+          forCellWithReuseIdentifier:cellIDentifierAlbum] ;
         
         _collectionView.delegate = self ;
         _collectionView.dataSource = self ;
