@@ -63,7 +63,6 @@
     [self.delegate sendCommentButtonPressedCallWithContent:_textView.text AndWithColorStr:colorStr AndWithSizeStr:sizeStr AndWithPositionStr:@""] ;
 }
 
-
 - (void)reloadPlaceHolder
 {
     if (![_textView.text isEqualToString:@""])
@@ -90,18 +89,7 @@
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-
 {
-    if (![text isEqualToString:@""])
-    {
-        _lb_placeholder.text = @"" ;
-    }
-    
-    if ([text isEqualToString:@""] && range.location == 0 && range.length == 1)
-    {
-        _lb_placeholder.text = [_flywordInputView placeHolderString] ;
-    }
-        
     if ( [text isEqualToString:@"\n"] )
     {
         [self btSendPressedAction:nil] ;
@@ -113,6 +101,15 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
+    if (textView.text.length)
+    {
+        _lb_placeholder.text = @"" ;
+    }
+    else
+    {
+        _lb_placeholder.text = [_flywordInputView placeHolderString] ;
+    }
+    
     if (textView.text.length > 140)
     {
         NSLog(@"超过字数, 140") ;

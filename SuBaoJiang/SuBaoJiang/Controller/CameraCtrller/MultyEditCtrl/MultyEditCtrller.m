@@ -494,6 +494,10 @@
 {
     NSLog(@"返回") ;
     
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.table reloadData] ;
+    }) ;
+    
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:nil andMessage:nil] ;
     [alertView addButtonWithTitle:@"保存草稿"
                              type:SIAlertViewButtonTypeDefault

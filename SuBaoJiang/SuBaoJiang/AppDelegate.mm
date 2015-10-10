@@ -31,9 +31,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [[AppDelegateInitial alloc] initWithApplication:application
-                                            options:launchOptions
-                                             window:_window] ;
+    AppDelegateInitial *appInitial = [[AppDelegateInitial alloc] initWithApplication:application
+                                                                             options:launchOptions
+                                                                              window:_window] ;
+    [appInitial setup] ;
     
     return YES;
 }

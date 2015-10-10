@@ -1080,13 +1080,15 @@
         
         SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:nil
                                                          andMessage:WD_DEL_CMT] ;
+        
         [alertView addButtonWithTitle:WD_CORRECT
-                                 type:SIAlertViewButtonTypeDefault
+                                 type:SIAlertViewButtonTypeDestructive
                               handler:^(SIAlertView *alertView) {
                                   [self delCmt] ;
                               }];
+        
         [alertView addButtonWithTitle:WD_CANCEL
-                                 type:SIAlertViewButtonTypeDestructive
+                                 type:SIAlertViewButtonTypeDefault
                               handler:^(SIAlertView *alertView) {
                                   //NSLog(@"cancel Clicked");
                               }];
@@ -1139,19 +1141,22 @@
 {
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:nil
                                                      andMessage:WD_PICTURE_SAVE] ;
+    
     [alertView addButtonWithTitle:WD_CORRECT
-                             type:SIAlertViewButtonTypeDefault
+                             type:SIAlertViewButtonTypeDestructive
                           handler:^(SIAlertView *alertView) {
                               UIImage *picWillSave = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:article.img withCacheWidth:APPFRAME.size.width] ;
                               [CommonFunc saveImageToLibrary:picWillSave] ;
                           }] ;
+    
     [alertView addButtonWithTitle:WD_CANCEL
-                             type:SIAlertViewButtonTypeDestructive
+                             type:SIAlertViewButtonTypeDefault
                           handler:^(SIAlertView *alertView) {
                               // NSLog(@"cancel Clicked");
                           }] ;
     
     alertView.positionStyle = SIALertViewPositionBottom ;
+    
     [alertView show] ;
 }
 
@@ -1303,12 +1308,12 @@
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:nil
                                                      andMessage:WD_DEL_SUBAO] ;
     [alertView addButtonWithTitle:WD_CORRECT
-                             type:SIAlertViewButtonTypeDefault
+                             type:SIAlertViewButtonTypeDestructive
                           handler:^(SIAlertView *alertView) {
                               [self delArticle] ;
                           }];
     [alertView addButtonWithTitle:WD_CANCEL
-                             type:SIAlertViewButtonTypeDestructive
+                             type:SIAlertViewButtonTypeDefault
                           handler:nil];
     
     alertView.positionStyle = SIALertViewPositionBottom ;
@@ -1393,7 +1398,6 @@
     NSInteger sectionReply = self.articleSuper.childList.count + 2 ;
     
     [self.allComments removeObjectAtIndex:row] ;
-    
     
     if (self.isMultiType)
     {

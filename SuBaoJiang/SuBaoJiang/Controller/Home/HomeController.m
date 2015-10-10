@@ -145,19 +145,13 @@
     _topic = topic ;
     
     self.topicID = topic.t_id ;
-    
-    if (!_topic && !m_isFirstTime) {
-        m_isFirstTime = YES ;
-        [CommonFunc updateLatestVersion] ;
-    }
-    
 }
 
 - (void)setTopicID:(int)topicID
 {
     _topicID = topicID ;
 
-    //1 post button type
+    // post button type
     if (topicID) {
         // ADD 2 Post Button
         switch (_topic.t_cate) {
@@ -177,14 +171,6 @@
                 break;
         }
     }
-    //2 root table shutDownManualPullFooter
-//    self.table.shutDownManualPullFooter = (_topicID != 0) ;
-    //3 tabbar ctrller
-    if (!_topicID) {
-        //双击Homepage tabbarItem delegate
-        ((MyTabbarCtrller *)(self.tabBarController)).homePageDelegate = self ;
-    }
-    
 }
 
 - (void)setM_articleList:(NSMutableArray *)m_articleList
@@ -213,7 +199,6 @@
     }
     return _m_themesList ;
 }
-
 
 #pragma mark -
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -355,7 +340,6 @@
     }
 }
 
-
 #pragma mark -- setup
 - (void)setup
 {
@@ -374,7 +358,6 @@
     _table.rootFinished = self ;
 }
 
-
 #pragma mark --
 - (void)putNavBarItem
 {
@@ -384,6 +367,7 @@
                                                       style:UIBarButtonItemStylePlain
                                                      target:self
                                                      action:@selector(switchButtonPressedAction:)] ;
+    
     self.navigationItem.rightBarButtonItem = m_switchButton ;
 }
 
@@ -403,7 +387,8 @@
 #pragma mark - SuBaoHeaderViewDelegate
 - (void)clickUserHead:(int)userID
 {
-    [UserCenterController jump2UserCenterCtrller:self AndUserID:userID] ;
+    [UserCenterController jump2UserCenterCtrller:self
+                                       AndUserID:userID] ;
 }
 
 #pragma mark --
@@ -431,6 +416,17 @@
     else
     {
         self.myTitle = @"首页" ;
+        
+        //1 update App Version
+        if (!_topic && !m_isFirstTime) {
+            m_isFirstTime = YES ;
+            [CommonFunc updateLatestVersion] ;
+        }
+        
+        //2 root table shutDownManualPullFooter
+        //    self.table.shutDownManualPullFooter = (_topicID != 0) ;
+        //3 tabbar ctrller - double tap Homepage tabbarItem Delegate
+        ((MyTabbarCtrller *)(self.tabBarController)).homePageDelegate = self ;
     }
     
     [self.table pulldownManually] ;

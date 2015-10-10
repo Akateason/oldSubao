@@ -14,4 +14,6 @@
 - (instancetype)initWithApplication:(UIApplication *)application
                             options:(NSDictionary *)launchOptions
                              window:(UIWindow *)window ;
+- (void)setup ;
+
 @end

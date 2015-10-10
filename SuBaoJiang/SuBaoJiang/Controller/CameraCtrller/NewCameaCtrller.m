@@ -264,7 +264,6 @@ static long photoCount = 0 ;
 #pragma mark - Func
 - (void)getAllPictures
 {
-    
     // enumerate groups
     [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop)
     {
@@ -327,7 +326,6 @@ static long photoCount = 0 ;
     // Do any additional setup after loading the view.
 
     [ALAssetsLibrary disableSharedPhotoStreamsSupport]; // 开启 Photo Stream 容易导致 exception
-
 
     self.myTitle = @"相册照相页" ;
 
@@ -585,12 +583,15 @@ static long photoCount = 0 ;
     else if ([segue.identifier isEqualToString:@"camera2Preview"])
     {
         EditPrepareCtrller *cuttingCtrller = (EditPrepareCtrller *)[segue destinationViewController] ;
-        UIImage *sendImage = (UIImage *)sender ;
-        if (self.fetchMode == mode_single || self.fetchMode == mode_addSingle)
-        {
-            sendImage = [sendImage imageCompressForSize:sendImage targetSize:CGSizeMake(640, 640)] ;
-        }
-        cuttingCtrller.imgSend = sendImage ;
+        
+//        UIImage *sendImage = (UIImage *)sender ;
+//        if (self.fetchMode == mode_single || self.fetchMode == mode_addSingle)
+//        {
+//            sendImage = [sendImage imageCompressForSize:sendImage targetSize:CGSizeMake(640, 640)] ;
+//        }
+//        cuttingCtrller.imgSend = sendImage ;
+        
+        cuttingCtrller.imgSend = (UIImage *)sender ;
         cuttingCtrller.topicStr = self.topicStr ;
     }
     else if ([segue.identifier isEqualToString:@"camera2multypreview"])

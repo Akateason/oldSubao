@@ -74,8 +74,7 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
         if (!result) return ;
 
-        if (!result.errCode)
-        {
+        if (!result.errCode) {
             NSLog(@"read update success") ;
         }
     } fail:^{
@@ -143,8 +142,11 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     [ServerRequest getNoReadMsgCountSuccess:^(id json) {
         
         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
-        if (!result) return ;
-
+        if (!result) {
+            completionHandler(UIBackgroundFetchResultNoData) ;
+            return ;
+        }
+        
         [self setTabbarUI:result] ;
         [self setNoteCountInTable:result] ;
         [self setLocalRemote:result] ;
@@ -165,6 +167,8 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
 
     [self setTabbarUI:result] ;
     [self setNoteCountInTable:result] ;
+    [self setLocalRemote:result] ;
+
 }
 
 - (void)changeTabbarItemsBadgeFromServer
@@ -221,10 +225,14 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     // has new comment msg to user .
     if (m_hasNewMsg && m_hasNewMsg != savingNewMsgCount)  //  hold times .
     {
-        UILocalNotification *localNofify = [[UILocalNotification alloc] init];
-        localNofify.alertBody = [NSString stringWithFormat:@"有%d条新的评论哟,快去看看吧~",m_hasNewMsg] ;
-        localNofify.soundName = UILocalNotificationDefaultSoundName ;
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNofify] ;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            UILocalNotification *localNofify = [[UILocalNotification alloc] init];
+            localNofify.alertBody = [NSString stringWithFormat:@"有%d条新的评论哟,快去看看吧~",m_hasNewMsg] ;
+            localNofify.soundName = UILocalNotificationDefaultSoundName ;
+            [[UIApplication sharedApplication] presentLocalNotificationNow:localNofify] ;
+
+        }) ;
         
         savingNewMsgCount = m_hasNewMsg ;
     }
@@ -232,11 +240,15 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     // has new system msg to user .
     if (m_hasNewNot && m_hasNewNot != savingNewNotCount)  //  hold times .
     {
-        UILocalNotification *localNofify = [[UILocalNotification alloc] init] ;
-        NSString *msg_content = [result.info objectForKey:@"msg_content"] ;
-        localNofify.alertBody = msg_content ;
-        localNofify.soundName = UILocalNotificationDefaultSoundName ;
-        [[UIApplication sharedApplication] scheduleLocalNotification:localNofify] ;
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            UILocalNotification *localNofify = [[UILocalNotification alloc] init] ;
+            NSString *msg_content = [result.info objectForKey:@"msg_content"] ;
+            localNofify.alertBody = msg_content ;
+            localNofify.soundName = UILocalNotificationDefaultSoundName ;
+            [[UIApplication sharedApplication] presentLocalNotificationNow:localNofify] ;
+            
+        }) ;
         
         savingNewNotCount = m_hasNewNot ;
     }
@@ -253,6 +265,15 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     self.myTitle = @"消息中心页" ;
 
     [self setup] ;
+    
+    savingNewMsgCount = 0 ; //save latest cmt count
+    savingNewNotCount = 0 ; //save latest sys count
+    
+    m_hasNewMsg = 0 ;
+    m_hasNewPra = 0 ;
+    m_hasNewNot = 0 ;
+    
+    m_lastMsgID = 0 ; //  save lase id ;
 }
 
 
@@ -260,8 +281,7 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
 {
     [super viewWillAppear:animated] ;
     
-    if (!G_TOKEN)
-    {
+    if (!G_TOKEN) {
         [XTHudManager showWordHudWithTitle:WD_NOT_LOGIN] ;
     }
     
@@ -273,12 +293,10 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
 {
     [super viewWillDisappear:animated] ;
     
-    if (m_hasNewNot)
-    {
+    if (m_hasNewNot) {
         self.M_tabBarItemCount -= m_hasNewNot ;
         m_hasNewNot = 0 ;
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -335,7 +353,6 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     
     return YES   ;
 }
-
 
 #pragma mark --
 #pragma mark - table view data source
@@ -395,7 +412,7 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     }
     
 //    cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-
+    
     return cell ;
 }
 

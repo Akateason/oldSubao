@@ -26,69 +26,80 @@
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 
+@interface AppDelegateInitial ()
+@property (nonatomic,strong) NSDictionary *launchOptions ;
+@property (nonatomic,strong) UIApplication *application ;
+@property (nonatomic,strong) UIWindow *window ;
+@end
 
 @implementation AppDelegateInitial
-
 - (instancetype)initWithApplication:(UIApplication *)application options:(NSDictionary *)launchOptions window:(UIWindow *)window
 {
     self = [super init];
     if (self) {
-        
-        //  Icon Badge
-        [self setupIconBadge] ;
-        
-        //  Get App store Check Switch
-        [self getAppCheckSwitch] ;
-        
-        //  Initial DB
-        [self initialDB] ;
-        
-        //  Sand Box
-        [CommonFunc getSandBoxPath] ;
-        
-        //  My Style
-        [self setMyStyleWithWindow:window] ;
-        
-        //  Get Token and userInfo if loginED (token existed)
-        [self getTokenAndUser] ;
-        
-        //  TU SDK
-        [self tuSdkInitialization] ;
-        
-        //  Camera360 SDK
-        [self camera360Initialization] ;
-        
-        //  Umeng SDK initial .
-        [self UmengSdkInitialization] ;
-        
-        //  weibo and weixin .
-        [self weiboInitialization] ;
-        
-        //  Umeng SDK Analytics
-        [self UMAnalyticsInitialization] ;
-        
-        //  Umeng Message Notification
-        [self UMMessageNotificationInitializationWithLaunchOptions:launchOptions] ;
-        
-        //  Active RunLoop
-        [self runloopForNewNotes] ;
-        
-        //  Upload Pictures RunLoop
-        [self runloopForUploadPictures] ;
-        
-        //  initial paseter manegement and get pasterlist from server
-        [self initialPastermanagement] ;
-        
-        //  initial cate colors
-        [self initailCateColors] ;
-        
-        //  Back Ground Fetch
-        [application setMinimumBackgroundFetchInterval:60*3] ;
+        self.application = application ;
+        self.launchOptions = launchOptions ;
+        self.window = window ;
     }
     
     return self;
 }
 
+- (void)setup
+{
+    //  Icon Badge
+    [self setupIconBadge] ;
+    
+    //  Get App store Check Switch
+    [self getAppCheckSwitch] ;
+    
+    //  Initial DB
+    [self initialDB] ;
+    
+    //  Sand Box
+    [CommonFunc getSandBoxPath] ;
+    
+    //  My Style
+    [self setMyStyleWithWindow:self.window] ;
+    
+    //  Get Token and userInfo if loginED (token existed)
+    [self getTokenAndUser] ;
+    
+    //  TU SDK
+    [self tuSdkInitialization] ;
+    
+    //  Camera360 SDK
+    [self camera360Initialization] ;
+    
+    //  Umeng SDK initial .
+    [self UmengSdkInitialization] ;
+    
+    //  weibo and weixin .
+    [self weiboInitialization] ;
+    
+    //  Umeng SDK Analytics
+    [self UMAnalyticsInitialization] ;
+    
+    //  Umeng Message Notification
+    [self UMMessageNotificationInitializationWithLaunchOptions:self.launchOptions] ;
+    
+    //  Active RunLoop
+    [self runloopForNewNotes] ;
+    
+    //  Upload Pictures RunLoop
+    [self runloopForUploadPictures] ;
+    
+    //  initial paseter manegement and get pasterlist from server
+    [self initialPastermanagement] ;
+    
+    //  initial cate colors
+    [self initailCateColors] ;
+    
+    //  Back Ground Fetch
+    // UIApplicationBackgroundFetchIntervalMinimum
+    // 60 * 3
+    [self.application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum] ;
+}
 
 #pragma mark --
 // set My Style
