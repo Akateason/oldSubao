@@ -158,7 +158,6 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     }] ;
 }
 
-
 // run loop when app active
 - (void)changeBadgeInRunloop:(NSNotification *)notification
 {
@@ -287,6 +286,10 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     
     [self changeTabbarItemsBadgeFromServer] ;
     [self.table pulldownManually] ;
+    
+    self.tabBarController.tabBar.hidden = NO ;
+    [self.navigationController setNavigationBarHidden:NO animated:NO] ;
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated

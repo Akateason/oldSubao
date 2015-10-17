@@ -1,9 +1,9 @@
 //
 //  RootCtrl.m
-//  JGB
+//  Teason
 //
-//  Created by JGBMACMINI01 on 14-8-21.
-//  Copyright (c) 2014年 JGBMACMINI01. All rights reserved.
+//  Created by ; on 14-8-21.
+//  Copyright (c) 2014年 TEASON. All rights reserved.
 //
 
 #import "RootCtrl.h"
@@ -19,6 +19,11 @@
 
 @implementation RootCtrl
 
+- (void)dealloc
+{
+
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,8 +38,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//  initialAudioPlayer
-//    [self initialAudioPlayer] ;
+// AudioPlayer
+//  [self initialAudioPlayer] ;
     
 }
 
@@ -50,12 +55,24 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    // 用户点击了返回按钮
+    if (self.bOpenClickBackButtonCallBack && [self.navigationController.viewControllers indexOfObject:self] == NSNotFound) {
+        if ([self respondsToSelector:@selector(iClickedBackButton)]) {
+            [self iClickedBackButton] ;
+        }
+    }
+
     [super viewWillDisappear:animated] ;
     
     [m_nothingPicImgView removeFromSuperview] ;
     m_nothingPicImgView = nil ;
     
     [MobClick endLogPageView:self.myTitle];
+}
+
+- (void)iClickedBackButton
+{
+    
 }
 
 #pragma mark -- initial
@@ -114,7 +131,7 @@
     }
     else
     {
-//        [self backButtonSet] ;
+        
     }
 }
 
@@ -124,8 +141,6 @@
     
     [self setBackgroundWithWifiSuccess:isNetSuccess] ;
 }
-
-
 
 #pragma mark --
 #pragma mark - Getter
@@ -140,7 +155,6 @@
 
 - (void)setBackgroundWithWifiSuccess:(BOOL)bSuccess
 {
-
     if (bSuccess)
     {
         [self.myTable setBackgroundView:nil] ;
@@ -151,8 +165,6 @@
         nowifiView.frame = self.myTable.frame ;
         [self.myTable setBackgroundView:nowifiView] ;
     }
-    
-    NSLog(@"self.myTable : %@ ",NSStringFromCGRect(self.myTable.frame)) ;
 }
 
 - (UIImageView *)guidingImageView

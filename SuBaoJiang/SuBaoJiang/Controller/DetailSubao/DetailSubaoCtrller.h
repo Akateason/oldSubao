@@ -9,6 +9,7 @@
 #import "RootCtrl.h"
 #import "Article.h"
 #import "NotificationCenterHeader.h"
+#import "HomeController.h"
 
 @interface DetailSubaoCtrller : RootCtrl
 
@@ -27,4 +28,9 @@
                AndWithCommentID:(int)commentID
                        FromRect:(CGRect)fromRect
                         imgSend:(UIImage *)imgSend ;
+
+@property (nonatomic)  CGRect toRect ;
+- (void)startReverseAnmation ;
+@property (nonatomic,strong) HomeController *homeCtrller ;
+
 @end

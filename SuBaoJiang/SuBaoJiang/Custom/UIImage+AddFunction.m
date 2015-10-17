@@ -326,18 +326,20 @@
 // 压缩图片质量
 + (UIImage *)compressQualityWithOriginImage:(UIImage *)sourceImage
 {
-    NSData *dataVphoto = [NSData data] ;
+//    NSData *dataVphoto = [NSData data] ;
+//    
+//    if (UIImageJPEGRepresentation(sourceImage, 1) != nil)
+//    {
+//        dataVphoto = UIImageJPEGRepresentation(sourceImage, 0.8);
+//    }
+//    else
+//    {
+//        dataVphoto = UIImagePNGRepresentation(sourceImage);
+//    }
+//    
+//    return [UIImage imageWithData:dataVphoto] ;
     
-    if (UIImageJPEGRepresentation(sourceImage, 1) != nil)
-    {
-        dataVphoto = UIImageJPEGRepresentation(sourceImage, 0.4);
-    }
-    else
-    {
-        dataVphoto = UIImagePNGRepresentation(sourceImage);
-    }
-    
-    return [UIImage imageWithData:dataVphoto] ;
+    return sourceImage ;
 }
 
 // 相册获取
@@ -346,7 +348,7 @@
     ALAssetRepresentation *repr = [asset defaultRepresentation];
     CGImageRef orgImage = [repr fullScreenImage] ;
 //    UIImage *fullImage = [UIImage imageWithCGImage:orgImage scale:0.4 orientation:(UIImageOrientation)[repr orientation]] ;
-    UIImage *fullImage = [UIImage imageWithCGImage:orgImage scale:0.4 orientation:UIImageOrientationUp] ;
+    UIImage *fullImage = [UIImage imageWithCGImage:orgImage scale:1.0 orientation:UIImageOrientationUp] ;
 
     return fullImage ;
 }

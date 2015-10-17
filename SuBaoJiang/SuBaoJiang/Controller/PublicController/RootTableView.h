@@ -10,12 +10,10 @@
 #import "EGORefreshTableHeaderView.h"
 //#import "EGORefreshTableFooterView.h"
 
-
 @protocol RootTableViewDelegate <NSObject>
 - (BOOL)doSthWhenfreshingHeader ;
 - (BOOL)doSthWhenfreshingFooter ;
 @end
-
 
 @protocol RootTableViewFinished <NSObject>
 @optional
@@ -61,5 +59,6 @@
 - (void)loadFooterInTableWillDisplayCellWithCurrentIndexRowOrSection:(NSInteger)currentIndex
                                                            ListCount:(NSInteger)count ;
 
-
 @end
+
+

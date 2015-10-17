@@ -18,7 +18,6 @@
     self = [super initWithCoder:coder];
     if (self)
     {
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(tfDidChange) name:UITextFieldTextDidChangeNotification object:nil] ;
     }
     return self;
 }
@@ -26,7 +25,6 @@
 
 - (void)dealloc
 {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self] ;
 }
 
 - (void)hideKeyboard

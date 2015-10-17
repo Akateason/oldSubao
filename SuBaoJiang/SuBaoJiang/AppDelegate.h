@@ -14,6 +14,7 @@
 @class MultyEditCtrller ;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) UITabBarController        *tabbarCtrller ;
 @property (strong, nonatomic) NoteCenterViewController  *noteCenterCtrller ;

@@ -15,7 +15,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="391"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Fr6-Gd-JKn" userLabel="imgMain">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guiding_detail" translatesAutoresizingMaskIntoConstraints="NO" id="Fr6-Gd-JKn" userLabel="imgMain">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="320"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="Fr6-Gd-JKn" secondAttribute="height" multiplier="1:1" id="jZ8-yQ-NfG"/>
@@ -139,6 +139,7 @@
     </objects>
     <resources>
         <image name="cover_bg_black" width="1" height="67"/>
+        <image name="guiding_detail" width="375" height="667"/>
         <image name="like" width="41" height="26"/>
         <image name="tag_se" width="23" height="24"/>
         <image name="unlike" width="41" height="26"/>

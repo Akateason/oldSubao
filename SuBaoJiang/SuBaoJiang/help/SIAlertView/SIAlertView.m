@@ -199,10 +199,23 @@ static SIAlertView *__si_alert_current_view;
 	if (self) {
 		_title = title;
         _message = message;
-		self.items = [[NSMutableArray alloc] init];
+		self.items = [[NSMutableArray alloc] init] ;
+        // ADD BY TEASON @20151013 BEGIN
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSelf:)] ;
+        [self addGestureRecognizer:tap] ;
+        // ADD BY TEASON @20151013 END
 	}
 	return self;
 }
+
+// ADD BY TEASON @20151013 BEGIN
+- (void)tapSelf:(UITapGestureRecognizer *)tap
+{
+    NSLog(@"tap self click hidden ") ;
+    [self dismissAnimated:YES] ;
+}
+// ADD BY TEASON @20151013 END
+
 
 #pragma mark - Class methods
 

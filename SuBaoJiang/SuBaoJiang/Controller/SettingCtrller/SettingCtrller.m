@@ -18,7 +18,7 @@
 
 @interface SettingCtrller ()
 @property (nonatomic,copy)           NSString    *strVersion ;
-@property (nonatomic)                CGFloat     cacheNum ;
+//@property (nonatomic)                CGFloat     cacheNum ;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 @end
 
@@ -32,6 +32,7 @@
     return _strVersion ;
 }
 
+/*
 - (CGFloat)cacheNum
 {
     if (_cacheNum == -1) {
@@ -49,6 +50,7 @@
     
     return _cacheNum ;
 }
+*/
 
 - (void)setupTable
 {
@@ -107,8 +109,6 @@
 
 }
 
-
-
 #pragma mark --
 - (void)viewDidLoad
 {
@@ -119,7 +119,7 @@
     
     [self setupTable] ;
     [self setupExitButton] ;
-    [self cacheNum] ;
+//    [self cacheNum] ;
 }
 
 #pragma mark -- clearCacheClickedAction
@@ -150,7 +150,7 @@
     [[SDImageCache sharedImageCache] cleanDisk] ;
     [[SDImageCache sharedImageCache] clearMemory] ;
     
-    self.cacheNum = -1 ;
+//    self.cacheNum = -1 ;
     
     [self performSelectorOnMainThread:@selector(freshTable)
                            withObject:nil
@@ -227,7 +227,7 @@
                 cell.canBeSelected = NO ;
             } else if (row == 1) {
                 cell.key = @"清理缓存" ;
-                cell.value = [NSString stringWithFormat:@"%.2fMB",self.cacheNum] ;
+//                cell.value = [NSString stringWithFormat:@"%.2fMB",self.cacheNum] ;
             }
         }
         else if (section == 2)

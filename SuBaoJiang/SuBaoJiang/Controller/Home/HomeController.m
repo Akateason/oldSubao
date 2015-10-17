@@ -57,13 +57,16 @@
 @property (atomic, strong)  NSMutableArray         *m_articleList ; // 文章 datasource
 @property (atomic, strong)  NSMutableArray         *m_themesList  ; // 主题list
 
+@property (nonatomic)        CGRect                fromRect ;
+@property (nonatomic,strong) UIImage               *imgTempWillSend ;
+
 @end
 
 @implementation HomeController
 
 @synthesize m_articleList = _m_articleList , m_themesList = _m_themesList ;
 
-#pragma mark -
+#pragma mark - Public
 + (void)jumpToTopicHomeCtrller:(ArticleTopic *)topic
                  originCtrller:(UIViewController *)ctrller
 {
@@ -112,6 +115,24 @@
                                             animated:animated] ;
 }
 
+- (void)reverseImageSendAnimationWithRect:(CGRect)toRect
+{
+    UIImageView *imgView = [[UIImageView alloc] initWithFrame:toRect] ;
+    imgView.image = self.imgTempWillSend ;
+    [self.view addSubview:imgView] ;
+    
+    [UIView animateWithDuration:0.35
+                     animations:^{
+                         
+                         imgView.frame = self.fromRect ;
+                         
+                     } completion:^(BOOL finished) {
+                         if (finished) {
+                             [imgView removeFromSuperview] ;
+                         }
+                     }] ;
+        
+}
 
 #pragma mark -
 - (UIButton *)bt_go2post
@@ -752,13 +773,16 @@
         Article *articleTemp = self.m_articleList[section - 1] ;
         CGRect rectTableView = [tableView rectForRowAtIndexPath:indexPath] ;
         CGRect rectInView = [tableView convertRect:rectTableView toView:self.view] ;
-        UIImage *tempImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:articleTemp.img withCacheWidth:APPFRAME.size.width] ;
+        self.imgTempWillSend = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:articleTemp.img
+                                                                          withCacheWidth:APPFRAME.size.width] ;
 
+        self.fromRect = CGRectMake(0, rectInView.origin.y, APPFRAME.size.width , APPFRAME.size.width) ;
+        
         [DetailSubaoCtrller jump2DetailSubaoCtrller:self
                                    AndWithArticleID:articleTemp.a_id
                                    AndWithCommentID:0
-                                           FromRect:CGRectMake(0, rectInView.origin.y, APPFRAME.size.width , APPFRAME.size.width)
-                                            imgSend:tempImage
+                                           FromRect:self.fromRect
+                                            imgSend:self.imgTempWillSend
          ] ;
     }
 }
@@ -848,8 +872,8 @@
         
         if (translation.y > flex)
         {
-            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
-            [self.navigationController setNavigationBarHidden:NO animated:YES] ;
+//            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
+//            [self.navigationController setNavigationBarHidden:NO animated:YES] ;
             
             dispatch_async(dispatch_get_main_queue(), ^{
 //                [self makeTabBarHidden:NO animated:YES] ;
@@ -858,8 +882,8 @@
         }
         else if (translation.y < - flex)
         {
-            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone] ;
-            [self.navigationController setNavigationBarHidden:YES animated:YES] ;
+//            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone] ;
+//            [self.navigationController setNavigationBarHidden:YES animated:YES] ;
 
             dispatch_async(dispatch_get_main_queue(), ^{
 //                [self makeTabBarHidden:YES animated:YES] ;

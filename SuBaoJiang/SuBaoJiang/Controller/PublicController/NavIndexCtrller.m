@@ -7,6 +7,8 @@
 //
 
 #import "NavIndexCtrller.h"
+#import "DetailSubaoCtrller.h"
+#import "XTAnimation.h"
 
 @interface NavIndexCtrller ()
 
@@ -24,7 +26,8 @@
 
         self.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"首页" image:normalImage1 selectedImage:selectImage1] ;
 
-//        RESIZE_TABBAR_ITEM        
+//        RESIZE_TABBAR_ITEM
+        
     }
     return self;
 }
@@ -34,7 +37,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,6 +44,21 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (UIViewController *)popViewControllerAnimated:(BOOL)animated
+{
+    if ([self.topViewController isKindOfClass:[DetailSubaoCtrller class]]) {
+        UIViewController *vc = [super popViewControllerAnimated:NO] ;
+        [(DetailSubaoCtrller *)vc startReverseAnmation] ;
+        return vc ;
+    }
+    
+    return [super popViewControllerAnimated:animated] ;
+}
+
+
+
+
 
 /*
 #pragma mark - Navigation

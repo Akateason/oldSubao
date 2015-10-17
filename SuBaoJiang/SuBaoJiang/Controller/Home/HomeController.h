@@ -22,4 +22,6 @@
                  originCtrller:(UIViewController *)ctrller
                       animated:(BOOL)animated ;
 
+- (void)reverseImageSendAnimationWithRect:(CGRect)toRect ;
+
 @end

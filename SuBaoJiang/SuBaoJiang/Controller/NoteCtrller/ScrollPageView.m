@@ -1,9 +1,9 @@
 //
 //  ScrollPageView.m
-//  JGB
+//  Teason
 //
-//  Created by JGBMACMINI01 on 14-11-20.
-//  Copyright (c) 2014年 JGBMACMINI01. All rights reserved.
+//  Created by ; on 14-8-21.
+//  Copyright (c) 2014年 TEASON. All rights reserved.
 //
 
 #import "ScrollPageView.h"

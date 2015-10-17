@@ -119,31 +119,43 @@
     detailCtrller.replyCommentID = commentID ;
     detailCtrller.fromRect = fromRect ;
     detailCtrller.imgArticleSend = imgSend ;
+    if ([ctrller isKindOfClass:[HomeController class]]) {
+        detailCtrller.homeCtrller = (HomeController *)ctrller ;
+    }
+    
     [detailCtrller setHidesBottomBarWhenPushed:YES] ;
     [ctrller.navigationController pushViewController:detailCtrller animated:NO] ;
+    
+
 }
 
 - (void)imageSendAnimation
 {
     if (!self.imgArticleSend)
     {
-        [XTAnimation animationPushRight:self.view] ;
+//        [XTAnimation animationPushRight:self.view] ;
     }
     else
     {
-        [UIView animateWithDuration:0.65
+        // image Send animation .
+        [self imgAnimateView] ;
+
+        [UIView animateWithDuration:0.35
                          animations:^{
-                             
                              CGFloat yFlex = self.isMultiType ? 48.0f + 52.0f : 48.0f ;
                              self.imgAnimateView.frame = CGRectMake(0, yFlex, APPFRAME.size.width, APPFRAME.size.width) ;
-                             self.imgAnimateView.alpha = 0.0f ;
-                             
+                             self.toRect = self.imgAnimateView.frame ;
                          } completion:^(BOOL finished) {
                              if (finished) {
-                                 [self.imgAnimateView removeFromSuperview] ;
+                                 self.imgAnimateView.hidden = YES ;
                              }
                          }] ;
     }
+}
+
+- (void)startReverseAnmation
+{
+    [self.homeCtrller reverseImageSendAnimationWithRect:self.toRect] ;
 }
 
 #pragma mark --
@@ -490,7 +502,7 @@
     _isMultiType = isMultiType ;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-
+        
         self.flex_bottom.constant = 48.0f ;
         self.wordView.hidden = NO ;
         
@@ -502,20 +514,23 @@
     
     if (!isMultiType && !t_Label)
     {
-        t_Label = [[UILabel alloc] init] ;
-        CGRect rect = t_Label.frame ;
-        rect.size = self.navBg.frame.size ;
-        rect.origin = CGPointZero ;
-        t_Label.frame = rect ;
-        t_Label.text = @"速报详情" ;
-        t_Label.textColor = [UIColor whiteColor] ;
-        t_Label.font = [UIFont boldSystemFontOfSize:17.0] ;
-        t_Label.textAlignment = NSTextAlignmentCenter ;
-    
-        if (![t_Label superview])
-        {
-            [self.navBg addSubview:t_Label] ;
-        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            t_Label = [[UILabel alloc] init] ;
+            CGRect rect = t_Label.frame ;
+            rect.size = self.navBg.frame.size ;
+            rect.origin = CGPointZero ;
+            t_Label.frame = rect ;
+            t_Label.text = @"速报详情" ;
+            t_Label.textColor = [UIColor whiteColor] ;
+            t_Label.font = [UIFont boldSystemFontOfSize:17.0] ;
+            t_Label.textAlignment = NSTextAlignmentCenter ;
+            
+            if (![t_Label superview])
+            {
+                [self.navBg addSubview:t_Label] ;
+            }
+        }) ;
     }
 }
 
@@ -533,6 +548,7 @@
 
         dispatch_async(dispatch_get_main_queue(), ^{
             self.table.hidden = NO ;
+            [self imageSendAnimation] ;
         }) ;
         
     } fail:^{
@@ -613,8 +629,6 @@
     [self wordView] ;
     [self putNavBarItem] ;
     
-    // image Send animation .
-    [self imgAnimateView] ;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -630,7 +644,6 @@
     
     [self resetWordViewFrame] ;
     
-    [self imageSendAnimation] ;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -642,6 +655,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:NSNOTIFICATION_ARTICLE_REFRESH
                                                         object:self.articleSuper] ;
 }
+
+
 
 - (void)didReceiveMemoryWarning
 {
