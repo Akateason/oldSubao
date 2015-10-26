@@ -237,15 +237,16 @@
     _table.delegate = self ;
     _table.dataSource = self ;
     _table.separatorColor = COLOR_TABLE_SEP ;
+    _table.hideHudForShowNothing = YES ;
 //    _table.separatorStyle = UITableViewCellSeparatorStyleNone ;
     _table.rootDelegate = self ;
     
     // long press gesture
-    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressAtComment:)] ;
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self
+                                                                                       action:@selector(handleLongPressAtComment:)] ;
     lpgr.minimumPressDuration = 1.0f ;
     [_table addGestureRecognizer:lpgr] ;
     
-    //
     self.navBg.backgroundColor = nil ;
 }
 
@@ -634,6 +635,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
+    
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated

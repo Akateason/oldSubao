@@ -32,6 +32,7 @@
 @property (nonatomic,weak) id <RootTableViewFinished> rootFinished ;
 
 @property (nonatomic)       BOOL    shutDownManualPullFooter ;
+@property (nonatomic)       BOOL    hideHudForShowNothing ;
 
 /*
  ** default NO ;
@@ -49,9 +50,6 @@
  **/
 - (void)rootTableScrollDidScroll:(UIScrollView *)scrollView ;
 - (void)rootTableScrollDidEndDragging:(UIScrollView *)scrollView ;
-
-// set refresh view frame ;
-//- (void)setRefreshViewFrame ;
 
 /*
  ** write in tableview delegate

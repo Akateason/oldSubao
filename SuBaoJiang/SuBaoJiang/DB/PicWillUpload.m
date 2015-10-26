@@ -64,7 +64,7 @@
 {
     @autoreleasepool
     {
-        QNUploadManager *upManager = [[QNUploadManager alloc] init];
+        QNUploadManager *upManager = [[QNUploadManager alloc] init] ;
         // get Qiniu Token every time
         NSString *tokenQiniu = [DigitInformation shareInstance].token_QiNiuUpload ;
         if (!tokenQiniu) return ;
@@ -75,17 +75,16 @@
                   complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp)
          {
              
-             NSLog(@"info : %@", info);
-             NSLog(@"resp : %@", resp);
+             NSLog(@"info : %@", info) ;
+             NSLog(@"resp : %@", resp) ;
              if (info.statusCode != 200) return ;
              // upload pic success
              // delete in DB
              BOOL bSuccess = [[PicUploadTB shareInstance] uploadFinishedPictureWithPictureID:self.id_PicWillUpload] ;
              // delete cache in local
-             //         if (bSuccess) [XTFileManager deleteFileWithFileName:self.path] ;
+             // if (bSuccess) [XTFileManager deleteFileWithFileName:self.path] ;
              // delete sdWebimageCache
              if (bSuccess) [[SDImageCache sharedImageCache] removeImageForKey:[self qiNiuPath] fromDisk:YES] ;
-             
              
          } option:nil] ;
     }
@@ -118,7 +117,6 @@
         [self cachePicInDB] ;
         
     }) ;
-    
 }
 
 - (void)cacheHeadPic:(UIImage *)image

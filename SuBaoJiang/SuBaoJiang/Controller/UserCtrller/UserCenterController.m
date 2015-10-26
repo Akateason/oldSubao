@@ -303,6 +303,7 @@
     {
         [self putNavBarItem] ;
     }
+    self.tabBarController.tabBar.hidden = _noBottom ;
     
     m_currentMode   = mode_MY_SUBAO ;
     
@@ -310,7 +311,6 @@
     m_commentList   = [NSMutableArray array] ;
     m_praiseList    = [NSMutableArray array] ;
     
-//    [self.table pulldownManually] ;
     [self _refreshing] ;
     
     _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(APPFRAME), 230)];
@@ -397,7 +397,7 @@
         [XTHudManager showWordHudWithTitle:WD_NOT_LOGIN] ;
     }
     
-    self.tabBarController.tabBar.hidden = NO ;
+    
     [self.navigationController setNavigationBarHidden:NO animated:NO] ;
 }
 

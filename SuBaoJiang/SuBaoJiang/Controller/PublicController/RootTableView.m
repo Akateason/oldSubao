@@ -272,7 +272,9 @@
 
 - (void)showNothing
 {
-    [XTHudManager showWordHudWithTitle:WD_HUD_NOMORE delay:1.0] ;
+    if (!self.hideHudForShowNothing) {
+        [XTHudManager showWordHudWithTitle:WD_HUD_NOMORE delay:1.0] ;
+    }
 }
 
 
