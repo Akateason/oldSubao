@@ -229,7 +229,10 @@
 
 - (void)getAppCheckSwitch
 {
-    [[DigitInformation shareInstance] g_openAPPStore] ;
+    dispatch_queue_t queue = dispatch_queue_create("getCheckSwitchQueue", NULL) ;
+    dispatch_async(queue, ^{
+        [[DigitInformation shareInstance] g_openAPPStore] ;
+    }) ;    
 }
 
 - (void)setupIconBadge

@@ -67,8 +67,11 @@
 //custom height of tabbar
 #define MY_TABBAR_HEIGHT                50.0
 
-//1像素的边框
+//
 #define ONE_PIXEL_VALUE                 0.5f
+
+//
+#define QUICKLY_ANIMATION_DURATION      0.25f
 
 #endif
 

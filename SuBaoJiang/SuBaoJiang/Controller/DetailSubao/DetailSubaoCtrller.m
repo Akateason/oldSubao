@@ -140,7 +140,7 @@
         // image Send animation .
         [self imgAnimateView] ;
 
-        [UIView animateWithDuration:0.35
+        [UIView animateWithDuration:QUICKLY_ANIMATION_DURATION
                          animations:^{
                              CGFloat yFlex = self.isMultiType ? 48.0f + 52.0f : 48.0f ;
                              self.imgAnimateView.frame = CGRectMake(0, yFlex, APPFRAME.size.width, APPFRAME.size.width) ;

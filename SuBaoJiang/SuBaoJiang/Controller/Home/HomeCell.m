@@ -118,9 +118,10 @@
 {
     _article = article ;
     
+    //
     _article.delegate = self ;
-    
-    //img    
+
+    //img
     [_img_big sd_setImageWithURL:[NSURL URLWithString:_article.img] placeholderImage:IMG_NOPIC] ;
     
     //like
@@ -151,6 +152,7 @@
     ArticleTopic *topic = [article.articleTopicList firstObject] ;
     _img_tag_suEx.hidden = (topic.t_cate != t_cate_type_suExperience) ;
     
+
 }
 
 - (void)setIsflywordShow:(BOOL)isflywordShow
@@ -194,14 +196,16 @@
 
 + (CGFloat)calculateHomeCellHeight:(NSString *)content
 {
+    CGFloat orgLbHeight = 25.0 ;
+    
     UIFont *font = [UIFont systemFontOfSize:16.0f];
     CGSize size = CGSizeMake(APPFRAME.size.width - 12 * 2,200);
     CGSize labelsize = [content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
     
     CGFloat lbHeight = labelsize.height ;
-    if (lbHeight < 17.0)
+    if (lbHeight < orgLbHeight)
     {
-        lbHeight = 17.0 ;
+        lbHeight = orgLbHeight ;
     }
     
     if (UNDER_IOS_VERSION(7.1)) // < 7.1
@@ -209,7 +213,7 @@
         lbHeight += 5.0 ;
     }
     
-    CGFloat h =  72.0f + APPFRAME.size.width - 17.0 + lbHeight;
+    CGFloat h =  80.0f + APPFRAME.size.width - orgLbHeight + lbHeight;
     
     return h ;
 }

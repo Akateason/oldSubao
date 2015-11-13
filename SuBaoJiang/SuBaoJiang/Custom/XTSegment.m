@@ -1,12 +1,12 @@
 //
-//  TeaSegment.m
-//  TeaSegment
+//  XTSegment.m
+//  XTSegment
 //
 //  Created by apple on 15/7/6.
 //  Copyright (c) 2015年 teason. All rights reserved.
 //
 
-#define TAGS_TEASEGMENT_BT  987520
+#define TAGS_TEASEGMENT_BT              987520
 #import "XTSegment.h"
 
 @interface XTSegment ()

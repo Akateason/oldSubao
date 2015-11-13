@@ -19,7 +19,7 @@
 @end
 
 @interface Article : NSObject
-@property (nonatomic,weak)    id <ArticleDelegate> delegate ;
+@property (nonatomic,weak)      id <ArticleDelegate> delegate ;
 
 @property (nonatomic)           int             a_id ;
 @property (nonatomic,copy)      NSString        *img ;

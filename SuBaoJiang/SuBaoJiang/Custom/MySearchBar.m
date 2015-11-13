@@ -51,7 +51,6 @@
 
 - (void)setMyStyle
 {
-//    [self setImage:[UIImage imageNamed:@"search1"] forSearchBarIcon:UISearchBarIconSearch state:UIControlStateNormal];
     
     self.searchBarStyle     = UISearchBarStyleMinimal ; //UISearchBarStyleProminent       ;
     

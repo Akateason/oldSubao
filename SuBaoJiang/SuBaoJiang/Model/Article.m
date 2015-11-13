@@ -21,6 +21,9 @@
 #import "XTFileManager.h"
 
 
+@interface Article ()
+@property (nonatomic,strong) NSDictionary *labelAttrStyle ;
+@end
 
 @implementation Article
 
@@ -195,46 +198,49 @@
 
 
 #pragma mark - public
-- (NSDictionary *)getStyle
+- (NSDictionary *)labelAttrStyle
 {
-    __weak typeof(self) weakSelf = self ;
+    if (!_labelAttrStyle)
+    {
+        __weak typeof(self) weakSelf = self ;
+        
+        _labelAttrStyle = @{
+                            @"body"     : [UIFont systemFontOfSize:16.0f] ,
+                            @"content"  : [UIFont systemFontOfSize:14.0f] ,
+                            @"light"    : COLOR_HOME_LIGHT_WORDS ,
+                            @"dark"     : COLOR_BLACK_DARK ,
+                            @"red"      : COLOR_MAIN ,
+                            @"darkRed"  : COLOR_HOME_CMT_NUMBER ,
+                            @"topic"    : [WPAttributedStyleAction styledActionWithAction:^{
+                                [weakSelf.delegate topicHotPotClicked] ;
+//                                [self.delegate topicHotPotClicked] ;
+                            }] ,
+                            @"link"     : COLOR_MAIN
+                          } ;
+    }
     
-    return  @{
-              @"body" : [UIFont systemFontOfSize:14.0f] ,
-              @"content" : [UIFont systemFontOfSize:16.0f] ,
-              @"light" : COLOR_HOME_LIGHT_WORDS ,
-              @"dark" : COLOR_BLACK_DARK ,
-              @"red"  : COLOR_MAIN ,
-              @"darkRed" : COLOR_HOME_CMT_NUMBER ,
-              @"topic" : [WPAttributedStyleAction styledActionWithAction:^{
-                  NSLog(@"TOPIC CLICK !") ;
-                  [weakSelf.delegate topicHotPotClicked] ;
-              }] ,
-              @"link" : COLOR_MAIN
-            };
+    return _labelAttrStyle ;
 }
+
 
 - (NSAttributedString *)getAttributeStrCmtCountRplyCount
 {
-//    NSString *strAttri = (!self.articleCommentList.count)
-//    ? [NSString stringWithFormat:@"<darkRed>%d</darkRed><light> 人喜欢</light>",self.praiseCount]
-//    : [NSString stringWithFormat:@"<darkRed>%lu</darkRed><light> 条评论</light> <darkRed>%d</darkRed><light> 人喜欢</light>",(unsigned long)self.articleCommentList.count,self.praiseCount] ;
-    
+
     NSString *strAttri = (!self.article_comments_count)
-    ? [NSString stringWithFormat:@"<darkRed>%d</darkRed><light> 人喜欢</light>",self.praiseCount]
-    : [NSString stringWithFormat:@"<darkRed>%lu</darkRed><light> 条评论</light> <darkRed>%d</darkRed><light> 人喜欢</light>",(unsigned long)self.article_comments_count,self.praiseCount] ;
+    ? [NSString stringWithFormat:@"<content><darkRed>%d</darkRed><light> 人喜欢</light></content>",self.praiseCount]
+    : [NSString stringWithFormat:@"<content><darkRed>%lu</darkRed><light> 条评论</light> <darkRed>%d</darkRed><light> 人喜欢</light></content>",(unsigned long)self.article_comments_count,self.praiseCount] ;
     
-    return [strAttri attributedStringWithStyleBook:[self getStyle]] ;
+    return [strAttri attributedStringWithStyleBook:self.labelAttrStyle] ;
 }
 
 - (NSAttributedString *)getAttributeStrCommentContent
 {
-    return [[self getStrCommentContentAttr] attributedStringWithStyleBook:[self getStyle]];
+    return [[self getStrCommentContentAttr] attributedStringWithStyleBook:self.labelAttrStyle];
 }
 
 - (NSAttributedString *)getAttributeStrOnlyTopics
 {
-    return [[self getStrOnlyTopic] attributedStringWithStyleBook:[self getStyle]];
+    return [[self getStrOnlyTopic] attributedStringWithStyleBook:self.labelAttrStyle];
 }
 
 //privace
@@ -250,11 +256,11 @@
     NSString *strAttriComment = @"" ;
     if (!self.articleTopicList.count)
     {
-        strAttriComment = [NSString stringWithFormat:@"<content><dark>%@</dark></content>",self.a_content];
+        strAttriComment = [NSString stringWithFormat:@"<dark>%@</dark>",self.a_content];
     }
     else
     {
-        strAttriComment = [NSString stringWithFormat:@"<content><topic>#%@#</topic><dark>%@</dark></content>",[self getTopicStr],self.a_content] ;
+        strAttriComment = [NSString stringWithFormat:@"<topic>#%@#</topic><dark>%@</dark>",[self getTopicStr],self.a_content] ;
     }
     
     return strAttriComment ;
@@ -265,7 +271,7 @@
     return self.articleTopicList.count ? ((ArticleTopic *)[self.articleTopicList firstObject]).t_content : @"" ;
 }
 
-//public
+// public
 - (NSString *)getStrCommentContent
 {
     NSString *strAttriComment = @"" ;

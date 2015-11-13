@@ -64,7 +64,8 @@
 
 @implementation HomeController
 
-@synthesize m_articleList = _m_articleList , m_themesList = _m_themesList ;
+@synthesize m_articleList = _m_articleList ,
+            m_themesList  = _m_themesList  ;
 
 #pragma mark - Public
 + (void)jumpToTopicHomeCtrller:(ArticleTopic *)topic
@@ -82,17 +83,16 @@
     
     if (!ctrllersInNav || !ctrllersInNav.count) return ;
     
-    for (UIViewController *tempCtrl in ctrllersInNav)
-    {
+    [ctrllersInNav enumerateObjectsUsingBlock:^(UIViewController *tempCtrl, NSUInteger idx, BOOL * _Nonnull stop) {
         if ([tempCtrl isKindOfClass:[HomeController class]])
         {
             HomeController *homeTempCtrl = (HomeController *)tempCtrl ;
             if (topic.t_id == homeTempCtrl.topicID) {
                 [ctrller.navigationController popToViewController:homeTempCtrl animated:YES] ;
-                return ;
+                *stop = YES ;
             }
         }
-    }
+    }] ;
     
     BOOL isKindOfTopicCtrller = [ctrller isKindOfClass:[HomeController class]] ;
     if (isKindOfTopicCtrller) { // current ctrller is Topic
@@ -103,8 +103,7 @@
     }
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO] ;
-    [ctrller.navigationController setNavigationBarHidden:NO
-                                                animated:NO] ;
+    [ctrller.navigationController setNavigationBarHidden:NO animated:NO] ;
     
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
     HomeController *homeCtrller = [story instantiateViewControllerWithIdentifier:@"HomeController"] ;
@@ -121,7 +120,7 @@
     imgView.image = self.imgTempWillSend ;
     [self.view addSubview:imgView] ;
     
-    [UIView animateWithDuration:0.35
+    [UIView animateWithDuration:QUICKLY_ANIMATION_DURATION
                      animations:^{
                          
                          imgView.frame = self.fromRect ;
@@ -276,9 +275,12 @@
         return ;
     }
     
-    [_table insertSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationFade] ;
+    [_table insertSections:[NSIndexSet indexSetWithIndex:1]
+          withRowAnimation:UITableViewRowAnimationFade] ;
     
-    [_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES] ;
+    [_table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]
+                  atScrollPosition:UITableViewScrollPositionNone
+                          animated:YES] ;
 }
 
 - (void)freshTableWithArticle:(NSNotification *)notification
@@ -290,8 +292,10 @@
     {
         if (arti.a_id == artiTemp.a_id)
         {
-            [self.m_articleList replaceObjectAtIndex:index withObject:artiTemp] ;
-            [_table reloadSections:[NSIndexSet indexSetWithIndex:index + 1] withRowAnimation:UITableViewRowAnimationNone] ;
+            [self.m_articleList replaceObjectAtIndex:index
+                                          withObject:artiTemp] ;
+            [_table reloadSections:[NSIndexSet indexSetWithIndex:index + 1]
+                  withRowAnimation:UITableViewRowAnimationNone] ;
             break ;
         }
         index ++ ;
@@ -880,16 +884,18 @@
                 self.tabBarController.tabBar.hidden = NO ;
             }) ;
         }
-        else if (translation.y < - flex)
+//        else if (translation.y < - flex)
+        else
         {
 //            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone] ;
 //            [self.navigationController setNavigationBarHidden:YES animated:YES] ;
 
             dispatch_async(dispatch_get_main_queue(), ^{
 //                [self makeTabBarHidden:YES animated:YES] ;
-                self.tabBarController.tabBar.hidden = YES ;
-            }) ;
+                self.tabBarController.tabBar.hidden = decelerate ;
+            }) ;            
         }
+        
     }
 }
 

@@ -148,7 +148,6 @@
 - (void)setSuperArticle:(Article *)superArticle
 {
     _superArticle = superArticle ;
-    
     //article delegate
     _superArticle.delegate = self ;
     
@@ -246,7 +245,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"点用户头collection row : %@",@(indexPath.row)) ;
+//    NSLog(@"点用户头collection row : %@",@(indexPath.row)) ;
     int u_id = ((ArticlePraise *)self.praiseList[indexPath.row]).user.u_id ;
     [self.delegate clickUserHead:u_id] ;
 }
@@ -254,12 +253,17 @@
 #pragma mark --
 + (CGFloat)calculateHeightWithCmtStr:(NSString *)cmtStr
 {
+    CGFloat orgHeight = 25.0f ;
+    
     UIFont *font = [UIFont systemFontOfSize:16.0f];
     CGSize size = CGSizeMake(APPFRAME.size.width - 12 * 2,200);
     CGSize labelsize = [cmtStr sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
     CGFloat wordH = labelsize.height ;
-
-    CGFloat h =  118.0 - 17.0 + wordH;
+    if (wordH < orgHeight) {
+        wordH = orgHeight ;
+    }
+    
+    CGFloat h =  126.0f - orgHeight + wordH;
     
     return h ;
 }

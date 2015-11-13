@@ -18,7 +18,6 @@
 
 @implementation XTFileManager
 
-
 #pragma mark --
 //创建文件夹
 + (void)createFileBoxesWithPath:(NSString *)pathStr

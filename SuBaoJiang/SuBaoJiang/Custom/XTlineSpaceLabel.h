@@ -12,6 +12,8 @@
 
 @property(nonatomic) long linesSpacing ;
 
-+ (int)getAttributedStringHeightWidthValue:(int)width content:(NSString *)content attributes:(NSDictionary *)attribute ;
++ (int)getAttributedStringHeightWidthValue:(int)width
+                                   content:(NSString *)content
+                                attributes:(NSDictionary *)attribute ;
 
 @end

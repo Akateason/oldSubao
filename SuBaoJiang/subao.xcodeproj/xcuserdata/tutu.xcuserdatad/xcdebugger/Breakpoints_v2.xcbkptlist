@@ -4,18 +4,28 @@
    version = "2.0">
    <Breakpoints>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SuBaoJiang/Controller/NoteCtrller/NoteCenterViewController.m"
-            timestampString = "466755273.892976"
+            scope = "0"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SuBaoJiang/Controller/Home/HomeController.m"
+            timestampString = "469106805.945972"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "224"
-            endingLineNumber = "224"
-            landmarkName = "-setLocalRemote:"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
+            landmarkName = "-topicSelected:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +35,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SuBaoJiang/Controller/NoteCtrller/NoteCenterViewController.m"
-            timestampString = "466755273.892976"
+            filePath = "SuBaoJiang/Controller/MultiDetailCtrller/DtOperationCell.m"
+            timestampString = "469089689.459924"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "-setLocalRemote:"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "-topicHotPotClicked"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,24 +51,30 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SuBaoJiang/Controller/NoteCtrller/NoteCenterViewController.m"
-            timestampString = "466138685.059311"
+            filePath = "SuBaoJiang/Controller/MultiDetailCtrller/DtOperationCell.m"
+            timestampString = "469097654.189819"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "-showForFetchWithCompletionHandler:"
+            startingLineNumber = "180"
+            endingLineNumber = "180"
+            landmarkName = "-setSuperArticle:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            scope = "0"
-            stopOnStyle = "0">
+            filePath = "SuBaoJiang/Controller/MultiDetailCtrller/DtOperationCell.m"
+            timestampString = "469097259.601093"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "-setSuperArticle:"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -9,8 +9,10 @@
 #import <Foundation/Foundation.h>
 
 @interface XTPicCacheUploadManager : NSObject
+
 + (XTPicCacheUploadManager *)shareInstance ;
 - (void)closeLoop ;
 - (void)uploadInLoops ;
 - (void)deleInLoops ;
+
 @end

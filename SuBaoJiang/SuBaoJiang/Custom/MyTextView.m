@@ -27,9 +27,7 @@
     if (self)
     {
         
-//        CGColorRef cgColor      = COLOR_LIGHT_GRAY.CGColor ;
         float      width        = 1.0f ;
-//        self.layer.borderColor  = cgColor ;
         self.layer.borderWidth  = width ;
         self.layer.cornerRadius = CORNER_RADIUS_ALL  ;
         self.autocorrectionType = UITextAutocorrectionTypeNo;

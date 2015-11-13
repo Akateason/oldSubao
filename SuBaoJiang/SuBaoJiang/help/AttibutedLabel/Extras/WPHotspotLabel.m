@@ -18,7 +18,7 @@
 {
     self = [super initWithCoder:coder];
     if (self) {
-        [self addHotspotHandler];
+//        [self addHotspotHandler];
     }
     return self;
 }
@@ -27,19 +27,31 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addHotspotHandler];
+//        [self addHotspotHandler];
     }
     return self;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews] ;
+    
+    [self addHotspotHandler] ;
+    
 }
 
 -(void)addHotspotHandler
 {
     __weak WPHotspotLabel* weakSelf = self;
     [self setOnTap:^(CGPoint pt) {
+        
+//        NSLog(@"pt : %@",NSStringFromCGPoint(pt)) ;
         // Locate the text attributes at the touched position
         NSDictionary* attributes = [weakSelf textAttributesAtPoint:pt];
+//        NSLog(@"all attr : %@",attributes) ;
         // If the touched attributes contains our custom action style, execute the action block
         WPAttributedStyleAction* actionStyle = attributes[@"WPAttributedStyleAction"];
+//        NSLog(@"attributes WP : %@",actionStyle) ;
         if (actionStyle) {
             actionStyle.action();
         }
@@ -47,7 +59,7 @@
 }
 
 
--(NSDictionary*)textAttributesAtPoint:(CGPoint)pt
+- (NSDictionary *)textAttributesAtPoint:(CGPoint)pt
 {
     // Locate the attributes of the text within the label at the specified point
     NSDictionary* dictionary = nil;
@@ -61,7 +73,7 @@
     CFRange currentRange = CFRangeMake(0, 0);
     CTFrameRef frameRef = CTFramesetterCreateFrame(framesetter, currentRange, framePath, NULL);
     CGPathRelease(framePath);
-
+    
     // Get each of the typeset lines
     NSArray *lines = (__bridge id)CTFrameGetLines(frameRef);
     
@@ -82,7 +94,6 @@
     
     // Offset the touch point by the amount of space between the top of the label frame and the text
     pt.y -= (self.frame.size.height - bottom)/2;
-    
     
     // Scan through each line to find the line containing the touch point y position
     for(CFIndex i = 0; i < linesCount; ++i) {
@@ -133,7 +144,3 @@
 }
 
 @end
-
-// 版权属于原作者
-// http://code4app.com (cn) http://code4app.net (en)
-// 发布代码于最专业的源码分享网站: Code4App.com 

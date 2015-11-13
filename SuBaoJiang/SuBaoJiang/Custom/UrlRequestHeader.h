@@ -18,7 +18,6 @@
 #define G_IP_SERVER             @"http://api3.subaojiang.com/"
 
 //审核开关
-//#define URL_CHECK_SWITCH        @"login/rigister_switch"
 #define URL_CHECK_SWITCH        @"login/version_switch"
 
 //举报
