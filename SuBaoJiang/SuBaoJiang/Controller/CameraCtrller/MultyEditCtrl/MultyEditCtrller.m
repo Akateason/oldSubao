@@ -746,7 +746,7 @@
                                  AndBigestSubArticleClientID:self.maxClientSubA_ID
                                      AndExistSubArticleCount:(int)self.childsList.count] ;
     
-///--Called This Func When Choose Photos Finished .--///
+///--Called This Func When Choose Photos Finished--///
 ///--insertSubListFromRowBelow:(int)rowWillInsert--///
 }
 
@@ -989,8 +989,7 @@
 - (MESubArticleCell *)getSubArticle:(NSInteger)row
 {
     MESubArticleCell *cell = [_table dequeueReusableCellWithIdentifier:MESUBARTICLE_ID] ;
-    if (!cell)
-    {
+    if (!cell) {
         cell = [_table dequeueReusableCellWithIdentifier:MESUBARTICLE_ID] ;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
@@ -1000,13 +999,16 @@
     
     TypeOfSubArticleQueueSection type = type_normal ;
     
-    if (row == 0)
-    {
-        type = type_head ;
+    if (self.childsList.count > 1) {
+        if (row == 0) {
+            type = type_head ;
+        }
+        else if (row == self.childsList.count - 1) {
+            type = type_tail ;
+        }
     }
-    else if (row == self.childsList.count - 1)
-    {
-        type = type_tail ;
+    else {
+        type = type_none ;
     }
     
     cell.queueType = type;

@@ -65,6 +65,12 @@
             _bt_moveUp.hidden = NO ;
         }
             break;
+        case type_none:
+        {
+            _bt_moveDown.hidden = YES ;
+            _bt_moveUp.hidden = YES ;
+        }
+            break;
         default:
             break;
     }
