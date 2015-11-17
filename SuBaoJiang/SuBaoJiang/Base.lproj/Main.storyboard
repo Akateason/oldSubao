@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="AXP-4b-kgz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="AXP-4b-kgz">
     <dependencies>
         <deployment version="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--速体验-->
@@ -327,18 +327,18 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="scrollV" destination="mit-82-oe7" id="J37-B0-g22"/>
-                        <segue destination="Lns-r9-Ogj" kind="modal" identifier="raise2tab" modalTransitionStyle="crossDissolve" id="arG-B5-sOm"/>
+                        <segue destination="Lns-r9-Ogj" kind="modal" identifier="raise2tab" modalTransitionStyle="crossDissolve" id="UBa-3E-xpa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MON-Xm-7RD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1301" y="2730"/>
+            <point key="canvasLocation" x="-1357" y="2730"/>
         </scene>
         <!--Nav Index Ctrller-->
         <scene sceneID="SCk-83-LR8">
             <objects>
                 <navigationController storyboardIdentifier="NavIndexCtrller" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Kq0-cV-Wxy" customClass="NavIndexCtrller" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="tabitem_index_select" selectedImage="tabitem_index_select" id="TGW-1v-rk3"/>
+                    <tabBarItem key="tabBarItem" title="" image="tabitem_index" selectedImage="tabitem_index_select" id="TGW-1v-rk3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jOQ-we-bt5">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1914,6 +1914,7 @@
         <image name="multiVC_share" width="24" height="24"/>
         <image name="multiVC_unlike" width="27" height="23"/>
         <image name="tabitem_camera" width="41" height="41"/>
+        <image name="tabitem_index" width="31" height="25"/>
         <image name="tabitem_index_select" width="31" height="25"/>
         <image name="tabitem_note" width="31" height="25"/>
         <image name="tabitem_note_select" width="31" height="25"/>

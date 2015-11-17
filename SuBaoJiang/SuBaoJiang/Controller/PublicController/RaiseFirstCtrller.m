@@ -69,20 +69,25 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)raiseToFirst
+{
+    [self performSegueWithIdentifier:@"raise2tab" sender:nil] ;
+}
+
+
 #pragma mark --
 - (void)straightGo2Index:(BOOL)b
 {
     if (!b)
     {
         _scrollV.hidden = YES ;
-        [self performSegueWithIdentifier:@"raise2tab" sender:nil] ;
+        [self raiseToFirst] ;
     }
     else
     {
         _scrollV.hidden = NO ;
     }
 }
-
 
 #pragma mark - guiding delegate
 - (void)logSelf
@@ -94,7 +99,7 @@
 
 - (void)seeMore
 {
-    [self performSegueWithIdentifier:@"raise2tab" sender:nil] ;
+    [self raiseToFirst] ;
 }
 
 /*

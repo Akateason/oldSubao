@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "CYLTabBarController.h"
+
 @protocol MyTabbarCtrllerDelegate <NSObject>
 - (void)doubleTapedHomePage ;
 @end

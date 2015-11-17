@@ -112,6 +112,8 @@
 - (void)awakeFromNib
 {
     // Initialization code
+    _lb_Content.text = @"" ;
+    
     self.imgView.userInteractionEnabled = YES ;
     //
     [self longpressRecognizer] ;

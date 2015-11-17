@@ -381,6 +381,7 @@
     _table.backgroundColor = COLOR_BACKGROUND ;
     _table.rootDelegate = self ;
     _table.rootFinished = self ;
+    _table.hideHudForShowNothing = YES ;
 }
 
 #pragma mark --
@@ -423,7 +424,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    self.edgesForExtendedLayout = UIRectEdgeNone;    
+    self.edgesForExtendedLayout = UIRectEdgeNone ;    
     
     // initial
     [self setup] ;
@@ -448,9 +449,7 @@
             [CommonFunc updateLatestVersion] ;
         }
         
-        //2 root table shutDownManualPullFooter
-        //    self.table.shutDownManualPullFooter = (_topicID != 0) ;
-        //3 tabbar ctrller - double tap Homepage tabbarItem Delegate
+        //2 tabbar ctrller - double tap Homepage tabbarItem Delegate
         ((MyTabbarCtrller *)(self.tabBarController)).homePageDelegate = self ;
     }
     
@@ -847,10 +846,9 @@
     
     if ( IS_IOS_VERSION(7.1) )   //   Unsupport  7.0
     {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            //                [self makeTabBarHidden:NO animated:YES] ;
-            self.tabBarController.tabBar.hidden = NO ;
-        }) ;
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            self.tabBarController.tabBar.hidden = NO ;
+//        }) ;
     }
 }
 
@@ -876,24 +874,20 @@
         
         if (translation.y > flex)
         {
-//            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
-//            [self.navigationController setNavigationBarHidden:NO animated:YES] ;
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self makeTabBarHidden:NO animated:YES] ;
-                self.tabBarController.tabBar.hidden = NO ;
-            }) ;
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
+//                [self.navigationController setNavigationBarHidden:NO animated:YES] ;
+//                self.tabBarController.tabBar.hidden = NO ;
+//            }) ;
         }
 //        else if (translation.y < - flex)
         else
         {
-//            [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone] ;
-//            [self.navigationController setNavigationBarHidden:YES animated:YES] ;
-
-            dispatch_async(dispatch_get_main_queue(), ^{
-//                [self makeTabBarHidden:YES animated:YES] ;
-                self.tabBarController.tabBar.hidden = decelerate ;
-            }) ;            
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [[UIApplication sharedApplication] setStatusBarHidden:decelerate withAnimation:UIStatusBarAnimationNone] ;
+//                [self.navigationController setNavigationBarHidden:decelerate animated:YES] ;
+//                self.tabBarController.tabBar.hidden = decelerate ;
+//            }) ;
         }
         
     }

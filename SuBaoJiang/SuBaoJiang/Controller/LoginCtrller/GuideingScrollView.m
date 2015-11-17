@@ -34,7 +34,7 @@
     self = [super initWithCoder:coder];
     if (self)
     {
-        
+
     }
     
     return self;
@@ -43,7 +43,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews] ;
-    
+
     [self showScrollView] ;
 }
 
@@ -52,7 +52,6 @@
 - (void)showScrollView
 {
     if ([m_loginCtrller.view superview] != nil) return ;
-    
     
     m_firstCtrller = [[GuideFirstCtrller alloc] init] ;
     m_secondCtrller = [[GuideSecondCtrller alloc] init] ;
@@ -196,7 +195,7 @@
         {
             [m_loginCtrller startAnimate] ;
         }
-            break ;
+            break;
         default:
             break;
     }

@@ -429,12 +429,12 @@
 		D7674D3F1B6A13B90090B760 /* TCateCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7674D3D1B6A13B90090B760 /* TCateCollectionCell.xib */; };
 		D7674D431B6B4E710090B760 /* SEintroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7674D411B6B4E710090B760 /* SEintroCell.m */; };
 		D7674D441B6B4E710090B760 /* SEintroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7674D421B6B4E710090B760 /* SEintroCell.xib */; };
-		D7FDB7AF1BAFABC5004046A6 /* UEWriteCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7AE1BAFABC5004046A6 /* UEWriteCtrller.m */; settings = {ASSET_TAGS = (); }; };
-		D7FDB7B31BAFAF2A004046A6 /* UETextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B21BAFAF2A004046A6 /* UETextViewCell.m */; settings = {ASSET_TAGS = (); }; };
-		D7FDB7B61BAFAF7A004046A6 /* UESelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B51BAFAF7A004046A6 /* UESelectCell.m */; settings = {ASSET_TAGS = (); }; };
-		D7FDB7BC1BB15BA7004046A6 /* HWWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7BB1BB15BA7004046A6 /* HWWeakTimer.m */; settings = {ASSET_TAGS = (); }; };
-		D7FDB7CA1BB3FA28004046A6 /* XTBarrageItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7C71BB3FA28004046A6 /* XTBarrageItemView.m */; settings = {ASSET_TAGS = (); }; };
-		D7FDB7CB1BB3FA28004046A6 /* XTBarrageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7C91BB3FA28004046A6 /* XTBarrageView.m */; settings = {ASSET_TAGS = (); }; };
+		D7FDB7AF1BAFABC5004046A6 /* UEWriteCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7AE1BAFABC5004046A6 /* UEWriteCtrller.m */; };
+		D7FDB7B31BAFAF2A004046A6 /* UETextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B21BAFAF2A004046A6 /* UETextViewCell.m */; };
+		D7FDB7B61BAFAF7A004046A6 /* UESelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B51BAFAF7A004046A6 /* UESelectCell.m */; };
+		D7FDB7BC1BB15BA7004046A6 /* HWWeakTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7BB1BB15BA7004046A6 /* HWWeakTimer.m */; };
+		D7FDB7CA1BB3FA28004046A6 /* XTBarrageItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7C71BB3FA28004046A6 /* XTBarrageItemView.m */; };
+		D7FDB7CB1BB3FA28004046A6 /* XTBarrageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7C91BB3FA28004046A6 /* XTBarrageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */

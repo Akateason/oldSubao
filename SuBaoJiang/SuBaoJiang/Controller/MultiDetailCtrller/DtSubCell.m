@@ -199,6 +199,8 @@
     [self longpressInitial] ;
     [self barrageView] ;
     [self btSelect] ;
+    
+    
 }
 
 - (void)longpressInitial

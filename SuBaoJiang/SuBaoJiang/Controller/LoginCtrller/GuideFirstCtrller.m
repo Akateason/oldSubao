@@ -9,6 +9,7 @@
 #import "GuideFirstCtrller.h"
 
 @interface GuideFirstCtrller ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *lb_word1;
 @property (weak, nonatomic) IBOutlet UIImageView *img_map;
 @property (weak, nonatomic) IBOutlet UIImageView *lb_word2;
@@ -72,8 +73,6 @@
     }] ;
 }
 
-
-
 - (void)boxAnimate
 {
     [UIView animateWithDuration:0.1f
@@ -82,14 +81,13 @@
                      animations:^{
         _lb_word2.alpha = 1.0 ;
     } completion:^(BOOL finished) {
-
+        
         if (finished) {
             [XTAnimation animationRippleEffect:_lb_word2] ;
         }
-
+        
     }] ;
 }
-
 
 /*
 #pragma mark - Navigation
