@@ -169,7 +169,7 @@
 
 + (UIColor *)getUIColorWithEnum:(FLYWORD_COLOR_TYPE)type
 {
-    UIColor *tempColor = [UIColor whiteColor] ;
+    UIColor *tempColor ;
     
     switch (type) {
         case colorf_white:
@@ -211,7 +211,7 @@
 
 + (FLYWORD_COLOR_TYPE)getColorTypeWithStr:(NSString *)colorStr 
 {
-    FLYWORD_COLOR_TYPE type ;
+    FLYWORD_COLOR_TYPE type = colorf_white ;
     
     if ([colorStr isEqualToString:@"white"]) {
         type = colorf_white ;
@@ -271,7 +271,7 @@
 
 + (UIFont *)getUIFontWithEnum:(FLYWORD_SIZE_TYPE)type
 {
-    UIFont *tempFont = [UIFont systemFontOfSize:FONT_SIZE_MIDDLE] ;
+    UIFont *tempFont ;
     
     switch (type) {
         case sizef_small:
@@ -298,7 +298,7 @@
 
 + (FLYWORD_SIZE_TYPE)getFontTypeWithStr:(NSString *)sizeStr
 {
-    FLYWORD_SIZE_TYPE type ;
+    FLYWORD_SIZE_TYPE type = 0 ;
     if ([sizeStr isEqualToString:@"small"])
     {
         type = sizef_small ;

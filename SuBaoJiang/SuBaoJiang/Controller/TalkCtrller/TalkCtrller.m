@@ -105,7 +105,7 @@
     }
     
     //  Get topics
-    NSArray *tempTopicList = @[] ;
+    NSArray *tempTopicList = nil ;
     if (self.acate.ac_id)
     {
         //话体分类

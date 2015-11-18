@@ -202,6 +202,8 @@
     
     animation.path = path;
     
+    CGPathRelease(path) ;
+    
     animation.removedOnCompletion = NO;
     
     animation.fillMode = kCAFillModeForwards;

@@ -54,6 +54,7 @@
     CGRect rect = CGRectMake(x, y, width, height);
     CGImageRef imageRef = CGImageCreateWithImageInRect(self.CGImage, rect);
     UIImage *image = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef) ;
     return image;
 }
 

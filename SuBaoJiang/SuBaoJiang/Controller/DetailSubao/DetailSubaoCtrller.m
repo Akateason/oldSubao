@@ -322,13 +322,11 @@
 {
     if (self.replyCommentID && isFirstTime)
     {
-        ArticleComment *cmtWillReply = [[ArticleComment alloc] init] ;
         for (ArticleComment *cmt in self.allComments)
         {
             if (self.replyCommentID == cmt.c_id)
             {
-                cmtWillReply = cmt ;
-                [self replyWithCmt:cmtWillReply] ;
+                [self replyWithCmt:cmt] ;
                 break ;
             }
         }
@@ -771,16 +769,16 @@
 
 - (void)controlBottomBarShowOrNot
 {
-    NSArray *visibleIndexPath = [_table indexPathsForVisibleRows] ;
-    BOOL existReplyCell = NO ;
-    for (NSIndexPath *indexPath in visibleIndexPath)
-    {
-        if (indexPath.section >= self.articleSuper.childList.count + 1)
-        {
-            existReplyCell = YES ;
-            break ;
-        }
-    }
+//    NSArray *visibleIndexPath = [_table indexPathsForVisibleRows] ;
+//    BOOL existReplyCell = NO ;
+//    for (NSIndexPath *indexPath in visibleIndexPath)
+//    {
+//        if (indexPath.section >= self.articleSuper.childList.count + 1)
+//        {
+//            existReplyCell = YES ;
+//            break ;
+//        }
+//    }
     
     _flex_bottom.constant = 48.0f ;
     self.wordView.hidden = NO ;

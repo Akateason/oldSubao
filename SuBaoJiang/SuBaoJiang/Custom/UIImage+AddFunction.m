@@ -491,7 +491,7 @@
 //1.UIimage转换NSdata
 - (NSData *)imageToData
 {
-    NSData *dataVphoto = [NSData data];
+    NSData *dataVphoto = nil ;
     if (UIImagePNGRepresentation(self) == nil) {
         dataVphoto = UIImageJPEGRepresentation(self, 1);
     } else {

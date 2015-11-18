@@ -114,7 +114,7 @@
 		</data>
 		<key>Headers/pg_edit_sdk_cdb_piratesdk.h</key>
 		<data>
-		j0GlNKMhHX/C54mrYiGPyOeDGfY=
+		dCVocZfu2n3fKeup2hm77NNhzUM=
 		</data>
 		<key>Headers/pg_edit_sdk_cdb_piratesdk_cdleffect_param_item_enum.h</key>
 		<data>
@@ -124,9 +124,13 @@
 		<data>
 		AU9NSvqa+QO8R4ICRwdkoFaLmKE=
 		</data>
+		<key>Headers/pg_edit_sdk_cdb_piratesdk_core_data_managed_object_context.h</key>
+		<data>
+		jtZhr29URm2aPV6UrhQayahRdiU=
+		</data>
 		<key>Headers/pg_edit_sdk_cdb_piratesdk_core_data_manager.h</key>
 		<data>
-		X2C+0qp3vCp7Aj4s+PNeQ6RFq8s=
+		mBOTBmoNaTx/no1Dz2wFGq4akmw=
 		</data>
 		<key>Headers/pg_edit_sdk_cdb_piratesdk_zip_data_manager.h</key>
 		<data>
@@ -134,7 +138,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		vpwm8AwHiE4yoeQxlChULRrAUek=
+		ZbvcCCfPm+zpuAueOvl/QJPZyDE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -253,7 +257,7 @@
 		</data>
 		<key>Headers/pg_edit_sdk_cdb_piratesdk.h</key>
 		<data>
-		j0GlNKMhHX/C54mrYiGPyOeDGfY=
+		dCVocZfu2n3fKeup2hm77NNhzUM=
 		</data>
 		<key>Headers/pg_edit_sdk_cdb_piratesdk_cdleffect_param_item_enum.h</key>
 		<data>
@@ -263,9 +267,13 @@
 		<data>
 		AU9NSvqa+QO8R4ICRwdkoFaLmKE=
 		</data>
+		<key>Headers/pg_edit_sdk_cdb_piratesdk_core_data_managed_object_context.h</key>
+		<data>
+		jtZhr29URm2aPV6UrhQayahRdiU=
+		</data>
 		<key>Headers/pg_edit_sdk_cdb_piratesdk_core_data_manager.h</key>
 		<data>
-		X2C+0qp3vCp7Aj4s+PNeQ6RFq8s=
+		mBOTBmoNaTx/no1Dz2wFGq4akmw=
 		</data>
 		<key>Headers/pg_edit_sdk_cdb_piratesdk_zip_data_manager.h</key>
 		<data>

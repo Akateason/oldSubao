@@ -14,9 +14,8 @@
 - (NSDateComponents *)shareComps
 {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSDateComponents *comps = [[NSDateComponents alloc] init];
     NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit ;
-    comps = [calendar components:unitFlags fromDate:self];
+    NSDateComponents *comps = [calendar components:unitFlags fromDate:self];
     
     return comps;
 }

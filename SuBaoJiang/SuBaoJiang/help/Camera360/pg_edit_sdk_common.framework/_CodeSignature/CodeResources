@@ -6,11 +6,11 @@
 	<dict>
 		<key>Headers/NSArray+pg_common_unitils.h</key>
 		<data>
-		xNP+RKQbP/YGO9EOSatCd0+q+JM=
+		srllQIyuWIWCnpql4pW8mttxIAE=
 		</data>
 		<key>Headers/NSData+pg_common_md5_crypt.h</key>
 		<data>
-		CWNmGsOBOmKtaqWOP0dngJk57t4=
+		7pRFKeIdso3LkTLRx/Bu7Yxlo+s=
 		</data>
 		<key>Headers/NSDictionary+pg_common_unitils.h</key>
 		<data>
@@ -18,47 +18,47 @@
 		</data>
 		<key>Headers/NSFileManager+pg_common_icloud.h</key>
 		<data>
-		LbsDldyrGb64CXiZR3njA4Gcrgs=
+		OTXvQPuLLgjRuRCMyWenPfV3RU4=
 		</data>
 		<key>Headers/NSJSONSerialization+pg_common_unitils.h</key>
 		<data>
-		tP/xot/a8PDxUxC6gZi7/6zf4Ko=
+		va+vEjdlRl335vhViKu1RRkx6jI=
 		</data>
 		<key>Headers/NSManagedObject+pg_common_unitils.h</key>
 		<data>
-		jr8n1r6CmDJDDDB/tHukqv+Nbdw=
+		+9XVyNEAmYEehlNBioC0aseW6Lo=
 		</data>
 		<key>Headers/NSNumber+pg_common_unitils.h</key>
 		<data>
-		xk6YAcR0LA9U+OMFc3JHxdYJgmI=
+		NsTTo5HMFjhA6LvFHr7UH1x9KRU=
 		</data>
 		<key>Headers/NSObject+pg_common_class.h</key>
 		<data>
-		iV2atUlIJPMJt0xOYz8ff8hWrXU=
+		0KLcsGONO+qxVK+ZdnIdDbkh+uo=
 		</data>
 		<key>Headers/NSRegularExpression+pg_common_xml.h</key>
 		<data>
-		lg8kYzbXblNWH60ub5UvoQEFVNQ=
+		zFhDwLD0xKl+E1/TpruFdjRKEu8=
 		</data>
 		<key>Headers/NSSet+pg_common_unitils.h</key>
 		<data>
-		JBUevGP4LKmvl2So8mAAVJQV8oA=
+		VhSk93uRisez+mRce6QY/Bnsu5A=
 		</data>
 		<key>Headers/NSString+pg_common_curve_item.h</key>
 		<data>
-		osZBaKJLkfDT8WYgCoByGDFL6Nk=
+		mg63akFbgaUIG5XR3bD/onD0LcE=
 		</data>
 		<key>Headers/NSString+pg_common_unitils.h</key>
 		<data>
-		xMaCzQUjmb2nzSKhCOt8gc4EAcM=
+		FkJBpOdj+UZf//02SBz10f+FbVY=
 		</data>
 		<key>Headers/NSTimer+pg_common_run_time.h</key>
 		<data>
-		locS/T8TkNqjPPVkbUHDVdbX6Jc=
+		coDNlESqbaIR7cy/ej3WxQBofKE=
 		</data>
 		<key>Headers/OpenGLView.h</key>
 		<data>
-		iLTofOIzgN8crrnDH0yJW5Y7wVA=
+		3t9h6ts7uONbgTsOEicEgKbKI4w=
 		</data>
 		<key>Headers/PGFeedBack.h</key>
 		<data>
@@ -66,23 +66,31 @@
 		</data>
 		<key>Headers/TPinguoImageController.h</key>
 		<data>
-		z2ZdqXcjBTindNyglZRFyjSojSA=
+		qr2q+orVVvpmf5xACFyrcM0s+Vc=
 		</data>
 		<key>Headers/UIColor+pg_common_hex.h</key>
 		<data>
-		tWuQqBaWXz1eSurEM3FrzS1ylmA=
+		LGk6VPa6TlMr3QMeg3RJ9up23iQ=
 		</data>
 		<key>Headers/UIImage+pg_common_unitils.h</key>
 		<data>
-		jKEbsn49psES5sE78bIMP+075lM=
+		WzSI7CJSSrkwmWCNPcGDv4YsCwQ=
+		</data>
+		<key>Headers/UIView+pg_common_unitils.h</key>
+		<data>
+		IShYhqzj8T1CNxPYaNB+syA8qKM=
 		</data>
 		<key>Headers/pg_edit_sdk_common.h</key>
 		<data>
-		+3rliSN0b6/+hMtJ4MeXXzC4OHQ=
+		l+591vI/KschSzpup4tPQj+48vs=
+		</data>
+		<key>Headers/pg_edit_sdk_common_alert_view.h</key>
+		<data>
+		8TVDsrn3vhOKpWWWt/plOkEWwsA=
 		</data>
 		<key>Headers/pg_edit_sdk_common_app_status_manager.h</key>
 		<data>
-		K5epibNb4JVwQU1b3F8yWQyRzaU=
+		6cu3pIXTXH5yS6moEW77lrzpX0M=
 		</data>
 		<key>Headers/pg_edit_sdk_common_core_data_managed_object_context.h</key>
 		<data>
@@ -94,7 +102,7 @@
 		</data>
 		<key>Headers/pg_edit_sdk_common_device_manager.h</key>
 		<data>
-		kamSotNHGbrNs7MAtA5h8F66nb8=
+		rol2fs9i4E9auUKK/3HixhfCoVQ=
 		</data>
 		<key>Headers/pg_edit_sdk_common_entity.h</key>
 		<data>
@@ -102,11 +110,23 @@
 		</data>
 		<key>Headers/pg_edit_sdk_common_error_status_manager.h</key>
 		<data>
-		1e9rmqCT/u9SVZAnxH7kAMcx8A0=
+		5pRorNMreRkvl4RjDKNjGkFQMGw=
+		</data>
+		<key>Headers/pg_edit_sdk_common_feedback_manager.h</key>
+		<data>
+		w4oYAE5UxudxUksyc2i0WKioaWI=
+		</data>
+		<key>Headers/pg_edit_sdk_common_feedback_manager_delegate.h</key>
+		<data>
+		YDH+BZaIMa9/mqXdyyn147yWbxY=
 		</data>
 		<key>Headers/pg_edit_sdk_common_file_manager.h</key>
 		<data>
-		K0DibUoDd/G/+eR6LcktoYZb3rs=
+		3n1L7oT9W2WGVNYIKHbIF4FA9mE=
+		</data>
+		<key>Headers/pg_edit_sdk_common_global.h</key>
+		<data>
+		uRQQHJmhxzZRRcmcvCx9nu0WWmA=
 		</data>
 		<key>Headers/pg_edit_sdk_common_gtm_base64.h</key>
 		<data>
@@ -114,15 +134,35 @@
 		</data>
 		<key>Headers/pg_edit_sdk_common_log_manager.h</key>
 		<data>
-		T8iXD+UgFsByGXf4gAiQZq8wpPk=
+		rgj8Erp0xQhGsbyyu4F/JyoMsPU=
+		</data>
+		<key>Headers/pg_edit_sdk_common_pasteboard_manager.h</key>
+		<data>
+		2vxPREemLARjcAcYrNnRqG+zBSM=
 		</data>
 		<key>Headers/pg_edit_sdk_common_path_manager.h</key>
 		<data>
 		mw2FSxD7qw4g5UWTDyv+TEBFeGA=
 		</data>
+		<key>Headers/pg_edit_sdk_common_sdk_reference_count_manager.h</key>
+		<data>
+		hUAVzhSRZ/Rm1brt2lZpe3vAjFo=
+		</data>
+		<key>Headers/pg_edit_sdk_common_store_view_controller.h</key>
+		<data>
+		H0pOdrlWwoRiFMA3oe/gM+f3RvY=
+		</data>
+		<key>Headers/pg_edit_sdk_common_verification_advance_entity.h</key>
+		<data>
+		ho0E6m210r+B8OKgCCfxHi2GmFI=
+		</data>
+		<key>Headers/pg_edit_sdk_common_verification_function_entity.h</key>
+		<data>
+		b2hsEuKy0YKz5pkrgXpr4JQ6uWE=
+		</data>
 		<key>Headers/pg_edit_sdk_common_verification_manager.h</key>
 		<data>
-		CRlex+McSE2fM3EETwpPlIiz1co=
+		YvVUvup8SCSHFW/iER0feSU/SlE=
 		</data>
 		<key>Headers/pg_edit_sdk_common_zip_archive.h</key>
 		<data>
@@ -130,7 +170,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		MTBpg5p10GjjCdRw0IFuB/2PVJU=
+		+D5r4+asFX1wTdd1f4ERBKApJX0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -141,11 +181,11 @@
 	<dict>
 		<key>Headers/NSArray+pg_common_unitils.h</key>
 		<data>
-		xNP+RKQbP/YGO9EOSatCd0+q+JM=
+		srllQIyuWIWCnpql4pW8mttxIAE=
 		</data>
 		<key>Headers/NSData+pg_common_md5_crypt.h</key>
 		<data>
-		CWNmGsOBOmKtaqWOP0dngJk57t4=
+		7pRFKeIdso3LkTLRx/Bu7Yxlo+s=
 		</data>
 		<key>Headers/NSDictionary+pg_common_unitils.h</key>
 		<data>
@@ -153,47 +193,47 @@
 		</data>
 		<key>Headers/NSFileManager+pg_common_icloud.h</key>
 		<data>
-		LbsDldyrGb64CXiZR3njA4Gcrgs=
+		OTXvQPuLLgjRuRCMyWenPfV3RU4=
 		</data>
 		<key>Headers/NSJSONSerialization+pg_common_unitils.h</key>
 		<data>
-		tP/xot/a8PDxUxC6gZi7/6zf4Ko=
+		va+vEjdlRl335vhViKu1RRkx6jI=
 		</data>
 		<key>Headers/NSManagedObject+pg_common_unitils.h</key>
 		<data>
-		jr8n1r6CmDJDDDB/tHukqv+Nbdw=
+		+9XVyNEAmYEehlNBioC0aseW6Lo=
 		</data>
 		<key>Headers/NSNumber+pg_common_unitils.h</key>
 		<data>
-		xk6YAcR0LA9U+OMFc3JHxdYJgmI=
+		NsTTo5HMFjhA6LvFHr7UH1x9KRU=
 		</data>
 		<key>Headers/NSObject+pg_common_class.h</key>
 		<data>
-		iV2atUlIJPMJt0xOYz8ff8hWrXU=
+		0KLcsGONO+qxVK+ZdnIdDbkh+uo=
 		</data>
 		<key>Headers/NSRegularExpression+pg_common_xml.h</key>
 		<data>
-		lg8kYzbXblNWH60ub5UvoQEFVNQ=
+		zFhDwLD0xKl+E1/TpruFdjRKEu8=
 		</data>
 		<key>Headers/NSSet+pg_common_unitils.h</key>
 		<data>
-		JBUevGP4LKmvl2So8mAAVJQV8oA=
+		VhSk93uRisez+mRce6QY/Bnsu5A=
 		</data>
 		<key>Headers/NSString+pg_common_curve_item.h</key>
 		<data>
-		osZBaKJLkfDT8WYgCoByGDFL6Nk=
+		mg63akFbgaUIG5XR3bD/onD0LcE=
 		</data>
 		<key>Headers/NSString+pg_common_unitils.h</key>
 		<data>
-		xMaCzQUjmb2nzSKhCOt8gc4EAcM=
+		FkJBpOdj+UZf//02SBz10f+FbVY=
 		</data>
 		<key>Headers/NSTimer+pg_common_run_time.h</key>
 		<data>
-		locS/T8TkNqjPPVkbUHDVdbX6Jc=
+		coDNlESqbaIR7cy/ej3WxQBofKE=
 		</data>
 		<key>Headers/OpenGLView.h</key>
 		<data>
-		iLTofOIzgN8crrnDH0yJW5Y7wVA=
+		3t9h6ts7uONbgTsOEicEgKbKI4w=
 		</data>
 		<key>Headers/PGFeedBack.h</key>
 		<data>
@@ -201,23 +241,31 @@
 		</data>
 		<key>Headers/TPinguoImageController.h</key>
 		<data>
-		z2ZdqXcjBTindNyglZRFyjSojSA=
+		qr2q+orVVvpmf5xACFyrcM0s+Vc=
 		</data>
 		<key>Headers/UIColor+pg_common_hex.h</key>
 		<data>
-		tWuQqBaWXz1eSurEM3FrzS1ylmA=
+		LGk6VPa6TlMr3QMeg3RJ9up23iQ=
 		</data>
 		<key>Headers/UIImage+pg_common_unitils.h</key>
 		<data>
-		jKEbsn49psES5sE78bIMP+075lM=
+		WzSI7CJSSrkwmWCNPcGDv4YsCwQ=
+		</data>
+		<key>Headers/UIView+pg_common_unitils.h</key>
+		<data>
+		IShYhqzj8T1CNxPYaNB+syA8qKM=
 		</data>
 		<key>Headers/pg_edit_sdk_common.h</key>
 		<data>
-		+3rliSN0b6/+hMtJ4MeXXzC4OHQ=
+		l+591vI/KschSzpup4tPQj+48vs=
+		</data>
+		<key>Headers/pg_edit_sdk_common_alert_view.h</key>
+		<data>
+		8TVDsrn3vhOKpWWWt/plOkEWwsA=
 		</data>
 		<key>Headers/pg_edit_sdk_common_app_status_manager.h</key>
 		<data>
-		K5epibNb4JVwQU1b3F8yWQyRzaU=
+		6cu3pIXTXH5yS6moEW77lrzpX0M=
 		</data>
 		<key>Headers/pg_edit_sdk_common_core_data_managed_object_context.h</key>
 		<data>
@@ -229,7 +277,7 @@
 		</data>
 		<key>Headers/pg_edit_sdk_common_device_manager.h</key>
 		<data>
-		kamSotNHGbrNs7MAtA5h8F66nb8=
+		rol2fs9i4E9auUKK/3HixhfCoVQ=
 		</data>
 		<key>Headers/pg_edit_sdk_common_entity.h</key>
 		<data>
@@ -237,11 +285,23 @@
 		</data>
 		<key>Headers/pg_edit_sdk_common_error_status_manager.h</key>
 		<data>
-		1e9rmqCT/u9SVZAnxH7kAMcx8A0=
+		5pRorNMreRkvl4RjDKNjGkFQMGw=
+		</data>
+		<key>Headers/pg_edit_sdk_common_feedback_manager.h</key>
+		<data>
+		w4oYAE5UxudxUksyc2i0WKioaWI=
+		</data>
+		<key>Headers/pg_edit_sdk_common_feedback_manager_delegate.h</key>
+		<data>
+		YDH+BZaIMa9/mqXdyyn147yWbxY=
 		</data>
 		<key>Headers/pg_edit_sdk_common_file_manager.h</key>
 		<data>
-		K0DibUoDd/G/+eR6LcktoYZb3rs=
+		3n1L7oT9W2WGVNYIKHbIF4FA9mE=
+		</data>
+		<key>Headers/pg_edit_sdk_common_global.h</key>
+		<data>
+		uRQQHJmhxzZRRcmcvCx9nu0WWmA=
 		</data>
 		<key>Headers/pg_edit_sdk_common_gtm_base64.h</key>
 		<data>
@@ -249,15 +309,35 @@
 		</data>
 		<key>Headers/pg_edit_sdk_common_log_manager.h</key>
 		<data>
-		T8iXD+UgFsByGXf4gAiQZq8wpPk=
+		rgj8Erp0xQhGsbyyu4F/JyoMsPU=
+		</data>
+		<key>Headers/pg_edit_sdk_common_pasteboard_manager.h</key>
+		<data>
+		2vxPREemLARjcAcYrNnRqG+zBSM=
 		</data>
 		<key>Headers/pg_edit_sdk_common_path_manager.h</key>
 		<data>
 		mw2FSxD7qw4g5UWTDyv+TEBFeGA=
 		</data>
+		<key>Headers/pg_edit_sdk_common_sdk_reference_count_manager.h</key>
+		<data>
+		hUAVzhSRZ/Rm1brt2lZpe3vAjFo=
+		</data>
+		<key>Headers/pg_edit_sdk_common_store_view_controller.h</key>
+		<data>
+		H0pOdrlWwoRiFMA3oe/gM+f3RvY=
+		</data>
+		<key>Headers/pg_edit_sdk_common_verification_advance_entity.h</key>
+		<data>
+		ho0E6m210r+B8OKgCCfxHi2GmFI=
+		</data>
+		<key>Headers/pg_edit_sdk_common_verification_function_entity.h</key>
+		<data>
+		b2hsEuKy0YKz5pkrgXpr4JQ6uWE=
+		</data>
 		<key>Headers/pg_edit_sdk_common_verification_manager.h</key>
 		<data>
-		CRlex+McSE2fM3EETwpPlIiz1co=
+		YvVUvup8SCSHFW/iER0feSU/SlE=
 		</data>
 		<key>Headers/pg_edit_sdk_common_zip_archive.h</key>
 		<data>

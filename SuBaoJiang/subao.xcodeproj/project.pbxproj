@@ -311,7 +311,6 @@
 		18D699F61B1C714A00BC9475 /* MyMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D698F01B1C714A00BC9475 /* MyMD5.m */; };
 		18D699F71B1C714A00BC9475 /* NSObject+MKBlockTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D698F31B1C714A00BC9475 /* NSObject+MKBlockTimer.m */; };
 		18D69A081B1C714A00BC9475 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D6991A1B1C714A00BC9475 /* TencentOpenAPI.framework */; };
-		18D69A091B1C714A00BC9475 /* RFSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6991D1B1C714A00BC9475 /* RFSegmentView.m */; };
 		18D69A0D1B1C714A00BC9475 /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D699251B1C714A00BC9475 /* NSObject+SBJson.m */; };
 		18D69A0E1B1C714A00BC9475 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D699281B1C714A00BC9475 /* SBJsonParser.m */; };
 		18D69A0F1B1C714A00BC9475 /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D6992A1B1C714A00BC9475 /* SBJsonStreamParser.m */; };
@@ -1015,8 +1014,6 @@
 		18D698F21B1C714A00BC9475 /* NSObject+MKBlockTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MKBlockTimer.h"; sourceTree = "<group>"; };
 		18D698F31B1C714A00BC9475 /* NSObject+MKBlockTimer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MKBlockTimer.m"; sourceTree = "<group>"; };
 		18D6991A1B1C714A00BC9475 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		18D6991C1B1C714A00BC9475 /* RFSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RFSegmentView.h; sourceTree = "<group>"; };
-		18D6991D1B1C714A00BC9475 /* RFSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RFSegmentView.m; sourceTree = "<group>"; };
 		18D699241B1C714A00BC9475 /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
 		18D699251B1C714A00BC9475 /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
 		18D699261B1C714A00BC9475 /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
@@ -2273,7 +2270,6 @@
 				18D698EE1B1C714A00BC9475 /* MD5 */,
 				18D698F11B1C714A00BC9475 /* MKBlockTimer */,
 				18D699191B1C714A00BC9475 /* QQsdk */,
-				18D6991B1B1C714A00BC9475 /* RFSegmentView */,
 				18D699211B1C714A00BC9475 /* SBJson */,
 				18D6997E1B1C714A00BC9475 /* TalkingData */,
 				18D699811B1C714A00BC9475 /* UICollectionViewLeftAlignedLayout */,
@@ -2617,15 +2613,6 @@
 				18D6991A1B1C714A00BC9475 /* TencentOpenAPI.framework */,
 			);
 			path = QQsdk;
-			sourceTree = "<group>";
-		};
-		18D6991B1B1C714A00BC9475 /* RFSegmentView */ = {
-			isa = PBXGroup;
-			children = (
-				18D6991C1B1C714A00BC9475 /* RFSegmentView.h */,
-				18D6991D1B1C714A00BC9475 /* RFSegmentView.m */,
-			);
-			path = RFSegmentView;
 			sourceTree = "<group>";
 		};
 		18D699211B1C714A00BC9475 /* SBJson */ = {
@@ -3353,7 +3340,6 @@
 				18AAFCD91BA691C300901A15 /* PasterManagement.m in Sources */,
 				18D69A3C1B1C714B00BC9475 /* UICollectionViewLeftAlignedLayout.m in Sources */,
 				18A69AF31B56000500152743 /* CameraGroupCtrller.m in Sources */,
-				18D69A091B1C714A00BC9475 /* RFSegmentView.m in Sources */,
 				18B65B011B9E901300228E02 /* GuideFourthCtrller.m in Sources */,
 				D7FDB7CB1BB3FA28004046A6 /* XTBarrageView.m in Sources */,
 				18D699981B1C714A00BC9475 /* XTCornerView.m in Sources */,

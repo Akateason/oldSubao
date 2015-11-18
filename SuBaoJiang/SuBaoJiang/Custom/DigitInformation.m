@@ -98,6 +98,7 @@ static int timeCount = 0 ;
         CFUUIDRef uuidRef = CFUUIDCreate(kCFAllocatorDefault);
         //    NSString *uuid = (NSString *)CFUUIDCreateString(kCFAllocatorDefault,uuidRef) ;
         _uuid = (NSString *)CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault,uuidRef)) ;
+        CFRelease(uuidRef) ;
         [userDefaults setObject:_uuid forKey:KEY_UUID];
     }
     

@@ -89,9 +89,9 @@
 //    NSLog(@"[date getMonth] : %d",[date getMonth]) ;
 //    NSLog(@"[curDate getDay] : %d",[curDate getDay]) ;
 //    NSLog(@"[date getDay] : %d",[date getDay]) ;
-    int year = (int)([curDate getYear] - [date getYear]);
-    int month = (int)([curDate getMonth] - [date getMonth]);
-    int day = (int)([curDate getDay] - [date getDay]);
+//    int year = (int)([curDate getYear] - [date getYear]);
+//    int month = (int)([curDate getMonth] - [date getMonth]);
+//    int day = (int)([curDate getDay] - [date getDay]);
     
     NSTimeInterval retTime = 1.0;
     if (time == 0) {

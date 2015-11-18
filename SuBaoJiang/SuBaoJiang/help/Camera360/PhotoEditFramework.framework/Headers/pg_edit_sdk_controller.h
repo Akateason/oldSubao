@@ -46,14 +46,20 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 @interface pg_edit_sdk_controller : UIViewController
 
-/**
- *  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
- *  方法中调用此方法
- *  Method will invoke this method
- */
-+ (BOOL)sStart:(NSString *)key;
-
 @property (nonatomic,weak,readonly) id<pg_edit_sdk_controller_delegate> pDelegate;
+
+    /**
+     *  - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+     *  方法中调用此方法
+     *  Method will invoke this method
+     */
+    + (BOOL)sStart:(NSString *)key;
+
+    /**
+     *  获取SDK作图引用计数
+     */
+    + (NSNumber *)sGotSDKReferenceCount;
+
 
 /**
  *  初始化
