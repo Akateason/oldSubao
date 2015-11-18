@@ -24,12 +24,12 @@ static int indexCache = 0 ;
     self = [super initWithCoder:coder];
     if (self)
     {
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
-        
-        ((AppDelegate *)[UIApplication sharedApplication].delegate).tabbarCtrller = self ; // set in AppDelegate
+        // Set in AppDelegate
+        ((AppDelegate *)[UIApplication sharedApplication].delegate).tabbarCtrller = self ;
         
         self.tabBar.tintColor = COLOR_MAIN ;
         self.delegate = self ;
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     }
     return self;
 }
@@ -39,12 +39,16 @@ static int indexCache = 0 ;
     [super viewDidLoad] ;
 }
 
+
+#pragma mark --
+#pragma mark - tabbar controller delegate
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
     if ([viewController isMemberOfClass:[NavCameraCtrller class]])
     {
 //        NSLog(@"camera clicked !") ;
         [NavCameraCtrller jump2NavCameraCtrllerWithOriginCtrller:self.selectedViewController] ;
+        
         return NO ;
     }
     
@@ -67,6 +71,7 @@ static int indexCache = 0 ;
         {
             indexCache = 0 ;
         }
+        
         return NO;
     }
     

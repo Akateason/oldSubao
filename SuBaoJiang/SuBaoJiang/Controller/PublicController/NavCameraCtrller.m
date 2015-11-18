@@ -24,6 +24,12 @@
                    AndBigestSubArticleClientID:(int)bigestSubArticleCID
                        AndExistSubArticleCount:(int)existCount
 {
+    if ([NSRunLoop currentRunLoop].currentMode != NSDefaultRunLoopMode)
+    {
+        // dont let it push to Camera when the tableView is scrolling .
+        return ;
+    }
+    
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
     NavCameraCtrller *cameraCtrller = [story instantiateViewControllerWithIdentifier:@"NavCameraCtrller"] ;
     cameraCtrller.topicName = topicName ;
@@ -77,6 +83,7 @@
 
 + (void)jump2NavCameraCtrllerWithOriginCtrller:(UIViewController *)ctrller
 {
+  
     [self jump2NavCameraCtrllerWithOriginCtrller:ctrller
                                 AndWithTopicName:nil] ;
 }

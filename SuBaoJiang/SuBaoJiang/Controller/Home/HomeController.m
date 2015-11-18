@@ -424,7 +424,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.edgesForExtendedLayout = UIRectEdgeNone ;    
+//    self.edgesForExtendedLayout = UIRectEdgeNone ;    
     
     // initial
     [self setup] ;
@@ -844,12 +844,16 @@
         return ; // BREAK IN topic ctrller
     }
     
+    /*
     if ( IS_IOS_VERSION(7.1) )   //   Unsupport  7.0
     {
-//        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+//            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
+//            [self.navigationController setNavigationBarHidden:NO animated:YES] ;
 //            self.tabBarController.tabBar.hidden = NO ;
-//        }) ;
+        }) ;
     }
+    */
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
@@ -874,20 +878,20 @@
         
         if (translation.y > flex)
         {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
-//                [self.navigationController setNavigationBarHidden:NO animated:YES] ;
-//                self.tabBarController.tabBar.hidden = NO ;
-//            }) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
+                [self.navigationController setNavigationBarHidden:NO animated:YES] ;
+                self.tabBarController.tabBar.hidden = NO ;
+            }) ;
         }
 //        else if (translation.y < - flex)
         else
         {
-//            dispatch_async(dispatch_get_main_queue(), ^{
-//                [[UIApplication sharedApplication] setStatusBarHidden:decelerate withAnimation:UIStatusBarAnimationNone] ;
-//                [self.navigationController setNavigationBarHidden:decelerate animated:YES] ;
-//                self.tabBarController.tabBar.hidden = decelerate ;
-//            }) ;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [[UIApplication sharedApplication] setStatusBarHidden:decelerate withAnimation:UIStatusBarAnimationNone] ;
+                [self.navigationController setNavigationBarHidden:decelerate animated:YES] ;
+                self.tabBarController.tabBar.hidden = decelerate ;
+            }) ;
         }
         
     }
