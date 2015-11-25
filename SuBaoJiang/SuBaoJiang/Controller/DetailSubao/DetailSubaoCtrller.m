@@ -1634,7 +1634,6 @@
                 *stop = YES ;
             }
         }] ;
-        
     }
     // insert new comt in super article
     else

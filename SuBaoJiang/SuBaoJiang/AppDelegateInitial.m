@@ -33,6 +33,7 @@
 @end
 
 @implementation AppDelegateInitial
+
 - (instancetype)initWithApplication:(UIApplication *)application options:(NSDictionary *)launchOptions window:(UIWindow *)window
 {
     self = [super init];
