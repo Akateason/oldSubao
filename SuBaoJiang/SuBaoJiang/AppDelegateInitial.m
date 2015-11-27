@@ -25,7 +25,6 @@
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
-
 @interface AppDelegateInitial ()
 @property (nonatomic,strong) NSDictionary *launchOptions ;
 @property (nonatomic,strong) UIApplication *application ;
