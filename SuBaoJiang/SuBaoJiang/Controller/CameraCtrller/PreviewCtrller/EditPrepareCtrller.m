@@ -240,7 +240,6 @@
     self.imgView.backgroundColor = [UIColor whiteColor] ;
     // image content mode
     self.imgView.contentMode = UIViewContentModeScaleAspectFit ;
-    
     // bg color
     self.view.backgroundColor = COLOR_IMG_EDITOR_BG ;
 }

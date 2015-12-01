@@ -271,7 +271,6 @@
     return @0 ;
 }
 
-
 #pragma mark -- isFirstLaunch
 
 #define LAST_RUN_VERSION_KEY        @"last_run_version_of_application"

@@ -98,7 +98,7 @@
 {
     image = [CommonFunc getSuBaoJiangWaterMask:image] ;
     
-    AppDelegate *myDelegate =(AppDelegate *)[[UIApplication sharedApplication] delegate] ;
+    AppDelegate *myDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate] ;
     
     WBAuthorizeRequest *authRequest = [WBAuthorizeRequest request] ;
     authRequest.redirectURI = WB_REDIRECTURL ;
@@ -111,7 +111,9 @@
     imageObj.imageData = UIImageJPEGRepresentation(image,1) ;
     message.imageObject = imageObj ;
     
-    WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:message authInfo:authRequest access_token:myDelegate.wbtoken] ;
+    WBSendMessageToWeiboRequest *request = [WBSendMessageToWeiboRequest requestWithMessage:message
+                                                                                  authInfo:authRequest
+                                                                              access_token:myDelegate.wbtoken] ;
     [WeiboSDK sendRequest:request] ;
 }
 

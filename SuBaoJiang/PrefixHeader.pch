@@ -21,14 +21,14 @@
 #import "KeyChainHeader.h"
 
 /*
- * Version 1.20.4
- * Build 1.29.16 upload to Appstore is Checked SWITH IN NO STATUS .
+ * Version 1.20.5
+ * Build 1.29.19 upload to Appstore is Checked SWITH IN NO STATUS .
  * Build 1.29.17 upload to TestFlight .
  * 20151010 uploaded By Teason
  * DEVELOPER MODE SWITCHER
  * BOOL Args , DEFAULT is NO, BECOME YES WHEN TEST AND DEBUG MODE
  */
-#define DEVELOPER_MODE_SWITCHER         NO
+#define DEVELOPER_MODE_SWITCHER         YES
 
 /*
  * judge iOS VERSION more than this .

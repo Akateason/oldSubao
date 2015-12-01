@@ -143,15 +143,6 @@
                                         topic:share_topicStr
                                       ctrller:self] ;
         
-//        [ShareUtils weiboSilenceShareWithContent:strShow
-//                                           image:_imageSend
-//                                           topic:topicStr
-//                                         ctrller:self
-//                                       comletion:^(UMSocialResponseEntity *response) {
-//                     if (response.responseCode == UMSResponseCodeSuccess) {
-//                         NSLog(@"分享成功！");
-//                     }
-//         }] ;
     }
     else if (m_bWeixinSelect)
     {
@@ -163,7 +154,6 @@
                                        topic:share_topicStr
                                          url:strUrl
                                      ctrller:self] ;
-        
     }
 
 }
@@ -174,7 +164,7 @@
 - (void)setImageSend:(UIImage *)imageSend
 {
     _imageSend = imageSend ;
-
+    
     [self.table performSelectorOnMainThread:@selector(reloadData)
                                  withObject:nil
                               waitUntilDone:NO] ;
@@ -207,10 +197,9 @@
     
     self.myTitle = @"单图发布页" ;
 
-    [self.navigationController setNavigationBarHidden:NO
-                                             animated:NO] ;
+    [self.navigationController setNavigationBarHidden:NO animated:NO] ;
     [[UIApplication sharedApplication] setStatusBarHidden:NO] ;
-
+    
     // setup table
     [self setup] ;
     
@@ -219,7 +208,7 @@
     if ([CommonFunc isFirstPostSinglePage]) {
         self.guidingStrList = @[@"guiding_post"] ;
     }
-
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -265,7 +254,7 @@
         PostMainCell * cell = [tableView dequeueReusableCellWithIdentifier:PMainCellId] ;
         if (!cell)
         {
-            cell = [tableView dequeueReusableCellWithIdentifier:PMainCellId];
+            cell = [tableView dequeueReusableCellWithIdentifier:PMainCellId] ;
         }
         
         cell.selectionStyle = UITableViewCellSelectionStyleNone ;
@@ -322,10 +311,10 @@
 
         // create super Client ID
         int maxCid = [[DraftTB shareInstance] getMaxID] ;
-        maxCid++ ;
+        maxCid ++ ;
         long long tick = [XTTickConvert getTickWithDate:[NSDate date]] ;
         NSString *picPath = [Article getPicPath:tick aid:maxCid] ;
-         
+        
         Article *superArticleTemp = [[Article alloc] initArtWithClientID:maxCid
                                                     superClientArticleID:0
                                                               createTime:tick
@@ -333,7 +322,7 @@
                                                                  content:strWillSend
                                                                    title:nil
                                                                 topicStr:self.topicString] ;
-
+        
         [superArticleTemp cachePicInLocal:_imageSend tick:tick] ;
         
         [NavCameraCtrller jump2NavCameraCtrllerWithOriginCtrller:self
