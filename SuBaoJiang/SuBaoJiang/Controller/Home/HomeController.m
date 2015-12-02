@@ -51,8 +51,8 @@
     BOOL                m_isFirstTime       ; // default is false ; if false -> firsttime
 }
 
-@property (weak, nonatomic) IBOutlet RootTableView *table;
-@property (weak, nonatomic) IBOutlet NavTitleView  *titleView;
+@property (weak, nonatomic) IBOutlet RootTableView *table ;
+@property (weak, nonatomic) IBOutlet NavTitleView  *titleView ;
 @property (nonatomic,strong)         UIButton      *bt_go2post ;
 @property (atomic, strong)  NSMutableArray         *m_articleList ; // 文章 datasource
 @property (atomic, strong)  NSMutableArray         *m_themesList  ; // 主题list
@@ -425,7 +425,7 @@
     // Do any additional setup after loading the view.
     
 //    self.edgesForExtendedLayout = UIRectEdgeNone ;    
-    
+
     // initial
     [self setup] ;
     [self putNavBarItem] ;
@@ -485,6 +485,13 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
+
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
+}
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    return YES ;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -495,6 +502,10 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO] ;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated] ;
+}
 
 #pragma mark --
 #pragma mark - parser Home Info

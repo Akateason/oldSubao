@@ -38,9 +38,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-// AudioPlayer
-//  [self initialAudioPlayer] ;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -61,7 +58,7 @@
             [self iClickedBackButton] ;
         }
     }
-
+    
     [super viewWillDisappear:animated] ;
     
     [m_nothingPicImgView removeFromSuperview] ;

@@ -15,13 +15,12 @@
 @property (weak, nonatomic) IBOutlet UIView *contentBorderView;
 @property (weak, nonatomic) IBOutlet UILabel *lb_content;
 
-@property (weak, nonatomic) IBOutlet UIButton *bt_color;
-@property (weak, nonatomic) IBOutlet UIButton *bt_size;
-
 @property (weak, nonatomic) IBOutlet UIButton *bt_bg; //background
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *color_h_constant;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *size_h_constant;
+
+@property (weak, nonatomic) IBOutlet UIButton *bt_color;
+@property (weak, nonatomic) IBOutlet UIButton *bt_size;
 
 @end
 
@@ -53,6 +52,11 @@
     _contentBorderView.layer.borderWidth = 1.0f ;
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews] ;
+}
+
 #pragma mark --
 - (void)setUserReply:(User *)userReply
 {
@@ -60,7 +64,6 @@
     
     self.flyword = self.flyword ;
 }
-
 
 #pragma mark - setter flyword
 - (void)setFlycolor:(UIColor *)flycolor
@@ -100,6 +103,7 @@
     }
     return _flycolor ;
 }
+
 - (UIFont *)getFlyfont
 {
     if (!_flyfont) {
@@ -107,7 +111,6 @@
     }
     return _flyfont ;
 }
-
 
 #pragma mark --
 #pragma mark - set buttons positions
@@ -134,6 +137,7 @@
     NSArray *strList = [NSArray arrayWithObjects: @"紫色",@"蓝色",@"绿色",@"黄色",@"红色",@"白色",nil] ;
     strList = [[strList reverseObjectEnumerator] allObjects] ;
     
+
     [PCStackMenu showStackMenuWithTitles:strList
                               withImages:imgList
                             atStartPoint:CGPointMake(_bt_color.frame.origin.x + _bt_color.frame.size.width + 8, _bt_color.frame.origin.y - 5)
@@ -142,15 +146,15 @@
                            menuDirection:PCStackMenuDirectionClockWiseUp
                             onSelectMenu:^(NSInteger selectedMenuIndex) {
                                 
-                                NSLog(@"menu index : %d", selectedMenuIndex) ;
+                                NSLog(@"menu index : %ld", (long)selectedMenuIndex) ;
 //                                FLYWORD_COLOR_TYPE type = 5 - selectedMenuIndex ;
-                                FLYWORD_COLOR_TYPE type = selectedMenuIndex ;
+                                FLYWORD_COLOR_TYPE type = (int)selectedMenuIndex ;
                                 UIImage *colorBack = [ArticleComment getUIImageOfColorWithEnum:type] ;
                                 [_bt_color setImage:colorBack forState:UIControlStateNormal] ;
                                 
                                 self.typecolor = type ;
                                 self.flycolor = [ArticleComment getUIColorWithEnum:type] ;
-                            }];
+                            }] ;
 
 }
 
@@ -168,8 +172,8 @@
                               itemHeight:35
                            menuDirection:PCStackMenuDirectionClockWiseUp
                             onSelectMenu:^(NSInteger selectedMenuIndex) {
-                                NSLog(@"menu index : %d", selectedMenuIndex) ;
-                                FLYWORD_SIZE_TYPE type = 1 - selectedMenuIndex ;
+                                NSLog(@"menu index : %ld", (long)selectedMenuIndex) ;
+                                FLYWORD_SIZE_TYPE type = 1 - (int)selectedMenuIndex ;
                                 //NSLog(@"type : %d",type) ;
                                 UIImage *sizeBack = [ArticleComment getUIImageOfSizeWithEnum:type] ;
                                 [_bt_size setImage:sizeBack forState:UIControlStateNormal] ;

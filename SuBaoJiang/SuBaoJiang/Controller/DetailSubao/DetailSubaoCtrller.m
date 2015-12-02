@@ -125,8 +125,6 @@
     
     [detailCtrller setHidesBottomBarWhenPushed:YES] ;
     [ctrller.navigationController pushViewController:detailCtrller animated:NO] ;
-    
-
 }
 
 - (void)imageSendAnimation
@@ -632,19 +630,16 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated] ;
-    
-    
+    [super viewWillAppear:animated] ;    
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated] ;
-    
+
     if (!isFirstTime) return ;
     
     [self resetWordViewFrame] ;
-    
 }
 
 - (void)viewWillDisappear:(BOOL)animated

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -54,7 +54,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="colorsBtPressedAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="aqI-S3-WOh"/>
+                        <action selector="colorsBtPressedAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Ohn-va-vKp"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="diq-V8-fba">
@@ -92,7 +92,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="bt_bg" destination="FEP-Fa-AgG" id="7TB-b0-6yG"/>
-                <outlet property="bt_color" destination="Rx8-kt-htW" id="gg8-XQ-QGs"/>
+                <outlet property="bt_color" destination="Rx8-kt-htW" id="3Zv-5w-kat"/>
                 <outlet property="bt_size" destination="diq-V8-fba" id="LkV-kg-FD4"/>
                 <outlet property="color_h_constant" destination="ltN-MF-yYk" id="TeG-o2-P35"/>
                 <outlet property="contentBorderView" destination="TNQ-CG-UKU" id="yoX-0N-UH7"/>

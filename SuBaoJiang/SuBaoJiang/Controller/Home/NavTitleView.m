@@ -55,8 +55,10 @@
     label.font = [UIFont boldSystemFontOfSize:17.0] ;
     [label sizeToFit] ;
     label.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2) ;
+    if (![label superview]) {
+        [self addSubview:label] ;
+    }
     
-    [self addSubview:label] ;
 }
 
 @end

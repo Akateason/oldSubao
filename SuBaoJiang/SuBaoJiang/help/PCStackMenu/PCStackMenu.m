@@ -175,7 +175,7 @@
 				CGPoint point = [self centerPointForRotation:stackItem];
 				stackItem.transform = CGAffineTransformMakeRotationAt(0 * M_PI / 180, point);
 				stackItem.frame = r;
-				stackItem.alpha = 0.5;
+				stackItem.alpha = 0.0;
 			}
 		} completion:^(BOOL finished) {
 			if(_block)
@@ -198,7 +198,7 @@
 			CGPoint point = [self centerPointForRotation:stackItem];
 			stackItem.transform = CGAffineTransformMakeRotationAt(0 * M_PI / 180, point);
 			stackItem.frame = r;
-			stackItem.alpha = 0.2;
+			stackItem.alpha = 0.0;
 		}
     } completion:^(BOOL finished) {
 		_block = nil;

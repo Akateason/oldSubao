@@ -21,7 +21,7 @@ typedef void (^PCStackMenuBlock)(NSInteger selectedMenuIndex);
 
 @interface PCStackMenu : UIView
 {
-	PCStackMenuBlock		_block;
+	PCStackMenuBlock _block;
 }
 
 @property (nonatomic, strong)	NSMutableArray		*items;

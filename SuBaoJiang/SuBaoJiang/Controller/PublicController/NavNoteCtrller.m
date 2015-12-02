@@ -43,18 +43,6 @@
 }
 
 
-//- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-//{
-//    // fix 'nested pop animation can result in corrupted navigation bar'
-//    if ([self respondsToSelector:@selector(interactivePopGestureRecognizer)])
-//    {
-//        self.interactivePopGestureRecognizer.enabled = NO;
-//    }
-//    
-//    [super pushViewController:viewController animated:animated];
-//}
-
-
 /*
 #pragma mark - Navigation
 
