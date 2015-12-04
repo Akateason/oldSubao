@@ -22,11 +22,11 @@
 
 /*
  * Version 1.20.5
- * Build 1.29.20 upload to Appstore is Checked SWITH IN NO STATUS .
+ * Build 1.29.21 upload to Appstore is Checked SWITH IN NO STATUS .
  * Build 1.29.17 upload to TestFlight .
- * 20151010 uploaded By Teason
+ * 20151202 uploaded By Teason
  * DEVELOPER MODE SWITCHER
- * BOOL Args , DEFAULT is NO, BECOME YES WHEN TEST AND DEBUG MODE
+ * BOOL Args , ( DEFAULT is `NO`, BECOME `YES` WHEN U WANA TEST AND DEBUG . )
  */
 #define DEVELOPER_MODE_SWITCHER         NO
 
@@ -59,7 +59,7 @@
 #define STATUSBAR_HEIGHT                20.0f
 
 //global pulldown wating time
-#define WAIT_TIME                       0.68f
+#define WAIT_TIME                       0.28f
 
 //all CORNER RADIUS
 #define CORNER_RADIUS_ALL               6.0f
@@ -67,10 +67,8 @@
 //custom height of tabbar
 #define MY_TABBAR_HEIGHT                50.0
 
-//
 #define ONE_PIXEL_VALUE                 0.5f
 
-//
 #define QUICKLY_ANIMATION_DURATION      0.25f
 
 #endif

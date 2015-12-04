@@ -45,12 +45,10 @@
     
     [imgScrollView resetToOrigin] ;
     
-//    if (self.type == mode_imgUrl)
     if ([dataObj isKindOfClass:[NSString class]])
     {
         [imgScrollView.imageView sd_setImageWithURL:[NSURL URLWithString:(NSString *)dataObj]] ;
     }
-//    else if (self.type == mode_asset)
     else if ([dataObj isKindOfClass:[ALAsset class]])
     {
         CGImageRef orgImage = [[(ALAsset *)dataObj defaultRepresentation] fullScreenImage] ;
@@ -59,7 +57,6 @@
         imgScrollView.imageView.backgroundColor = COLOR_IMG_EDITOR_BG ;
         imgScrollView.imageView.frame = imgScrollView.frame ;
     }
-    
 }
 
 @end

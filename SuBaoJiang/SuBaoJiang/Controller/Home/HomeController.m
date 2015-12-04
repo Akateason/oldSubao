@@ -790,7 +790,10 @@
         self.imgTempWillSend = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:articleTemp.img
                                                                           withCacheWidth:APPFRAME.size.width] ;
 
-        self.fromRect = CGRectMake(0, rectInView.origin.y, APPFRAME.size.width , APPFRAME.size.width) ;
+        self.fromRect = CGRectMake(0 ,
+                                   rectInView.origin.y ,
+                                   APPFRAME.size.width ,
+                                   APPFRAME.size.width) ;
         
         [DetailSubaoCtrller jump2DetailSubaoCtrller:self
                                    AndWithArticleID:articleTemp.a_id

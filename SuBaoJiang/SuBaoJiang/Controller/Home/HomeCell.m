@@ -199,8 +199,12 @@
     CGFloat orgLbHeight = 25.0 ;
     
     UIFont *font = [UIFont systemFontOfSize:16.0f];
-    CGSize size = CGSizeMake(APPFRAME.size.width - 12 * 2,200);
-    CGSize labelsize = [content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    CGSize size = CGSizeMake(APPFRAME.size.width - 13.0 * 2, 300);
+    
+    CGSize labelsize = [content boundingRectWithSize:size
+                                             options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                          attributes:@{NSFontAttributeName:font}
+                                             context:nil].size;
     
     CGFloat lbHeight = labelsize.height ;
     if (lbHeight < orgLbHeight)

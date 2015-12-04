@@ -255,16 +255,26 @@
 {
     CGFloat orgHeight = 25.0f ;
     
-    UIFont *font = [UIFont systemFontOfSize:16.0f];
-    CGSize size = CGSizeMake(APPFRAME.size.width - 12 * 2,200);
-    CGSize labelsize = [cmtStr sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    UIFont *font = [UIFont systemFontOfSize:16.0f] ;
+    CGSize size = CGSizeMake(APPFRAME.size.width - 13.0 * 2, 300);
+    CGSize labelsize = [cmtStr boundingRectWithSize:size
+                                         options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                      attributes:@{NSFontAttributeName:font}
+                                         context:nil].size ;
+    
     CGFloat wordH = labelsize.height ;
     if (wordH < orgHeight) {
         wordH = orgHeight ;
     }
+
     
-    CGFloat h =  126.0f - orgHeight + wordH;
+    if (UNDER_IOS_VERSION(7.1)) // < 7.1
+    {
+        orgHeight += 5.0 ;
+    }
     
+    CGFloat h =  126.0f - orgHeight + wordH ;
+
     return h ;
 }
 
