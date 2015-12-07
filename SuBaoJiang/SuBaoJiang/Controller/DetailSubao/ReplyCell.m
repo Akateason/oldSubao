@@ -71,8 +71,6 @@
     _lb_comment.text = _comment.showStrComment ;
     
     // date
-//    [MyTick getDateWithTick:_comment.c_createtime AndWithFormart:TIME_STR_FORMAT_6] ;
-//    _lb_date.text = [MyTick timeInfoWithDate:[MyTick getNSDateWithTick:_comment.c_createtime]] ;
     _lb_date.text = [XTTickConvert getDateWithTick:_comment.c_createtime AndWithFormart:TIME_STR_FORMAT_8] ;
 
 }
@@ -80,14 +78,18 @@
 #pragma mark --
 + (CGFloat)calculateHeightWithCmtStr:(NSString *)cmtStr
 {
-    UIFont *font = [UIFont systemFontOfSize:14.0f];
-    CGSize size = CGSizeMake(APPFRAME.size.width - 15 - 6 - 9 - 30 ,200);
-    CGSize labelsize = [cmtStr sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    UIFont *font = [UIFont systemFontOfSize:14.0f] ;
+    CGSize size = CGSizeMake(APPFRAME.size.width - 15 - 6 - 9 - 30 ,200) ;
+    
+    CGSize labelsize = [cmtStr boundingRectWithSize:size
+                                            options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                         attributes:@{NSFontAttributeName:font}
+                                            context:nil].size ;
     CGFloat wordH = labelsize.height ;
     if (wordH < 17.0) {
         wordH = 17.0 ;
     }
-    CGFloat h =  64.0  - 17.0 + wordH;
+    CGFloat h =  64.0  - 17.0 + wordH ;
     
     return h ;
 }

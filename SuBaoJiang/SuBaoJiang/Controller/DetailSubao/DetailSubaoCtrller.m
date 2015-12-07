@@ -506,8 +506,8 @@
         self.navBg.hidden = NO ;
         self.btNav_Like.hidden = !isMultiType ;
         self.btNav_Share.hidden = !isMultiType ;
-        self.btNav_Share.hidden = !G_BOOL_OPEN_APPSTORE ;
-
+        if (isMultiType) self.btNav_Share.hidden = !G_BOOL_OPEN_APPSTORE ;
+        
     }) ;
     
     if (!isMultiType && !t_Label)

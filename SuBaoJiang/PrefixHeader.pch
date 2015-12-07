@@ -22,9 +22,9 @@
 
 /*
  * Version 1.20.5
- * Build 1.29.21 upload to Appstore is Checked SWITH IN NO STATUS .
+ * Build 1.29.23 upload to Appstore is Checked SWITH IN NO STATUS .
  * Build 1.29.17 upload to TestFlight .
- * 20151202 uploaded By Teason
+ * 20151207 uploaded By Teason
  * DEVELOPER MODE SWITCHER
  * BOOL Args , ( DEFAULT is `NO`, BECOME `YES` WHEN U WANA TEST AND DEBUG . )
  */
