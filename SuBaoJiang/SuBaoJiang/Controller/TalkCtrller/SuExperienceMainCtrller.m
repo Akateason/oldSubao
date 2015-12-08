@@ -48,7 +48,7 @@
     self.myTable            = _table ;
     _table.delegate         = self ;
     _table.dataSource       = self ;
-    _table.rootDelegate     = self ;
+    _table.xt_Delegate     = self ;
     _table.backgroundColor  = COLOR_BACKGROUND ;
     _table.separatorColor   = COLOR_TABLE_SEP ;
     
@@ -68,8 +68,6 @@
     [self setup] ;
     
     self.myTitle = @"速体验首页" ;
-
-    [self.table pulldownManually] ;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -138,28 +136,16 @@
 
 #pragma mark --
 #pragma mark -- RootTableViewDelegate
-- (BOOL)doSthWhenfreshingHeader
+- (void)loadNewData
 {
     m_currentPage = 1 ;
-    return [self getTopicsAndCatagoriesFromServerWithPullUpDown:YES] ;
+    [self getTopicsAndCatagoriesFromServerWithPullUpDown:YES] ;
 }
 
-- (BOOL)doSthWhenfreshingFooter
+- (void)loadMoreData
 {
     m_currentPage ++ ;
-    return [self getTopicsAndCatagoriesFromServerWithPullUpDown:NO] ;
-}
-
-#pragma mark --
-#pragma mark - UIScrollViewDelegate Methods
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [_table rootTableScrollDidScroll:scrollView] ;
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    [_table rootTableScrollDidEndDragging:scrollView] ;
+    [self getTopicsAndCatagoriesFromServerWithPullUpDown:NO] ;
 }
 
 #pragma mark --

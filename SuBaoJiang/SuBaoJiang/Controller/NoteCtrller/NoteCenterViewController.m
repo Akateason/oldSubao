@@ -193,7 +193,7 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
 
     [_table deselectRowAtIndexPath:[_table indexPathForSelectedRow] animated:YES];
 
-    _table.rootDelegate     = self ;
+    _table.xt_Delegate     = self ;
     
     [_table registerNib:[UINib nibWithNibName:IDENTIFIER_NoteAlamCell bundle:nil] forCellReuseIdentifier:IDENTIFIER_NoteAlamCell];
     
@@ -285,7 +285,7 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     }
     
     [self changeTabbarItemsBadgeFromServer] ;
-    [self.table pulldownManually] ;
+    [self.table pullDownRefreshHeader] ;
     
     self.tabBarController.tabBar.hidden = NO ;
     [self.navigationController setNavigationBarHidden:NO animated:NO] ;
@@ -552,27 +552,15 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     return NONE_HEIGHT ;
 }
 
-#pragma mark --
-#pragma mark - UIScrollViewDelegate Methods
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self.table rootTableScrollDidScroll:scrollView] ;
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    [self.table rootTableScrollDidEndDragging:scrollView] ;
-}
-
 #pragma mark -- RootTableViewDelegate
-- (BOOL)doSthWhenfreshingHeader
+- (void)loadNewData
 {
-    return [self getMsgCmtFromServerWithPullUpDown:YES];
+    [self getMsgCmtFromServerWithPullUpDown:YES];
 }
 
-- (BOOL)doSthWhenfreshingFooter
+- (void)loadMoreData
 {
-    return [self getMsgCmtFromServerWithPullUpDown:NO] ;
+    [self getMsgCmtFromServerWithPullUpDown:NO] ;
 }
 
 #pragma mark - Navigation

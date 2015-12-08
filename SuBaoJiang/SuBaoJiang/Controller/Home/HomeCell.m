@@ -204,7 +204,7 @@
     CGSize labelsize = [content boundingRectWithSize:size
                                              options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                           attributes:@{NSFontAttributeName:font}
-                                             context:nil].size;
+                                             context:nil].size ;
     
     CGFloat lbHeight = labelsize.height ;
     if (lbHeight < orgLbHeight)

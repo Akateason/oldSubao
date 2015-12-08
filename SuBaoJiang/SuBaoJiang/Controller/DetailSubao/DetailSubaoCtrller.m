@@ -235,9 +235,11 @@
     _table.delegate = self ;
     _table.dataSource = self ;
     _table.separatorColor = COLOR_TABLE_SEP ;
-    _table.hideHudForShowNothing = YES ;
+    
+//    _table.hideHudForShowNothing = YES ;
+    
 //    _table.separatorStyle = UITableViewCellSeparatorStyleNone ;
-    _table.rootDelegate = self ;
+    _table.xt_Delegate = self ;
     
     // long press gesture
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self
@@ -729,22 +731,17 @@
 }
 
 #pragma mark -- RootTableViewDelegate
-- (BOOL)doSthWhenfreshingHeader
+- (void)loadNewData
 {
-    return [self getFromServer]  ;
+    [self getFromServer]  ;
 }
-
-- (BOOL)doSthWhenfreshingFooter
+- (void)loadMoreData
 {
-    return [self getMoreComment] ;
+    [self getMoreComment] ;
 }
 
 #pragma mark --
 #pragma mark - UIScrollViewDelegate Methods
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [_table rootTableScrollDidScroll:scrollView] ;
-}
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
@@ -758,8 +755,6 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    [_table rootTableScrollDidEndDragging:scrollView] ;
-    
     if (self.isMultiType && !decelerate) [self controlBottomBarShowOrNot] ;
 }
 

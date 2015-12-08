@@ -1,281 +1,172 @@
 //
 //  RootTableView.m
-//  SuBaoJiang
+//  Demo_MjRefresh
 //
-//  Created by apple on 15/6/26.
-//  Copyright (c) 2015年 teason. All rights reserved.
+//  Created by TuTu on 15/12/3.
+//  Copyright © 2015年 teason. All rights reserved.
 //
 
 #import "RootTableView.h"
-#import "YXSpritesLoadingView.h"
-#import "XTHudManager.h"
-#import "NSObject+MKBlockTimer.h"
+#import "MJRefresh.h"
+
+@interface RootTableView ()
+@property (nonatomic,strong) NSArray *gifImageList ;
+@end
 
 @implementation RootTableView
+#pragma mark --
+#pragma mark - Public
+- (void)pullDownRefreshHeader
+{
+    [self.mj_header beginRefreshing] ;
+}
 
-#pragma mark -- initial
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        [self setupHeaderFooter] ;
-    }
-    return self;
-}
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupHeaderFooter] ;
-    }
-    return self;
-}
+#pragma mark --
+#pragma mark - Initialization
 
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
     if (self) {
-        [self setupHeaderFooter] ;
+        [self setup] ;
     }
     return self;
 }
 
-- (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super initWithFrame:frame style:style];
+    self = [super initWithFrame:frame];
     if (self) {
-        [self setupHeaderFooter] ;
+        [self setup] ;
     }
     return self;
 }
 
-- (void)setupHeaderFooter
+- (void)setup
 {
-    [self setHeaderRefreshView] ;
+    [self MJRefreshConfigure] ;
+    [self defaultPublicAPIs] ;
 }
 
-#pragma mark -- Public
-- (void)pulldownManually
+- (void)MJRefreshConfigure
 {
-    if (_reloadingHead) return ;
+    NSArray *idleImages = self.gifImageList ; //@[[self.gifImageList firstObject]] ;
+    NSArray *pullingImages = self.gifImageList ;
+    NSArray *refreshingImages = self.gifImageList ;
     
-    [self reloadTableViewDataSource] ;
-    [self doneLoadingTableViewData] ;
+    MJRefreshGifHeader *header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewDataSelector)];
+    [header setImages:idleImages forState:MJRefreshStateIdle];
+    [header setImages:pullingImages forState:MJRefreshStatePulling];
+    [header setImages:refreshingImages forState:MJRefreshStateRefreshing];
+    self.mj_header = header;
+
+    [self.mj_header beginRefreshing];
+    
+    MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreDataSelector)];
+    [footer setImages:idleImages forState:MJRefreshStateIdle];
+    [footer setImages:pullingImages forState:MJRefreshStatePulling];
+    [footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
+    self.mj_footer = footer;
 }
 
-- (void)rootTableScrollDidScroll:(UIScrollView *)scrollView
+- (void)defaultPublicAPIs
 {
-    [_refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
+    self.showRefreshDetail = NO ;
+    self.automaticallyLoadMore = NO ;
 }
 
-- (void)rootTableScrollDidEndDragging:(UIScrollView *)scrollView
+#pragma mark --
+#pragma mark - Public Properties
+- (void)setShowRefreshDetail:(BOOL)showRefreshDetail
 {
-    // refresh more
-    [_refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView] ;
+    _showRefreshDetail = showRefreshDetail ;
     
-    // load more
-    if (!self.shutDownManualPullFooter) {
-        [self loadMoreWithScrollView:scrollView] ;
-    }
+    ((MJRefreshGifHeader *)self.mj_header).lastUpdatedTimeLabel.hidden = !self.showRefreshDetail;
+    ((MJRefreshGifHeader *)self.mj_header).stateLabel.hidden = !self.showRefreshDetail ;
+    ((MJRefreshBackGifFooter *)self.mj_footer).stateLabel.hidden = !self.showRefreshDetail ;
 }
 
-- (void)loadMoreWithScrollView:(UIScrollView *)scrollView
+- (void)setAutomaticallyLoadMore:(BOOL)automaticallyLoadMore
 {
-    if (_reloadingFoot || _reloadingHead) return ; // protect loading only once . if in loading break
-    CGPoint offset = scrollView.contentOffset ;
-    CGRect bounds = scrollView.bounds ;
-    CGSize contentsize = scrollView.contentSize ;
-    UIEdgeInsets inset = scrollView.contentInset ;
-    CGFloat currentOffset = offset.y + bounds.size.height - inset.bottom ;
-    CGFloat maximumOffset = contentsize.height ;
-    if (contentsize.height <= bounds.size.height) return ;
+    _automaticallyLoadMore = automaticallyLoadMore ;
     
-//    CGFloat alarmDistance = self.canBeAutoLoadingMore ? maximumOffset / 4.0 : 0 ;
-//    if (maximumOffset <= currentOffset + alarmDistance || maximumOffset <= currentOffset)
-    
-    if ( maximumOffset <= currentOffset)
+    if (_automaticallyLoadMore)
     {
-        [self loadMoreAction] ;
+        self.mj_footer = nil ;
+        MJRefreshAutoFooter *autofooter = [MJRefreshAutoFooter footerWithRefreshingTarget:self
+                                                                         refreshingAction:@selector(loadMoreDataSelector)] ;
+        autofooter.triggerAutomaticallyRefreshPercent = 0.55 ;
+        self.mj_footer = autofooter;
     }
 }
 
-- (void)loadFooterInTableWillDisplayCellWithCurrentIndexRowOrSection:(NSInteger)currentIndex ListCount:(NSInteger)count
+#pragma mark - Private
+- (NSArray *)gifImageList
 {
-    if (_reloadingFoot || _reloadingHead) return ; // protect loading only once . if in loading break
-    
-    if (count - currentIndex < 10 && count > 0 && currentIndex > 1)
+    if (!_gifImageList)
     {
-        [self loadMoreAction] ;
+        NSMutableArray *tempList = [NSMutableArray array] ;
+        for (int i = 0; i < TABLE_HEADER_IMAGES_COUNT; i++)
+        {
+            UIImage *imgTemp = [UIImage imageNamed:[NSString stringWithFormat:@"%@%d",TABLE_HEADER_IMAGES,i]] ;
+            [tempList addObject:imgTemp] ; // DEFAULT MODE IS THIS GIF IMAGES .
+        }
+        _gifImageList = [NSArray arrayWithArray:tempList] ;
     }
+    
+    return _gifImageList ;
 }
 
-
-- (void)loadMoreAction
+#pragma mark --
+#pragma mark - loading methods
+- (void)loadNewDataSelector
 {
-    _reloadingFoot = YES ;
-    
-    dispatch_queue_t queue = dispatch_queue_create("LoadMore", NULL) ;
-    dispatch_async(queue, ^{
-        
-        BOOL b = [self.rootDelegate doSthWhenfreshingFooter] ;
-      
-        if (b)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self reloadData] ;
-                _reloadingFoot = NO ;
-            }) ;
-        }
-        else
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                _reloadingFoot = NO ;
-                [self showNothing] ;
-            }) ;
-        }
+    [self.xt_Delegate loadNewData] ;
+    [self headerEnding] ;
+}
+
+- (void)headerEnding
+{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self reloadData];
+        [self.mj_header endRefreshing];
     }) ;
 }
 
-- (BOOL)dataOperationWhenHeaderLoading
+- (void)loadMoreDataSelector
 {
-    return [self.rootDelegate doSthWhenfreshingHeader] ;
-}
-
-#pragma mark -- 
-#pragma mark - Properties
-
-- (void)setIsNetSuccess:(BOOL)isNetSuccess
-{
-    _isNetSuccess = isNetSuccess ;
-    
-    [self performSelectorOnMainThread:@selector(setBackgroundWithWifiSuccess:)
-                           withObject:[NSNumber numberWithBool:isNetSuccess]
-                        waitUntilDone:NO] ;
-}
-
-- (void)setBackgroundWithWifiSuccess:(id)obj
-{
-    BOOL bSuccess = [obj boolValue] ;
-    
-    if (bSuccess)
+    if (_automaticallyLoadMore)
     {
-        [self setBackgroundView:nil] ;
+        dispatch_queue_t queue = dispatch_queue_create("refreshAutoFooter", NULL) ;
+        dispatch_async(queue, ^{
+            [self.xt_Delegate loadMoreData] ;
+            [self footerEnding] ;
+        }) ;
+        
+        return ;
     }
     else
     {
-        UIView *nowifiView = [[[NSBundle mainBundle] loadNibNamed:@"NoWifiView" owner:self options:nil] lastObject] ;
-        nowifiView.frame = self.frame ;
-        [self setBackgroundView:nowifiView] ;
-    }
-}
-
-#pragma mark --
-#pragma mark - initial ego
-// refresh Table Initial
-- (void)setHeaderRefreshView
-{
-    if (_refreshHeaderView == nil)
-    {
-        _refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,
-                                                                                         - self.bounds.size.height,
-                                                                                         self.frame.size.width,
-                                                                                         self.bounds.size.height)];
-        _refreshHeaderView.delegate = self;
-        [self addSubview:_refreshHeaderView];
+        [self.xt_Delegate loadMoreData] ;
     }
     
-    //  update the last update date
-    [_refreshHeaderView refreshLastUpdatedDate];
+    [self footerEnding] ;
 }
 
-
-#pragma mark --
-#pragma mark - EGORefreshTableHeaderDelegate Methods
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view
+- (void)footerEnding
 {
     dispatch_async(dispatch_get_main_queue(), ^{
-        [YXSpritesLoadingView showWithText:WD_HUD_GOON
-                             andShimmering:NO
-                             andBlurEffect:NO] ;
+        [self reloadData];
+        [self.mj_footer endRefreshing];
     }) ;
-    
-    [self reloadTableViewDataSource]    ;
-    [self doneLoadingTableViewData]     ;
 }
 
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view
-{
-    return _reloadingHead; // should return if data source model is reloading
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
 }
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view
-{
-    return [NSDate date]; // should return date data source was last changed
-}
-
-#pragma mark --
-#pragma mark - Refresh Header Table
-#pragma mark - Header Data Source Loading / Reloading Methods
-- (void)reloadTableViewDataSource
-{
-    //  should be calling your tableviews data source model to reload
-    //  put here just for demo
-    _reloadingHead = YES;
-}
-
-- (void)doneLoadingTableViewData
-{
-    __block BOOL bSuccess ;
-    
-    dispatch_queue_t queue = dispatch_queue_create("queueDoneLoadTableViewData", NULL) ;
-
-    dispatch_async(queue, ^{
-        __block unsigned int seconds = [self logTimeTakenToRunBlock:^{
-            bSuccess = [self dataOperationWhenHeaderLoading] ;
-        } withPrefix:@"result time"] ;
-        
-        float smallsec = seconds / 1000.0f ;
-        
-        if (WAIT_TIME > smallsec)
-        {
-            float sleepTime = WAIT_TIME - smallsec ;
-            dispatch_async(dispatch_get_main_queue(), ^() {
-                sleep(sleepTime) ;
-                [self finishPullUpMainThreadUIWithSuccess:bSuccess] ;
-            });
-        }
-        else
-        {
-            dispatch_async(dispatch_get_main_queue(), ^() {
-                [self finishPullUpMainThreadUIWithSuccess:bSuccess] ;
-            });
-        }
-        
-    }) ;
-    
-}
-
-- (void)finishPullUpMainThreadUIWithSuccess:(BOOL)bSuccess
-{
-    [YXSpritesLoadingView dismiss] ;
-    
-    [self reloadData] ;
-    
-    //  model should call this when its done loading
-    
-    _reloadingHead = NO ;
-    
-    [_refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self] ;
-    
-    [self.rootFinished headerRefreshFinished] ;
-}
-
-- (void)showNothing
-{
-    if (!self.hideHudForShowNothing) {
-        [XTHudManager showWordHudWithTitle:WD_HUD_NOMORE delay:1.0] ;
-    }
-}
-
+*/
 
 @end

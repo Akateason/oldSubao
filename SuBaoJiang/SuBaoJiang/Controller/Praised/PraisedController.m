@@ -34,7 +34,7 @@
     _table.dataSource = self ;
 //    _table.separatorStyle = UITableViewCellSeparatorStyleNone ;
     _table.backgroundColor = COLOR_BACKGROUND ;
-    _table.rootDelegate = self ;
+    _table.xt_Delegate = self ;
     _table.estimatedRowHeight = 60.0f ;
     _table.rowHeight          = UITableViewAutomaticDimension ;
     _table.separatorColor     = COLOR_TABLE_SEP ;
@@ -51,10 +51,6 @@
     [self setup] ;
     
     m_praisedList = [NSMutableArray array] ;
-    
-    // pull down
-    [self.table pulldownManually] ;
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -177,27 +173,15 @@
     return 1.0f ;
 }
 
-#pragma mark --
-#pragma mark - UIScrollViewDelegate Methods
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [_table rootTableScrollDidScroll:scrollView] ;
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    [_table rootTableScrollDidEndDragging:scrollView] ;
-}
-
 #pragma mark -- RootTableViewDelegate
-- (BOOL)doSthWhenfreshingHeader
+- (void)loadNewData
 {
-    return [self getPraiseInfoWithPullUpOrDown:YES] ;
+    [self getPraiseInfoWithPullUpOrDown:YES] ;
 }
 
-- (BOOL)doSthWhenfreshingFooter
+- (void)loadMoreData
 {
-    return [self getPraiseInfoWithPullUpOrDown:NO] ;
+    [self getPraiseInfoWithPullUpOrDown:NO] ;
 }
 
 

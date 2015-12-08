@@ -39,12 +39,10 @@
 #define SEintroCellID       @"SEintroCell"
 
 
-@interface HomeController () <UITableViewDataSource,UITableViewDelegate,SuBaoHeaderViewDelegate,RootTableViewDelegate,RootTableViewFinished,HomeCellDelegate,ThemeCellDelegate,MyTabbarCtrllerDelegate,SEintroCellDelegate>
+@interface HomeController () <UITableViewDataSource,UITableViewDelegate,SuBaoHeaderViewDelegate,RootTableViewDelegate,HomeCellDelegate,ThemeCellDelegate,MyTabbarCtrllerDelegate,SEintroCellDelegate>
 {
     BOOL                bSwitchFlyword      ; // 弹幕开关   DEFAULT IS TRUE
     UIBarButtonItem     *m_switchButton     ;
-    
-    BOOL                bMoveToTop          ;
     
     long long           m_lastUpdateTime    ; // 首页最新的updateTime && 话题页
     
@@ -244,7 +242,7 @@
 
 - (void)userChanged
 {
-    [self.table pulldownManually] ;
+    [self.table pullDownRefreshHeader] ;
 }
 
 - (void)deleteArticleSuccessed:(NSNotification *)notification
@@ -307,9 +305,7 @@
 {
     if (!self.m_articleList.count) return ;
 
-    bMoveToTop = YES ;
-
-    [self.table pulldownManually] ;
+    [self.table pullDownRefreshHeader] ;
     [self.navigationController setNavigationBarHidden:NO animated:YES] ;
     [[UIApplication sharedApplication] setStatusBarHidden:NO] ;
 }
@@ -379,9 +375,10 @@
     _table.dataSource = self ;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone ;
     _table.backgroundColor = COLOR_BACKGROUND ;
-    _table.rootDelegate = self ;
-    _table.rootFinished = self ;
-    _table.hideHudForShowNothing = YES ;
+    _table.xt_Delegate = self ;
+    _table.automaticallyLoadMore = YES ;
+    
+//    _table.hideHudForShowNothing = YES ;
 }
 
 #pragma mark --
@@ -452,8 +449,6 @@
         //2 tabbar ctrller - double tap Homepage tabbarItem Delegate
         ((MyTabbarCtrller *)(self.tabBarController)).homePageDelegate = self ;
     }
-    
-    [self.table pulldownManually] ;
     
     if ([CommonFunc isFirstHomePage])
     {
@@ -559,7 +554,7 @@
                                                                     AndCount:SIZE_OF_PAGE] ;
     
     BOOL bHas = [self parserResult:result getNew:bUpDown] ;
-    self.table.isNetSuccess = (self.m_articleList.count > 0) ; // show No Network
+//    self.table.isNetSuccess = (self.m_articleList.count > 0) ; // show No Network
     
     if ( (bUpDown && !bHas) || (!bUpDown && !bHas) ) return NO ;
     
@@ -615,29 +610,14 @@
 
 #pragma mark --
 #pragma mark -- RootTableViewDelegate
-- (BOOL)doSthWhenfreshingHeader
+- (void)loadNewData
 {
     BOOL bSuccess = (!_topicID) ? [self getHomeInfoFromServerWithPullUpDown:YES] : [self getTopicDetailFromServerWithPullUpDown:YES] ;
-    return bSuccess ;
 }
 
-- (BOOL)doSthWhenfreshingFooter
+- (void)loadMoreData
 {
     BOOL hasNew = (!_topicID) ? [self getHomeInfoFromServerWithPullUpDown:NO] : [self getTopicDetailFromServerWithPullUpDown:NO] ;
-    return hasNew ;
-}
-
-- (void)headerRefreshFinished
-{
-    if (bMoveToTop && self.m_articleList.count)
-    {
-        bMoveToTop = NO ;
-        [self.table scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionNone animated:YES] ;
-    }
-}
-
-- (void)footerRefreshFinished
-{
 }
 
 #pragma mark --
@@ -739,14 +719,6 @@
     return nil ;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (!self.topicID) {
-        [self.table loadFooterInTableWillDisplayCellWithCurrentIndexRowOrSection:indexPath.section
-                                                                       ListCount:self.m_articleList.count + 1] ;
-    }
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger section = indexPath.section ;
@@ -840,11 +812,6 @@
 
 #pragma mark --
 #pragma mark - UIScrollViewDelegate Methods
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [_table rootTableScrollDidScroll:scrollView] ;
-}
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     if (self.topicID != 0) [self hidePostButton] ; // HIDE POST BUTTON
@@ -854,26 +821,13 @@
 {
     if (self.topicID != 0) {
         [self showPostButtonIfNeccessary] ; // SHOW POST BUTTON
-        
         return ; // BREAK IN topic ctrller
     }
-    
-    /*
-    if ( IS_IOS_VERSION(7.1) )   //   Unsupport  7.0
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-//            [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
-//            [self.navigationController setNavigationBarHidden:NO animated:YES] ;
-//            self.tabBarController.tabBar.hidden = NO ;
-        }) ;
-    }
-    */
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                   willDecelerate:(BOOL)decelerate
 {
-    [_table rootTableScrollDidEndDragging:scrollView] ;
     
     if (self.topicID != 0)
     {
@@ -907,7 +861,6 @@
                 self.tabBarController.tabBar.hidden = decelerate ;
             }) ;
         }
-        
     }
 }
 

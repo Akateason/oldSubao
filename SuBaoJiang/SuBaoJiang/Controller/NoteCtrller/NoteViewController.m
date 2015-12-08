@@ -107,7 +107,7 @@
     _table.dataSource       = self ;
     _table.backgroundColor  = COLOR_BACKGROUND ;
     _table.separatorColor   = COLOR_TABLE_SEP ;
-    _table.rootDelegate     = self ;
+    _table.xt_Delegate     = self ;
     
     [_table registerNib:[UINib nibWithNibName:IDENTIFIER_MYCMTCELL bundle:nil] forCellReuseIdentifier:IDENTIFIER_MYCMTCELL];
 }
@@ -118,7 +118,6 @@
     // Do any additional setup after loading the view.
     
     [self setup] ;
-    [self.table pulldownManually] ;
     [XTAnimation animationPushRight:self.view] ;
 }
 
@@ -321,30 +320,16 @@
 //    [XTAnimation smallBigBestInCell:cell] ;
 }
 
-#pragma mark --
-#pragma mark - UIScrollViewDelegate Methods
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self.table rootTableScrollDidScroll:scrollView] ;
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    [self.table rootTableScrollDidEndDragging:scrollView] ;
-}
-
 #pragma mark -- RootTableViewDelegate
-- (BOOL)doSthWhenfreshingHeader
+- (void)loadNewData
 {
-    return [self getMsgCmtFromServerWithPullUpDown:YES];
+    [self getMsgCmtFromServerWithPullUpDown:YES];
 }
 
-- (BOOL)doSthWhenfreshingFooter
+- (void)loadMoreData
 {
-    return [self getMsgCmtFromServerWithPullUpDown:NO] ;
+    [self getMsgCmtFromServerWithPullUpDown:NO] ;
 }
-
-
 
 /*
 #pragma mark - Navigation

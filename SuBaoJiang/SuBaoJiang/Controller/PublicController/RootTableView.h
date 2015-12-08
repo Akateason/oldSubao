@@ -1,62 +1,24 @@
 //
 //  RootTableView.h
-//  SuBaoJiang
+//  Demo_MjRefresh
 //
-//  Created by apple on 15/6/26.
-//  Copyright (c) 2015年 teason. All rights reserved.
+//  Created by TuTu on 15/12/3.
+//  Copyright © 2015年 teason. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "EGORefreshTableHeaderView.h"
-//#import "EGORefreshTableFooterView.h"
+
+#define TABLE_HEADER_IMAGES             @"sbj_"
+#define TABLE_HEADER_IMAGES_COUNT       3
 
 @protocol RootTableViewDelegate <NSObject>
-- (BOOL)doSthWhenfreshingHeader ;
-- (BOOL)doSthWhenfreshingFooter ;
+- (void)loadNewData ;
+- (void)loadMoreData ;
 @end
 
-@protocol RootTableViewFinished <NSObject>
-@optional
-- (void)headerRefreshFinished ;
-- (void)footerRefreshFinished ;
+@interface RootTableView : UITableView
+@property (nonatomic,weak) id <RootTableViewDelegate> xt_Delegate ; // SET myDelegate TO YOUR CTRLLER
+@property (nonatomic) BOOL showRefreshDetail ;      // DEFATULT IS `NO` -> ONLY GIF IMAGES , SHOW WORDS WHEN IT BECOMES `YES`
+@property (nonatomic) BOOL automaticallyLoadMore ;  // DEFAULT IS `NO` -> MANUALLY LOADING . AUTOMATICALLY LOAD WHEN IT BECOMES `YES`
+- (void)pullDownRefreshHeader ;
 @end
-
-@interface RootTableView : UITableView <EGORefreshTableHeaderDelegate>
-{
-    EGORefreshTableHeaderView   *_refreshHeaderView ;
-    BOOL                        _reloadingHead      ;
-    BOOL                        _reloadingFoot      ;
-}
-
-@property (nonatomic,weak) id <RootTableViewDelegate> rootDelegate ;
-@property (nonatomic,weak) id <RootTableViewFinished> rootFinished ;
-
-@property (nonatomic)       BOOL    shutDownManualPullFooter ;
-@property (nonatomic)       BOOL    hideHudForShowNothing ;
-
-/*
- ** default NO ;
- ** if YES     : when no data is return  , show a img in the front ;
- **/
-@property (nonatomic) BOOL isNetSuccess ;
-
-/*
- **  pull down Manually and fresh header
- **/
-- (void)pulldownManually ;
-
-/*
- **  write in scroll view delegate
- **/
-- (void)rootTableScrollDidScroll:(UIScrollView *)scrollView ;
-- (void)rootTableScrollDidEndDragging:(UIScrollView *)scrollView ;
-
-/*
- ** write in tableview delegate
- **/
-- (void)loadFooterInTableWillDisplayCellWithCurrentIndexRowOrSection:(NSInteger)currentIndex
-                                                           ListCount:(NSInteger)count ;
-
-@end
-
-
