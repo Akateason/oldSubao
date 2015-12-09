@@ -59,7 +59,12 @@
 //    CGSize size = bSuEx ? CGSizeMake(APPFRAME.size.width - 90.0 - 8.0 - 32.0, 55.0) : CGSizeMake(APPFRAME.size.width - 90.0 - 8.0 - 8.0f, 55.0) ;
     CGSize size = bSuEx ? CGSizeMake(APPFRAME.size.width - 8.0 - 32.0, 55.0) : CGSizeMake(APPFRAME.size.width - 8.0 - 8.0f, 55.0) ;
     
-    CGSize labelsize = [article.a_title sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+//    CGSize labelsize = [article.a_title sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelsize = [article.a_title boundingRectWithSize:size
+                                                     options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                  attributes:@{NSFontAttributeName : font}
+                                                     context:nil].size ;
+    
     
     CGFloat lbHeight = labelsize.height ;
     if (lbHeight < 24.0)

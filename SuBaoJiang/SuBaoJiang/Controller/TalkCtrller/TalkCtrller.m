@@ -47,7 +47,6 @@
 
 - (void)setup
 {
-    self.myTable            = _table ;
     _table.delegate         = self ;
     _table.dataSource       = self ;
     _table.backgroundColor  = COLOR_BACKGROUND ;

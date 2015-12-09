@@ -59,7 +59,7 @@
     long long inputLength = [inputData length];
     const unsigned char *inputBytes = [inputData bytes];
     
-    long long maxOutputLength = (inputLength / 4 + 1) * 3;
+    NSUInteger maxOutputLength = ((NSUInteger)inputLength / 4 + 1) * 3;
     NSMutableData *outputData = [NSMutableData dataWithLength:maxOutputLength];
     unsigned char *outputBytes = (unsigned char *)[outputData mutableBytes];
 

@@ -7,8 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import <AudioToolbox/AudioToolbox.h>
-//#import <AVFoundation/AVFoundation.h>
 #import "ColorsHeader.h"
 #import "DigitInformation.h"
 #import "XTAnimation.h"
@@ -17,38 +15,36 @@
 #import "YXSpritesLoadingView.h"
 #import "XTHudManager.h"
 #import "RootTableView.h"
+#import "XTNetReloader.h"
 
 
 @interface RootCtrl : UIViewController
 
-//@property (retain, nonatomic) AVAudioPlayer *avPlay;
+#pragma mark - title for Umeng Anaylize .
+@property (nonatomic,copy)   NSString      *myTitle ;
 
-@property (nonatomic,strong) UITableView   *myTable ;
-/*
-** default NO ;
-** if YES     : when no data is return  , show a img in the front ;
-**/
-@property (nonatomic,assign) BOOL          isNetSuccess ;
+#pragma mark - xtNetReloader
+- (void)showNetReloaderWithReloadButtonClickBlock:(ReloadButtonClickBlock)reloadBlock ;
+- (void)dismissNetReloader ;
 
-#pragma mark - show guiding
+#pragma mark - show guiding Image list . teach users how to use app .
 @property (nonatomic,strong) NSArray       *guidingStrList ;
 @property (nonatomic)        int           guidingIndex ;
 
 #pragma mark - Set No Back BarButton
-/** default NO ;
+/*
+ *  Default is NO
  *  IF YES , delete all bar buttons
  */
 @property (nonatomic)        BOOL          isDelBarButton ;
-
-#pragma mark - talkingData title
-@property (nonatomic,copy)   NSString      *myTitle ;
 
 #pragma mark - hide tab bar
 - (void)makeTabBarHidden:(BOOL)hide ;
 - (void)makeTabBarHidden:(BOOL)hide animated:(BOOL)animated ;
 
 #pragma mark - click back button in NavgationBar
-@property (nonatomic)        BOOL           bOpenClickBackButtonCallBack ; // default is NO, YES when you have to implemete SEL - iClickedBackButton in ctrller .
-- (void)iClickedBackButton ;
+// default is NO, YES when you have to rewrite @SEL - iClickedBackButton in ctrller .
+@property (nonatomic)        BOOL           bOpenClickBackButtonCallBack ;
+- (void)iClickedBackButton ; // rewrite this func if necessary .
 
 @end

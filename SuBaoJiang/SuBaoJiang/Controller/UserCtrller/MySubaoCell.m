@@ -129,7 +129,11 @@
     
     BOOL isMulty = [arti isMultyStyle] ;
     NSString *strShow = isMulty ? arti.a_title : arti.a_content ;
-    CGSize labelsize = [strShow sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
+    
+    CGSize labelsize = [strShow boundingRectWithSize:size
+                                             options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                          attributes:@{NSFontAttributeName:font}
+                                             context:nil].size ;    
     
     CGFloat wdH ;
     if (labelsize.height < 37) {

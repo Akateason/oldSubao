@@ -25,7 +25,7 @@
     MODE_bind mode =  [[CommonFunc getBindMode] intValue] ;
     
     switch (mode) {
-        case 0:
+        case mode_none:
         {
             _lb_content.text = @"未绑定" ;
         }

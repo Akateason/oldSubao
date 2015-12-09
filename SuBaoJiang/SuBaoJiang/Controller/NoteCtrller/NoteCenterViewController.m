@@ -196,7 +196,6 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
     _table.xt_Delegate     = self ;
     
     [_table registerNib:[UINib nibWithNibName:IDENTIFIER_NoteAlamCell bundle:nil] forCellReuseIdentifier:IDENTIFIER_NoteAlamCell];
-    
     [_table registerNib:[UINib nibWithNibName:IDENTIFIER_NoteInfoCell bundle:nil] forCellReuseIdentifier:IDENTIFIER_NoteInfoCell];
 }
 
@@ -414,8 +413,6 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
         cell.selectedBackgroundView.backgroundColor = COLOR_NOTE_BACKGROUND ;
     }
     
-//    cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    
     return cell ;
 }
 
@@ -555,7 +552,7 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
 #pragma mark -- RootTableViewDelegate
 - (void)loadNewData
 {
-    [self getMsgCmtFromServerWithPullUpDown:YES];
+    [self getMsgCmtFromServerWithPullUpDown:YES] ;
 }
 
 - (void)loadMoreData

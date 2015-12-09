@@ -235,11 +235,8 @@
     _table.delegate = self ;
     _table.dataSource = self ;
     _table.separatorColor = COLOR_TABLE_SEP ;
-    
-//    _table.hideHudForShowNothing = YES ;
-    
-//    _table.separatorStyle = UITableViewCellSeparatorStyleNone ;
     _table.xt_Delegate = self ;
+    _table.automaticallyLoadNew = NO ;
     
     // long press gesture
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self
@@ -733,7 +730,14 @@
 #pragma mark -- RootTableViewDelegate
 - (void)loadNewData
 {
-    [self getFromServer]  ;
+    BOOL bHas = [self getFromServer]  ;
+    if (!bHas) {
+        [self showNetReloaderWithReloadButtonClickBlock:^{
+            [self loadNewData] ;
+        }] ;
+    } else {
+        [self dismissNetReloader] ;
+    }
 }
 - (void)loadMoreData
 {

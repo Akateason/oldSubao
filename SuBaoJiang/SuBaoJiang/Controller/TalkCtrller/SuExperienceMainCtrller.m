@@ -45,7 +45,6 @@
 #pragma mark - initial
 - (void)setup
 {
-    self.myTable            = _table ;
     _table.delegate         = self ;
     _table.dataSource       = self ;
     _table.xt_Delegate     = self ;
@@ -84,13 +83,11 @@
     [super viewDidAppear:animated] ;
 }
 
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark --
 #pragma mark - parser

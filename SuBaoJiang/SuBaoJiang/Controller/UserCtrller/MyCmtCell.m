@@ -96,7 +96,10 @@
     
     UIFont *font = [UIFont systemFontOfSize:12.0f];
     CGSize size = CGSizeMake(contentWid,200);
-    CGSize labelsize = [content sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeCharacterWrap];
+    CGSize labelsize = [content boundingRectWithSize:size
+                                             options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                          attributes:@{NSFontAttributeName:font}
+                                             context:nil].size ;
     
     if (labelsize.height < 15) {
         labelsize.height = 15 ;

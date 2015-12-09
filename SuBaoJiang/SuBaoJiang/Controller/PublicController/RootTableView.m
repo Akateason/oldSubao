@@ -59,8 +59,6 @@
     [header setImages:pullingImages forState:MJRefreshStatePulling];
     [header setImages:refreshingImages forState:MJRefreshStateRefreshing];
     self.mj_header = header;
-
-    [self.mj_header beginRefreshing];
     
     MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreDataSelector)];
     [footer setImages:idleImages forState:MJRefreshStateIdle];
@@ -73,6 +71,7 @@
 {
     self.showRefreshDetail = NO ;
     self.automaticallyLoadMore = NO ;
+    self.automaticallyLoadNew = YES ;
 }
 
 #pragma mark --
@@ -98,6 +97,18 @@
         autofooter.triggerAutomaticallyRefreshPercent = 0.55 ;
         self.mj_footer = autofooter;
     }
+}
+
+- (void)setAutomaticallyLoadNew:(BOOL)automaticallyLoadNew
+{
+    _automaticallyLoadNew = automaticallyLoadNew ;
+    
+    if (_automaticallyLoadNew) {
+        [self.mj_header beginRefreshing] ;
+    } else {
+        [self.mj_header endRefreshing] ;
+    }
+    
 }
 
 #pragma mark - Private

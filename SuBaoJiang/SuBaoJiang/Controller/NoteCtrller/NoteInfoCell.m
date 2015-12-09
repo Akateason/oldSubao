@@ -32,9 +32,11 @@
     CGFloat width_lbContent = APPFRAME.size.width - 86.0 - 20.0 ;
     UIFont *font = [UIFont systemFontOfSize:15.0f];
     CGSize size = CGSizeMake(width_lbContent,300.0);
-    CGSize labelsize = [msg.msg_content sizeWithFont:font
-                                   constrainedToSize:size
-                                       lineBreakMode:UILineBreakModeWordWrap];
+    CGSize labelsize = [msg.msg_content boundingRectWithSize:size
+                                                     options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                                  attributes:@{NSFontAttributeName:font}
+                                                     context:nil].size ;
+
     CGFloat height_lbContent = (labelsize.height < 18.0) ? 18.0 : labelsize.height;
     
     CGFloat onlyWordsHeight = 45.0 + height_lbContent + 18.0 ;

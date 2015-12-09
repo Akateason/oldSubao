@@ -30,10 +30,7 @@
     self = [super initWithCoder:coder] ;
     if (self)
     {
-        self.backgroundColor = COLOR_MAIN ;
-        self.layer.cornerRadius = CORNER_RADIUS_ALL ;
-        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
-        [self setFont:[UIFont boldSystemFontOfSize:FONT_SIZE_PINKBUTTON]] ;
+        [self setup] ;
     }
     
     return self;
@@ -44,14 +41,18 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        self.backgroundColor = COLOR_MAIN ;
-        self.layer.cornerRadius = CORNER_RADIUS_ALL ;
-        [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
-        [self setFont:[UIFont boldSystemFontOfSize:FONT_SIZE_PINKBUTTON]] ;
+        [self setup] ;
     }
     return self;
 }
 
+- (void)setup
+{
+    self.backgroundColor = COLOR_MAIN ;
+    self.layer.cornerRadius = CORNER_RADIUS_ALL ;
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal] ;
+    self.titleLabel.font = [UIFont boldSystemFontOfSize:FONT_SIZE_PINKBUTTON] ;
 
+}
 
 @end

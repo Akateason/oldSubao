@@ -8,6 +8,7 @@
 
 // 绑定 模式
 typedef enum {
+    mode_none       = 0 ,
     mode_weibo      = 1 ,
     mode_weixin
 } MODE_bind ;

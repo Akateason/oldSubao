@@ -29,21 +29,21 @@
 
     NSDateComponents *comps = [self shareComps];
     
-    return [comps year];
+    return (int)[comps year];
 }
 
 - (int)getMonth
 {
     NSDateComponents *comps = [self shareComps];
     
-    return [comps month];
+    return (int)[comps month];
 }
 
 - (int)getDay
 {
     NSDateComponents *comps = [self shareComps];
     
-    return [comps day];
+    return (int)[comps day];
 }
 
 

@@ -189,7 +189,7 @@
     if (mTotalWidth <= 320) return ;
     
 //    NSString *title = [_mItemInfoArray objectAtIndex:aIndex];
-    float vButtonOrigin = [self getTotalWidthWithIndex:aIndex] ;
+    float vButtonOrigin = [self getTotalWidthWithIndex:(int)aIndex] ;
     
     if (vButtonOrigin >= 300)
     {

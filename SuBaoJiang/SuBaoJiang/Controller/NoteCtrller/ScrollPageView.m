@@ -90,7 +90,7 @@
 
 - (void)updateAlreadyWithIndex:(NSInteger)index
 {
-    [self.delegate clearTopSegForPrepageIndex:index] ;
+    [self.delegate clearTopSegForPrepageIndex:(int)index] ;
     
 //    switch (index)
 //    {
@@ -191,7 +191,7 @@
 {
     mNeedUseDelegate = NO;
     
-    self.prePage = mCurrentPage ;
+    self.prePage = (int)mCurrentPage ;
     mCurrentPage = aIndex;
     
     [self moveToNewPage] ;
@@ -214,7 +214,7 @@
     
     if (mNeedUseDelegate)
     {
-        self.prePage = mCurrentPage ;
+        self.prePage = (int)mCurrentPage ;
     }
     
     mCurrentPage = page;

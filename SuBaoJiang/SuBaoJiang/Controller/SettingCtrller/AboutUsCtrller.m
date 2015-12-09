@@ -65,8 +65,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int section = indexPath.section ;
-    int row     = indexPath.row ;
+    int section = (int)indexPath.section ;
+    int row     = (int)indexPath.row ;
     
     if (!section)
     {
@@ -111,8 +111,8 @@
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int section = indexPath.section ;
-    int row     = indexPath.row ;
+    int section = (int)indexPath.section ;
+    int row     = (int)indexPath.row ;
     
     if (!section) return ;
     

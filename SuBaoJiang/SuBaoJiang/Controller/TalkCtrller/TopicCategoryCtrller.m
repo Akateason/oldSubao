@@ -43,7 +43,6 @@
 #pragma mark - initial
 - (void)setup
 {
-    self.myTable            = _table ;
     _table.delegate         = self ;
     _table.dataSource       = self ;
     _table.xt_Delegate     = self ;

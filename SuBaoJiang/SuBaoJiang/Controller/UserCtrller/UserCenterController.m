@@ -254,14 +254,10 @@
 
 - (void)setup
 {
-    self.myTable = _table ;
     _table.delegate = self ;
     _table.dataSource = self ;
-
     _table.separatorStyle = UITableViewCellSeparatorStyleNone ;
-    _table.backgroundColor = COLOR_BACKGROUND ;
-//    _table.rootDelegate = self ;
-    
+    _table.backgroundColor = COLOR_BACKGROUND ;    
     _table.rowHeight = UITableViewAutomaticDimension;
 }
 

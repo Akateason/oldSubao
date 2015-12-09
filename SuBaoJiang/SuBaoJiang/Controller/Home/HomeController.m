@@ -548,14 +548,10 @@
 - (BOOL)getHomeInfoFromServerWithPullUpDown:(BOOL)bUpDown
 {
     if (bUpDown) m_lastUpdateTime = 0;
-    
     ResultParsered *result = [ServerRequest getHomePageInfoResultWithSinceID:0
                                                                     AndMaxID:m_lastUpdateTime
                                                                     AndCount:SIZE_OF_PAGE] ;
-    
     BOOL bHas = [self parserResult:result getNew:bUpDown] ;
-//    self.table.isNetSuccess = (self.m_articleList.count > 0) ; // show No Network
-    
     if ( (bUpDown && !bHas) || (!bUpDown && !bHas) ) return NO ;
     
     return YES   ;
@@ -613,6 +609,16 @@
 - (void)loadNewData
 {
     BOOL bSuccess = (!_topicID) ? [self getHomeInfoFromServerWithPullUpDown:YES] : [self getTopicDetailFromServerWithPullUpDown:YES] ;
+    
+    BOOL isNetSuccess = (self.m_articleList.count > 0) ; // show No Network
+    if (!isNetSuccess) {
+        [self showNetReloaderWithReloadButtonClickBlock:^{
+            [self.table pullDownRefreshHeader] ;
+        }] ;
+    }
+    else {
+        [self dismissNetReloader] ;
+    }
 }
 
 - (void)loadMoreData
