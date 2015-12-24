@@ -10,42 +10,55 @@
 
 @implementation NSDate (Addition)
 
-
 - (NSDateComponents *)shareComps
 {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit ;
+    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond ;
     NSDateComponents *comps = [calendar components:unitFlags fromDate:self];
-    
     return comps;
 }
 
 - (int)getYear
 {
-//    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-//    NSDateComponents *comps = [[NSDateComponents alloc] init];
-//    NSInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit ;
-//    comps = [calendar components:unitFlags fromDate:self];
-
     NSDateComponents *comps = [self shareComps];
-    
-    return (int)[comps year];
+    NSInteger year = [comps year] ;
+    return (int)year ;
 }
 
 - (int)getMonth
 {
     NSDateComponents *comps = [self shareComps];
-    
-    return (int)[comps month];
+    NSInteger month = [comps month] ;
+    return (int)month ;
 }
 
 - (int)getDay
 {
     NSDateComponents *comps = [self shareComps];
-    
-    return (int)[comps day];
+    NSInteger day = [comps day] ;
+    return (int)day ;
 }
 
+- (int)getHour
+{
+    NSDateComponents *comps = [self shareComps];
+    NSInteger hour = [comps hour] ;
+    return (int)hour ;
+}
+
+- (int)getMinute
+{
+    NSDateComponents *comps = [self shareComps];
+    NSInteger minute = [comps minute] ;
+    return (int)minute ;
+}
+
+- (int)getSecond
+{
+    NSDateComponents *comps = [self shareComps];
+    NSInteger second = [comps second] ;
+    return (int)second ;
+}
 
 + (int)daysInMonth:(int)imonth year:(int)year
 {

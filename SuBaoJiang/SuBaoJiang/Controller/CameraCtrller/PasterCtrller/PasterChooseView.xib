@@ -47,7 +47,7 @@
                 <outlet property="imgPaster" destination="hg7-QM-Xdy" id="21X-tC-4Pr"/>
                 <outlet property="lb_namePaster" destination="uLL-e9-LCr" id="S1U-Ty-FlE"/>
             </connections>
-            <point key="canvasLocation" x="248" y="148.5"/>
+            <point key="canvasLocation" x="337" y="178.5"/>
         </view>
     </objects>
 </document>
