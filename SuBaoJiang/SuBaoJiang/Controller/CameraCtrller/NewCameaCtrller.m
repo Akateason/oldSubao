@@ -7,13 +7,13 @@
 //
 
 #import "NewCameaCtrller.h"
+#import <TuSDK/TuSDK.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "PostSubaoCtrller.h"
 #import "NavLogCtller.h"
 #import "CameraGroupCtrller.h"
 #import "EditPrepareCtrller.h"
-#import <TuSDK/TuSDK.h>
 #import "MultyPicChooseBar.h"
 #import "PhotosPreviewCtrller.h"
 #import "Article.h"
@@ -398,8 +398,7 @@ static long photoCount = 0 ;
         }
 
         ALAsset *asset = (ALAsset *)self.imageList[row - 1] ;
-//        cell.img.image = [UIImage fetchFromLibrary:asset] ;
-
+        
 //        CGImageRef thum = [asset thumbnail] ;
 //        cell.img.image = [UIImage imageWithCGImage:thum] ;
         
@@ -412,9 +411,8 @@ static long photoCount = 0 ;
         cell.picSelected = [self thisPhotoIsSelectedWithRow:row] ;
         
         ALAsset *asset = (ALAsset *)self.imageList[row] ;
-//        cell.img.image = [UIImage fetchFromLibrary:asset] ;
 
-//        CGImageRef thum = [asset aspectRatioThumbnail];
+//        CGImageRef thum = [asset thumbnail] ;
 //        cell.img.image = [UIImage imageWithCGImage:thum] ;
         
         CGImageRef thum = [asset aspectRatioThumbnail] ;
@@ -429,14 +427,6 @@ static long photoCount = 0 ;
     CGFloat slider = ( APPFRAME.size.width - COLUMN_FLEX * 4.0 ) / 3.0 ;
     return CGSizeMake(slider, slider) ;
 }
-
-// The view that is returned must be retrieved from a call to -dequeueReusableSupplementaryViewOfKind:withReuseIdentifier:forIndexPath:
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
-//           viewForSupplementaryElementOfKind:(NSString *)kind
-//                                 atIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -494,6 +484,7 @@ static long photoCount = 0 ;
 #pragma mark - Open camera TuSDK
 - (void)openCamera
 {
+    
     // 开启访问相机权限
     [TuSDKTSDeviceSettings checkAllowWithType:lsqDeviceSettingsCamera
                                     completed:^(lsqDeviceSettingsType type, BOOL openSetting)

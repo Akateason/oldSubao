@@ -26,6 +26,7 @@
 #import "CommonFunc.h"
 #import "UIImageView+WebCache.h"
 #import "NotificationCenterHeader.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 #define SIZE_OF_PAGE        20
 
@@ -95,9 +96,7 @@
     BOOL isKindOfTopicCtrller = [ctrller isKindOfClass:[HomeController class]] ;
     if (isKindOfTopicCtrller) { // current ctrller is Topic
         BOOL isSameTopic = ((HomeController *)ctrller).topic.t_id == topic.t_id ;
-        if (isSameTopic) { // same Topic Not Jump
-            return ;
-        }
+        if (isSameTopic) return ; // same Topic Not Jump
     }
     
     [[UIApplication sharedApplication] setStatusBarHidden:NO] ;
@@ -229,7 +228,6 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(freshTableWithArticle:) name:NSNOTIFICATION_ARTICLE_REFRESH object:nil] ;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userChanged) name:NSNOTIFICATION_USER_CHANGE object:nil] ;
     }
-    
     return self;
 }
 
@@ -239,7 +237,6 @@
 }
 
 #pragma mark -- Notificaiton center
-
 - (void)userChanged
 {
     [self.table pullDownRefreshHeader] ;
@@ -311,7 +308,6 @@
 }
 
 #pragma mark -- SEintroCellDelegate
-// need to calculate height in super controller .
 - (void)topicDetailImageFetchingFinished
 {
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -377,20 +373,17 @@
     _table.backgroundColor = COLOR_BACKGROUND ;
     _table.xt_Delegate = self ;
     _table.automaticallyLoadMore = YES ;
-    
-//    _table.hideHudForShowNothing = YES ;
+//    _table.showsVerticalScrollIndicator = NO ;
 }
 
 #pragma mark --
 - (void)putNavBarItem
 {
     bSwitchFlyword = YES ;
-
     m_switchButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"fw_hide"]
                                                       style:UIBarButtonItemStylePlain
                                                      target:self
                                                      action:@selector(switchButtonPressedAction:)] ;
-    
     self.navigationItem.rightBarButtonItem = m_switchButton ;
 }
 
@@ -421,8 +414,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    self.edgesForExtendedLayout = UIRectEdgeNone ;    
-
     // initial
     [self setup] ;
     [self putNavBarItem] ;
@@ -497,11 +488,6 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO] ;
 }
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated] ;
-}
-
 #pragma mark --
 #pragma mark - parser Home Info
 - (BOOL)parserResult:(ResultParsered *)result
@@ -526,7 +512,7 @@
         
         m_lastUpdateTime = ((Article *)[self.m_articleList lastObject]).a_updatetime ;
     }
-
+    
     @synchronized (self.m_themesList)
     {
         //2 get themes
@@ -570,10 +556,9 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         _titleView.titleStr = [result.info objectForKey:@"topic"] ;
     }) ;
-    
+    //3 Get article
     @synchronized (self.m_articleList)
     {
-        //3 Get article
         NSArray *tempArticleList = [result.info objectForKey:@"articles"] ;
         if (!tempArticleList.count) return NO ;
         for (NSDictionary *articleDic in tempArticleList) {
@@ -582,7 +567,7 @@
         }
         m_lastUpdateTime = ((Article *)[self.m_articleList lastObject]).a_updatetime ;
     }
-
+    
     return YES ;
 }
 
@@ -650,7 +635,6 @@
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"nil"];
     }
-    
     return cell ;
 }
 
@@ -664,7 +648,6 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
     cell.themesList = self.m_themesList ;
     cell.delegate = self ;
-
     return cell ;
 }
 
@@ -678,26 +661,28 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
     cell.strImg = self.topic.t_detail ;
     cell.delegate = self ;
-    
     return cell ;
 }
 
 - (HomeCell *)getHomeCellWithIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger section = indexPath.section ;
     HomeCell * cell = [_table dequeueReusableCellWithIdentifier:HomeCellID] ;
-    if (!cell)
-    {
+    if (!cell) {
         cell = [_table dequeueReusableCellWithIdentifier:HomeCellID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    @synchronized (self.m_articleList) {
-        cell.article = (Article *)self.m_articleList[section - 1] ;
-    }
-    cell.isflywordShow = bSwitchFlyword ;
     cell.delegate = self ;
-    
+    cell.isflywordShow = bSwitchFlyword ;
+    [self configureHomeCell:cell atIndexPath:indexPath] ;
     return cell ;
+}
+
+- (void)configureHomeCell:(HomeCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    cell.fd_enforceFrameLayout = YES ; // Enable to use "-sizeThatFits:"
+    @synchronized (self.m_articleList) {
+        cell.article = (Article *)self.m_articleList[indexPath.section - 1] ;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -721,7 +706,6 @@
     {
         return [self getHomeCellWithIndexPath:indexPath] ;
     }
-    
     return nil ;
 }
 
@@ -736,22 +720,18 @@
         }
         else if (self.topic && ![self.topic.t_detail isEqualToString:@""])
         {
-            CGFloat height = [SEintroCell calculateHeightWithPicKeys:self.topic.t_detail] ;
-            NSLog(@"dHeight : %@",@(height)) ;
-            return height ;
+            return [SEintroCell calculateHeightWithPicKeys:self.topic.t_detail] ;
         }
         else
         {
             return NONE_HEIGHT ;
         }        
     }
-    
     @synchronized (self.m_articleList) {
-        Article  *currentArticle    = (Article *)self.m_articleList[section - 1] ;
-        NSString *strAttriComment   = [currentArticle getStrCommentContent] ;
-        return [HomeCell calculateHomeCellHeight:strAttriComment] ;
+        return [tableView fd_heightForCellWithIdentifier:HomeCellID cacheByIndexPath:indexPath configuration:^(HomeCell *cell) {
+            [self configureHomeCell:cell atIndexPath:indexPath] ;
+        }] ;
     }
-    
 }
 
 #pragma mark - Table view delegate
@@ -767,7 +747,7 @@
         CGRect rectInView = [tableView convertRect:rectTableView toView:self.view] ;
         self.imgTempWillSend = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:articleTemp.img
                                                                           withCacheWidth:APPFRAME.size.width] ;
-
+        
         self.fromRect = CGRectMake(0 ,
                                    rectInView.origin.y ,
                                    APPFRAME.size.width ,
@@ -834,13 +814,11 @@
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                   willDecelerate:(BOOL)decelerate
 {
-    
     if (self.topicID != 0)
     {
         if (!decelerate) {
             [self showPostButtonIfNeccessary] ; // SHOW POST BUTTON
         }
-        
         return ; // BREAK IN topic ctrller
     }
     
@@ -858,7 +836,6 @@
                 self.tabBarController.tabBar.hidden = NO ;
             }) ;
         }
-//        else if (translation.y < - flex)
         else
         {
             dispatch_async(dispatch_get_main_queue(), ^{

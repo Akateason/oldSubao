@@ -407,6 +407,10 @@
 		D733EB5C1BAA6B2700363235 /* UEHeadPicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D733EB5A1BAA6B2700363235 /* UEHeadPicCell.xib */; };
 		D733EB651BAA783B00363235 /* UEKeyValCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D733EB631BAA783B00363235 /* UEKeyValCell.m */; };
 		D733EB661BAA783B00363235 /* UEKeyValCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D733EB641BAA783B00363235 /* UEKeyValCell.xib */; };
+		D75CC73F1C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC7381C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m */; };
+		D75CC7401C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC73A1C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m */; };
+		D75CC7411C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC73C1C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m */; };
+		D75CC7421C310E4300E590E6 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC73E1C310E4300E590E6 /* UITableView+FDTemplateLayoutCellDebug.m */; };
 		D7674D351B6A0CDE0090B760 /* TopicCategoryCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = D7674D341B6A0CDE0090B760 /* TopicCategoryCtrller.m */; };
 		D7674D391B6A11A50090B760 /* TopicCateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7674D371B6A11A50090B760 /* TopicCateCell.m */; };
 		D7674D3A1B6A11A50090B760 /* TopicCateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7674D381B6A11A50090B760 /* TopicCateCell.xib */; };
@@ -1198,6 +1202,14 @@
 		D733EB621BAA783B00363235 /* UEKeyValCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UEKeyValCell.h; path = Controller/UserCtrller/UEKeyValCell.h; sourceTree = "<group>"; };
 		D733EB631BAA783B00363235 /* UEKeyValCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UEKeyValCell.m; path = Controller/UserCtrller/UEKeyValCell.m; sourceTree = "<group>"; };
 		D733EB641BAA783B00363235 /* UEKeyValCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UEKeyValCell.xib; path = Controller/UserCtrller/UEKeyValCell.xib; sourceTree = "<group>"; };
+		D75CC7371C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
+		D75CC7381C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
+		D75CC7391C310E4300E590E6 /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
+		D75CC73A1C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDKeyedHeightCache.m"; sourceTree = "<group>"; };
+		D75CC73B1C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCell.h"; sourceTree = "<group>"; };
+		D75CC73C1C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCell.m"; sourceTree = "<group>"; };
+		D75CC73D1C310E4300E590E6 /* UITableView+FDTemplateLayoutCellDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDTemplateLayoutCellDebug.h"; sourceTree = "<group>"; };
+		D75CC73E1C310E4300E590E6 /* UITableView+FDTemplateLayoutCellDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDTemplateLayoutCellDebug.m"; sourceTree = "<group>"; };
 		D7674D331B6A0CDE0090B760 /* TopicCategoryCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicCategoryCtrller.h; path = Controller/TalkCtrller/TopicCategoryCtrller.h; sourceTree = "<group>"; };
 		D7674D341B6A0CDE0090B760 /* TopicCategoryCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicCategoryCtrller.m; path = Controller/TalkCtrller/TopicCategoryCtrller.m; sourceTree = "<group>"; };
 		D7674D361B6A11A50090B760 /* TopicCateCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopicCateCell.h; path = Controller/TalkCtrller/TopicCateCell.h; sourceTree = "<group>"; };
@@ -2259,6 +2271,7 @@
 		18D697CB1B1C714900BC9475 /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				D75CC7351C310E4300E590E6 /* FDTemplateLayoutCell */,
 				D7E8FDCC1C16BFFD005E908F /* MJRefresh */,
 				D7FDB7B91BB15BA7004046A6 /* HWWeakerTimer */,
 				18B65AAF1B9D374900228E02 /* SGFoucusImageFrame */,
@@ -3045,6 +3058,29 @@
 			name = SubUserCenterCtrl;
 			sourceTree = "<group>";
 		};
+		D75CC7351C310E4300E590E6 /* FDTemplateLayoutCell */ = {
+			isa = PBXGroup;
+			children = (
+				D75CC7361C310E4300E590E6 /* Classes */,
+			);
+			path = FDTemplateLayoutCell;
+			sourceTree = "<group>";
+		};
+		D75CC7361C310E4300E590E6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				D75CC7371C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.h */,
+				D75CC7381C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m */,
+				D75CC7391C310E4300E590E6 /* UITableView+FDKeyedHeightCache.h */,
+				D75CC73A1C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m */,
+				D75CC73B1C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.h */,
+				D75CC73C1C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m */,
+				D75CC73D1C310E4300E590E6 /* UITableView+FDTemplateLayoutCellDebug.h */,
+				D75CC73E1C310E4300E590E6 /* UITableView+FDTemplateLayoutCellDebug.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		D7674D321B6A0CA70090B760 /* TopicCategoryCtrller */ = {
 			isa = PBXGroup;
 			children = (
@@ -3477,6 +3513,7 @@
 				18B65AB41B9D374900228E02 /* SGFocusImageFrame.m in Sources */,
 				18D69A4B1B1C757A00BC9475 /* ImageScrollView.m in Sources */,
 				D7674D431B6B4E710090B760 /* SEintroCell.m in Sources */,
+				D75CC7411C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m in Sources */,
 				18A69AF81B560A2D00152743 /* CameraGroupCell.m in Sources */,
 				18D2DDD91B82FDF6005636DF /* PostMoreCell.m in Sources */,
 				1848A7D31B32A6910063C177 /* RegisterCtrller.m in Sources */,
@@ -3543,12 +3580,14 @@
 				187CCEAA1B203B8400360B54 /* AFURLRequestSerialization.m in Sources */,
 				18D690CF1B1C440000BC9475 /* main.m in Sources */,
 				18D699D91B1C714A00BC9475 /* ELCAsset.m in Sources */,
+				D75CC73F1C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m in Sources */,
 				18EC3E911B72083A0041E9DB /* CutCtrller.m in Sources */,
 				18D699911B1C714A00BC9475 /* MySearchBar.m in Sources */,
 				18D699CE1B1C714A00BC9475 /* XHPathCover.m in Sources */,
 				184C1D8B1B86DEE80033CC4C /* DraftTB.m in Sources */,
 				18D699EB1B1C714A00BC9475 /* FMResultSet.m in Sources */,
 				18AAFCDC1BA692CF00901A15 /* Paster.m in Sources */,
+				D75CC7421C310E4300E590E6 /* UITableView+FDTemplateLayoutCellDebug.m in Sources */,
 				18E3ADD21B6F576400E7B46B /* NoteInfoCell.m in Sources */,
 				18E3CEF91B70713C00F4DB52 /* NoteCenterViewController.m in Sources */,
 				187CCEEF1B26DEB300360B54 /* UserCenterController.m in Sources */,
@@ -3667,6 +3706,7 @@
 				18CAC0241B84241C0004D4F2 /* PhotosPreviewCtrller.m in Sources */,
 				18C2C5B81B50EE9D00A27429 /* MyCell.m in Sources */,
 				18D699DB1B1C714A00BC9475 /* ELCAssetTablePicker.m in Sources */,
+				D75CC7401C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				18D965861B395673007A9CC1 /* SettingKVCell.m in Sources */,
 				18D9657D1B394BAA007A9CC1 /* SettingCtrller.m in Sources */,
 				D7E8FDFF1C16BFFD005E908F /* MJRefreshAutoNormalFooter.m in Sources */,

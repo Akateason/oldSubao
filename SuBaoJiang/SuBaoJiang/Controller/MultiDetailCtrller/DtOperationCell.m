@@ -159,7 +159,7 @@
     _bt_more.hidden = !superArticle.a_id  ;
     if (!superArticle.a_id)
     {
-        _lb_topicsAndContent.text = @"" ; //@"暂无" ;
+        _lb_topicsAndContent.text = @"" ;
         return ;
     }
     

@@ -23,7 +23,6 @@
 
 #pragma mark --
 #pragma mark - Initialization
-
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
     self = [super initWithCoder:coder];
@@ -94,7 +93,7 @@
         self.mj_footer = nil ;
         MJRefreshAutoFooter *autofooter = [MJRefreshAutoFooter footerWithRefreshingTarget:self
                                                                          refreshingAction:@selector(loadMoreDataSelector)] ;
-        autofooter.triggerAutomaticallyRefreshPercent = 0.55 ;
+        autofooter.triggerAutomaticallyRefreshPercent = 0.1 ;
         self.mj_footer = autofooter;
     }
 }
@@ -153,7 +152,6 @@
             [self.xt_Delegate loadMoreData] ;
             [self footerEnding] ;
         }) ;
-        
         return ;
     }
     else

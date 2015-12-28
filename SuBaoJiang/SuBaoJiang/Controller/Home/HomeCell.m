@@ -57,6 +57,8 @@
     self.exclusiveTouch = YES ;
     self.contentView.backgroundColor = COLOR_BACKGROUND ;
     
+    self.contentView.bounds = [UIScreen mainScreen].bounds;
+
     //多图
     [self setupMultiple] ;
     
@@ -152,7 +154,6 @@
     ArticleTopic *topic = [article.articleTopicList firstObject] ;
     _img_tag_suEx.hidden = (topic.t_cate != t_cate_type_suExperience) ;
     
-
 }
 
 - (void)setIsflywordShow:(BOOL)isflywordShow
@@ -194,31 +195,31 @@
     } fail:^{}] ;
 }
 
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    NSString *strAttriComment = [_article getStrCommentContent] ;
+    return CGSizeMake(size.width, [[self class] calculateHomeCellHeight:strAttriComment]) ;
+}
+
 + (CGFloat)calculateHomeCellHeight:(NSString *)content
 {
     CGFloat orgLbHeight = 25.0 ;
-    
     UIFont *font = [UIFont systemFontOfSize:16.0f];
     CGSize size = CGSizeMake(APPFRAME.size.width - 13.0 * 2, 300);
-    
     CGSize labelsize = [content boundingRectWithSize:size
                                              options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                           attributes:@{NSFontAttributeName:font}
                                              context:nil].size ;
-    
     CGFloat lbHeight = labelsize.height ;
     if (lbHeight < orgLbHeight)
     {
         lbHeight = orgLbHeight ;
     }
-    
     if (UNDER_IOS_VERSION(7.1)) // < 7.1
     {
         lbHeight += 5.0 ;
     }
-    
-    CGFloat h =  80.0f + APPFRAME.size.width - orgLbHeight + lbHeight;
-    
+    CGFloat h =  80.0f + APPFRAME.size.width - orgLbHeight + lbHeight ;
     return h ;
 }
 
