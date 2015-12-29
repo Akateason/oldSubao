@@ -38,7 +38,6 @@
     if (!_topicList) {
         _topicList = [NSMutableArray array] ;
     }
-    
     return _topicList ;
 }
 
@@ -63,9 +62,7 @@
     // Do any additional setup after loading the view.
     
     self.edgesForExtendedLayout = UIRectEdgeNone;
-
     [self setup] ;
-    
     self.myTitle = @"速体验首页" ;
 }
 
@@ -73,14 +70,25 @@
 {
     [super viewWillAppear:animated] ;
     
-    dispatch_async(dispatch_get_main_queue(), ^{
-        SEMchooseCell *scell = (SEMchooseCell *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] ;
-        [scell animationForIcon] ;
-    }) ;
+    if (![self.table headerIsRefreshing]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            SEMchooseCell *scell = (SEMchooseCell *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] ;
+            [scell animationForIcon] ;
+        }) ;
+    }
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated] ;
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated] ;
+    
+    SEMchooseCell *scell = (SEMchooseCell *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] ;
+    [scell removeAnimation] ;
 }
 
 - (void)didReceiveMemoryWarning
@@ -114,19 +122,12 @@
 - (BOOL)getTopicsAndCatagoriesFromServerWithPullUpDown:(BOOL)bUpDown
 {
     if (bUpDown) m_currentPage = 1 ;
-    
     ResultParsered *result = [ServerRequest getAllTopicListAndCataWithCate:0
                                                                       page:m_currentPage
                                                                      count:SIZE_OF_PAGE] ;
-    if (!result) {
-        return NO;
-    }
-    
+    if (!result) return NO;
     BOOL bHas = [self parserResult:result getNew:bUpDown] ;
-    
-    if (!bUpDown && !bHas) {
-        return NO ;
-    }
+    if (!bUpDown && !bHas) return NO ;
     
     return YES   ;
 }
@@ -181,7 +182,6 @@
     }
     cell.delegate = self ;
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    
     return cell;
 }
 
@@ -234,7 +234,6 @@
 {
     return NONE_HEIGHT ;
 }
-
 
 #pragma mark - SEMchooseCellDelegate
 /*

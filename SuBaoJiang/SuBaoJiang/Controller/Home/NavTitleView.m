@@ -10,9 +10,7 @@
 #import "XTAnimation.h"
 
 @interface NavTitleView ()
-{
-    UILabel *label ;
-}
+@property (nonatomic,strong) UILabel *label ;
 @property (nonatomic,weak) IBOutlet UIImageView *titleImageView ;
 @end
 
@@ -28,7 +26,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib] ;
-    
     self.backgroundColor = nil ;
 }
 
@@ -43,22 +40,32 @@
     _titleStr = titleStr ;
     
     _titleImageView.hidden = YES ;
+    self.label.text = [NSString stringWithFormat:@"#%@#",_titleStr] ;
+}
+
+- (UILabel *)label
+{
+    if (!_label) {
+        _label = [[UILabel alloc] initWithFrame:CGRectZero] ;
+        _label.textColor = [UIColor whiteColor] ;
+        _label.textAlignment = NSTextAlignmentCenter ;
+        _label.font = [UIFont boldSystemFontOfSize:17.0] ;
+        if (![_label superview]) {
+            [self addSubview:_label] ;
+        }
+    }
+    return _label ;
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews] ;
     
     CGRect rect = CGRectZero ;
-    rect.origin = CGPointMake(0, 0) ;
+    rect.origin = CGPointZero ;
     rect.size = self.frame.size ;
-    
-    label = [[UILabel alloc] initWithFrame:rect] ;
-    label.textColor = [UIColor whiteColor] ;
-    label.text = [NSString stringWithFormat:@"#%@#",_titleStr] ;
-    label.textAlignment = NSTextAlignmentCenter ;
-    label.font = [UIFont boldSystemFontOfSize:17.0] ;
-    [label sizeToFit] ;
-    label.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2) ;
-    if (![label superview]) {
-        [self addSubview:label] ;
-    }
-    
+    [self.label sizeToFit] ;
+    self.label.center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2) ;
 }
 
 @end

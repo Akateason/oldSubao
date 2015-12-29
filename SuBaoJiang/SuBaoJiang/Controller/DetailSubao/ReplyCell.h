@@ -14,7 +14,8 @@
 @end
 
 @interface ReplyCell : UITableViewCell
+
 @property (nonatomic,weak) id <ReplyCellDelegate> delegate ;
 @property (nonatomic,strong) ArticleComment *comment ;
-+ (CGFloat)calculateHeightWithCmtStr:(NSString *)cmtStr ;
+
 @end

@@ -31,6 +31,7 @@
 #import "DtOperationCell.h"
 #import "ReplyCell.h"
 #import "SaveAlbumnCtrller.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 #define SIZE_OF_PAGE                            50
 
@@ -237,6 +238,13 @@
     _table.separatorColor = COLOR_TABLE_SEP ;
     _table.xt_Delegate = self ;
     _table.automaticallyLoadNew = NO ;
+    
+    [_table registerNib:[UINib nibWithNibName:CellId_DetailTitleCell bundle:nil] forCellReuseIdentifier:CellId_DetailTitleCell];
+    [_table registerNib:[UINib nibWithNibName:CellId_DtSuperCell bundle:nil] forCellReuseIdentifier:CellId_DtSuperCell];
+    [_table registerNib:[UINib nibWithNibName:CellId_DtSubCell bundle:nil] forCellReuseIdentifier:CellId_DtSubCell] ;
+    [_table registerNib:[UINib nibWithNibName:CellId_OperationCell bundle:nil] forCellReuseIdentifier:CellId_OperationCell];
+    [_table registerNib:[UINib nibWithNibName:CellId_replyCell bundle:nil] forCellReuseIdentifier:CellId_replyCell];
+
     
     // long press gesture
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self
@@ -625,7 +633,6 @@
     [self setupSth] ;
     [self wordView] ;
     [self putNavBarItem] ;
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -651,8 +658,6 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:NSNOTIFICATION_ARTICLE_REFRESH
                                                         object:self.articleSuper] ;
 }
-
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -764,17 +769,6 @@
 
 - (void)controlBottomBarShowOrNot
 {
-//    NSArray *visibleIndexPath = [_table indexPathsForVisibleRows] ;
-//    BOOL existReplyCell = NO ;
-//    for (NSIndexPath *indexPath in visibleIndexPath)
-//    {
-//        if (indexPath.section >= self.articleSuper.childList.count + 1)
-//        {
-//            existReplyCell = YES ;
-//            break ;
-//        }
-//    }
-    
     _flex_bottom.constant = 48.0f ;
     self.wordView.hidden = NO ;
 }
@@ -887,32 +881,43 @@
         // 1. title
         if (row == 0)
         {
-            return [self.articleSuper isMultyStyle] ? [DetailTitleCell calculateHeight:self.articleSuper] : LINE_HEIGHT ;
+            return
+            [self.articleSuper isMultyStyle] ?
+            [tableView fd_heightForCellWithIdentifier:CellId_DetailTitleCell cacheByIndexPath:indexPath configuration:^(DetailTitleCell *cell) {
+                [self configureDetailTitleCell:cell] ;
+            }] :
+            LINE_HEIGHT ;
         }
         // 2. superPic & superContent
         else if (row == 1)
         {
-            return [DtSuperCell calculateHeight:self.articleSuper] ;
+            return [tableView fd_heightForCellWithIdentifier:CellId_DtSuperCell cacheByIndexPath:indexPath configuration:^(DtSuperCell *cell) {
+                [self configureDtSuperCell:cell] ;
+            }] ;
         }
     }
     // SUB ARTICLEs
     else if ( (section > 0) && (section <= self.articleSuper.childList.count) )
     {
-        return [DtSubCell calculateHeightWithArticle:self.articleSuper.childList[section - 1]] ;
+        return [tableView fd_heightForCellWithIdentifier:CellId_DtSubCell configuration:^(DtSubCell *cell) {
+            [self configureDtSubCell:cell subArticle:self.articleSuper.childList[section - 1]] ;
+        }] ;
     }
     // operation Infomation
     else if (section == self.articleSuper.childList.count + 1)
     {
-        NSString *strAttriComment = [self.articleSuper isMultyStyle] ? [self.articleSuper getTopicStr] : [self.articleSuper getStrCommentContent] ;
-        
-        return [DtOperationCell calculateHeightWithCmtStr:strAttriComment] ;
+        return [tableView fd_heightForCellWithIdentifier:CellId_OperationCell
+                                        cacheByIndexPath:indexPath
+                                           configuration:^(DtOperationCell *cell) {
+            [self configureDtOperationCell:cell] ;
+        }] ;        
     }
     // replyLists
     else if (section == self.articleSuper.childList.count + 2)
     {
-        NSString *strCmt = ((ArticleComment *)self.allComments[indexPath.row]).showStrComment ;
-        
-        return [ReplyCell calculateHeightWithCmtStr:strCmt] ;
+        return [tableView fd_heightForCellWithIdentifier:CellId_replyCell cacheByIndexPath:indexPath configuration:^(ReplyCell *cell) {
+            [self configureReplyCell:cell comment:self.allComments[indexPath.row]] ;
+        }] ;
     }
     
     return LINE_HEIGHT ;
@@ -926,11 +931,8 @@
     
     // replyLists
     if (section != self.articleSuper.childList.count + 2) return ;
-    
     ArticleComment *cmt = (ArticleComment *)self.allComments[row] ;
-    
     if (G_USER.u_id == cmt.userCurrent.u_id) return ; // return when pressed cmt posted by myself ;
-    
     [self replyWithCmt:cmt] ;
 }
 
@@ -961,12 +963,7 @@
 
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
 {
-    if (section == 0)
-    {
-        return 48.0f ;
-    }
-    
-    return LINE_HEIGHT ;
+    return (section == 0) ? 48.0f : LINE_HEIGHT ;
 }
 
 // custom view for footer. will be adjusted to default or specified footer height
@@ -987,94 +984,109 @@
 - (UITableViewCell *)getEmptyCell
 {
     UITableViewCell *cell = [_table dequeueReusableCellWithIdentifier:@"nil"] ;
-    if (!cell)
-    {
+    if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"nil"];
     }
     return cell ;
 }
 
+static NSString * const CellId_DetailTitleCell = @"DetailTitleCell";
 - (DetailTitleCell *)getDetailTitleCell
 {
-    static  NSString  *CellIdentiferId = @"DetailTitleCell";
-    DetailTitleCell * cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId] ;
-    if (!cell)
-    {
-        [_table registerNib:[UINib nibWithNibName:CellIdentiferId bundle:nil] forCellReuseIdentifier:CellIdentiferId];
-        cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId];
+    DetailTitleCell * cell = [_table dequeueReusableCellWithIdentifier:CellId_DetailTitleCell] ;
+    if (!cell) {
+        cell = [_table dequeueReusableCellWithIdentifier:CellId_DetailTitleCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    cell.article = self.articleSuper ;
+    [self configureDetailTitleCell:cell] ;
     return cell ;
 }
 
+- (void)configureDetailTitleCell:(DetailTitleCell *)cell
+{
+    cell.fd_enforceFrameLayout = YES ;
+    cell.article = self.articleSuper ;
+}
+
+static NSString * const CellId_DtSuperCell = @"DtSuperCell";
 - (DtSuperCell *)getDtSuperCell
 {
-    static  NSString  *CellIdentiferId = @"DtSuperCell";
-    DtSuperCell *cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId] ;
-    if (!cell)
-    {
-        [_table registerNib:[UINib nibWithNibName:CellIdentiferId bundle:nil] forCellReuseIdentifier:CellIdentiferId];
-        cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId];
+    DtSuperCell *cell = [_table dequeueReusableCellWithIdentifier:CellId_DtSuperCell] ;
+    if (!cell) {
+        cell = [_table dequeueReusableCellWithIdentifier:CellId_DtSuperCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
+    [self configureDtSuperCell:cell] ;
+    cell.isflywordShow = bSwitchFlyword ;
+    cell.delegate = self ;
+    return cell ;
+}
 
+- (void)configureDtSuperCell:(DtSuperCell *)cell
+{
+    cell.fd_enforceFrameLayout = YES ;
     if (self.articleSuper != nil) {
         cell.article = self.articleSuper ;
         cell.allCommentsList = self.allComments ;
     }
-    
-    cell.isflywordShow = bSwitchFlyword ;
-    cell.delegate = self ;
-    
-    return cell ;
 }
 
+static NSString * const CellId_DtSubCell = @"DtSubCell";
 - (DtSubCell *)getDtSubCell:(Article *)subArticle
 {
-    static NSString *CellIdentiferId = @"DtSubCell";
-    DtSubCell * cell = [self.table dequeueReusableCellWithIdentifier:CellIdentiferId] ;
-    if (!cell)
-    {
-        [self.table registerNib:[UINib nibWithNibName:CellIdentiferId bundle:nil] forCellReuseIdentifier:CellIdentiferId] ;
-        cell = [self.table dequeueReusableCellWithIdentifier:CellIdentiferId];
+    DtSubCell *cell = [self.table dequeueReusableCellWithIdentifier:CellId_DtSubCell] ;
+    if (!cell) {
+        cell = [self.table dequeueReusableCellWithIdentifier:CellId_DtSubCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    cell.subArticle = subArticle ;
+    [self configureDtSubCell:cell subArticle:subArticle] ;
     cell.delegate = self ;
     cell.isflywordShow = bSwitchFlyword ;
     return cell ;
 }
 
+- (void)configureDtSubCell:(DtSubCell *)cell subArticle:(Article *)subArticle
+{
+    cell.fd_enforceFrameLayout = YES ;
+    cell.subArticle = subArticle ;
+}
+
+static NSString * const CellId_OperationCell = @"DtOperationCell";
 - (DtOperationCell *)getDtOperationCell
 {
-    static  NSString  *CellIdentiferId = @"DtOperationCell";
-    DtOperationCell * cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId] ;
-    if (!cell)
-    {
-        [_table registerNib:[UINib nibWithNibName:CellIdentiferId bundle:nil] forCellReuseIdentifier:CellIdentiferId];
-        cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId];
+    DtOperationCell * cell = [_table dequeueReusableCellWithIdentifier:CellId_OperationCell] ;
+    if (!cell) {
+        cell = [_table dequeueReusableCellWithIdentifier:CellId_OperationCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    cell.superArticle = self.articleSuper ;
+    [self configureDtOperationCell:cell] ;
     cell.delegate = self ;
-    
     return cell ;
 }
 
+- (void)configureDtOperationCell:(DtOperationCell *)cell
+{
+    cell.fd_enforceFrameLayout = YES ;
+    cell.superArticle = self.articleSuper ;
+}
+
+static NSString * const CellId_replyCell = @"ReplyCell" ;
 - (ReplyCell *)getReplyCell:(NSInteger)row
 {
-    static  NSString  *CellIdentiferId = @"ReplyCell";
-    ReplyCell * cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId] ;
-    if (!cell)
-    {
-        [_table registerNib:[UINib nibWithNibName:CellIdentiferId bundle:nil] forCellReuseIdentifier:CellIdentiferId];
-        cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId];
+    ReplyCell * cell = [_table dequeueReusableCellWithIdentifier:CellId_replyCell] ;
+    if (!cell) {
+        cell = [_table dequeueReusableCellWithIdentifier:CellId_replyCell];
     }
     cell.delegate = self ;
-    cell.comment = self.allComments[row] ;
+    [self configureReplyCell:cell comment:self.allComments[row]] ;
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
     return cell;
+}
+
+- (void)configureReplyCell:(ReplyCell *)cell comment:(ArticleComment *)comment
+{
+    cell.fd_enforceFrameLayout = YES ;
+    cell.comment = comment ;
 }
 
 // After a row has the minus or plus button invoked (based on the UITableViewCellEditingStyle for the cell), the dataSource must commit the change
@@ -1100,9 +1112,7 @@
         
         [alertView addButtonWithTitle:WD_CANCEL
                                  type:SIAlertViewButtonTypeDefault
-                              handler:^(SIAlertView *alertView) {
-                                  //NSLog(@"cancel Clicked");
-                              }];
+                              handler:nil];
         
         alertView.positionStyle = SIALertViewPositionBottom ;
         [alertView show];
@@ -1128,12 +1138,9 @@
 - (void)selectedTheImageWithAritcleID:(int)a_id
 {
 //    if (![self.articleSuper isMultyStyle]) return ;
-    
     self.focusOn_aid = a_id ;
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.wordView.textView becomeFirstResponder] ;
-        
         if (self.wordView.hidden) {
             self.wordView.hidden = NO ;
         }
@@ -1152,22 +1159,16 @@
 {
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:nil
                                                      andMessage:WD_PICTURE_SAVE] ;
-    
     [alertView addButtonWithTitle:WD_CORRECT
                              type:SIAlertViewButtonTypeDestructive
                           handler:^(SIAlertView *alertView) {
                               UIImage *picWillSave = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:article.img withCacheWidth:APPFRAME.size.width] ;
                               [CommonFunc saveImageToLibrary:picWillSave] ;
                           }] ;
-    
     [alertView addButtonWithTitle:WD_CANCEL
                              type:SIAlertViewButtonTypeDefault
-                          handler:^(SIAlertView *alertView) {
-                              // NSLog(@"cancel Clicked");
-                          }] ;
-    
+                          handler:nil] ;
     alertView.positionStyle = SIALertViewPositionBottom ;
-    
     [alertView show] ;
 }
 
@@ -1439,9 +1440,7 @@
                            
                            ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
                            NSLog(@"err code %@ : %@",@(result.errCode),result.message) ;
-                           
                            self.articleSuper.article_comments_count-- ;
-                           
                            [_table reloadData] ;
                            
                        } fail:^{
@@ -1475,9 +1474,7 @@
                         contentID:contentID
                           success:^(id json)
     {
-        [self performSelector:@selector(showHud:)
-                   withObject:WD_HUD_REPORT_FINISHED
-                   afterDelay:0.5] ;
+        [self performSelector:@selector(showHud:) withObject:WD_HUD_REPORT_FINISHED afterDelay:0.5] ;
     } fail:nil] ;
     
 }
@@ -1664,7 +1661,6 @@
         [self.wordView.textView resignFirstResponder] ;
         // reset to origin
         [self.wordView resetToOrigin] ;
-
     }) ;
 
 }

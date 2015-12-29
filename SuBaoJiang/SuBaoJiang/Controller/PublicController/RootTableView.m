@@ -21,6 +21,11 @@
     [self.mj_header beginRefreshing] ;
 }
 
+- (BOOL)headerIsRefreshing
+{
+    return self.mj_header.isRefreshing ;
+}
+
 #pragma mark --
 #pragma mark - Initialization
 - (instancetype)initWithCoder:(NSCoder *)coder
@@ -107,7 +112,6 @@
     } else {
         [self.mj_header endRefreshing] ;
     }
-    
 }
 
 #pragma mark - Private

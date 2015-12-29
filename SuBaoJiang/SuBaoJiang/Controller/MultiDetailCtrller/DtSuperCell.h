@@ -20,5 +20,4 @@
 @property (nonatomic,strong) NSArray *allCommentsList ;
 @property (nonatomic,assign) BOOL    isflywordShow ; // 弹幕开关
 - (void)startOrCloseFlyword:(BOOL)bSwitch ;
-+ (CGFloat)calculateHeight:(Article *)article ;
 @end

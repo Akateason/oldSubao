@@ -50,31 +50,25 @@
     _img_suEx.hidden = YES ;
 }
 
-+ (CGFloat)calculateHeight:(Article *)article
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    return CGSizeMake(size.width, [self calculateHeight:self.article]) ;
+}
+
+- (CGFloat)calculateHeight:(Article *)article
 {
     ArticleTopic *topic = [article.articleTopicList firstObject] ;
     BOOL bSuEx = topic.t_cate == t_cate_type_suExperience ;
     
-    UIFont *font = [UIFont systemFontOfSize:20.0f];
-//    CGSize size = bSuEx ? CGSizeMake(APPFRAME.size.width - 90.0 - 8.0 - 32.0, 55.0) : CGSizeMake(APPFRAME.size.width - 90.0 - 8.0 - 8.0f, 55.0) ;
+    UIFont *font = [UIFont systemFontOfSize:20.0f] ;
     CGSize size = bSuEx ? CGSizeMake(APPFRAME.size.width - 8.0 - 32.0, 55.0) : CGSizeMake(APPFRAME.size.width - 8.0 - 8.0f, 55.0) ;
-    
-//    CGSize labelsize = [article.a_title sizeWithFont:font constrainedToSize:size lineBreakMode:UILineBreakModeWordWrap];
     CGSize labelsize = [article.a_title boundingRectWithSize:size
                                                      options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                   attributes:@{NSFontAttributeName : font}
                                                      context:nil].size ;
-    
-    
     CGFloat lbHeight = labelsize.height ;
-    if (lbHeight < 24.0)
-    {
-        lbHeight = 24.0f ;
-    }
-    
-    CGFloat h =  lbHeight + 14.0 * 2 ;
-    
-    return h ;
+    if (lbHeight < 24.0) lbHeight = 24.0f ;
+    return lbHeight + 14.0 * 2 ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

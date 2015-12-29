@@ -137,7 +137,12 @@
     [self.delegate longPressedCallback:self.article] ;
 }
 
-+ (CGFloat)calculateHeight:(Article *)article
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    return CGSizeMake(size.width, [self calculateHeight:self.article]) ;
+}
+
+- (CGFloat)calculateHeight:(Article *)article
 {
     CGFloat imgHeight = APPFRAME.size.width ;
     

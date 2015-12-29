@@ -89,6 +89,12 @@
     
 }
 
+- (void)removeAnimation
+{
+    [bt_semc_1.imageView.layer removeAllAnimations] ;
+    [bt_semc_2.imageView.layer removeAllAnimations] ;
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];

@@ -41,7 +41,12 @@
     // Configure the view for the selected state
 }
 
-+ (CGFloat)calculateHeightWithPicKeys:(NSString *)picKeys
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    return CGSizeMake(size.width, [self calculateHeightWithPicKeys:self.strImg]) ;
+}
+
+- (CGFloat)calculateHeightWithPicKeys:(NSString *)picKeys
 {
     CGFloat height = [ThemeCell calculateThemesHeight]  ; // default value .
 

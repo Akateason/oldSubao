@@ -197,7 +197,6 @@
         [_bt_delete setImage:[UIImage imageNamed:@"deleteHighlight"]
                     forState:UIControlStateHighlighted] ;
     }
-    
 }
 
 - (NSMutableArray *)praiseList
@@ -213,7 +212,6 @@
 {
     return (G_USER.u_id == self.superArticle.userCurrent.u_id) ;
 }
-
 
 #pragma mark --
 #pragma mark - collection dataSourse
@@ -235,7 +233,7 @@
     [collectionView registerNib:nib forCellWithReuseIdentifier:@"UserHeadCollectionCell"];
     
     // Set up the reuse identifier
-    UserHeadCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: @"UserHeadCollectionCell" forIndexPath:indexPath];
+    UserHeadCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UserHeadCollectionCell" forIndexPath:indexPath] ;
     
     // load the image for this cell
     cell.praise = self.praiseList[indexPath.row] ;
@@ -251,33 +249,31 @@
 }
 
 #pragma mark --
-+ (CGFloat)calculateHeightWithCmtStr:(NSString *)cmtStr
+- (CGFloat)calculateHeightWithCmtStr:(NSString *)cmtStr
 {
     CGFloat orgHeight = 25.0f ;
-    
     UIFont *font = [UIFont systemFontOfSize:16.0f] ;
     CGSize size = CGSizeMake(APPFRAME.size.width - 13.0 * 2, 300);
     CGSize labelsize = [cmtStr boundingRectWithSize:size
                                          options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                       attributes:@{NSFontAttributeName:font}
                                          context:nil].size ;
-    
     CGFloat wordH = labelsize.height ;
     if (wordH < orgHeight) {
         wordH = orgHeight ;
     }
-
-    
     if (UNDER_IOS_VERSION(7.1)) // < 7.1
     {
         orgHeight += 5.0 ;
     }
     
-    CGFloat h =  126.0f - orgHeight + wordH ;
-
-    return h ;
+    return 126.0f - orgHeight + wordH ;
 }
 
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    return CGSizeMake(size.width, [self calculateHeightWithCmtStr:[self.superArticle isMultyStyle] ? [self.superArticle getTopicStr] : [self.superArticle getStrCommentContent]]) ;
+}
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

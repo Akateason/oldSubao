@@ -14,9 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *tf_account;
 @property (weak, nonatomic) IBOutlet UITextField *tf_secret;
-
 @property (weak, nonatomic) IBOutlet UIButton *btLogin;
-
 
 @end
 
@@ -27,7 +25,6 @@
     // Do any additional setup after loading the view.
     self.title = @"自登陆页" ;
     _btLogin.layer.cornerRadius = 4 ;
-    
     [self.navigationController setNavigationBarHidden:NO animated:NO] ;
     
     _tf_account.delegate   = self ;
@@ -68,11 +65,7 @@
      } fail:^{
          [XTHudManager showWordHudWithTitle:WD_HUD_FAIL_RETRY] ;
      }] ;
-    
-    
 }
-
-
 
 #pragma mark --
 #pragma mark - textfield delegate
@@ -85,15 +78,12 @@
 #pragma mark - touchesEnded withEvent
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    
-    if (![self.tf_account isExclusiveTouch]||![self.tf_secret isExclusiveTouch])
+    if (![self.tf_account isExclusiveTouch] || ![self.tf_secret isExclusiveTouch])
     {
-        [self.tf_secret resignFirstResponder]      ;
-        [self.tf_account resignFirstResponder]     ;
+        [self.tf_secret resignFirstResponder] ;
+        [self.tf_account resignFirstResponder] ;
     }
-    
 }
-
 
 /*
 #pragma mark - Navigation

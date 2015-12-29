@@ -96,11 +96,23 @@ static const CGFloat heightForThemesCellInIphone6 = 420.0 ;
 
 }
 
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    return CGSizeMake(size.width, [self calculateThemesHeight]) ;
+}
+
+- (CGFloat)calculateThemesHeight
+{
+    CGFloat ratio = heightForThemesCellInIphone6 / 750.0 ;
+    return ratio * APPFRAME.size.width ;
+}
+
 + (CGFloat)calculateThemesHeight
 {
     CGFloat ratio = heightForThemesCellInIphone6 / 750.0 ;
     return ratio * APPFRAME.size.width ;
 }
+
 
 #pragma mark --
 #pragma mark - SGFocusImageFrameDelegate

@@ -11,5 +11,4 @@
 
 @interface DetailTitleCell : UITableViewCell
 @property (nonatomic,strong) Article *article ;
-+ (CGFloat)calculateHeight:(Article *)article ;
 @end

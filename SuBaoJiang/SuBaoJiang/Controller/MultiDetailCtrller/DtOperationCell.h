@@ -30,8 +30,9 @@
 @end
 
 @interface DtOperationCell : UITableViewCell
+
 @property (nonatomic,weak) id <DtOperationCellDelegate> delegate ;
 @property (nonatomic,strong) Article *superArticle ;
 - (void)getNewPraiseWithisLiked:(BOOL)isLiked ;
-+ (CGFloat)calculateHeightWithCmtStr:(NSString *)cmtStr ;
+
 @end

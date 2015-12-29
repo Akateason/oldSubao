@@ -33,7 +33,7 @@
     [XTCornerView setRoundHeadPicWithView:_bt_userHead] ;
     _bt_userHead.layer.borderColor = COLOR_USERHEAD_BORDER.CGColor ;
     _bt_userHead.layer.borderWidth = ONE_PIXEL_VALUE ;
-
+    
     _lb_uName.textColor = COLOR_BLACK_DARK ;
     _lb_comment.textColor = COLOR_GRAY_CONTENT ;
     _lb_date.textColor = COLOR_GRAY_CONTENT ;
@@ -63,35 +63,32 @@
     
     // head
     [_bt_userHead sd_setBackgroundImageWithURL:[NSURL URLWithString:_comment.userCurrent.u_headpic] forState:UIControlStateNormal placeholderImage:IMG_HEAD_NO] ;
-    
     // name
     _lb_uName.text = _comment.userCurrent.u_nickname ;
-    
     // content
     _lb_comment.text = _comment.showStrComment ;
-    
     // date
     _lb_date.text = [XTTickConvert getDateWithTick:_comment.c_createtime AndWithFormart:TIME_STR_FORMAT_8] ;
 
 }
 
 #pragma mark --
-+ (CGFloat)calculateHeightWithCmtStr:(NSString *)cmtStr
+- (CGFloat)calculateHeightWithCmtStr:(NSString *)cmtStr
 {
     UIFont *font = [UIFont systemFontOfSize:14.0f] ;
     CGSize size = CGSizeMake(APPFRAME.size.width - 15 - 6 - 9 - 30 ,200) ;
-    
     CGSize labelsize = [cmtStr boundingRectWithSize:size
                                             options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                          attributes:@{NSFontAttributeName:font}
                                             context:nil].size ;
     CGFloat wordH = labelsize.height ;
-    if (wordH < 17.0) {
-        wordH = 17.0 ;
-    }
-    CGFloat h =  64.0  - 17.0 + wordH ;
-    
-    return h ;
+    if (wordH < 17.0) wordH = 17.0 ;
+    return 64.0  - 17.0 + wordH ;
+}
+
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    return CGSizeMake(size.width, [self calculateHeightWithCmtStr:self.comment.showStrComment]) ;
 }
 
 @end

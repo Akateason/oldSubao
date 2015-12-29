@@ -11,6 +11,7 @@
 #import "DtSuperCell.h"
 #import "DtSubCell.h"
 #import "SuBaoHeaderView.h"
+#import "UITableView+FDTemplateLayoutCell.h"
 
 #define LINE_HEIGHT             0.0f
 
@@ -42,6 +43,11 @@
     _table.delegate = self ;
     _table.dataSource = self ;
     _table.separatorColor = COLOR_TABLE_SEP ;
+    
+    [_table registerNib:[UINib nibWithNibName:CellId_DetailTitleCell bundle:nil] forCellReuseIdentifier:CellId_DetailTitleCell];
+    [_table registerNib:[UINib nibWithNibName:CellId_DtSuperCell bundle:nil] forCellReuseIdentifier:CellId_DtSuperCell];
+    [_table registerNib:[UINib nibWithNibName:CellId_DtSubCell bundle:nil] forCellReuseIdentifier:CellId_DtSubCell];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,18 +119,26 @@
         // 1. title
         if (row == 0)
         {
-            return [self.articleSuper isMultyStyle] ? [DetailTitleCell calculateHeight:self.articleSuper] : LINE_HEIGHT ;
+            return [self.articleSuper isMultyStyle] ?
+            [tableView fd_heightForCellWithIdentifier:CellId_DetailTitleCell cacheByIndexPath:indexPath configuration:^(DetailTitleCell *cell) {
+                [self configureDetailTitleCell:cell] ;
+            }] :
+            LINE_HEIGHT ;
         }
         // 2. superPic & superContent
         else if (row == 1)
         {
-            return [DtSuperCell calculateHeight:self.articleSuper] ;
+            return [tableView fd_heightForCellWithIdentifier:CellId_DtSuperCell cacheByIndexPath:indexPath configuration:^(DtSuperCell *cell) {
+                [self configureDtSuperCell:cell] ;
+            }] ;
         }
     }
-    // SUB ARTICLEs
+    // SUB ARTICLEs ;
     else if ( (section > 0) && (section <= self.articleSuper.childList.count) )
     {
-        return [DtSubCell calculateHeightWithArticle:self.articleSuper.childList[section - 1]] ;
+        return [tableView fd_heightForCellWithIdentifier:CellId_DtSubCell configuration:^(DtSubCell *cell) {
+            [self configureDtSubCell:cell subArticle:self.articleSuper.childList[section - 1]] ;
+        }] ;
     }
     
     return LINE_HEIGHT ;
@@ -179,48 +193,61 @@
     return cell ;
 }
 
+static NSString * const CellId_DetailTitleCell = @"DetailTitleCell";
 - (DetailTitleCell *)getDetailTitleCell
 {
-    static  NSString  *CellIdentiferId = @"DetailTitleCell";
-    DetailTitleCell * cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId] ;
-    if (!cell)
-    {
-        [_table registerNib:[UINib nibWithNibName:CellIdentiferId bundle:nil] forCellReuseIdentifier:CellIdentiferId];
-        cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId];
+    DetailTitleCell * cell = [_table dequeueReusableCellWithIdentifier:CellId_DetailTitleCell] ;
+    if (!cell) {
+        cell = [_table dequeueReusableCellWithIdentifier:CellId_DetailTitleCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    cell.article = self.articleSuper ;
+    [self configureDetailTitleCell:cell] ;
     return cell ;
 }
 
+- (void)configureDetailTitleCell:(DetailTitleCell *)cell
+{
+    cell.fd_enforceFrameLayout = YES ;
+    cell.article = self.articleSuper ;
+}
+
+static NSString * const CellId_DtSuperCell = @"DtSuperCell";
 - (DtSuperCell *)getDtSuperCell
 {
-    static  NSString  *CellIdentiferId = @"DtSuperCell";
-    DtSuperCell * cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId] ;
-    if (!cell)
-    {
-        [_table registerNib:[UINib nibWithNibName:CellIdentiferId bundle:nil] forCellReuseIdentifier:CellIdentiferId];
-        cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId];
+    DtSuperCell * cell = [_table dequeueReusableCellWithIdentifier:CellId_DtSuperCell] ;
+    if (!cell) {
+        cell = [_table dequeueReusableCellWithIdentifier:CellId_DtSuperCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    cell.article = self.articleSuper ;
+    [self configureDtSuperCell:cell] ;
     cell.isflywordShow = NO ;
     return cell ;
 }
 
+- (void)configureDtSuperCell:(DtSuperCell *)cell
+{
+    cell.fd_enforceFrameLayout = YES ;
+    cell.article = self.articleSuper ;
+}
+
+static NSString * const CellId_DtSubCell = @"DtSubCell";
 - (DtSubCell *)getDtSubCell:(Article *)subArticle
 {
-    static  NSString  *CellIdentiferId = @"DtSubCell";
-    DtSubCell * cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId] ;
+    DtSubCell * cell = [_table dequeueReusableCellWithIdentifier:CellId_DtSubCell] ;
     if (!cell)
     {
-        [_table registerNib:[UINib nibWithNibName:CellIdentiferId bundle:nil] forCellReuseIdentifier:CellIdentiferId];
-        cell = [_table dequeueReusableCellWithIdentifier:CellIdentiferId];
+        cell = [_table dequeueReusableCellWithIdentifier:CellId_DtSubCell];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    cell.subArticle = subArticle ;
+    [self configureDtSubCell:cell subArticle:subArticle] ;
     cell.isflywordShow = NO ;
     return cell ;
+}
+
+- (void)configureDtSubCell:(DtSubCell *)cell subArticle:(Article *)subArticle
+{
+    cell.fd_enforceFrameLayout = YES ;
+    cell.subArticle = subArticle ;
 }
 
 /*

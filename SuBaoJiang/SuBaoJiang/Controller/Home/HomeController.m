@@ -641,27 +641,37 @@
 - (ThemeCell *)getThemeCell
 {
     ThemeCell * cell = [_table dequeueReusableCellWithIdentifier:ThemeCellID] ;
-    if (!cell)
-    {
+    if (!cell) {
         cell = [_table dequeueReusableCellWithIdentifier:ThemeCellID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    cell.themesList = self.m_themesList ;
+    [self configureThemeCell:cell] ;
     cell.delegate = self ;
     return cell ;
+}
+
+- (void)configureThemeCell:(ThemeCell *)cell
+{
+    cell.fd_enforceFrameLayout = YES ;
+    cell.themesList = self.m_themesList ;
 }
 
 - (SEintroCell *)getSEintroCell
 {
     SEintroCell *cell = [_table dequeueReusableCellWithIdentifier:SEintroCellID] ;
-    if (!cell)
-    {
+    if (!cell) {
         cell = [_table dequeueReusableCellWithIdentifier:SEintroCellID] ;
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
-    cell.strImg = self.topic.t_detail ;
+    [self configureSEintroCell:cell] ;
     cell.delegate = self ;
     return cell ;
+}
+
+- (void)configureSEintroCell:(SEintroCell *)cell
+{
+    cell.fd_enforceFrameLayout = YES ;
+    cell.strImg = self.topic.t_detail ;
 }
 
 - (HomeCell *)getHomeCellWithIndexPath:(NSIndexPath *)indexPath
@@ -716,11 +726,15 @@
     {
         if (self.m_themesList.count)
         {
-            return [ThemeCell calculateThemesHeight] ;
+            return [tableView fd_heightForCellWithIdentifier:ThemeCellID cacheByIndexPath:indexPath configuration:^(ThemeCell *cell) {
+                [self configureThemeCell:cell] ;
+            }] ;
         }
         else if (self.topic && ![self.topic.t_detail isEqualToString:@""])
         {
-            return [SEintroCell calculateHeightWithPicKeys:self.topic.t_detail] ;
+            return [tableView fd_heightForCellWithIdentifier:SEintroCellID configuration:^(SEintroCell *cell) {
+                [self configureSEintroCell:cell] ;
+            }] ;
         }
         else
         {

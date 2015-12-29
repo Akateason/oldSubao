@@ -148,7 +148,12 @@
     if (_isflywordShow) [self.barrageView start] ;
 }
 
-+ (CGFloat)calculateHeightWithArticle:(Article *)subArticle
+- (CGSize)sizeThatFits:(CGSize)size
+{
+    return CGSizeMake(size.width, [self calculateHeightWithArticle:self.subArticle]) ;
+}
+
+- (CGFloat)calculateHeightWithArticle:(Article *)subArticle
 {
     // get image view height
     CGFloat imgHeight = IMG_ORIGINAL_HEITHT ;
@@ -174,10 +179,7 @@
     
     CGFloat lbHeight = [XTlineSpaceLabel getAttributedStringHeightWidthValue:APPFRAME.size.width - 14.0 * 2 content:subArticle.a_content attributes:[DetailAttributes attributesWithLineSpace:7.0]] ;
     
-    if (lbHeight < 17.0)
-    {
-        lbHeight = 17.0 ;
-    }
+    if (lbHeight < 17.0) lbHeight = 17.0 ;
     CGFloat contentHeight = hasSubContent ? lbHeight + 18.0 * 2 : 0.0f ;
     
     return imgHeight + titleHeight + contentHeight ;

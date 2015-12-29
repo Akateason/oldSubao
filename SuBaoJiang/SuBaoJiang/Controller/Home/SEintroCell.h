@@ -13,7 +13,8 @@
 @end
 
 @interface SEintroCell : UITableViewCell
+
 @property (nonatomic,weak) id <SEintroCellDelegate> delegate ;
 @property (nonatomic,copy) NSString *strImg ;
-+ (CGFloat)calculateHeightWithPicKeys:(NSString *)picKeys ;
+
 @end
