@@ -97,7 +97,6 @@
         int seeWidth = ((int)imgSize.width * 2 > 640.0) ? 640 : (int)imgSize.width * 2 ;
         str = IMG_PHONE_WID(str, seeWidth) ;
     }
-    
     return str ;
 }
 
@@ -105,24 +104,15 @@
 + (NSString *)getSandBoxPath
 {
     NSString *paths = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSLog(@"paths : %@",paths)  ;
-    
+//    NSLog(@"paths : %@",paths)  ;    
     return paths ;
 }
 
 #pragma mark -- version
-// current app version
-//+ (CGFloat)getVersionOfMyAPP
-//{
-//    float versionNumber = [[self getVersionStrOfMyAPP] floatValue] ;
-//    NSLog(@"versionNumber手机当前版本:%f",versionNumber) ;
-//    return versionNumber ;
-//}
-
 + (NSString *)getVersionStrOfMyAPP
 {
     NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]  ;
-    NSLog(@"version : %@",version) ;
+    NSLog(@"app current version : %@",version) ;
     return version ;
 }
 
@@ -140,7 +130,6 @@
 
 + (void)checkVersionRequest
 {
-//    CGFloat currentVersion = [self getVersionOfMyAPP] ;
     NSString *versionString = [self getVersionStrOfMyAPP] ;
     
     NSString *strUrl = @"http://itunes.apple.com/lookup?id=999705868";
@@ -151,19 +140,13 @@
     NSError *error = nil;
     NSData *recervedData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
     NSString *results = [[NSString alloc] initWithBytes:[recervedData bytes] length:[recervedData length] encoding:NSUTF8StringEncoding];
-//    NSLog(@"app : %@",results) ;
     NSDictionary *dic = [results JSONValue];
     NSArray *infoArray = [dic objectForKey:@"results"];
     if ([infoArray count])
     {
         NSDictionary *releaseInfo = [infoArray firstObject];
         NSString *lastVersion = [releaseInfo objectForKey:@"version"];
-        
-//        float lastVersionFlt    = [lastVersion floatValue]      ;
-//        float currentVersionFlt = currentVersion ;
-        
         BOOL bNeedUpdate = ([versionString compare:lastVersion] == NSOrderedAscending) ;
-        
         if ( bNeedUpdate )
         {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -171,7 +154,6 @@
                 NSString *releaseNotes = [releaseInfo objectForKey:@"releaseNotes"] ;
                 SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"速报酱有新版本"
                                                                  andMessage:releaseNotes] ;
-                
                 [alertView addButtonWithTitle:@"不去"
                                          type:SIAlertViewButtonTypeDefault
                                       handler:^(SIAlertView *alertView) {
@@ -182,9 +164,7 @@
                                           NSURL *url = [NSURL URLWithString:updateUrl];
                                           [[UIApplication sharedApplication]openURL:url];
                                       }] ;
-                
                 [alertView show] ;
-                
             }) ;
         }
         else
@@ -212,7 +192,7 @@
     }
     
     G_USER = nil ; // remove current user
-    G_TOKEN = [result.info objectForKey:@"token"];
+    G_TOKEN = [result.info objectForKey:@"token"] ;
    
     dispatch_queue_t queue = dispatch_queue_create("saveAndLogin", NULL) ;
     dispatch_async(queue, ^{
@@ -240,13 +220,12 @@
     G_TOKEN         = nil ;
     G_USER          = nil ;
     // del the archive
-    NSString *homePath = NSHomeDirectory();
-    NSString *path = [homePath stringByAppendingPathComponent:PATH_TOKEN_SAVE];
+    NSString *homePath = NSHomeDirectory() ;
+    NSString *path = [homePath stringByAppendingPathComponent:PATH_TOKEN_SAVE] ;
     [XTFileManager deleteFileWithFileName:path] ;
     
     [CommonFunc bindWithBindMode:0] ;
 }
-
 
 + (void)bindWithBindMode:(MODE_bind)bindMode
 {
@@ -264,7 +243,6 @@
 
     if ([XTFileManager is_file_exist:path]) {
         NSNumber *num = [XTFileManager getObjUnarchivePath:path] ;
-        
         return num ;
     }
     
@@ -352,7 +330,6 @@
         default:
             break;
     }
-    
     return result ;
 }
 
@@ -364,7 +341,6 @@
     }else if ([str isEqualToString:@"女"]) {
         num = 2 ;
     }
-    
     return num ;
 }
 
@@ -372,7 +348,6 @@
 + (NSString *)getCommaStringWithArray:(NSArray *)array
 {
     NSString *strResult = @"" ;
-    
     for (int i = 0; i < array.count; i++)
     {
         if (i == array.count - 1)

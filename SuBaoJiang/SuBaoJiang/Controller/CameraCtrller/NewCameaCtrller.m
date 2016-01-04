@@ -134,7 +134,6 @@ static long photoCount = 0 ;
     
     [self collectionView] ;
     [self choosePicBar] ;
-
 }
 
 - (Mode_SingleOrMultiple)fetchMode

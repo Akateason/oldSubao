@@ -96,8 +96,6 @@
     [self initailCateColors] ;
     
     //  Back Ground Fetch
-    // UIApplicationBackgroundFetchIntervalMinimum
-    // 60 * 3
     [self.application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum] ;
 }
 
@@ -116,15 +114,11 @@
     //2 nav style
     UIImage *img = [UIImage imageWithColor:COLOR_MAIN size:CGSizeMake(320.0, 64.0)];
     [[UINavigationBar appearance] setBackgroundImage:img forBarMetrics:UIBarMetricsDefault];
-    
     //  nav base line
     [[UINavigationBar appearance] setShadowImage:[UIImage imageWithColor:COLOR_RED_LINE_NAV size:CGSizeMake(320.0, ONE_PIXEL_VALUE)]] ;
-    
     //  nav word style
     [[UINavigationBar appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}] ;
-    
     //  status bar style
-    //    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]]    ;
 }
 
@@ -221,7 +215,6 @@
     NSLog(@"camera360 : %d",b) ;
 }
 
-
 - (void)tuSdkInitialization
 {
     [TuSDK initSdkWithAppKey:TU_APPKEY];
@@ -264,15 +257,11 @@
 - (void)getNewSumFromServer
 {
     [ServerRequest getNoReadMsgCountSuccess:^(id json) {
-        
         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
         int count = [[result.info objectForKey:@"count_msg"] intValue] ;
-        if (count)
-        {
+        if (count) { // post resultparsel
             [[NSNotificationCenter defaultCenter] postNotificationName:NSNOTIFICATION_RUNLOOP_NOTES object:result] ;
-            // post resultparsel
         }
-        
     } fail:nil] ;
 }
 

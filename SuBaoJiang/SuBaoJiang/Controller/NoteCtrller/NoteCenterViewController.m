@@ -214,7 +214,6 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
 - (int)setTabbarUI:(ResultParsered *)result
 {
     self.M_tabBarItemCount = [[result.info objectForKey:@"count_msg"] intValue] ;
-    
     return self.M_tabBarItemCount ;
 }
 
@@ -279,12 +278,10 @@ static const CGFloat HeightForNoteAlarmCell = 77.0f ;
 {
     [super viewWillAppear:animated] ;
     
-    if (!G_TOKEN) {
-        [XTHudManager showWordHudWithTitle:WD_NOT_LOGIN] ;
-    }
+    if (!G_TOKEN) [XTHudManager showWordHudWithTitle:WD_NOT_LOGIN] ;
     
     [self changeTabbarItemsBadgeFromServer] ;
-    [self.table pullDownRefreshHeader] ;
+//    [self.table pullDownRefreshHeader] ;
     
     self.tabBarController.tabBar.hidden = NO ;
     [self.navigationController setNavigationBarHidden:NO animated:NO] ;

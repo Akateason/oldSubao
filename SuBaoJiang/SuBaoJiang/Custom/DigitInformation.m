@@ -15,13 +15,16 @@
 
 static DigitInformation *instance ;
 static int timeCount = 0 ;
+static dispatch_once_t onceToken ;
 
 @implementation DigitInformation
 
 + (DigitInformation *)shareInstance
 {
-    if (instance == nil) {
-        instance = [[[self class] alloc] init];
+    if (!instance) {
+        dispatch_once(&onceToken, ^{
+            instance = [[[self class] alloc] init];
+        }) ;
     }
     return instance;
 }

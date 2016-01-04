@@ -23,7 +23,7 @@
 {
     NSTimeInterval timeInterval2 = [_date timeIntervalSince1970];
     long long time = (long long)(timeInterval2 * TICK_S_OR_SS_2);
-    NSLog(@"tick :%lld",time);
+//    NSLog(@"tick :%lld",time);
     return time;
 }
 

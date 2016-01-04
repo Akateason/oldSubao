@@ -251,7 +251,6 @@
                                              animated:NO] ;
     } else {
         // 话题分类
-//        [self performSegueWithIdentifier:@"sem2topicCate" sender:nil] ;
         UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
         TopicCategoryCtrller *topicCateCtrl = [story instantiateViewControllerWithIdentifier:@"TopicCategoryCtrller"] ;
         [topicCateCtrl setHidesBottomBarWhenPushed:YES] ;
@@ -259,7 +258,6 @@
                                              animated:NO] ;
     }
 }
-
 
 #pragma mark - SEcontainerCellDelegate
 - (void)clickTopicInTheContainer:(ArticleTopic *)topic
