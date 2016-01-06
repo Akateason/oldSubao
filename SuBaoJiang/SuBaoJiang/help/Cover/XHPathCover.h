@@ -39,7 +39,7 @@ extern NSString *const XHBirthdayKey;
 // custom set url for subClass， There is not work
 - (void)setBackgroundImageUrlString:(NSString *)backgroundImageUrlString;
 
-- (void)animateStart ;
+//- (void)animateStart ;
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView;

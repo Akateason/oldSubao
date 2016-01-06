@@ -27,7 +27,7 @@
     if ([NSRunLoop currentRunLoop].currentMode != NSDefaultRunLoopMode)
     {
         // dont let it push to Camera when the tableView is scrolling .
-        return ;
+//        return ;
     }
     
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;

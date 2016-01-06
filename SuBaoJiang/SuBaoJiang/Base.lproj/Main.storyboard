@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="AXP-4b-kgz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="AXP-4b-kgz">
     <dependencies>
-        <deployment version="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--速体验-->
@@ -1000,6 +1000,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="btPost" destination="Px1-8c-9P4" id="QNy-kR-vwa"/>
                         <outlet property="table" destination="lhZ-HX-mFY" id="Cjc-ot-mYv"/>
                         <segue destination="Aag-tZ-foI" kind="push" identifier="post2select" id="YXk-8c-r5T"/>
                     </connections>
@@ -1924,8 +1925,8 @@
         <image name="tabitem_user_select" width="31" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="gi7-SV-ldr"/>
         <segue reference="kK0-TK-xDW"/>
-        <segue reference="ieQ-1l-gtN"/>
+        <segue reference="gi7-SV-ldr"/>
+        <segue reference="YXk-8c-r5T"/>
     </inferredMetricsTieBreakers>
 </document>

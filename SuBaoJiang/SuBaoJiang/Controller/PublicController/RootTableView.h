@@ -18,12 +18,22 @@
 
 @interface RootTableView : UITableView
 
-@property (nonatomic,weak) id <RootTableViewDelegate> xt_Delegate ; // SET myDelegate TO YOUR CTRLLER
-@property (nonatomic) BOOL showRefreshDetail ;      // DEFAULT IS `NO`  -> ONLY GIF IMAGES , SHOW WORDS WHEN IT BECOMES `YES`
-@property (nonatomic) BOOL automaticallyLoadMore ;  // DEFAULT IS `NO`  -> MANUALLY LOADING . AUTOMATICALLY LOAD WHEN IT BECOMES `YES`
-@property (nonatomic) BOOL automaticallyLoadNew ;   // DEFAULT IS `YES` -> EVERYTIME INITIAL WITH AUTO LOAD NEW . CHANGE IT TO `NO` IF NECESSARY .
-
+//1 PUBLIC FUNCTIONS
 - (void)pullDownRefreshHeader ;
 - (BOOL)headerIsRefreshing ;
+
+//2 DELEGATE
+@property (nonatomic,weak) id <RootTableViewDelegate> xt_Delegate ; // SET myDelegate TO YOUR CTRLLER
+
+//3 PUBLIC APIS
+// using MJRefresh
+@property (nonatomic) BOOL showRefreshDetail ;      // DEFAULT IS `NO`  -> ONLY GIF IMAGES , SHOW WORDS WHEN IT BECOMES `YES`
+@property (nonatomic) BOOL automaticallyLoadNew ;   // DEFAULT IS `YES` -> EVERYTIME INITIAL WITH AUTO LOAD NEW . CHANGE IT TO `NO` IF NECESSARY .
+@property (nonatomic) BOOL automaticallyLoadMore ;  // DEFAULT IS `NO`  -> MANUALLY LOADING . AUTOMATICALLY LOAD WHEN IT BECOMES `YES`
+
+// using Teason's loadMore . by whole tableview.contentSize.y 's percentage .
+@property (nonatomic) BOOL customLoadMore ; // using this property .  . default is `NO` . if 'YES' MJ refresh Footer will Close
+// IF using customLoadMore , U have to WRITE this func in the UIScrollViewDelegate
+- (void)rootTableScrollDidEndDragging:(UIScrollView *)scrollView ;
 
 @end

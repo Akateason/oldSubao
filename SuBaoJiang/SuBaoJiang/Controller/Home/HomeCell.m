@@ -124,7 +124,19 @@
     _article.delegate = self ;
 
     //img
-    [_img_big sd_setImageWithURL:[NSURL URLWithString:_article.img] placeholderImage:IMG_NOPIC] ;
+    [_img_big sd_setImageWithURL:[NSURL URLWithString:_article.img]
+                placeholderImage:IMG_NOPIC
+                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+                           if (cacheType == SDImageCacheTypeNone) {
+                               _img_big.alpha = 0 ;
+                               dispatch_async(dispatch_get_main_queue(), ^{
+                                   [UIView animateWithDuration:0.3
+                                                    animations:^{
+                                                       _img_big.alpha = 1.0 ;
+                                                    } completion:^(BOOL finished){}] ;
+                               }) ;
+                           } ;
+     }] ;
     
     //like
     _bt_likeOrNot.selected = _article.has_praised ;
@@ -186,10 +198,10 @@
 - (void)getNewPraiseAndRefreshCollection
 {
     [ServerRequest getPraisedInfoWithArticleID:_article.a_id AndWithSinceID:0 AndWithMaxID:0 AndWithCount:15 Success:^(id json) {
-
+        
         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
         _article.praiseCount = [[result.info objectForKey:@"article_praise_count"] intValue] ;
-
+        
         _lb_commentCount_likeCout.attributedText = [_article getAttributeStrCmtCountRplyCount];
         
     } fail:^{}] ;

@@ -43,6 +43,7 @@
     NSString        *share_topicStr ;
     NSString        *share_content ;
 }
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *btPost;
 @property (nonatomic,copy) NSString *contentEditing ;
 @end
 
@@ -54,7 +55,10 @@
 {
     NSLog(@"发布") ;
     
+    [self postBtOnOrOff:YES] ;
+    
     long long tick = [XTTickConvert getTickWithDate:[NSDate date]] ;
+    
 // upload Pic
     PicWillUpload *pic = [[PicWillUpload alloc] initNewWithUserID:G_USER.u_id tick:tick] ;
     [pic cachePic:_imageSend] ;
@@ -73,6 +77,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [XTHudManager showWordHudWithTitle:WD_WORDS_OVERFLOW] ;
         }) ;
+        [self postBtOnOrOff:NO] ;
         return ;
     }
     
@@ -107,7 +112,7 @@
         [self dismissViewControllerAnimated:NO completion:^{
             ((AppDelegate *)([UIApplication sharedApplication].delegate)).tabbarCtrller.selectedIndex = 0 ;
         }] ;
-                             
+        
         // Insert In Home
         Article *articleNew = [[Article alloc] initWithArticleID:articleID
                                                           ImgStr:[pic qiNiuPath]
@@ -115,18 +120,31 @@
                                                     topicContent:mainCell.topicStr
                                                            title:@""
                                                       createTime:tick] ;
-                             
-        [[NSNotificationCenter defaultCenter] postNotificationName:NSNOTIFICATION_UPLOAD_FINISHED object:articleNew] ;
         
+        [[NSNotificationCenter defaultCenter] postNotificationName:NSNOTIFICATION_UPLOAD_FINISHED
+                                                            object:articleNew] ;
+        [self postBtOnOrOff:NO] ;
+                         
     } fail:^{
         [XTHudManager showWordHudWithTitle:WD_HUD_FAIL_RETRY] ;
+        [self postBtOnOrOff:NO] ;
     }] ;
 }
 
+- (void)postBtOnOrOff:(BOOL)bOn
+{
+    if (bOn) {
+        _btPost.enabled = NO ;
+        [YXSpritesLoadingView showWithText:nil andShimmering:NO andBlurEffect:NO] ;
+    } else {
+        _btPost.enabled = YES ;
+        [YXSpritesLoadingView dismiss] ;
+    }
+}
 
 - (void)shareArticleNow
 {
-    share_content = !share_content ? @"" : share_content ;
+    share_content = ! share_content ? @"" : share_content ;
     
     // 要跳的链接
     NSString *strUrl = [NSString stringWithFormat:SHARE_DETAIL_URL,share_articleID] ;
@@ -155,10 +173,7 @@
                                          url:strUrl
                                      ctrller:self] ;
     }
-
 }
-
-
 
 #pragma mark -- Properties
 - (void)setImageSend:(UIImage *)imageSend
@@ -184,7 +199,6 @@
      forCellReuseIdentifier:PShareCellID];
     [self.table registerNib:[UINib nibWithNibName:PMoreCellID bundle:nil]
      forCellReuseIdentifier:PMoreCellID];
-    
 }
 
 #pragma mark -- life
@@ -215,10 +229,8 @@
 {
     [super viewWillAppear:animated] ;
     
-    [self.navigationController setNavigationBarHidden:NO
-                                             animated:NO] ;
-    [[UIApplication sharedApplication] setStatusBarHidden:NO
-                                            withAnimation:UIStatusBarAnimationNone] ;
+    [self.navigationController setNavigationBarHidden:NO animated:NO] ;
+    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -252,19 +264,14 @@
     if (!indexPath.section)
     {
         PostMainCell * cell = [tableView dequeueReusableCellWithIdentifier:PMainCellId] ;
-        if (!cell)
-        {
+        if (!cell) {
             cell = [tableView dequeueReusableCellWithIdentifier:PMainCellId] ;
         }
-        
         cell.selectionStyle = UITableViewCellSelectionStyleNone ;
         cell.image      = self.imageSend ;
         cell.topicStr   = self.topicString ;
-        
         cell.textview.text = self.contentEditing ;
-        
         cell.delegate = self ;
-        
         return cell ;
     }
     else if (!(indexPath.section - 1))
@@ -285,10 +292,8 @@
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone ;
         cell.delegate = self ;
-        
         return cell ;
     }
-    
     return nil ;
 }
 
@@ -398,6 +403,5 @@
         selTalkCtrller.delegate = self ;
     }
 }
-
 
 @end

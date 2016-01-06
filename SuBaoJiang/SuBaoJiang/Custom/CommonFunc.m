@@ -56,8 +56,13 @@
 #pragma mark -- save images to library
 + (void)saveImageToLibrary:(UIImage *)savedImage
 {
-//    NSLog(@"size : %@",NSStringFromCGSize(savedImage.size)) ;
-//    UIImageWriteToSavedPhotosAlbum(savedImage, nil, nil, NULL);
+    [self saveImageToLibrary:savedImage hud:YES] ;
+}
+
++ (void)saveImageToLibrary:(UIImage *)savedImage hud:(BOOL)showHud
+{
+    //    NSLog(@"size : %@",NSStringFromCGSize(savedImage.size)) ;
+    //    UIImageWriteToSavedPhotosAlbum(savedImage, nil, nil, NULL);
     
     __block UIImage *imgSave = savedImage ;
     
@@ -68,15 +73,16 @@
         [library saveImage:imgSave
                    toAlbum:@"速报酱"
        withCompletionBlock:^(NSError *error) {
-           if (!error) {
+           if (showHud && !error) {
                dispatch_async(dispatch_get_main_queue(), ^{
                    [XTHudManager showWordHudWithTitle:WD_HUD_PIC_SAVE_SUCCESS] ;
                }) ;
            }
        }] ;
     }) ;
-
+    
 }
+
 
 + (UIImage *)getSuBaoJiangWaterMask:(UIImage *)orgImage
 {

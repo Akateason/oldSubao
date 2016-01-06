@@ -270,9 +270,6 @@
     [m_btSetting addTarget:self action:@selector(settingPressed) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *settintBt  = [[UIBarButtonItem alloc] initWithCustomView:m_btSetting] ;
     self.navigationItem.rightBarButtonItem = settintBt ;
-    
-//    m_settintBt = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"setting"] style:UIBarButtonItemStylePlain target:self action:@selector(settingPressed)] ;
-//    self.navigationItem.rightBarButtonItem = m_settintBt ;
 }
 
 - (void)settingPressed
@@ -313,7 +310,7 @@
     _pathCover.userObj = self.theUser ;
     [self fetchUserHead] ;
     _pathCover.isZoomingEffect = YES ;
-    self.table.tableHeaderView = self.pathCover ;
+    self.table.tableHeaderView = _pathCover ;
     _pathCover.infoView.delegate = self ;
     
     __weak UserCenterController *wself = self ;
@@ -321,7 +318,6 @@
         [wself _refreshing] ;
     }];
     
-    [_pathCover animateStart] ;
 
 }
 
@@ -332,52 +328,58 @@
         [_pathCover setBackgroundImage:nil] ;
         return ;
     }
+
+// Ask The "User Head Picture" has cached or not . if not , download it .
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        UIImage *headImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.theUser.u_headpic
+                                                                        withCacheWidth:APPFRAME.size.width] ;
+        if (!headImage)
+        {
+            [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:self.theUser.u_headpic]
+                                                                  options:0
+                                                                 progress:nil
+                                                                completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                                                                    [self makeBlurOn:image] ;
+                                                                }] ;
+        }
+        else {
+            [self makeBlurOn:headImage] ;
+        }
+    }) ;
     
-    UIImage *headImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.theUser.u_headpic
-                                                                    withCacheWidth:APPFRAME.size.width] ;
-    if (!headImage)
-    {
-        [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:self.theUser.u_headpic]
-                                                              options:0
-                                                             progress:nil
-                                                            completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
-                                                                [self makeBlurOn:image] ;
-                                                            }] ;
-    }
-    else {
-        [self makeBlurOn:headImage] ;
-    }
+
 }
 
 - (void)makeBlurOn:(UIImage *)orgImage
 {
-    UIImage *imgBack = [orgImage blur] ;
-    
-    [_pathCover setBackgroundImage:imgBack] ;
+    __block UIImage *blurImage = [orgImage blur] ;
+    dispatch_async(dispatch_get_main_queue(), ^{
+                       [_pathCover setBackgroundImage:blurImage] ;
+    }) ;
 }
 
 
 - (void)_refreshing
 {
-    if (_reloadingHead || _reloadingFoot) {
-        return ;
-    }
+    if (_reloadingHead || _reloadingFoot) return ;
+    
     _reloadingHead = YES ;
     // refresh your data sources
     __weak UserCenterController *wself = self ;
-    dispatch_queue_t requestQueue = dispatch_queue_create("UserRequestqueue", NULL) ;
+    dispatch_queue_t requestQueue = dispatch_queue_create("UserRequestqueue", DISPATCH_QUEUE_SERIAL) ;
     dispatch_async(requestQueue, ^{
+        
         [wself getInfoWithPullUpDown:YES] ;
         
-        [_pathCover stopRefresh] ;
-
         dispatch_async(dispatch_get_main_queue(), ^{
             
             _pathCover.userObj = wself.theUser ;
-            [wself fetchUserHead] ;
+
+            [wself fetchUserHead] ; //
+            
             [wself.pathCover stopRefresh] ;
             [wself.table reloadData] ;
-            
             _reloadingHead = NO ;
             
         }) ;
@@ -526,7 +528,8 @@
 
 - (BOOL)getInfoWithPullUpDown:(BOOL)bUpDown
 {
-    if (bUpDown){
+    if (bUpDown)
+    {
         switch (m_currentMode)
         {
             case mode_MY_SUBAO:
@@ -728,7 +731,6 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [_pathCover scrollViewDidScroll:scrollView];
-    
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
@@ -753,8 +755,7 @@
     
     CGFloat alarmDistance = 0 ;
     
-    if (maximumOffset <= currentOffset + alarmDistance)
-    {
+    if (maximumOffset <= currentOffset + alarmDistance) {
         [self loadMoreAction];
     }
 }
@@ -783,7 +784,6 @@
     }) ;
 }
 
-
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [_pathCover scrollViewDidEndDecelerating:scrollView];
 }
@@ -792,14 +792,10 @@
     [_pathCover scrollViewWillBeginDragging:scrollView];
 }
 
-
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     [segue.destinationViewController setHidesBottomBarWhenPushed:YES] ;
 }
 

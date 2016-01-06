@@ -7,7 +7,6 @@
 //
 
 #import "NewCameaCtrller.h"
-#import <TuSDK/TuSDK.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "CHTCollectionViewWaterfallLayout.h"
 #import "PostSubaoCtrller.h"
@@ -26,10 +25,9 @@
 #define COLUMN_NUMBER       3
 #define COLUMN_FLEX         3.0
 
-
 static long photoCount = 0 ;
 
-@interface NewCameaCtrller () <CHTCollectionViewDelegateWaterfallLayout,UICollectionViewDataSource,UICollectionViewDelegate,CameraGroupCtrllerDelegate,TuSDKPFCameraDelegate,MultyPicChooseBarDelegate>
+@interface NewCameaCtrller () <CHTCollectionViewDelegateWaterfallLayout,UICollectionViewDataSource,UICollectionViewDelegate,CameraGroupCtrllerDelegate,MultyPicChooseBarDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 
 @property  (nonatomic, strong)  NSMutableArray      *imageList ; // data source
 @property  (nonatomic, strong)  NSMutableArray      *multySelectedImageList ;
@@ -327,8 +325,6 @@ static long photoCount = 0 ;
     [ALAssetsLibrary disableSharedPhotoStreamsSupport]; // 开启 Photo Stream 容易导致 exception
 
     self.myTitle = @"相册照相页" ;
-
-    [TuSDKTKLocation shared].requireAuthor = NO ;
     
     [self multySelectedImageList] ;
     [self imageList] ;
@@ -483,58 +479,40 @@ static long photoCount = 0 ;
 #pragma mark - Open camera TuSDK
 - (void)openCamera
 {
-    
-    // 开启访问相机权限
-    [TuSDKTSDeviceSettings checkAllowWithType:lsqDeviceSettingsCamera
-                                    completed:^(lsqDeviceSettingsType type, BOOL openSetting)
-     {
-         if (openSetting) {
-             lsqLError(@"Can not open camera");
-             return;
-         }
-         [self showCameraController];
-     }];
+    [self startCameraControllerFromViewController: self
+                                    usingDelegate: self] ;
 }
 
-#pragma mark - cameraComponentHandler TuSDKPFCameraDelegate
-- (void)showCameraController
+- (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
+                                   usingDelegate: (id <UIImagePickerControllerDelegate,
+                                                   UINavigationControllerDelegate>) delegate
 {
-    // 组件选项配置
-    TuSDKPFCameraOptions *opt = [TuSDKPFCameraOptions build] ;
+    // here, check the device is available  or not
+    BOOL bFail = ![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera] || !delegate || !controller ;
+    if (bFail) return NO ;
     
-    opt.enableFilters = NO;
-    // 默认是否显示滤镜视图 (默认: 不显示, 如果enableFilters = NO, showFilterDefault将失效)
-    opt.showFilterDefault = NO;
-    // 是否保存最后一次使用的滤镜
-    opt.saveLastFilter = YES;
-    // 自动选择分组滤镜指定的默认滤镜
-    opt.autoSelectGroupDefaultFilter = YES;
-    // 开启滤镜配置选项
-    opt.enableFilterConfig = YES;
-    // 视频视图显示比例类型 (默认:lsqRatioAll, 如果设置cameraViewRatio > 0, 将忽略ratioType)
-    opt.ratioType = lsqRatio_1_1;
-    // 是否开启长按拍摄 (默认: NO)
-    opt.enableLongTouchCapture = YES;
-    // 开启持续自动对焦 (默认: NO)
-    opt.enableContinueFoucs = YES;
-    // 保存到系统相册 (默认不保存, 当设置为YES时, TuSDKResult.asset)
-    opt.saveToAlbum = NO ;
-    opt.regionViewColor = RGB(51, 51, 51);
-    
-    TuSDKPFCameraViewController *controller = opt.viewController ;
-    controller.delegate = self ;
-    [self presentViewController:controller animated:YES completion:^{}] ;
+    UIImagePickerController *cameraUI = [[UIImagePickerController alloc] init] ;
+    cameraUI.sourceType = UIImagePickerControllerSourceTypeCamera ;
+    // Hides the controls for moving & scaling pictures, or for
+    // trimming movies. To instead show the controls, use YES.
+    //cameraUI.allowsEditing = YES ;
+    cameraUI.delegate = delegate ;
+    [controller presentViewController:cameraUI
+                             animated:YES
+                           completion:^{}] ;
+    return YES ;
 }
 
-// 获取一个拍摄结果
-- (void)onTuSDKPFCamera:(TuSDKPFCameraViewController *)controller captureResult:(TuSDKResult *)result;
+#pragma mark --
+#pragma mark - imagePickerDelegate
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    [controller dismissViewControllerAnimated:YES completion:^{
-        // Insert Images Asset in collection view
-        [self go2CuttingVC:result.image] ;
+    UIImage *imageFromCamera = [info objectForKey:UIImagePickerControllerOriginalImage] ;
+    [self dismissViewControllerAnimated:YES
+                             completion:^{
+                                 [self go2CuttingVC:imageFromCamera] ;
+                                 [CommonFunc saveImageToLibrary:imageFromCamera hud:NO] ;
     }] ;
-
-    lsqLDebug(@"onTuSDKPFCamera: %@", result) ;
 }
 
 - (void)go2CuttingVC:(UIImage *)imageResult
@@ -549,13 +527,6 @@ static long photoCount = 0 ;
             [(MultyEditCtrller *)self.orginCtrller changeImageCallback:imageResult] ;
         }] ;
     }
-}
-
-#pragma mark - TuSDKCPComponentErrorDelegate
-//获取组件返回错误信息
-- (void)onComponent:(TuSDKCPViewController *)controller result:(TuSDKResult *)result error:(NSError *)error;
-{
-    lsqLDebug(@"onComponent: controller - %@, result - %@, error - %@", controller, result, error);
 }
 
 #pragma mark - Navigation

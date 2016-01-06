@@ -8,7 +8,6 @@
 
 #import "HomeController.h"
 #import "HomeCell.h"
-#import "SuBaoHeaderView.h"
 #import "MyNavCtrller.h"
 #import "Article.h"
 #import "Themes.h"
@@ -27,6 +26,7 @@
 #import "UIImageView+WebCache.h"
 #import "NotificationCenterHeader.h"
 #import "UITableView+FDTemplateLayoutCell.h"
+#import "HomeUserTableHeaderView.h"
 
 #define SIZE_OF_PAGE        20
 
@@ -38,9 +38,10 @@
 #define ThemeCellID         @"ThemeCell"
 #define HomeCellID          @"HomeCell"
 #define SEintroCellID       @"SEintroCell"
+#define HeaderIdentifier    @"HomeUserTableHeaderView"
 
 
-@interface HomeController () <UITableViewDataSource,UITableViewDelegate,SuBaoHeaderViewDelegate,RootTableViewDelegate,HomeCellDelegate,ThemeCellDelegate,MyTabbarCtrllerDelegate,SEintroCellDelegate>
+@interface HomeController () <UITableViewDataSource,UITableViewDelegate,RootTableViewDelegate,HomeCellDelegate,ThemeCellDelegate,MyTabbarCtrllerDelegate,SEintroCellDelegate,HomeUserTableHeaderViewDelegate>
 {
     BOOL                bSwitchFlyword      ; // 弹幕开关   DEFAULT IS TRUE
     UIBarButtonItem     *m_switchButton     ;
@@ -99,8 +100,8 @@
         if (isSameTopic) return ; // same Topic Not Jump
     }
     
-    [[UIApplication sharedApplication] setStatusBarHidden:NO] ;
-    [ctrller.navigationController setNavigationBarHidden:NO animated:NO] ;
+    if (IS_IOS_VERSION(8.0)) ctrller.navigationController.hidesBarsOnSwipe = NO ;
+    
     
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
     HomeController *homeCtrller = [story instantiateViewControllerWithIdentifier:@"HomeController"] ;
@@ -246,16 +247,13 @@
 {
     Article *articleDelete = [notification object] ;
     
-    int index = 0 ;
-    for (Article *tempArti in self.m_articleList)
-    {
+    [self.m_articleList enumerateObjectsUsingBlock:^(Article *tempArti, NSUInteger idx, BOOL * _Nonnull stop) {
         if (tempArti.a_id == articleDelete.a_id)
         {
-            [self.m_articleList removeObjectAtIndex:index] ;
-            break ;
+            [self.m_articleList removeObjectAtIndex:idx] ;
+            *stop = YES ;
         }
-        index ++ ;
-    }
+    }] ;
     
     m_lastUpdateTime = ((Article *)[self.m_articleList lastObject]).a_updatetime ;
     [_table reloadData] ;
@@ -282,19 +280,16 @@
 {
     Article *artiTemp = [notification object] ;
     
-    int index = 0 ;
-    for (Article *arti in self.m_articleList)
-    {
+    [self.m_articleList enumerateObjectsUsingBlock:^(Article *arti, NSUInteger idx, BOOL * _Nonnull stop) {
         if (arti.a_id == artiTemp.a_id)
         {
-            [self.m_articleList replaceObjectAtIndex:index
+            [self.m_articleList replaceObjectAtIndex:idx
                                           withObject:artiTemp] ;
-            [_table reloadSections:[NSIndexSet indexSetWithIndex:index + 1]
+            [_table reloadSections:[NSIndexSet indexSetWithIndex:idx + 1]
                   withRowAnimation:UITableViewRowAnimationNone] ;
-            break ;
+            *stop = YES ;
         }
-        index ++ ;
-    }
+    }] ;
 }
 
 #pragma mark -- MyTabbarCtrllerDelegate
@@ -303,8 +298,8 @@
     if (!self.m_articleList.count) return ;
 
     [self.table pullDownRefreshHeader] ;
-    [self.navigationController setNavigationBarHidden:NO animated:YES] ;
-    [[UIApplication sharedApplication] setStatusBarHidden:NO] ;
+
+    if (IS_IOS_VERSION(8.0)) self.navigationController.hidesBarsOnSwipe = NO ;
 }
 
 #pragma mark -- SEintroCellDelegate
@@ -366,17 +361,31 @@
      forCellReuseIdentifier:HomeCellID] ;
         [_table registerNib:[UINib nibWithNibName:SEintroCellID bundle:nil]
      forCellReuseIdentifier:SEintroCellID] ;
-    
+    [_table registerNib:[UINib nibWithNibName:HeaderIdentifier bundle:nil] forHeaderFooterViewReuseIdentifier:HeaderIdentifier] ;
+
     _table.delegate = self ;
     _table.dataSource = self ;
     _table.separatorStyle = UITableViewCellSeparatorStyleNone ;
     _table.backgroundColor = COLOR_BACKGROUND ;
     _table.xt_Delegate = self ;
-    _table.automaticallyLoadMore = YES ;
+//    _table.automaticallyLoadMore = YES ;
+    _table.customLoadMore = YES ;
+    
 //    _table.showsVerticalScrollIndicator = NO ;
 }
 
 #pragma mark --
+- (void)showAllBars
+{
+    //Close Hides Bars On Swipe
+    if (IS_IOS_VERSION(8.0)) self.navigationController.hidesBarsOnSwipe = NO ;
+    //Show Nav if necessary
+    if (self.navigationController.navigationBarHidden == YES) {
+        [self.navigationController setNavigationBarHidden:NO animated:NO] ;
+    }
+}
+
+
 - (void)putNavBarItem
 {
     bSwitchFlyword = YES ;
@@ -412,8 +421,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
+    // Do any additional setup after loading the view
+
     // initial
     [self setup] ;
     [self putNavBarItem] ;
@@ -472,7 +481,9 @@
 {
     [super viewWillAppear:animated] ;
 
-    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self;
+    self.navigationController.interactivePopGestureRecognizer.delegate = (id)self ;
+    
+//    if (IS_IOS_VERSION(8.0) && !_topic && self.navigationController.hidesBarsOnSwipe == NO) self.navigationController.hidesBarsOnSwipe = YES ; // >=ios8 && isHomeIndexPage .
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -484,8 +495,7 @@
 {
     [super viewWillDisappear:animated] ;
     
-    [self.navigationController setNavigationBarHidden:NO animated:YES] ;
-    [[UIApplication sharedApplication] setStatusBarHidden:NO] ;
+    [self showAllBars] ;
 }
 
 #pragma mark --
@@ -779,16 +789,15 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     if (!section) {
-        UIView *empty = [[UIView alloc] init] ;
-        empty.backgroundColor = nil ;
-        return empty ;
+        UITableViewHeaderFooterView *emtpyHeader = [[UITableViewHeaderFooterView alloc] init] ;
+        return emtpyHeader ;
     }
-    
-    SuBaoHeaderView *header = (SuBaoHeaderView *)[[[NSBundle mainBundle] loadNibNamed:@"SuBaoHeaderView" owner:self options:nil] lastObject] ;
+
+    HomeUserTableHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier] ;
+    header.delegate = self ;
     @synchronized (self.m_articleList) {
         header.article = self.m_articleList[section - 1] ;
     }
-    header.delegate = self ;
     return header ;
 }
 
@@ -797,18 +806,17 @@
     return (!section) ? NONE_HEIGHT : 48.0f ;
 }
 
-// custom view for footer. will be adjusted to default or specified footer height
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+- (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *backView = [[UIView alloc] init] ;
-    backView.backgroundColor = nil ;
-    return backView ;
+    UITableViewHeaderFooterView *emtpyHeader = [[UITableViewHeaderFooterView alloc] init] ;
+    return emtpyHeader ;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return NONE_HEIGHT ;
 }
+
 
 #pragma mark --
 #pragma mark - UIScrollViewDelegate Methods
@@ -836,6 +844,7 @@
         return ; // BREAK IN topic ctrller
     }
     
+    /*
     //  hidden or show nav and tab  BARs .
     if ( IS_IOS_VERSION(7.1) )   //   Unsupport  7.0
     {
@@ -845,19 +854,25 @@
         if (translation.y > flex)
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
-                [self.navigationController setNavigationBarHidden:NO animated:YES] ;
-                self.tabBarController.tabBar.hidden = NO ;
+//                [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
+//                [self.navigationController setNavigationBarHidden:NO animated:YES] ;
+//                self.tabBarController.tabBar.hidden = NO ;
             }) ;
         }
         else
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [[UIApplication sharedApplication] setStatusBarHidden:decelerate withAnimation:UIStatusBarAnimationNone] ;
-                [self.navigationController setNavigationBarHidden:decelerate animated:YES] ;
-                self.tabBarController.tabBar.hidden = decelerate ;
+//                [[UIApplication sharedApplication] setStatusBarHidden:decelerate withAnimation:UIStatusBarAnimationNone] ;
+//                [self.navigationController setNavigationBarHidden:decelerate animated:YES] ;
+//                self.tabBarController.tabBar.hidden = decelerate ;
             }) ;
         }
+    }
+    */
+    
+//    custom loadmore .
+    if (_table.customLoadMore) {
+        [_table rootTableScrollDidEndDragging:scrollView] ;
     }
 }
 
@@ -873,7 +888,8 @@
 {
     if (self.bt_go2post.alpha != 1.0)
     {
-        [UIView animateWithDuration:0.35 animations:^{
+        [UIView animateWithDuration:0.35
+                         animations:^{
             self.bt_go2post.alpha = 1.0 ;
         }] ;
     }

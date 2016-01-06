@@ -8,7 +8,6 @@
 
 #import "DetailSubaoCtrller.h"
 #import "NSObject+MKBlockTimer.h"
-#import "SuBaoHeaderView.h"
 #import "WordSendView.h"
 #import "FlywordInputView.h"
 #import "ServerRequest.h"
@@ -32,6 +31,7 @@
 #import "ReplyCell.h"
 #import "SaveAlbumnCtrller.h"
 #import "UITableView+FDTemplateLayoutCell.h"
+#import "HomeUserTableHeaderView.h"
 
 #define SIZE_OF_PAGE                            50
 
@@ -42,8 +42,9 @@
 #define LINE_HEIGHT                             0.0f
 
 #define OBSERVER_KEY_PATH_CURRENT_ARTICLE       @"OBSERVER_KEY_PATH_CURRENT_ARTICLE"
+#define HeaderIdentifier                        @"HomeUserTableHeaderView"
 
-@interface DetailSubaoCtrller ()<UITableViewDataSource,UITableViewDelegate,FlywordInputViewDelegate,WordSendViewDelegate,SuBaoHeaderViewDelegate,RootTableViewDelegate,ReplyCellDelegate,ShareAlertVDelegate,DtOperationCellDelegate,DtSuperCellDelegate,DtSubCellDelegate>
+@interface DetailSubaoCtrller ()<UITableViewDataSource,UITableViewDelegate,FlywordInputViewDelegate,WordSendViewDelegate,RootTableViewDelegate,ReplyCellDelegate,ShareAlertVDelegate,DtOperationCellDelegate,DtSuperCellDelegate,DtSubCellDelegate,HomeUserTableHeaderViewDelegate>
 {
     BOOL                keyBoardIsUp        ;
     BOOL                bSwitchFlyword      ; // BarrageView Switcher DEFAULT IS TRUE
@@ -244,6 +245,7 @@
     [_table registerNib:[UINib nibWithNibName:CellId_DtSubCell bundle:nil] forCellReuseIdentifier:CellId_DtSubCell] ;
     [_table registerNib:[UINib nibWithNibName:CellId_OperationCell bundle:nil] forCellReuseIdentifier:CellId_OperationCell];
     [_table registerNib:[UINib nibWithNibName:CellId_replyCell bundle:nil] forCellReuseIdentifier:CellId_replyCell];
+    [_table registerNib:[UINib nibWithNibName:HeaderIdentifier bundle:nil] forHeaderFooterViewReuseIdentifier:HeaderIdentifier] ;
 
     
     // long press gesture
@@ -950,7 +952,7 @@
 {
     if (section == 0)
     {
-        SuBaoHeaderView *header = (SuBaoHeaderView *)[[[NSBundle mainBundle] loadNibNamed:@"SuBaoHeaderView" owner:self options:nil] lastObject] ;
+        HomeUserTableHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier] ;
         header.article = self.articleSuper ;
         header.delegate = self ;
         return header ;

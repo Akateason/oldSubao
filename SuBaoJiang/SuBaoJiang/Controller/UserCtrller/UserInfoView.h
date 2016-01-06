@@ -15,7 +15,9 @@
 @end
 
 @interface UserInfoView : UIView
+
 @property (nonatomic,weak)  id <UserInfoViewDelegate> delegate ;
-@property (nonatomic,strong)User *theUser ;
-- (void)animationForUserHead ;
+@property (nonatomic,strong) User *theUser ;
+- (void)setRotateAnimationProgress:(float)time ;
+
 @end

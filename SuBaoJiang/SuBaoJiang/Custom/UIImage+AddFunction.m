@@ -486,6 +486,7 @@
     return returnImage;
 }
 
+
 #pragma mark --
 #pragma mark - UIimage转换NSdata
 //1.UIimage转换NSdata

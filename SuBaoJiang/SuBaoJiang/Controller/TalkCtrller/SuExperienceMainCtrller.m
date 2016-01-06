@@ -69,6 +69,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated] ;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated] ;
     
     if (![self.table headerIsRefreshing]) {
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -76,11 +81,6 @@
             [scell animationForIcon] ;
         }) ;
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated] ;
 }
 
 - (void)viewWillDisappear:(BOOL)animated

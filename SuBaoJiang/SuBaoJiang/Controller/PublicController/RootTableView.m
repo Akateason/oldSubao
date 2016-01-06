@@ -10,6 +10,9 @@
 #import "MJRefresh.h"
 
 @interface RootTableView ()
+{
+    BOOL b_customLoadMore_isRefreshing ;
+}
 @property (nonatomic,strong) NSArray *gifImageList ;
 @end
 
@@ -76,6 +79,7 @@
     self.showRefreshDetail = NO ;
     self.automaticallyLoadMore = NO ;
     self.automaticallyLoadNew = YES ;
+//    self.customLoadMore = NO ;
 }
 
 #pragma mark --
@@ -98,7 +102,7 @@
         self.mj_footer = nil ;
         MJRefreshAutoFooter *autofooter = [MJRefreshAutoFooter footerWithRefreshingTarget:self
                                                                          refreshingAction:@selector(loadMoreDataSelector)] ;
-        autofooter.triggerAutomaticallyRefreshPercent = 0.1 ;
+        autofooter.triggerAutomaticallyRefreshPercent = 0.4 ;
         self.mj_footer = autofooter;
     }
 }
@@ -111,6 +115,22 @@
         [self.mj_header beginRefreshing] ;
     } else {
         [self.mj_header endRefreshing] ;
+    }
+}
+
+
+- (void)setCustomLoadMore:(BOOL)customLoadMore
+{
+    _customLoadMore = customLoadMore ;
+    
+    if (customLoadMore == YES)
+    {
+        self.mj_footer = nil ; // close MJ Refresh Footer .
+        b_customLoadMore_isRefreshing = NO ; // b initial .
+    }
+    else
+    {
+        NSLog(@" customLoadMore DEFAULT IS `NO` . it's ok .") ;
     }
 }
 
@@ -173,6 +193,53 @@
         [self.mj_footer endRefreshing];
     }) ;
 }
+
+#pragma mark -- if using customLoadMore , U have to WRITE this func in the UIScrollViewDelegate
+- (void)rootTableScrollDidEndDragging:(UIScrollView *)scrollView
+{
+    if (self.customLoadMore == YES) {
+        [self loadMoreWithScrollView:scrollView] ;
+    }
+}
+
+- (void)loadMoreWithScrollView:(UIScrollView *)scrollView
+{
+    if (self.mj_header.isRefreshing || b_customLoadMore_isRefreshing) return ; // protect loading only once . if in loading break out .
+    
+    CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview] ;
+    if (translation.y > 0.0) return ; // BREAK in move up direction .
+    
+    CGPoint offset = scrollView.contentOffset ;
+    CGRect bounds = scrollView.bounds ;
+    CGSize contentsize = scrollView.contentSize ;
+    UIEdgeInsets inset = scrollView.contentInset ;
+    CGFloat currentOffset = offset.y + bounds.size.height - inset.bottom ;
+    CGFloat maximumOffset = contentsize.height ;
+    if (contentsize.height <= bounds.size.height) return ;
+    
+    if ( maximumOffset * 0.8 <= currentOffset) {
+        [self loadMoreAction] ;
+    }
+}
+
+- (void)loadMoreAction
+{
+    b_customLoadMore_isRefreshing = YES ; // change status into isRefreshing now .
+    
+//    dispatch_queue_t queue = dispatch_queue_create("TeasonLoadMore", NULL) ;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) ;
+    dispatch_async(queue, ^{
+        
+        [self.xt_Delegate loadMoreData] ;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self reloadData] ;
+            b_customLoadMore_isRefreshing = NO ;
+        }) ;
+        
+    }) ;
+}
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

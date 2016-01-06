@@ -12,7 +12,6 @@
 #import "UMSocialWechatHandler.h"
 #import "CommonFunc.h"
 #import "MobClick.h"
-#import <TuSDK/TuSDK.h>
 #import "ServerRequest.h"
 #import "PicUploadTB.h"
 #import "DraftTB.h"
@@ -64,9 +63,6 @@
     
     //  Get Token and userInfo if loginED (token existed)
     [self getTokenAndUser] ;
-    
-    //  TU SDK
-    [self tuSdkInitialization] ;
     
     //  Camera360 SDK
     [self camera360Initialization] ;
@@ -213,11 +209,6 @@
 {
     bool b = [pg_edit_sdk_controller sStart:CAMERA360_KEY] ;
     NSLog(@"camera360 : %d",b) ;
-}
-
-- (void)tuSdkInitialization
-{
-    [TuSDK initSdkWithAppKey:TU_APPKEY];
 }
 
 - (void)getAppCheckSwitch

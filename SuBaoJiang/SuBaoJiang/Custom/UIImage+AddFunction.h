@@ -56,6 +56,7 @@
 //8.模糊
 - (UIImage *)blur ;
 
+
 #pragma mark -- 
 #pragma mark - convert
 //1.UIimage转换NSdata

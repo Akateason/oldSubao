@@ -24,7 +24,8 @@ typedef enum {
 + (UIViewController *)getCurrentVC ;
 
 #pragma mark - save images to library
-+ (void)saveImageToLibrary:(UIImage*)savedImage ;
++ (void)saveImageToLibrary:(UIImage *)savedImage ;
++ (void)saveImageToLibrary:(UIImage *)savedImage hud:(BOOL)showHud ;
 
 #pragma mark - water mask SubaoJiang
 + (UIImage *)getSuBaoJiangWaterMask:(UIImage *)orgImage ;

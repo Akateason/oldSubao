@@ -12,29 +12,26 @@
 #import "UIImage+AddFunction.h"
 #import "DigitInformation.h"
 #import "XTAnimation.h"
-#import "AFViewShaker.h"
+#import "UIImage+RoundedCorner.h"
 
 @interface UserInfoView ()
+
 @property (weak, nonatomic) IBOutlet UILabel *lb_userInfo;
 @property (weak, nonatomic) IBOutlet UIImageView *img_head;
 @property (weak, nonatomic) IBOutlet UIImageView *img_sex;
 @property (weak, nonatomic) IBOutlet UILabel *lb_uname;
 @property (weak, nonatomic) IBOutlet UIView *v_line;
 @property (weak, nonatomic) IBOutlet UIButton *bt_edit;
+
 @end
 
 @implementation UserInfoView
 
-- (void)animationForUserHead
+- (void)setRotateAnimationProgress:(float)time
 {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-        NSArray * viewlist = @[_img_head,_lb_uname] ;
-        AFViewShaker *viewShaker = [[AFViewShaker alloc] initWithViewsArray:viewlist];
-        [viewShaker shake] ;
-        
-    }) ;
+    _img_head.layer.timeOffset = time ;
 }
+
 
 #pragma mark - Properties
 - (void)setTheUser:(User *)theUser
@@ -56,7 +53,6 @@
     
     BOOL isOwner = [theUser isCurrentUserBeOwner] ;
     _bt_edit.hidden = !isOwner ;
-    
 }
 
 - (void)awakeFromNib
@@ -67,15 +63,27 @@
     
     _img_head.layer.borderColor = [UIColor whiteColor].CGColor ;
     _img_head.layer.borderWidth = 1.0 ;
-    
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMe:)] ;
-    [self addGestureRecognizer:tap] ;
-    
     [XTCornerView setRoundHeadPicWithView:_img_head] ;
-    
     [XTCornerView setRoundHeadPicWithView:_bt_edit] ;    
     _bt_edit.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4] ;
     _bt_edit.hidden = YES ;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMe:)] ;
+    [self addGestureRecognizer:tap] ;
+
+    
+    float degree = M_PI ;
+    CATransform3D rotationTransform = CATransform3DMakeRotation(degree, 0, 0 ,1);
+    CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    animation.toValue = [NSValue valueWithCATransform3D:rotationTransform];
+    animation.cumulative = YES ;
+    animation.duration = 1 ;
+    animation.repeatCount = 20 ;
+    animation.removedOnCompletion = NO ;
+    [_img_head.layer addAnimation:animation forKey:@"rotateUserHead"] ;
+    _img_head.layer.speed = 0 ;
+    _img_head.layer.timeOffset = 0 ;
+    
 }
 
 - (void)tapMe:(UITapGestureRecognizer *)tap

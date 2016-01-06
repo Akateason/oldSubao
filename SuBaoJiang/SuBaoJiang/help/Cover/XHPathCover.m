@@ -1,5 +1,6 @@
 
 #import "XHPathCover.h"
+#import "XTAnimation.h"
 
 NSString *const XHUserNameKey = @"XHUserName";
 NSString *const XHBirthdayKey = @"XHBirthday";
@@ -20,14 +21,13 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 @implementation XHPathCover
 
 #pragma mark - Publish Api
-- (void)animateStart
-{
-    [self.infoView animationForUserHead] ;
-}
+//- (void)animateStart
+//{
+//    [self.infoView animationForUserHead] ;
+//}
 
 - (void)stopRefresh
 {
-//    [_waterDropRefresh stopRefresh];
     if(_touching == NO) {
         [self resetTouch];
     } else {
@@ -65,7 +65,7 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 {
     if (!_infoView) {
         _infoView = [[[NSBundle mainBundle] loadNibNamed:@"UserInfoView" owner:self options:nil] lastObject] ;
-         CGRect rectInfo = _infoView.frame ;
+        CGRect rectInfo = _infoView.frame ;
         rectInfo.size.width = APPFRAME.size.width ;
         _infoView.frame = rectInfo ;
         _infoView.delegate = self ;
@@ -107,11 +107,11 @@ NSString *const XHBirthdayKey = @"XHBirthday";
         
         if(normal) {
             paste = YES;
-        } else if (paste == NO ) { //&& _waterDropRefresh.isRefreshing == NO
+        } else if (paste == NO ) {
             normal = YES;
         }
     }
-    else //if(_waterDropRefresh.isRefreshing == NO)
+    else
     {
         [self resetTouch];
     }
@@ -147,6 +147,11 @@ NSString *const XHBirthdayKey = @"XHBirthday";
             CGFloat scale = fabs(y) / self.parallaxHeight;
             _bannerImageView.transform = CGAffineTransformMakeScale(1+scale, 1+scale);
         }
+        
+        // user info animation
+        CGFloat delta = 3. / self.parallaxHeight ;
+        [_infoView setRotateAnimationProgress:delta * fabs(y)] ;
+        
     } else {
         if(bframe.origin.y != 0) {
             bframe.origin.y = 0;
@@ -158,6 +163,9 @@ NSString *const XHBirthdayKey = @"XHBirthday";
             center.y = bannerSuper.frame.size.height/2 + 0.5 * y;
             _bannerImageView.center = center;
         }
+        
+        // user info animation
+        [_infoView setRotateAnimationProgress:0] ;
     }
 
 }

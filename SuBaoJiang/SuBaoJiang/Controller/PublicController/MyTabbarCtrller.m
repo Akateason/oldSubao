@@ -12,7 +12,9 @@
 #import "AppDelegate.h"
 
 @interface MyTabbarCtrller ()
-
+{
+    NSUInteger lastSelectedIndex ;
+}
 @end
 
 @implementation MyTabbarCtrller
@@ -44,13 +46,14 @@ static int indexCache = 0 ;
 #pragma mark - tabbar controller delegate
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-    if ([viewController isMemberOfClass:[NavCameraCtrller class]])
-    {
-//        NSLog(@"camera clicked !") ;
-        [NavCameraCtrller jump2NavCameraCtrllerWithOriginCtrller:self.selectedViewController] ;
-        
-        return NO ;
-    }
+//    NSLog(@"should selectedIndex %@",@(tabBarController.selectedIndex)) ;
+
+//    if ([viewController isKindOfClass:[NavCameraCtrller class]])
+//    {
+////        NSLog(@"camera clicked !") ;
+//        [NavCameraCtrller jump2NavCameraCtrllerWithOriginCtrller:self.selectedViewController] ;
+//        return NO ;
+//    }
     
     if ([tabBarController.selectedViewController isEqual:viewController])
     {
@@ -58,26 +61,31 @@ static int indexCache = 0 ;
         if ([viewController isMemberOfClass:[NavIndexCtrller class]])
         {
             indexCache ++ ;
-            
-            [self performSelectorInBackground:@selector(deleteCacheIndex)
-                                   withObject:nil] ;
-            
-            if (indexCache % 2 == 0)
-            {
-                [self.homePageDelegate doubleTapedHomePage] ;
-            }
+            [self performSelectorInBackground:@selector(deleteCacheIndex) withObject:nil] ;
+            if (indexCache % 2 == 0) [self.homePageDelegate doubleTapedHomePage] ;
         }
         else
         {
             indexCache = 0 ;
         }
         
-        return NO;
+        return NO ;
     }
     
-    return YES;
+    return YES ;
 }
 
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    NSLog(@"did selectedIndex %@",@(tabBarController.selectedIndex)) ;
+
+    if (tabBarController.selectedIndex == 2) {
+        [NavCameraCtrller jump2NavCameraCtrllerWithOriginCtrller:self.selectedViewController] ;
+        tabBarController.selectedIndex = lastSelectedIndex ;
+    }
+    
+    lastSelectedIndex = tabBarController.selectedIndex ;
+}
 
 - (void)deleteCacheIndex
 {

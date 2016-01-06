@@ -10,10 +10,12 @@
 #import "DetailTitleCell.h"
 #import "DtSuperCell.h"
 #import "DtSubCell.h"
-#import "SuBaoHeaderView.h"
 #import "UITableView+FDTemplateLayoutCell.h"
+#import "HomeUserTableHeaderView.h"
 
 #define LINE_HEIGHT             0.0f
+#define HeaderIdentifier    @"HomeUserTableHeaderView"
+
 
 @interface EditPreviewCtrl () <UITableViewDataSource,UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet RootTableView *table;
@@ -47,6 +49,8 @@
     [_table registerNib:[UINib nibWithNibName:CellId_DetailTitleCell bundle:nil] forCellReuseIdentifier:CellId_DetailTitleCell];
     [_table registerNib:[UINib nibWithNibName:CellId_DtSuperCell bundle:nil] forCellReuseIdentifier:CellId_DtSuperCell];
     [_table registerNib:[UINib nibWithNibName:CellId_DtSubCell bundle:nil] forCellReuseIdentifier:CellId_DtSubCell];
+    
+    [_table registerNib:[UINib nibWithNibName:HeaderIdentifier bundle:nil] forHeaderFooterViewReuseIdentifier:HeaderIdentifier] ;
 
 }
 
@@ -149,7 +153,8 @@
 {
     if (section == 0)
     {
-        SuBaoHeaderView *header = (SuBaoHeaderView *)[[[NSBundle mainBundle] loadNibNamed:@"SuBaoHeaderView" owner:self options:nil] lastObject] ;
+        HomeUserTableHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:HeaderIdentifier] ;
+        header.delegate = self ;
         header.article = self.articleSuper ;
         return header ;
     }

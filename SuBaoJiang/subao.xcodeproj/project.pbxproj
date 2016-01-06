@@ -12,8 +12,6 @@
 		182318491B1D95A8001CE919 /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182318471B1D95A8001CE919 /* HomeCell.xib */; };
 		1823184C1B1DA02E001CE919 /* HomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823184B1B1DA02E001CE919 /* HomeController.m */; };
 		1823184F1B1DA553001CE919 /* XTHudManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823184E1B1DA553001CE919 /* XTHudManager.m */; };
-		182318521B1DAB1F001CE919 /* SuBaoHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 182318511B1DAB1F001CE919 /* SuBaoHeaderView.m */; };
-		182318541B1DAB57001CE919 /* SuBaoHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182318531B1DAB57001CE919 /* SuBaoHeaderView.xib */; };
 		182318581B1DC4D8001CE919 /* DetailSubaoCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 182318571B1DC4D8001CE919 /* DetailSubaoCtrller.m */; };
 		182318611B1EB9DD001CE919 /* UserHeadCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1823185F1B1EB9DD001CE919 /* UserHeadCollectionCell.m */; };
 		182318621B1EB9DD001CE919 /* UserHeadCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182318601B1EB9DD001CE919 /* UserHeadCollectionCell.xib */; };
@@ -407,6 +405,10 @@
 		D733EB5C1BAA6B2700363235 /* UEHeadPicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D733EB5A1BAA6B2700363235 /* UEHeadPicCell.xib */; };
 		D733EB651BAA783B00363235 /* UEKeyValCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D733EB631BAA783B00363235 /* UEKeyValCell.m */; };
 		D733EB661BAA783B00363235 /* UEKeyValCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D733EB641BAA783B00363235 /* UEKeyValCell.xib */; };
+		D74D49501C3A79B500FBF02A /* UIImage+RoundedCorner.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D494F1C3A79B500FBF02A /* UIImage+RoundedCorner.m */; };
+		D74D49531C3A79C800FBF02A /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D49521C3A79C800FBF02A /* UIImage+Alpha.m */; };
+		D74D49561C3B798800FBF02A /* HomeUserTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D49551C3B798800FBF02A /* HomeUserTableHeaderView.m */; };
+		D74D49581C3BB1EF00FBF02A /* HomeUserTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D74D49571C3BB1EF00FBF02A /* HomeUserTableHeaderView.xib */; };
 		D75CC73F1C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC7381C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m */; };
 		D75CC7401C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC73A1C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m */; };
 		D75CC7411C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC73C1C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m */; };
@@ -467,9 +469,6 @@
 		1823184B1B1DA02E001CE919 /* HomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeController.m; path = SuBaoJiang/Controller/Home/HomeController.m; sourceTree = SOURCE_ROOT; };
 		1823184D1B1DA553001CE919 /* XTHudManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTHudManager.h; sourceTree = "<group>"; };
 		1823184E1B1DA553001CE919 /* XTHudManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTHudManager.m; sourceTree = "<group>"; };
-		182318501B1DAB1F001CE919 /* SuBaoHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuBaoHeaderView.h; path = SuBaoJiang/Controller/Home/SuBaoHeaderView.h; sourceTree = SOURCE_ROOT; };
-		182318511B1DAB1F001CE919 /* SuBaoHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SuBaoHeaderView.m; path = SuBaoJiang/Controller/Home/SuBaoHeaderView.m; sourceTree = SOURCE_ROOT; };
-		182318531B1DAB57001CE919 /* SuBaoHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuBaoHeaderView.xib; sourceTree = "<group>"; };
 		182318561B1DC4D8001CE919 /* DetailSubaoCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DetailSubaoCtrller.h; path = SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller.h; sourceTree = SOURCE_ROOT; };
 		182318571B1DC4D8001CE919 /* DetailSubaoCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DetailSubaoCtrller.m; path = SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller.m; sourceTree = SOURCE_ROOT; };
 		1823185E1B1EB9DD001CE919 /* UserHeadCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserHeadCollectionCell.h; path = SuBaoJiang/Controller/DetailSubao/UserHeadCollectionCell.h; sourceTree = SOURCE_ROOT; };
@@ -1202,6 +1201,13 @@
 		D733EB621BAA783B00363235 /* UEKeyValCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UEKeyValCell.h; path = Controller/UserCtrller/UEKeyValCell.h; sourceTree = "<group>"; };
 		D733EB631BAA783B00363235 /* UEKeyValCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UEKeyValCell.m; path = Controller/UserCtrller/UEKeyValCell.m; sourceTree = "<group>"; };
 		D733EB641BAA783B00363235 /* UEKeyValCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UEKeyValCell.xib; path = Controller/UserCtrller/UEKeyValCell.xib; sourceTree = "<group>"; };
+		D74D494E1C3A79B500FBF02A /* UIImage+RoundedCorner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+RoundedCorner.h"; sourceTree = "<group>"; };
+		D74D494F1C3A79B500FBF02A /* UIImage+RoundedCorner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+RoundedCorner.m"; sourceTree = "<group>"; };
+		D74D49511C3A79C800FBF02A /* UIImage+Alpha.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Alpha.h"; sourceTree = "<group>"; };
+		D74D49521C3A79C800FBF02A /* UIImage+Alpha.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Alpha.m"; sourceTree = "<group>"; };
+		D74D49541C3B798800FBF02A /* HomeUserTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeUserTableHeaderView.h; path = SuBaoJiang/Controller/Home/HomeUserTableHeaderView.h; sourceTree = SOURCE_ROOT; };
+		D74D49551C3B798800FBF02A /* HomeUserTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeUserTableHeaderView.m; path = SuBaoJiang/Controller/Home/HomeUserTableHeaderView.m; sourceTree = SOURCE_ROOT; };
+		D74D49571C3BB1EF00FBF02A /* HomeUserTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeUserTableHeaderView.xib; path = SuBaoJiang/Controller/Home/HomeUserTableHeaderView.xib; sourceTree = SOURCE_ROOT; };
 		D75CC7371C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
 		D75CC7381C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
 		D75CC7391C310E4300E590E6 /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
@@ -1344,9 +1350,9 @@
 				1823184B1B1DA02E001CE919 /* HomeController.m */,
 				182318421B1D892C001CE919 /* NavTitleView.h */,
 				182318431B1D892C001CE919 /* NavTitleView.m */,
-				182318501B1DAB1F001CE919 /* SuBaoHeaderView.h */,
-				182318511B1DAB1F001CE919 /* SuBaoHeaderView.m */,
-				182318531B1DAB57001CE919 /* SuBaoHeaderView.xib */,
+				D74D49541C3B798800FBF02A /* HomeUserTableHeaderView.h */,
+				D74D49551C3B798800FBF02A /* HomeUserTableHeaderView.m */,
+				D74D49571C3BB1EF00FBF02A /* HomeUserTableHeaderView.xib */,
 				182318451B1D95A8001CE919 /* HomeCell.h */,
 				182318461B1D95A8001CE919 /* HomeCell.m */,
 				182318471B1D95A8001CE919 /* HomeCell.xib */,
@@ -1515,6 +1521,10 @@
 		184C1D7A1B8588930033CC4C /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				D74D49511C3A79C800FBF02A /* UIImage+Alpha.h */,
+				D74D49521C3A79C800FBF02A /* UIImage+Alpha.m */,
+				D74D494E1C3A79B500FBF02A /* UIImage+RoundedCorner.h */,
+				D74D494F1C3A79B500FBF02A /* UIImage+RoundedCorner.m */,
 				18D3F4011B5E373B00B35AC3 /* UIImage+AddFunction.h */,
 				18D3F4021B5E373B00B35AC3 /* UIImage+AddFunction.m */,
 				187CCEE21B26D2B100360B54 /* UIView+Sizes.h */,
@@ -3318,11 +3328,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D74D49581C3BB1EF00FBF02A /* HomeUserTableHeaderView.xib in Resources */,
 				18DC51E11B2EB77600A2BEFF /* MySubaoCell.xib in Resources */,
 				18D699DF1B1C714A00BC9475 /* ELCAlbumPickerController.xib in Resources */,
 				18E3ADD31B6F576400E7B46B /* NoteInfoCell.xib in Resources */,
 				182318491B1D95A8001CE919 /* HomeCell.xib in Resources */,
-				182318541B1DAB57001CE919 /* SuBaoHeaderView.xib in Resources */,
 				187CCED31B23EDAB00360B54 /* ThemeCell.xib in Resources */,
 				184C1D881B86CAA90033CC4C /* MESubArticleCell.xib in Resources */,
 				1848A7FB1B33BBE00063C177 /* UMSCommentDetailController.xib in Resources */,
@@ -3428,6 +3438,7 @@
 				187CCEBD1B2141BC00360B54 /* ArticleTopic.m in Sources */,
 				18A4D5F91B7B77B400CCE555 /* DtSubCell.m in Sources */,
 				18A823A51B439C1A000E275F /* GuideingScrollView.m in Sources */,
+				D74D49531C3A79C800FBF02A /* UIImage+Alpha.m in Sources */,
 				D7E8FDFD1C16BFFD005E908F /* MJRefreshHeader.m in Sources */,
 				18D699AB1B1C714A00BC9475 /* ASIDataCompressor.m in Sources */,
 				18D2DDDF1B83386F005636DF /* MultyPicChooseBar.m in Sources */,
@@ -3570,6 +3581,7 @@
 				1848A7C21B3262560063C177 /* CHTCollectionViewWaterfallLayout.m in Sources */,
 				18C589CD1B2AB43A00B8A5EB /* TalkCtrller.m in Sources */,
 				18D69A121B1C714A00BC9475 /* SBJsonStreamParserState.m in Sources */,
+				D74D49501C3A79B500FBF02A /* UIImage+RoundedCorner.m in Sources */,
 				18D965731B390D84007A9CC1 /* GuideFirstCtrller.m in Sources */,
 				187CCEC51B21447800360B54 /* ArticleComment.m in Sources */,
 				D7674D391B6A11A50090B760 /* TopicCateCell.m in Sources */,
@@ -3679,7 +3691,6 @@
 				187CCE821B1FEB4C00360B54 /* FlywordInputView.m in Sources */,
 				18D69AED1B1D703B00BC9475 /* RaiseFirstCtrller.m in Sources */,
 				18D699C91B1C714A00BC9475 /* NSString+MD5.m in Sources */,
-				182318521B1DAB1F001CE919 /* SuBaoHeaderView.m in Sources */,
 				18A4D60C1B7DFA5400CCE555 /* ShareAlertView.m in Sources */,
 				18DC51F71B2FC15D00A2BEFF /* MyCmtCell.m in Sources */,
 				1823184C1B1DA02E001CE919 /* HomeController.m in Sources */,
@@ -3715,6 +3726,7 @@
 				18D699EF1B1C714A00BC9475 /* KeyBoardTopBar.m in Sources */,
 				18D699BB1B1C714A00BC9475 /* ASIS3BucketObject.m in Sources */,
 				D70FD7F91B68AC7800B4159D /* TopicCategory.m in Sources */,
+				D74D49561C3B798800FBF02A /* HomeUserTableHeaderView.m in Sources */,
 				18C589D11B2AC08F00B8A5EB /* TopicCell.m in Sources */,
 				18D69AE51B1D67C500BC9475 /* NavNoteCtrller.m in Sources */,
 				18D3F41A1B66048100B35AC3 /* XTPicCacheUploadManager.m in Sources */,
