@@ -8,7 +8,6 @@
 
 #import "DigitInformation.h"
 #import "ServerRequest.h"
-#import "SBJson.h"
 #import "SDImageCache.h"
 #import "XTFileManager.h"
 #import "XTHudManager.h"
@@ -146,7 +145,9 @@
     NSError *error = nil;
     NSData *recervedData = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponse error:&error];
     NSString *results = [[NSString alloc] initWithBytes:[recervedData bytes] length:[recervedData length] encoding:NSUTF8StringEncoding];
-    NSDictionary *dic = [results JSONValue];
+    
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:[results dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil] ;    
+    
     NSArray *infoArray = [dic objectForKey:@"results"];
     if ([infoArray count])
     {

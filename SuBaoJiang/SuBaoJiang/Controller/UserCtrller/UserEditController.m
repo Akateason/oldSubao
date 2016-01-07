@@ -19,16 +19,19 @@
 #import "NotificationCenterHeader.h"
 #import "UIImage+AddFunction.h"
 #import "CommonFunc.h"
+#import "XTZoomPicture.h"
 
 #define NONE_HEIGHT                     1.0
 
 #define CELL_ID_UEHeadPicCell           @"UEHeadPicCell"
 #define CELL_ID_UEKeyValCell            @"UEKeyValCell"
+static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" ;
 
-@interface UserEditController () <UITableViewDataSource,UITableViewDelegate,UEWriteCtrllerDelegate>
+@interface UserEditController () <UITableViewDataSource,UITableViewDelegate,UEWriteCtrllerDelegate,UEHeadPicCellDelegate,XTZoomPictureDelegate>
 @property (nonatomic,strong) User *userOwner ;
 @property (nonatomic,strong) UIImage *originUserHeadPic ;
 @property (weak, nonatomic) IBOutlet UITableView *table;
+@property (nonatomic,strong) XTZoomPicture *zoomPictureView ;
 @end
 
 @implementation UserEditController
@@ -91,6 +94,18 @@
 
 #pragma mark --
 #pragma mark -
+- (XTZoomPicture *)zoomPictureView
+{
+    if (!_zoomPictureView) {
+        UIImage *imgWillShow = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.userOwner.u_headpic
+                                                                          withCacheWidth:640.0] ;
+        _zoomPictureView = [[XTZoomPicture alloc] initWithFrame:self.view.bounds
+                                                      backImage:imgWillShow] ;
+        _zoomPictureView.xt_Delegate = self ;
+    }
+    return _zoomPictureView ;
+}
+
 - (User *)userOwner
 {
     if (!_userOwner) {
@@ -153,6 +168,9 @@
     
     [self.table registerNib:[UINib nibWithNibName:CELL_ID_UEKeyValCell bundle:nil]
      forCellReuseIdentifier:CELL_ID_UEKeyValCell] ;
+    
+    [self.table registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:kEmptyHeaderFooterIdentifier] ;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -203,7 +221,7 @@
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone ;
     cell.picHead = self.originUserHeadPic ;
-//    cell.delegate = self ;
+    cell.delegate = self ;
     return cell ;
 }
 
@@ -258,9 +276,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UIView *backView = [[UIView alloc] init] ;
-    backView.backgroundColor = nil ;
-    return backView ;
+    return [tableView dequeueReusableHeaderFooterViewWithIdentifier:kEmptyHeaderFooterIdentifier] ;
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
@@ -270,9 +286,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *backView = [[UIView alloc] init] ;
-    backView.backgroundColor = nil ;
-    return backView ;
+    return [tableView dequeueReusableHeaderFooterViewWithIdentifier:kEmptyHeaderFooterIdentifier] ;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
@@ -331,10 +345,7 @@
 #pragma mark - imagePickerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    self.originUserHeadPic = [info objectForKey: @"UIImagePickerControllerEditedImage"];
-    //UIImagePickerControllerOriginalImage
-    //UIImagePickerControllerEditedImage
-    //m_imageNeedsToDisplay = [UIImage fixOrientation:m_imageNeedsToDisplay];
+    self.originUserHeadPic = [info objectForKey:UIImagePickerControllerEditedImage];
     
     UEHeadPicCell *headcell = (UEHeadPicCell *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] ;
     headcell.picHead = self.originUserHeadPic;
@@ -344,10 +355,27 @@
     }];
 }
 
+#pragma mark --
+#pragma mark - UEHeadPicCellDelegate
+- (void)clickHeadInEditUserInfoCtrller
+{
+    [self.navigationController setNavigationBarHidden:YES animated:NO] ;
+    
+    (![self.zoomPictureView superview]) ? [self.view addSubview:self.zoomPictureView] : [self.zoomPictureView removeFromSuperview] ;
+    
+    if (!self.zoomPictureView.backImage) {
+        self.zoomPictureView.backImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.userOwner.u_headpic] ;
+    }
+}
 
+#pragma mark --
+#pragma mark - XTZoomPictureDelegate
+- (void)zoomPicutreDismiss
+{
+    [self.navigationController setNavigationBarHidden:NO animated:NO] ;
+}
 
 #pragma mark - Navigation
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
@@ -360,6 +388,5 @@
         writeCtrller.delegate = self ;
     }
 }
-
 
 @end

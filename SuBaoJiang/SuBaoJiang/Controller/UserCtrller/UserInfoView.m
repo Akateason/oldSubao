@@ -30,8 +30,16 @@
 - (void)setRotateAnimationProgress:(float)time
 {
     _img_head.layer.timeOffset = time ;
+    _v_line.layer.timeOffset = time ;
 }
 
+- (void)setOtherFaceAnimation:(float)time
+{
+    _lb_uname.layer.timeOffset = time ;
+    _lb_userInfo.layer.timeOffset = time ;
+    _bt_edit.layer.timeOffset = time ;
+    _v_line.layer.timeOffset = time ;
+}
 
 #pragma mark - Properties
 - (void)setTheUser:(User *)theUser
@@ -58,23 +66,30 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    
     self.backgroundColor = nil ;
-    
+    //
     _img_head.layer.borderColor = [UIColor whiteColor].CGColor ;
     _img_head.layer.borderWidth = 1.0 ;
     [XTCornerView setRoundHeadPicWithView:_img_head] ;
     [XTCornerView setRoundHeadPicWithView:_bt_edit] ;    
     _bt_edit.backgroundColor = [UIColor colorWithWhite:0 alpha:0.4] ;
     _bt_edit.hidden = YES ;
-    
+    //
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapMe:)] ;
     [self addGestureRecognizer:tap] ;
+    //
+    [self setupImgHeadAnimation] ;
+    //
+    [self setupOtherFadeAnimation] ;
+    //
+    [self setupLineMinusAnimation] ;
+}
 
-    
+- (void)setupImgHeadAnimation
+{
     float degree = M_PI ;
     CATransform3D rotationTransform = CATransform3DMakeRotation(degree, 0, 0 ,1);
-    CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform"];
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform"];
     animation.toValue = [NSValue valueWithCATransform3D:rotationTransform];
     animation.cumulative = YES ;
     animation.duration = 1 ;
@@ -83,7 +98,43 @@
     [_img_head.layer addAnimation:animation forKey:@"rotateUserHead"] ;
     _img_head.layer.speed = 0 ;
     _img_head.layer.timeOffset = 0 ;
+}
+
+- (void)setupOtherFadeAnimation
+{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"] ;
+    animation.fromValue = @1.0 ;
+    animation.toValue = @0.2 ;
+    animation.duration = 3. ;
+    animation.removedOnCompletion = NO ;
     
+    [_lb_uname.layer addAnimation:animation forKey:@"alphaAnimation"] ;
+    _lb_uname.layer.speed = 0 ;
+    _lb_uname.layer.timeOffset = 0 ;
+    
+    [_lb_userInfo.layer addAnimation:animation forKey:@"alphaAnimation"] ;
+    _lb_userInfo.layer.speed = 0 ;
+    _lb_userInfo.layer.timeOffset = 0 ;
+    
+    [_v_line.layer addAnimation:animation forKey:@"alphaAnimation"] ;
+    _v_line.layer.speed = 0 ;
+    _v_line.layer.timeOffset = 0 ;
+    
+    [_bt_edit.layer addAnimation:animation forKey:@"alphaAnimation"] ;
+    _bt_edit.layer.speed = 0 ;
+    _bt_edit.layer.timeOffset = 0 ;
+}
+
+- (void)setupLineMinusAnimation
+{
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale.x"] ;
+    animation.fromValue = @1.0 ;
+    animation.toValue = @0.6 ;
+    animation.duration = 3. ;
+    animation.removedOnCompletion = NO ;
+    [_v_line.layer addAnimation:animation forKey:@"resizeLineAnimation"] ;
+    _v_line.layer.speed = 0 ;
+    _v_line.layer.timeOffset = 0 ;
 }
 
 - (void)tapMe:(UITapGestureRecognizer *)tap

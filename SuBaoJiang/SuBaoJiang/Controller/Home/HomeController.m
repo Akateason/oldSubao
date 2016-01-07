@@ -378,7 +378,7 @@
 - (void)showAllBars
 {
     //Close Hides Bars On Swipe
-    if (IS_IOS_VERSION(8.0)) self.navigationController.hidesBarsOnSwipe = NO ;
+//    if (IS_IOS_VERSION(8.0)) self.navigationController.hidesBarsOnSwipe = NO ;
     //Show Nav if necessary
     if (self.navigationController.navigationBarHidden == YES) {
         [self.navigationController setNavigationBarHidden:NO animated:NO] ;
@@ -445,7 +445,6 @@
             m_isFirstTime = YES ;
             [CommonFunc updateLatestVersion] ;
         }
-        
         //2 tabbar ctrller - double tap Homepage tabbarItem Delegate
         ((MyTabbarCtrller *)(self.tabBarController)).homePageDelegate = self ;
     }

@@ -25,7 +25,6 @@
 #import "PicWillUpload.h"
 #import "PicUploadTB.h"
 #import "NSString+Extend.h"
-#import "SBJson.h"
 #import <TuSDK/TuSDK.h>
 #import "XTTickConvert.h"
 #import "EditPreviewCtrl.h"
@@ -34,6 +33,7 @@
 #import "EditPrepareCtrller.h"
 #import "NewCameaCtrller.h"
 #import "UIImage+AddFunction.h"
+#import "XTJson.h"
 
 #define LINE_HEIGHT             0.0f
 #define MESUPERARTICLECELL_ID   @"MESuperArticleCell"
@@ -351,7 +351,8 @@
         [CommonFunc saveImageToLibrary:subArti.realImage] ;
     }
     
-    NSString *jsonStr = [dicList JSONRepresentation] ;
+    NSString *jsonStr = [XTJson getJsonStr:dicList] ;
+    
     NSString *topicStr = [self.superArticle getTopicStr] ;
     
     // Post up to subao server

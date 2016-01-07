@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol UEHeadPicCellDelegate <NSObject>
+- (void)clickHeadInEditUserInfoCtrller ;
+@end
+
 @interface UEHeadPicCell : UITableViewCell
+
+@property (nonatomic,weak) id <UEHeadPicCellDelegate> delegate ;
 @property (nonatomic,strong) UIImage *picHead ;
+
 @end

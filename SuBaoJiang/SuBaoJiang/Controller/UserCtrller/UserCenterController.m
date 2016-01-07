@@ -139,19 +139,16 @@
         [m_praiseList removeAllObjects] ;
     }
     
-//    [self.table pulldownManually] ;
     [self _refreshing] ;
 }
 
 - (void)uploadFinished
 {
-//    [self.table pulldownManually] ;
     [self _refreshing] ;
 }
 
 - (void)refreshTable
 {
-//    [self.table pulldownManually] ;
     [self _refreshing] ;
 }
 
@@ -246,7 +243,6 @@
     }
     else
     {
-//        [_table pulldownManually] ;
         [self _refreshing] ;
     }
     
@@ -318,7 +314,6 @@
         [wself _refreshing] ;
     }];
     
-
 }
 
 - (void)fetchUserHead

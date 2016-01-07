@@ -10,7 +10,7 @@
 #import "AFNetworking.h"
 #import "YXSpritesLoadingView.h"
 
-#import "SBJson.h"
+#import "XTJson.h"
 #import "ASIFormDataRequest.h"
 #import "ASIHTTPRequest.h"
 
@@ -123,14 +123,11 @@
             NSLog(@"error:%@",error);
             return nil ;
         }
-        
         response = [request responseString] ;
-        
 //        NSLog(@"urlstr : %@\n%@",urlstr,response)  ;
         NSLog(@"urlstr : %@\n",urlstr)  ;
 
-        SBJsonParser *parser = [[SBJsonParser alloc] init] ;
-        NSDictionary *dictionary = [parser objectWithString:response] ;
+        NSDictionary *dictionary = [XTJson getJsonObj:response] ;
         ResultParsered *result = [[ResultParsered alloc] initWithDic:dictionary] ;
         return result ;
     }
@@ -157,17 +154,13 @@
             return nil ;
         }
         response = [request responseString]         ;
-        
 //        NSLog(@"urlstr : %@\n%@",urlstr,response)   ;
         NSLog(@"urlstr : %@\n",urlstr)  ;
-        
-        SBJsonParser *parser = [[SBJsonParser alloc] init] ;
-        NSDictionary *dictionary = [parser objectWithString:response] ;
+        NSDictionary *dictionary = [XTJson getJsonObj:response] ;
         ResultParsered *result = [[ResultParsered alloc] initWithDic:dictionary] ;
         
         return result ;
     }
-    
     
     return nil ;
 }

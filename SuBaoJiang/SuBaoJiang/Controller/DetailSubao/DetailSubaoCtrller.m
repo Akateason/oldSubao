@@ -43,6 +43,8 @@
 
 #define OBSERVER_KEY_PATH_CURRENT_ARTICLE       @"OBSERVER_KEY_PATH_CURRENT_ARTICLE"
 #define HeaderIdentifier                        @"HomeUserTableHeaderView"
+static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" ;
+
 
 @interface DetailSubaoCtrller ()<UITableViewDataSource,UITableViewDelegate,FlywordInputViewDelegate,WordSendViewDelegate,RootTableViewDelegate,ReplyCellDelegate,ShareAlertVDelegate,DtOperationCellDelegate,DtSuperCellDelegate,DtSubCellDelegate,HomeUserTableHeaderViewDelegate>
 {
@@ -246,7 +248,7 @@
     [_table registerNib:[UINib nibWithNibName:CellId_OperationCell bundle:nil] forCellReuseIdentifier:CellId_OperationCell];
     [_table registerNib:[UINib nibWithNibName:CellId_replyCell bundle:nil] forCellReuseIdentifier:CellId_replyCell];
     [_table registerNib:[UINib nibWithNibName:HeaderIdentifier bundle:nil] forHeaderFooterViewReuseIdentifier:HeaderIdentifier] ;
-
+    [_table registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:kEmptyHeaderFooterIdentifier] ;
     
     // long press gesture
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self
@@ -958,9 +960,7 @@
         return header ;
     }
     
-    UIView *clearView = [[UIView alloc] init] ;
-    clearView.backgroundColor = nil ;
-    return clearView ;
+    return [tableView dequeueReusableHeaderFooterViewWithIdentifier:kEmptyHeaderFooterIdentifier] ;
 }
 
 - (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
@@ -971,9 +971,7 @@
 // custom view for footer. will be adjusted to default or specified footer height
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIView *backView = [[UIView alloc] init] ;
-    backView.backgroundColor = nil ;
-    return backView ;
+    return [tableView dequeueReusableHeaderFooterViewWithIdentifier:kEmptyHeaderFooterIdentifier] ;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section

@@ -133,6 +133,8 @@ NSString *const XHBirthdayKey = @"XHBirthday";
 
     UIView *bannerSuper = _bannerImageView.superview;
     CGRect bframe = bannerSuper.frame;
+    CGFloat delta = 3. / self.parallaxHeight ;
+    
     if(y < 0) {
         bframe.origin.y = y;
         bframe.size.height = -y + bannerSuper.superview.frame.size.height;
@@ -148,10 +150,9 @@ NSString *const XHBirthdayKey = @"XHBirthday";
             _bannerImageView.transform = CGAffineTransformMakeScale(1+scale, 1+scale);
         }
         
-        // user info animation
-        CGFloat delta = 3. / self.parallaxHeight ;
+        // user info animation 1
         [_infoView setRotateAnimationProgress:delta * fabs(y)] ;
-        
+
     } else {
         if(bframe.origin.y != 0) {
             bframe.origin.y = 0;
@@ -164,8 +165,9 @@ NSString *const XHBirthdayKey = @"XHBirthday";
             _bannerImageView.center = center;
         }
         
-        // user info animation
-        [_infoView setRotateAnimationProgress:0] ;
+        // user info animation 2
+        [_infoView setOtherFaceAnimation:delta * fabs(y)] ;
+        
     }
 
 }

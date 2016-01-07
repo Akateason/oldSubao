@@ -12,7 +12,7 @@
 #import "DigitInformation.h"
 #import "User.h"
 
-#import "SBJson.h"
+#import "XTJson.h"
 #import "ASIFormDataRequest.h"
 #import "ASIHTTPRequest.h"
 #import "CommonFunc.h"
@@ -72,8 +72,7 @@
     
     NSLog(@"weibo jsonStr:%@",jsonStr);
     
-    SBJsonParser *parser = [[SBJsonParser alloc] init] ;
-    NSDictionary *dictionary = [parser objectWithString:jsonStr] ;
+    NSDictionary *dictionary = [XTJson getJsonObj:jsonStr] ;
     
     return dictionary ;
 }

@@ -409,6 +409,8 @@
 		D74D49531C3A79C800FBF02A /* UIImage+Alpha.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D49521C3A79C800FBF02A /* UIImage+Alpha.m */; };
 		D74D49561C3B798800FBF02A /* HomeUserTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D49551C3B798800FBF02A /* HomeUserTableHeaderView.m */; };
 		D74D49581C3BB1EF00FBF02A /* HomeUserTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D74D49571C3BB1EF00FBF02A /* HomeUserTableHeaderView.xib */; };
+		D74D495C1C3D09C600FBF02A /* XTZoomPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D495B1C3D09C600FBF02A /* XTZoomPicture.m */; };
+		D74D49601C3E518600FBF02A /* XTJson.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D495F1C3E518600FBF02A /* XTJson.m */; };
 		D75CC73F1C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC7381C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m */; };
 		D75CC7401C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC73A1C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m */; };
 		D75CC7411C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC73C1C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m */; };
@@ -1208,6 +1210,10 @@
 		D74D49541C3B798800FBF02A /* HomeUserTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeUserTableHeaderView.h; path = SuBaoJiang/Controller/Home/HomeUserTableHeaderView.h; sourceTree = SOURCE_ROOT; };
 		D74D49551C3B798800FBF02A /* HomeUserTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeUserTableHeaderView.m; path = SuBaoJiang/Controller/Home/HomeUserTableHeaderView.m; sourceTree = SOURCE_ROOT; };
 		D74D49571C3BB1EF00FBF02A /* HomeUserTableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeUserTableHeaderView.xib; path = SuBaoJiang/Controller/Home/HomeUserTableHeaderView.xib; sourceTree = SOURCE_ROOT; };
+		D74D495A1C3D09C600FBF02A /* XTZoomPicture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTZoomPicture.h; sourceTree = "<group>"; };
+		D74D495B1C3D09C600FBF02A /* XTZoomPicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTZoomPicture.m; sourceTree = "<group>"; };
+		D74D495E1C3E518600FBF02A /* XTJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTJson.h; sourceTree = "<group>"; };
+		D74D495F1C3E518600FBF02A /* XTJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTJson.m; sourceTree = "<group>"; };
 		D75CC7371C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
 		D75CC7381C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
 		D75CC7391C310E4300E590E6 /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
@@ -1657,6 +1663,7 @@
 		187CCE841B1FFB1B00360B54 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				D74D495D1C3E516000FBF02A /* XTJson */,
 				D7E8FE5B1C1807EE005E908F /* XTNetReloader */,
 				18AAFCE11BA7B77700901A15 /* category */,
 				1848A7DB1B32B8010063C177 /* CommonFunc.h */,
@@ -1682,6 +1689,7 @@
 		187CCE851B1FFB2E00360B54 /* UIs */ = {
 			isa = PBXGroup;
 			children = (
+				D74D49591C3D09C600FBF02A /* XTZoomPicture */,
 				D7FDB7C51BB3FA28004046A6 /* XTBarrageView */,
 				184C1D7C1B8588FE0033CC4C /* Utility */,
 				184C1D7B1B8588B20033CC4C /* Inherit */,
@@ -3068,6 +3076,24 @@
 			name = SubUserCenterCtrl;
 			sourceTree = "<group>";
 		};
+		D74D49591C3D09C600FBF02A /* XTZoomPicture */ = {
+			isa = PBXGroup;
+			children = (
+				D74D495A1C3D09C600FBF02A /* XTZoomPicture.h */,
+				D74D495B1C3D09C600FBF02A /* XTZoomPicture.m */,
+			);
+			path = XTZoomPicture;
+			sourceTree = "<group>";
+		};
+		D74D495D1C3E516000FBF02A /* XTJson */ = {
+			isa = PBXGroup;
+			children = (
+				D74D495E1C3E518600FBF02A /* XTJson.h */,
+				D74D495F1C3E518600FBF02A /* XTJson.m */,
+			);
+			name = XTJson;
+			sourceTree = "<group>";
+		};
 		D75CC7351C310E4300E590E6 /* FDTemplateLayoutCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -3570,6 +3596,7 @@
 				18D6999B1B1C714A00BC9475 /* AFViewShaker.m in Sources */,
 				1823186B1B1EE8E3001CE919 /* MyNavCtrller.m in Sources */,
 				18D965BB1B3A669C007A9CC1 /* UIImage+GIF.m in Sources */,
+				D74D495C1C3D09C600FBF02A /* XTZoomPicture.m in Sources */,
 				18A69B511B5CEE8800152743 /* WPTappableLabel.m in Sources */,
 				D7E8FE5E1C1807EE005E908F /* XTNetReloader.m in Sources */,
 				D7E8FE061C16BFFD005E908F /* MJRefreshStateHeader.m in Sources */,
@@ -3720,6 +3747,7 @@
 				D75CC7401C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m in Sources */,
 				18D965861B395673007A9CC1 /* SettingKVCell.m in Sources */,
 				18D9657D1B394BAA007A9CC1 /* SettingCtrller.m in Sources */,
+				D74D49601C3E518600FBF02A /* XTJson.m in Sources */,
 				D7E8FDFF1C16BFFD005E908F /* MJRefreshAutoNormalFooter.m in Sources */,
 				18A8239B1B438E29000E275F /* LogoAboutCell.m in Sources */,
 				18D965781B39134E007A9CC1 /* GuideSecondCtrller.m in Sources */,
