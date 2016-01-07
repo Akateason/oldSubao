@@ -173,11 +173,6 @@
 		18C065BC1B6793DD0094FF5D /* SEMchooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C065BA1B6793DD0094FF5D /* SEMchooseCell.m */; };
 		18C065BD1B6793DD0094FF5D /* SEMchooseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C065BB1B6793DD0094FF5D /* SEMchooseCell.xib */; };
 		18C065BF1B6795010094FF5D /* SEMChooseButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18C065BE1B6795010094FF5D /* SEMChooseButton.xib */; };
-		18C2C5AB1B4E39D200A27429 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 18C2C5A61B4E39D200A27429 /* README.md */; };
-		18C2C5AC1B4E39D200A27429 /* TuSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18C2C5A71B4E39D200A27429 /* TuSDK.bundle */; };
-		18C2C5AD1B4E39D200A27429 /* TuSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18C2C5A81B4E39D200A27429 /* TuSDK.framework */; };
-		18C2C5AE1B4E39D200A27429 /* TuSDK.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 18C2C5A91B4E39D200A27429 /* TuSDK.podspec */; };
-		18C2C5AF1B4E39D200A27429 /* TuSDK.strings in Resources */ = {isa = PBXBuildFile; fileRef = 18C2C5AA1B4E39D200A27429 /* TuSDK.strings */; };
 		18C2C5B81B50EE9D00A27429 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C2C5B71B50EE9D00A27429 /* MyCell.m */; };
 		18C589CD1B2AB43A00B8A5EB /* TalkCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C589CC1B2AB43A00B8A5EB /* TalkCtrller.m */; };
 		18C589D11B2AC08F00B8A5EB /* TopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C589CF1B2AC08F00B8A5EB /* TopicCell.m */; };
@@ -784,11 +779,6 @@
 		18C065BA1B6793DD0094FF5D /* SEMchooseCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEMchooseCell.m; path = Controller/TalkCtrller/SEMchooseCell.m; sourceTree = "<group>"; };
 		18C065BB1B6793DD0094FF5D /* SEMchooseCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SEMchooseCell.xib; path = Controller/TalkCtrller/SEMchooseCell.xib; sourceTree = "<group>"; };
 		18C065BE1B6795010094FF5D /* SEMChooseButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SEMChooseButton.xib; path = Controller/TalkCtrller/SEMChooseButton.xib; sourceTree = "<group>"; };
-		18C2C5A61B4E39D200A27429 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		18C2C5A71B4E39D200A27429 /* TuSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TuSDK.bundle; sourceTree = "<group>"; };
-		18C2C5A81B4E39D200A27429 /* TuSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TuSDK.framework; sourceTree = "<group>"; };
-		18C2C5A91B4E39D200A27429 /* TuSDK.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TuSDK.podspec; sourceTree = "<group>"; };
-		18C2C5AA1B4E39D200A27429 /* TuSDK.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = TuSDK.strings; sourceTree = "<group>"; };
 		18C2C5B61B50EE9D00A27429 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyCell.h; path = Controller/UserCtrller/MyCell.h; sourceTree = "<group>"; };
 		18C2C5B71B50EE9D00A27429 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyCell.m; path = Controller/UserCtrller/MyCell.m; sourceTree = "<group>"; };
 		18C2C5B91B53635700A27429 /* PictureHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PictureHeader.h; sourceTree = "<group>"; };
@@ -1318,7 +1308,6 @@
 				1848A80F1B33C6E90063C177 /* libSocialSina.a in Frameworks */,
 				18D691131B1C5C1300BC9475 /* Security.framework in Frameworks */,
 				18D691111B1C5C0C00BC9475 /* QuartzCore.framework in Frameworks */,
-				18C2C5AD1B4E39D200A27429 /* TuSDK.framework in Frameworks */,
 				18D6910F1B1C5BBD00BC9475 /* MediaPlayer.framework in Frameworks */,
 				18D6910D1B1C5BB500BC9475 /* MapKit.framework in Frameworks */,
 				18D6910B1B1C5BAE00BC9475 /* CFNetwork.framework in Frameworks */,
@@ -1419,6 +1408,8 @@
 		1848A7C31B3294480063C177 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				18D69AEB1B1D703B00BC9475 /* RaiseFirstCtrller.h */,
+				18D69AEC1B1D703B00BC9475 /* RaiseFirstCtrller.m */,
 				18D9656F1B390D45007A9CC1 /* Guiding */,
 				1848A7CB1B32A0B30063C177 /* NavLogCtller.h */,
 				1848A7CC1B32A0B30063C177 /* NavLogCtller.m */,
@@ -2075,18 +2066,6 @@
 			name = SuExperienceMainCtrller;
 			sourceTree = "<group>";
 		};
-		18C2C5A51B4E39D200A27429 /* TuSDK-for-iOS-1.8.4 */ = {
-			isa = PBXGroup;
-			children = (
-				18C2C5A61B4E39D200A27429 /* README.md */,
-				18C2C5A71B4E39D200A27429 /* TuSDK.bundle */,
-				18C2C5A81B4E39D200A27429 /* TuSDK.framework */,
-				18C2C5A91B4E39D200A27429 /* TuSDK.podspec */,
-				18C2C5AA1B4E39D200A27429 /* TuSDK.strings */,
-			);
-			path = "TuSDK-for-iOS-1.8.4";
-			sourceTree = "<group>";
-		};
 		18C2C5BC1B53B38C00A27429 /* ShareAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -2300,7 +2279,6 @@
 				18E3CF001B707EAC00F4DB52 /* UMessage_Sdk_1.1.0 */,
 				18D3F40D1B623E5B00B35AC3 /* THLabel */,
 				18A69B031B57BDE100152743 /* SIAlertView */,
-				18C2C5A51B4E39D200A27429 /* TuSDK-for-iOS-1.8.4 */,
 				18BABBC21B3D5E4D0024E871 /* QiniuSDK */,
 				18D965C61B3A8EEA007A9CC1 /* GPUImage */,
 				18D965C11B3A8458007A9CC1 /* UMAnalytics_Sdk_3.5.8 */,
@@ -2760,8 +2738,6 @@
 			children = (
 				18A823A31B439C1A000E275F /* GuideingScrollView.h */,
 				18A823A41B439C1A000E275F /* GuideingScrollView.m */,
-				18D69AEB1B1D703B00BC9475 /* RaiseFirstCtrller.h */,
-				18D69AEC1B1D703B00BC9475 /* RaiseFirstCtrller.m */,
 				18D965701B390D84007A9CC1 /* GuideFirstCtrller.h */,
 				18D965711B390D84007A9CC1 /* GuideFirstCtrller.m */,
 				18D965721B390D84007A9CC1 /* GuideFirstCtrller.xib */,
@@ -3368,10 +3344,7 @@
 				187CCEDF1B25545700360B54 /* UserSimpleCell.xib in Resources */,
 				18D690D81B1C440000BC9475 /* Main.storyboard in Resources */,
 				D70FD7F61B68A0C400B4159D /* SEMCollectionCell.xib in Resources */,
-				18C2C5AF1B4E39D200A27429 /* TuSDK.strings in Resources */,
 				182318621B1EB9DD001CE919 /* UserHeadCollectionCell.xib in Resources */,
-				18C2C5AC1B4E39D200A27429 /* TuSDK.bundle in Resources */,
-				18C2C5AE1B4E39D200A27429 /* TuSDK.podspec in Resources */,
 				1848A8001B33BBE00063C177 /* UMSLoginViewController.xib in Resources */,
 				1848A7FF1B33BBE00063C177 /* UMShareEditViewControlleriPad.xib in Resources */,
 				18D699E11B1C714A00BC9475 /* ELCAssetTablePicker.xib in Resources */,
@@ -3660,7 +3633,6 @@
 				18723E171B7333B90071D4C3 /* XTPasterView.m in Sources */,
 				18D6999A1B1C714A00BC9475 /* XTVerification.m in Sources */,
 				18E3CEF71B70713C00F4DB52 /* NoteAlamCell.m in Sources */,
-				18C2C5AB1B4E39D200A27429 /* README.md in Sources */,
 				D7E8FDFA1C16BFFD005E908F /* MJRefreshBackFooter.m in Sources */,
 				D70FD7F51B68A0C400B4159D /* SEMCollectionCell.m in Sources */,
 				187CCEE41B26D2B200360B54 /* UIView+Sizes.m in Sources */,

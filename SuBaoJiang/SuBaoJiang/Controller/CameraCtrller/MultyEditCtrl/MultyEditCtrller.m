@@ -25,7 +25,6 @@
 #import "PicWillUpload.h"
 #import "PicUploadTB.h"
 #import "NSString+Extend.h"
-#import <TuSDK/TuSDK.h>
 #import "XTTickConvert.h"
 #import "EditPreviewCtrl.h"
 #import "AppDelegate.h"
@@ -141,8 +140,8 @@
     [animation setFillMode:kCAFillModeForwards];
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn]];
     
-    [ctrller dismissViewControllerWithAnim:animation completion:^{
-        
+    [ctrller dismissViewControllerAnimated:YES
+                                completion:^{
         if ([orgCtrller isKindOfClass:[MultyEditCtrller class]])
         {
             [(MultyEditCtrller *)orgCtrller insertSubList:subArticleList] ;
@@ -154,8 +153,8 @@
                                                            topicStr:topicStr
                                                           childList:subArticleList] ;
         }
-        
     }] ;
+    
 }
 
 //Called This Func When Choose Photos Finished

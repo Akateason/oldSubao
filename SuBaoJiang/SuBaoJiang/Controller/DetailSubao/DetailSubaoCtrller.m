@@ -85,6 +85,10 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
 @property (nonatomic,strong)         UIImage            *imgArticleSend ;
 @property (nonatomic,strong)         UIImageView        *imgAnimateView ;
 
+// suspending buttons : like and share .
+@property (nonatomic,strong)         UIButton           *bt_suspendLike  ;
+@property (nonatomic,strong)         UIButton           *bt_suspendShare ;
+
 @end
 
 @implementation DetailSubaoCtrller
@@ -617,9 +621,55 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
         _cacheImage = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:self.articleSuper.img
                                                                  withCacheWidth:APPFRAME.size.width] ;
     }
-    
     return _cacheImage ;
 }
+
+static float kRightDistance_SuspendButton   = 15.0 ;
+static float kBtDistance                    = 5.0 ;
+static float kSuspendButtonWidth            = 50.0 ;
+static float kSuspendButtonOrginY           = 48. + 2. ;
+static float kSuspendOfEdge                 = 10.0f ;
+
+- (UIButton *)bt_suspendLike
+{
+    if (!_bt_suspendLike)
+    {
+        _bt_suspendLike = [[UIButton alloc] init] ;
+        [_bt_suspendLike setImage:[UIImage imageNamed:@"f_unlike"] forState:UIControlStateNormal] ;
+        CGRect likeFrame = CGRectZero ;
+        likeFrame.origin = CGPointMake(APPFRAME_WIDTH - kRightDistance_SuspendButton - kSuspendButtonWidth ,
+                                       kSuspendButtonOrginY) ;
+        likeFrame.size = CGSizeMake(kSuspendButtonWidth, kSuspendButtonWidth) ;
+        _bt_suspendLike.frame = likeFrame ;
+        [_bt_suspendLike setImageEdgeInsets:UIEdgeInsetsMake(kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge)] ;
+
+        if (![_bt_suspendLike superview]) {
+            [self.view addSubview:_bt_suspendLike] ;
+        }
+    }
+    return _bt_suspendLike ;
+}
+
+- (UIButton *)bt_suspendShare
+{
+    if (!_bt_suspendShare)
+    {
+        _bt_suspendShare = [[UIButton alloc] init] ;
+        [_bt_suspendShare setImage:[UIImage imageNamed:@"f_share"] forState:UIControlStateNormal] ;
+        CGRect likeFrame = CGRectZero ;
+        likeFrame.size = CGSizeMake(kSuspendButtonWidth, kSuspendButtonWidth) ;
+        likeFrame.origin = CGPointMake(APPFRAME_WIDTH - kRightDistance_SuspendButton - kSuspendButtonWidth * 2 - kBtDistance ,
+                                       kSuspendButtonOrginY) ;
+        _bt_suspendShare.frame = likeFrame ;
+        [_bt_suspendShare setImageEdgeInsets:UIEdgeInsetsMake(kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge)] ;
+
+        if (![_bt_suspendShare superview]) {
+            [self.view addSubview:_bt_suspendShare] ;
+        }
+    }
+    return _bt_suspendShare ;
+}
+
 
 #pragma mark -- Life Cycle
 - (void)viewDidLoad
@@ -637,6 +687,14 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     [self setupSth] ;
     [self wordView] ;
     [self putNavBarItem] ;
+    
+    [self setupSuspendButton] ;
+}
+
+- (void)setupSuspendButton
+{
+    [self bt_suspendLike] ;
+    [self bt_suspendShare] ;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -755,26 +813,55 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
 
 #pragma mark --
 #pragma mark - UIScrollViewDelegate Methods
-
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     if (self.isMultiType) [self controlBottomBarShowOrNot] ;
+    
+    [self suspendButtonRunAnimation:NO] ;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     if (self.isMultiType) [self controlBottomBarShowOrNot] ;
+    [self suspendButtonRunAnimation:YES] ;
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (self.isMultiType && !decelerate) [self controlBottomBarShowOrNot] ;
+    if (self.isMultiType && !decelerate)
+    {
+        [self controlBottomBarShowOrNot] ;
+        [self suspendButtonRunAnimation:YES] ;
+    }
 }
 
 - (void)controlBottomBarShowOrNot
 {
     _flex_bottom.constant = 48.0f ;
     self.wordView.hidden = NO ;
+}
+
+- (void)suspendButtonRunAnimation:(BOOL)showOrHide
+{
+    if (!_bt_suspendLike) return ;
+    //
+    if (showOrHide) {
+        if (_bt_suspendLike != nil && _bt_suspendLike.alpha != 1.0)
+        {
+            [UIView animateWithDuration:0.35
+                             animations:^{
+                                 _bt_suspendLike.alpha = 1.0 ;
+                                 _bt_suspendShare.alpha = 1.0 ;
+                             }] ;
+        }
+    }
+    else {
+        [UIView animateWithDuration:0.35
+                         animations:^{
+                             _bt_suspendLike.alpha = 0.35 ;
+                             _bt_suspendShare.alpha = 0.35 ;
+                         }] ;
+    }
 }
 
 #pragma mark --

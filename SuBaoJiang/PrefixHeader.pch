@@ -52,6 +52,10 @@
 //Global App Frame
 #define APPFRAME                        [UIScreen mainScreen].bounds
 
+#define APPFRAME_WIDTH                  APPFRAME.size.width
+#define APPFRAME_HEIGHT                 APPFRAME.size.height
+
+
 //Origin NavigationBar Height
 #define NAVIGATIONBAR_HEIGHT            44.0f
 

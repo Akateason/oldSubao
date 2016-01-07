@@ -139,15 +139,16 @@
 {
     if (!_gifImageList)
     {
-        NSMutableArray *tempList = [NSMutableArray array] ;
+        NSMutableArray *tempList = [@[] mutableCopy] ;
         for (int i = 0; i < TABLE_HEADER_IMAGES_COUNT; i++)
         {
-            UIImage *imgTemp = [UIImage imageNamed:[NSString stringWithFormat:@"%@%d",TABLE_HEADER_IMAGES,i]] ;
+            NSString *imageStr = [NSString stringWithFormat:@"%@%d",TABLE_HEADER_IMAGES,i] ;
+            UIImage *imgTemp = [UIImage imageNamed:imageStr] ;
+            
             [tempList addObject:imgTemp] ; // DEFAULT MODE IS THIS GIF IMAGES .
         }
-        _gifImageList = [NSArray arrayWithArray:tempList] ;
+        _gifImageList = [[NSArray alloc] initWithArray:tempList] ;
     }
-    
     return _gifImageList ;
 }
 
@@ -202,6 +203,8 @@
     }
 }
 
+
+static float kPercentageOfCustomAutoRefresh = 0.9f ;
 - (void)loadMoreWithScrollView:(UIScrollView *)scrollView
 {
     if (self.mj_header.isRefreshing || b_customLoadMore_isRefreshing) return ; // protect loading only once . if in loading break out .
@@ -217,7 +220,7 @@
     CGFloat maximumOffset = contentsize.height ;
     if (contentsize.height <= bounds.size.height) return ;
     
-    if ( maximumOffset * 0.8 <= currentOffset) {
+    if ( maximumOffset * kPercentageOfCustomAutoRefresh <= currentOffset) {
         [self loadMoreAction] ;
     }
 }
@@ -226,7 +229,6 @@
 {
     b_customLoadMore_isRefreshing = YES ; // change status into isRefreshing now .
     
-//    dispatch_queue_t queue = dispatch_queue_create("TeasonLoadMore", NULL) ;
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) ;
     dispatch_async(queue, ^{
         
@@ -239,7 +241,6 @@
         
     }) ;
 }
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

@@ -30,17 +30,11 @@ static int indexCache = 0 ;
         ((AppDelegate *)[UIApplication sharedApplication].delegate).tabbarCtrller = self ;
         
         self.tabBar.tintColor = COLOR_MAIN ;
-        self.delegate = self ;
+//        self.delegate = self ;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     }
     return self;
 }
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad] ;
-}
-
 
 #pragma mark --
 #pragma mark - tabbar controller delegate

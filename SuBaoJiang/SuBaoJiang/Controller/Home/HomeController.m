@@ -53,6 +53,7 @@
 
 @property (weak, nonatomic) IBOutlet RootTableView *table ;
 @property (weak, nonatomic) IBOutlet NavTitleView  *titleView ;
+
 @property (nonatomic,strong)         UIButton      *bt_go2post ;
 @property (atomic, strong)  NSMutableArray         *m_articleList ; // 文章 datasource
 @property (atomic, strong)  NSMutableArray         *m_themesList  ; // 主题list
@@ -221,7 +222,7 @@
 #pragma mark -
 - (instancetype)initWithCoder:(NSCoder *)coder
 {
-    self = [super initWithCoder:coder];
+    self = [super initWithCoder:coder] ;
     if (self)
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deleteArticleSuccessed:) name:NSNOTIFICATION_DELETE_MY_ARTICLE object:nil] ;
@@ -229,7 +230,7 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(freshTableWithArticle:) name:NSNOTIFICATION_ARTICLE_REFRESH object:nil] ;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userChanged) name:NSNOTIFICATION_USER_CHANGE object:nil] ;
     }
-    return self;
+    return self ;
 }
 
 - (void)dealloc
@@ -248,8 +249,7 @@
     Article *articleDelete = [notification object] ;
     
     [self.m_articleList enumerateObjectsUsingBlock:^(Article *tempArti, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (tempArti.a_id == articleDelete.a_id)
-        {
+        if (tempArti.a_id == articleDelete.a_id) {
             [self.m_articleList removeObjectAtIndex:idx] ;
             *stop = YES ;
         }
@@ -281,8 +281,7 @@
     Article *artiTemp = [notification object] ;
     
     [self.m_articleList enumerateObjectsUsingBlock:^(Article *arti, NSUInteger idx, BOOL * _Nonnull stop) {
-        if (arti.a_id == artiTemp.a_id)
-        {
+        if (arti.a_id == artiTemp.a_id) {
             [self.m_articleList replaceObjectAtIndex:idx
                                           withObject:artiTemp] ;
             [_table reloadSections:[NSIndexSet indexSetWithIndex:idx + 1]
@@ -445,6 +444,7 @@
             m_isFirstTime = YES ;
             [CommonFunc updateLatestVersion] ;
         }
+        
         //2 tabbar ctrller - double tap Homepage tabbarItem Delegate
         ((MyTabbarCtrller *)(self.tabBarController)).homePageDelegate = self ;
     }
@@ -453,7 +453,6 @@
     {
         self.guidingStrList = @[@"guiding_homePage"] ;
     }
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -512,12 +511,12 @@
             [self.m_articleList removeAllObjects] ;
         }
         
-        NSMutableArray *tempMutableList = [NSMutableArray array] ;
-        for (NSDictionary *articleDic in tempArticleList) {
+        NSMutableArray *mutableList = self.m_articleList ;
+        [tempArticleList enumerateObjectsUsingBlock:^(NSDictionary *articleDic, NSUInteger idx, BOOL * _Nonnull stop) {
             Article *arti = [[Article alloc] initWithDict:articleDic] ;
-            [tempMutableList addObject:arti] ;
-        }
-        self.m_articleList = [NSMutableArray arrayWithArray:[self.m_articleList arrayByAddingObjectsFromArray:tempMutableList]] ;
+            [mutableList addObject:arti] ;
+        }] ;
+        self.m_articleList = mutableList ;
         
         m_lastUpdateTime = ((Article *)[self.m_articleList lastObject]).a_updatetime ;
     }
@@ -530,11 +529,11 @@
         NSArray *tempThemesList = [result.info objectForKey:@"themes"] ;
         if (!tempThemesList.count) return NO ;
         [self.m_themesList removeAllObjects] ;
-        for (NSDictionary *themeDic in tempThemesList)
-        {
+        
+        [tempThemesList enumerateObjectsUsingBlock:^(NSDictionary *themeDic, NSUInteger idx, BOOL * _Nonnull stop) {
             Themes *theme = [[Themes alloc] initWithDic:themeDic] ;
             [self.m_themesList addObject:theme] ;
-        }
+        }] ;
     }
     
     return YES ;
@@ -570,10 +569,14 @@
     {
         NSArray *tempArticleList = [result.info objectForKey:@"articles"] ;
         if (!tempArticleList.count) return NO ;
-        for (NSDictionary *articleDic in tempArticleList) {
+        
+        NSMutableArray *mutableList = self.m_articleList ;
+        [tempArticleList enumerateObjectsUsingBlock:^(NSDictionary *articleDic, NSUInteger idx, BOOL * _Nonnull stop) {
             Article *arti = [[Article alloc] initWithDict:articleDic] ;
-            [self.m_articleList addObject:arti] ;
-        }
+            [mutableList addObject:arti] ;
+        }] ;        
+        self.m_articleList = mutableList ;
+        
         m_lastUpdateTime = ((Article *)[self.m_articleList lastObject]).a_updatetime ;
     }
     

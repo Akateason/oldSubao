@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define TABLE_HEADER_IMAGES             @"sbj_"
-#define TABLE_HEADER_IMAGES_COUNT       3
+static NSString *TABLE_HEADER_IMAGES        = @"sbj_" ;
+static int       TABLE_HEADER_IMAGES_COUNT  = 3 ;
 
 @protocol RootTableViewDelegate <NSObject>
 - (void)loadNewData ;

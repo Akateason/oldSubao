@@ -14,36 +14,40 @@
 {
     NSError *error ;
     id jsonObj = [NSJSONSerialization JSONObjectWithData:[jsonStr dataUsingEncoding:NSUTF8StringEncoding]
-                                                 options:kNilOptions
+                                                 options:0
                                                    error:&error] ;
     if (!jsonObj)
     {
-        NSLog(@"json parse FAILED : %@",error) ;
+        NSLog(@"error : %@",error) ;
         return nil ;
     }
-    
+    NSLog(@"jsonObj : %@",jsonObj) ;
     return jsonObj ;
 }
 
 + (NSString *)getJsonStr:(id)jsonObj
 {
     NSString *jsonStr ;
-    
     if ([NSJSONSerialization isValidJSONObject:jsonObj])
     {
         NSError *error ;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:jsonObj
-                                                           options:NSJSONWritingPrettyPrinted
+                                                           options:0
                                                              error:&error] ;
         jsonStr = [[NSString alloc] initWithData:jsonData
                                         encoding:NSUTF8StringEncoding] ;
-        NSLog(@"jsonStr : %@",jsonStr) ;
+        if (!jsonStr) {
+            NSLog(@"error : %@",error) ;
+        }
+        else {
+            NSLog(@"jsonStr : %@",jsonStr) ;
+        }
     }
     else
     {
         NSLog(@"IS NOT KIND OF JSON OBJECT") ;
     }
-
+    
     return jsonStr ;
 }
 
