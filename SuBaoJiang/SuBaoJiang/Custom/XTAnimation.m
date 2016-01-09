@@ -340,7 +340,7 @@
                 AndWithRepeatCount:(float)repeatCount
 {
     CAKeyframeAnimation *k = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-    k.values    = @[@(0.1),@(1.5),@(1.0)];
+    k.values    = @[@(1.0),@(1.4),@(1.1),@(1.0)];
     k.keyTimes  = @[@(0.0),@(0.5),@(0.8),@(1.0)];
     k.calculationMode = kCAAnimationLinear;
     k.repeatCount = repeatCount ;
@@ -351,7 +351,7 @@
 + (void)animationTransformWithLayer:(CALayer *)layer
 {
     CAKeyframeAnimation *k = [CAKeyframeAnimation animationWithKeyPath:@"transform.scale"];
-    k.values    = @[@(1.0),@(0.95),@(1.05),@(1.0)];
+    k.values    = @[@(1.0),@(0.75),@(1.25),@(1.0)];
     k.keyTimes  = @[@(0.0),@(0.33),@(0.66),@(1.0)];
     k.calculationMode = kCAAnimationLinear;
     k.repeatCount = FLT_MAX ;

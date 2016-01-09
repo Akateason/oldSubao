@@ -21,7 +21,7 @@
         NSLog(@"error : %@",error) ;
         return nil ;
     }
-    NSLog(@"jsonObj : %@",jsonObj) ;
+//    NSLog(@"jsonObj : %@",jsonObj) ;
     return jsonObj ;
 }
 
@@ -40,7 +40,7 @@
             NSLog(@"error : %@",error) ;
         }
         else {
-            NSLog(@"jsonStr : %@",jsonStr) ;
+//            NSLog(@"jsonStr : %@",jsonStr) ;
         }
     }
     else

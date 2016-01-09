@@ -423,6 +423,7 @@
     // Do any additional setup after loading the view
 
     // initial
+    self.edgesForExtendedLayout = UIRectEdgeNone ;
     [self setup] ;
     [self putNavBarItem] ;
     [self bt_go2post] ;

@@ -30,25 +30,16 @@ static int indexCache = 0 ;
         ((AppDelegate *)[UIApplication sharedApplication].delegate).tabbarCtrller = self ;
         
         self.tabBar.tintColor = COLOR_MAIN ;
-//        self.delegate = self ;
+        self.delegate = self ;
         [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     }
-    return self;
+    return self ;
 }
 
 #pragma mark --
 #pragma mark - tabbar controller delegate
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
 {
-//    NSLog(@"should selectedIndex %@",@(tabBarController.selectedIndex)) ;
-
-//    if ([viewController isKindOfClass:[NavCameraCtrller class]])
-//    {
-////        NSLog(@"camera clicked !") ;
-//        [NavCameraCtrller jump2NavCameraCtrllerWithOriginCtrller:self.selectedViewController] ;
-//        return NO ;
-//    }
-    
     if ([tabBarController.selectedViewController isEqual:viewController])
     {
         //double tap item in index page .
@@ -62,17 +53,14 @@ static int indexCache = 0 ;
         {
             indexCache = 0 ;
         }
-        
         return NO ;
     }
-    
     return YES ;
 }
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
     NSLog(@"did selectedIndex %@",@(tabBarController.selectedIndex)) ;
-
     if (tabBarController.selectedIndex == 2) {
         [NavCameraCtrller jump2NavCameraCtrllerWithOriginCtrller:self.selectedViewController] ;
         tabBarController.selectedIndex = lastSelectedIndex ;

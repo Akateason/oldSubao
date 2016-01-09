@@ -10,8 +10,10 @@
 #import "NotificationCenterHeader.h"
 
 @interface PostSubaoCtrller : RootCtrl <UITableViewDataSource,UITableViewDelegate>
+
 @property (nonatomic, copy)             NSString    *topicString ; // can be nil ;
 @property (nonatomic, retain)           UIImage     *imageSend ; // NN
 @property (weak, nonatomic) IBOutlet    UITableView *table ;
 - (void)shareArticleNow ;
+
 @end

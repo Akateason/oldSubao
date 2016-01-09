@@ -20,6 +20,7 @@
 @property (nonatomic)               int         author_id ;
 
 - (instancetype)initWithDict:(NSDictionary *)dict ;
+- (instancetype)initByOwner ;
 + (NSArray *)getPraiseListWithDictList:(NSArray *)tempPraiseList ;
 
 @end

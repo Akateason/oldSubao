@@ -347,7 +347,7 @@
         
         [dicList addObject:dicTemp] ;
         
-        [CommonFunc saveImageToLibrary:subArti.realImage] ;
+        [CommonFunc saveImageToLibrary:subArti.realImage hud:NO] ;
     }
     
     NSString *jsonStr = [XTJson getJsonStr:dicList] ;

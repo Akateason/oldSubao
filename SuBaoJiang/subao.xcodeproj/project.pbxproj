@@ -406,6 +406,7 @@
 		D74D49581C3BB1EF00FBF02A /* HomeUserTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D74D49571C3BB1EF00FBF02A /* HomeUserTableHeaderView.xib */; };
 		D74D495C1C3D09C600FBF02A /* XTZoomPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D495B1C3D09C600FBF02A /* XTZoomPicture.m */; };
 		D74D49601C3E518600FBF02A /* XTJson.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D495F1C3E518600FBF02A /* XTJson.m */; };
+		D74D49631C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D49621C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.m */; };
 		D75CC73F1C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC7381C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m */; };
 		D75CC7401C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC73A1C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m */; };
 		D75CC7411C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC73C1C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m */; };
@@ -1204,6 +1205,8 @@
 		D74D495B1C3D09C600FBF02A /* XTZoomPicture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTZoomPicture.m; sourceTree = "<group>"; };
 		D74D495E1C3E518600FBF02A /* XTJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTJson.h; sourceTree = "<group>"; };
 		D74D495F1C3E518600FBF02A /* XTJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTJson.m; sourceTree = "<group>"; };
+		D74D49611C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DetailSubaoCtrller+AnimationManager.h"; path = "SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller+AnimationManager.h"; sourceTree = SOURCE_ROOT; };
+		D74D49621C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DetailSubaoCtrller+AnimationManager.m"; path = "SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller+AnimationManager.m"; sourceTree = SOURCE_ROOT; };
 		D75CC7371C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
 		D75CC7381C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
 		D75CC7391C310E4300E590E6 /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
@@ -1367,6 +1370,8 @@
 			children = (
 				182318561B1DC4D8001CE919 /* DetailSubaoCtrller.h */,
 				182318571B1DC4D8001CE919 /* DetailSubaoCtrller.m */,
+				D74D49611C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.h */,
+				D74D49621C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.m */,
 				18A4D5E81B788A3500CCE555 /* MultiDetail */,
 				1823189F1B1EFE33001CE919 /* WordSendView.h */,
 				182318A01B1EFE33001CE919 /* WordSendView.m */,
@@ -3690,6 +3695,7 @@
 				187CCE821B1FEB4C00360B54 /* FlywordInputView.m in Sources */,
 				18D69AED1B1D703B00BC9475 /* RaiseFirstCtrller.m in Sources */,
 				18D699C91B1C714A00BC9475 /* NSString+MD5.m in Sources */,
+				D74D49631C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.m in Sources */,
 				18A4D60C1B7DFA5400CCE555 /* ShareAlertView.m in Sources */,
 				18DC51F71B2FC15D00A2BEFF /* MyCmtCell.m in Sources */,
 				1823184C1B1DA02E001CE919 /* HomeController.m in Sources */,

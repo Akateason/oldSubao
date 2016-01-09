@@ -32,6 +32,7 @@
 #import "SaveAlbumnCtrller.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "HomeUserTableHeaderView.h"
+#import "DetailSubaoCtrller+AnimationManager.h"
 
 #define SIZE_OF_PAGE                            50
 
@@ -67,10 +68,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
 @property (weak, nonatomic) IBOutlet RootTableView      *table          ;
 @property (nonatomic,strong)         WordSendView       *wordView       ;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *flex_bottom    ;
-
-@property (weak, nonatomic) IBOutlet UIView   *navBg;
-@property (weak, nonatomic) IBOutlet UIButton *btNav_Like;
-@property (weak, nonatomic) IBOutlet UIButton *btNav_Share;
 
 //Attrs
 @property (nonatomic,strong)         UIImage            *cacheImage     ;
@@ -249,7 +246,7 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     [_table registerNib:[UINib nibWithNibName:CellId_DetailTitleCell bundle:nil] forCellReuseIdentifier:CellId_DetailTitleCell];
     [_table registerNib:[UINib nibWithNibName:CellId_DtSuperCell bundle:nil] forCellReuseIdentifier:CellId_DtSuperCell];
     [_table registerNib:[UINib nibWithNibName:CellId_DtSubCell bundle:nil] forCellReuseIdentifier:CellId_DtSubCell] ;
-    [_table registerNib:[UINib nibWithNibName:CellId_OperationCell bundle:nil] forCellReuseIdentifier:CellId_OperationCell];
+    [_table registerNib:[UINib nibWithNibName:CellId_OperationCell bundle:nil] forCellReuseIdentifier:CellId_OperationCell] ;
     [_table registerNib:[UINib nibWithNibName:CellId_replyCell bundle:nil] forCellReuseIdentifier:CellId_replyCell];
     [_table registerNib:[UINib nibWithNibName:HeaderIdentifier bundle:nil] forHeaderFooterViewReuseIdentifier:HeaderIdentifier] ;
     [_table registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:kEmptyHeaderFooterIdentifier] ;
@@ -260,7 +257,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     lpgr.minimumPressDuration = 1.0f ;
     [_table addGestureRecognizer:lpgr] ;
     
-    self.navBg.backgroundColor = nil ;
 }
 
 #pragma mark -- long press on commet
@@ -335,14 +331,13 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
 {
     if (self.replyCommentID && isFirstTime)
     {
-        for (ArticleComment *cmt in self.allComments)
-        {
+        [self.allComments enumerateObjectsUsingBlock:^(ArticleComment *cmt, NSUInteger idx, BOOL * _Nonnull stop) {
             if (self.replyCommentID == cmt.c_id)
             {
                 [self replyWithCmt:cmt] ;
-                break ;
+                *stop = YES ;
             }
-        }
+        }] ;
     }
 }
 
@@ -368,16 +363,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     [XTHudManager showWordHudWithTitle:hudStr] ;
     
     [self.table reloadData] ;
-}
-
-- (IBAction)navLikeAction:(id)sender
-{
-    [self hasPraised:!self.btNav_Like.selected] ;
-}
-
-- (IBAction)navShareAction:(id)sender
-{
-    [self clickShareCallBack] ;
 }
 
 #pragma mark --
@@ -486,10 +471,12 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     _articleSuper = articleSuper ;
 
     // multitype
-    self.isMultiType = [articleSuper isMultyStyle] ;
-    // bt nav like
-    if (self.isMultiType) self.btNav_Like.selected = articleSuper.has_praised ;
-
+    self.isMultiType = [articleSuper isMultyStyle] ; // if multi .setup suspend button .
+    // configure suspend like bt
+    if (_bt_suspendLike != nil && [_bt_suspendLike superview] != nil && self.isMultiType) {
+        _bt_suspendLike.selected = articleSuper.has_praised ;
+    }
+    
     // reload table
     dispatch_async(dispatch_get_main_queue(), ^{
         [self.table reloadData] ;
@@ -503,8 +490,7 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     [self note2DetailReply] ;
     
     // guiding .
-    if (self.isMultiType && [CommonFunc isFirstDetailPage])
-    {
+    if (self.isMultiType && [CommonFunc isFirstDetailPage]) {
         self.guidingStrList = @[@"guiding_detail"] ;
     }
 }
@@ -512,39 +498,16 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
 - (void)setIsMultiType:(BOOL)isMultiType
 {
     _isMultiType = isMultiType ;
+
+    if (isMultiType) {
+        [self setupSuspendButton] ;
+    }
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        
         self.flex_bottom.constant = 48.0f ;
         self.wordView.hidden = NO ;
-        
-        self.navBg.hidden = NO ;
-        self.btNav_Like.hidden = !isMultiType ;
-        self.btNav_Share.hidden = !isMultiType ;
-        if (isMultiType) self.btNav_Share.hidden = !G_BOOL_OPEN_APPSTORE ;
-        
     }) ;
     
-    if (!isMultiType && !t_Label)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            t_Label = [[UILabel alloc] init] ;
-            CGRect rect = t_Label.frame ;
-            rect.size = self.navBg.frame.size ;
-            rect.origin = CGPointZero ;
-            t_Label.frame = rect ;
-            t_Label.text = @"速报详情" ;
-            t_Label.textColor = [UIColor whiteColor] ;
-            t_Label.font = [UIFont boldSystemFontOfSize:17.0] ;
-            t_Label.textAlignment = NSTextAlignmentCenter ;
-            
-            if (![t_Label superview])
-            {
-                [self.navBg addSubview:t_Label] ;
-            }
-        }) ;
-    }
 }
 
 - (void)setSuperArticleID:(int)superArticleID
@@ -569,8 +532,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
         dispatch_async(dispatch_get_main_queue(), ^{
             [XTHudManager showWordHudWithTitle:WD_HUD_FAIL_RETRY] ;
             self.table.hidden = NO ;
-            self.navBg.hidden = YES ;
-            
             self.wordView.hidden = YES ;
             _flex_bottom.constant = 0.0 ;
         }) ;
@@ -624,11 +585,11 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     return _cacheImage ;
 }
 
-static float kRightDistance_SuspendButton   = 15.0 ;
-static float kBtDistance                    = 5.0 ;
-static float kSuspendButtonWidth            = 50.0 ;
-static float kSuspendButtonOrginY           = 48. + 2. ;
-static float kSuspendOfEdge                 = 10.0f ;
+static float kRightDistance_SuspendButton   = 0. ;
+static float kBtDistance                    = 0. ;
+static float kSuspendButtonWidth            = 50. ;
+static float kSuspendButtonOrginY           = 50. ;  //50. ;
+static float kSuspendOfEdge                 = 10. ;
 
 - (UIButton *)bt_suspendLike
 {
@@ -636,13 +597,16 @@ static float kSuspendOfEdge                 = 10.0f ;
     {
         _bt_suspendLike = [[UIButton alloc] init] ;
         [_bt_suspendLike setImage:[UIImage imageNamed:@"f_unlike"] forState:UIControlStateNormal] ;
+        [_bt_suspendLike setImage:[UIImage imageNamed:@"f_like"] forState:UIControlStateSelected] ;
         CGRect likeFrame = CGRectZero ;
         likeFrame.origin = CGPointMake(APPFRAME_WIDTH - kRightDistance_SuspendButton - kSuspendButtonWidth ,
                                        kSuspendButtonOrginY) ;
         likeFrame.size = CGSizeMake(kSuspendButtonWidth, kSuspendButtonWidth) ;
         _bt_suspendLike.frame = likeFrame ;
         [_bt_suspendLike setImageEdgeInsets:UIEdgeInsetsMake(kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge)] ;
-
+        [_bt_suspendLike addTarget:self
+                            action:@selector(suspendLikePressed)
+                  forControlEvents:UIControlEventTouchUpInside] ;
         if (![_bt_suspendLike superview]) {
             [self.view addSubview:_bt_suspendLike] ;
         }
@@ -650,9 +614,31 @@ static float kSuspendOfEdge                 = 10.0f ;
     return _bt_suspendLike ;
 }
 
+- (void)suspendLikePressed
+{
+    [DetailSubaoCtrller loadLikeAnimation:_bt_suspendLike
+                               completion:^(BOOL finished)
+    {
+        _bt_suspendLike.selected = !_bt_suspendLike.selected ;
+        //
+        self.articleSuper.has_praised = _bt_suspendLike.selected ;
+        NSInteger  section = self.articleSuper.childList.count + 1 ;
+        NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:section] ;
+        DtOperationCell *cell = (DtOperationCell *)[_table cellForRowAtIndexPath:indexpath] ;
+        [cell getNewPraiseWithisLiked:self.articleSuper.has_praised delay:0] ;
+        //
+        [ServerRequest praiseThisArticle:self.articleSuper.a_id
+                             AndWithBool:self.articleSuper.has_praised
+                                 Success:^(id json) {
+                                     ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
+                                     NSLog(@"message : %@",result.message) ;
+                                 } fail:nil] ;
+    }] ;
+}
+
 - (UIButton *)bt_suspendShare
 {
-    if (!_bt_suspendShare)
+    if (!_bt_suspendShare && G_BOOL_OPEN_APPSTORE)
     {
         _bt_suspendShare = [[UIButton alloc] init] ;
         [_bt_suspendShare setImage:[UIImage imageNamed:@"f_share"] forState:UIControlStateNormal] ;
@@ -662,7 +648,9 @@ static float kSuspendOfEdge                 = 10.0f ;
                                        kSuspendButtonOrginY) ;
         _bt_suspendShare.frame = likeFrame ;
         [_bt_suspendShare setImageEdgeInsets:UIEdgeInsetsMake(kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge)] ;
-
+        [_bt_suspendShare addTarget:self
+                             action:@selector(suspendSharePressed)
+                   forControlEvents:UIControlEventTouchUpInside] ;
         if (![_bt_suspendShare superview]) {
             [self.view addSubview:_bt_suspendShare] ;
         }
@@ -670,6 +658,10 @@ static float kSuspendOfEdge                 = 10.0f ;
     return _bt_suspendShare ;
 }
 
+- (void)suspendSharePressed
+{
+    [self clickShareCallBack] ;
+}
 
 #pragma mark -- Life Cycle
 - (void)viewDidLoad
@@ -681,14 +673,11 @@ static float kSuspendOfEdge                 = 10.0f ;
     
     isFirstTime = YES ;
     self.table.hidden = YES ;
-    self.navBg.hidden = YES ;
-    self.btNav_Share.hidden = !G_BOOL_OPEN_APPSTORE ;
     
     [self setupSth] ;
     [self wordView] ;
     [self putNavBarItem] ;
     
-    [self setupSuspendButton] ;
 }
 
 - (void)setupSuspendButton
@@ -806,6 +795,7 @@ static float kSuspendOfEdge                 = 10.0f ;
         [self dismissNetReloader] ;
     }
 }
+
 - (void)loadMoreData
 {
     [self getMoreComment] ;
@@ -831,6 +821,9 @@ static float kSuspendOfEdge                 = 10.0f ;
     if (self.isMultiType && !decelerate)
     {
         [self controlBottomBarShowOrNot] ;
+    }
+    
+    if (!decelerate) {
         [self suspendButtonRunAnimation:YES] ;
     }
 }
@@ -844,7 +837,7 @@ static float kSuspendOfEdge                 = 10.0f ;
 - (void)suspendButtonRunAnimation:(BOOL)showOrHide
 {
     if (!_bt_suspendLike) return ;
-    //
+
     if (showOrHide) {
         if (_bt_suspendLike != nil && _bt_suspendLike.alpha != 1.0)
         {
@@ -1446,7 +1439,17 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
 - (void)hasPraised:(BOOL)hasPraised
 {
     self.articleSuper.has_praised = hasPraised ;
-    self.btNav_Like.selected = hasPraised ;
+
+    if (_bt_suspendLike.selected != hasPraised) {
+        [DetailSubaoCtrller loadLikeAnimation:_bt_suspendLike completion:^(BOOL finished) {
+            _bt_suspendLike.selected = hasPraised ;
+        }] ;
+    }
+    
+    NSInteger  section = self.articleSuper.childList.count + 1 ;
+    NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:section] ;
+    DtOperationCell *cell = (DtOperationCell *)[_table cellForRowAtIndexPath:indexpath] ;
+    [cell getNewPraiseWithisLiked:hasPraised delay:0.3] ;
     
     [ServerRequest praiseThisArticle:self.articleSuper.a_id
                          AndWithBool:hasPraised
@@ -1454,10 +1457,6 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
                                  
                                  ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
                                  NSLog(@"message : %@",result.message) ;
-                                 NSInteger  section = self.articleSuper.childList.count + 1 ;
-                                 NSIndexPath *indexpath = [NSIndexPath indexPathForRow:0 inSection:section] ;
-                                 DtOperationCell *cell = (DtOperationCell *)[_table cellForRowAtIndexPath:indexpath] ;
-                                 [cell getNewPraiseWithisLiked:hasPraised] ;
                                  
                              } fail:nil] ;
     
@@ -1664,7 +1663,7 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
                isReply:(BOOL)isReply
 {
     ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
-
+    
     [self updateCommentSuccessWithResult:result
                                  content:content
                                 colorStr:colorStr
@@ -1672,7 +1671,7 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
                              positionStr:positionStr
                                      Aid:replyToAid
                                  isReply:isReply] ;
-
+    
 }
 
 - (void)updateCommentSuccessWithResult:(ResultParsered *)result
@@ -1719,7 +1718,7 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
     {
         [self.articleSuper.articleCommentList insertObject:cmt atIndex:0] ;
     }
-
+    
     // insert new reply in sub article
     if (isReply)
     {
@@ -1749,7 +1748,7 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
         // reset to origin
         [self.wordView resetToOrigin] ;
     }) ;
-
+    
 }
 
 #pragma mark --

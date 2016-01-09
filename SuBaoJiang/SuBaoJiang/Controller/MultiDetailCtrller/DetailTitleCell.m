@@ -29,7 +29,7 @@
 
     //
     ArticleTopic *topic = [article.articleTopicList firstObject] ;
-    _flex_left_title.constant = (topic.t_cate == t_cate_type_suExperience && topic != nil) ? 32.0 : 8.0f ;
+    _flex_left_title.constant = (topic.t_cate == t_cate_type_suExperience && topic != nil) ? 32.0 : 8.0f ; //left
     _img_suEx.hidden = !(topic.t_cate == t_cate_type_suExperience && topic != nil) ;
     //
     _lb_type.hidden = (!article.ac_content || ![article.ac_content length]) ;
@@ -61,7 +61,7 @@
     BOOL bSuEx = topic.t_cate == t_cate_type_suExperience ;
     
     UIFont *font = [UIFont systemFontOfSize:20.0f] ;
-    CGSize size = bSuEx ? CGSizeMake(APPFRAME.size.width - 8.0 - 32.0, 55.0) : CGSizeMake(APPFRAME.size.width - 8.0 - 8.0f, 55.0) ;
+    CGSize size = bSuEx ? CGSizeMake(APPFRAME.size.width - 100.0f - 32.0, 55.0) : CGSizeMake(APPFRAME.size.width - 100.0f - 8.0f, 55.0) ; // -8.0f改成100.0
     CGSize labelsize = [article.a_title boundingRectWithSize:size
                                                      options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                                   attributes:@{NSFontAttributeName : font}

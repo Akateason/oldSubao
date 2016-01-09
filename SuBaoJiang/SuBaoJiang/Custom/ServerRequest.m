@@ -352,7 +352,7 @@
     [paramer setObject:[NSNumber numberWithInt:maxID]   forKey:@"max_id"] ;
     [paramer setObject:[NSNumber numberWithInt:count]   forKey:@"count"] ;
     
-    [XTRequest GETWithUrl:[self getFinalUrl:URL_DETAIL_PRAISE] parameters:paramer success:^(id json) {
+    [XTRequest GETWithUrl:[self getFinalUrl:URL_DETAIL_PRAISE] hud:NO parameters:paramer success:^(id json) {
         if (success) success(json);
     } fail:^{
         if (fail) fail();
@@ -509,7 +509,7 @@
     [paramer setObject:[NSNumber numberWithInt:articleID] forKey:@"a_id"] ;
     
     NSString *urlStr = bCreateOrDelete ? [self getFinalUrl:URL_PRAISE_CREATE] : [self getFinalUrl:URL_PRAISE_DELETE] ;
-    [XTRequest POSTWithUrl:urlStr parameters:paramer success:^(id json) {
+    [XTRequest POSTWithUrl:urlStr hud:NO parameters:paramer success:^(id json) {
         if (success) success(json);
     } fail:^{
         if (fail) fail();

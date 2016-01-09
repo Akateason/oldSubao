@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -22,7 +22,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLab" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6u-qD-Pq9">
-                        <rect key="frame" x="32" y="14" width="280" height="24"/>
+                        <rect key="frame" x="32" y="14" width="188" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="Sc2-1D-oG8"/>
                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="55" id="UGH-3s-MMa"/>
@@ -36,7 +36,7 @@
                     <constraint firstItem="e6u-qD-Pq9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="e2L-un-Lo9"/>
                     <constraint firstItem="e6u-qD-Pq9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="32" id="eW4-X6-iEM"/>
                     <constraint firstItem="ywi-kr-xra" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="gGi-wG-Zpr"/>
-                    <constraint firstAttribute="trailing" secondItem="e6u-qD-Pq9" secondAttribute="trailing" constant="8" id="qCi-61-Gmm"/>
+                    <constraint firstAttribute="trailing" secondItem="e6u-qD-Pq9" secondAttribute="trailing" constant="100" id="qCi-61-Gmm"/>
                     <constraint firstItem="ywi-kr-xra" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="umE-1u-LCk"/>
                 </constraints>
             </tableViewCellContentView>

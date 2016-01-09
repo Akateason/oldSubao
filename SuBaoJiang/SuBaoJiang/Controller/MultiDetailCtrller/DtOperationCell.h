@@ -33,6 +33,7 @@
 
 @property (nonatomic,weak) id <DtOperationCellDelegate> delegate ;
 @property (nonatomic,strong) Article *superArticle ;
-- (void)getNewPraiseWithisLiked:(BOOL)isLiked ;
+- (void)getNewPraiseWithisLiked:(BOOL)isLiked
+                          delay:(float)delayTime ;
 
 @end

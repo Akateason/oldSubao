@@ -65,18 +65,23 @@
     [header setImages:idleImages forState:MJRefreshStateIdle];
     [header setImages:pullingImages forState:MJRefreshStatePulling];
     [header setImages:refreshingImages forState:MJRefreshStateRefreshing];
+//    header.backgroundColor = COLOR_BACKGROUND ;
+    header.stateLabel.textColor = [UIColor lightGrayColor] ;
+    header.lastUpdatedTimeLabel.textColor = [UIColor lightGrayColor] ;
     self.mj_header = header;
     
     MJRefreshBackGifFooter *footer = [MJRefreshBackGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreDataSelector)];
     [footer setImages:idleImages forState:MJRefreshStateIdle];
     [footer setImages:pullingImages forState:MJRefreshStatePulling];
     [footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
+//    footer.backgroundColor = COLOR_BACKGROUND ;
+    footer.stateLabel.textColor = [UIColor lightGrayColor] ;
     self.mj_footer = footer;
 }
 
 - (void)defaultPublicAPIs
 {
-    self.showRefreshDetail = NO ;
+    self.showRefreshDetail = YES ;
     self.automaticallyLoadMore = NO ;
     self.automaticallyLoadNew = YES ;
 //    self.customLoadMore = NO ;
@@ -117,7 +122,6 @@
         [self.mj_header endRefreshing] ;
     }
 }
-
 
 - (void)setCustomLoadMore:(BOOL)customLoadMore
 {

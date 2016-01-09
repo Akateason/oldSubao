@@ -16,6 +16,7 @@
 #import "ArticlePraise.h"
 #import "DigitInformation.h"
 #import "ServerRequest.h"
+#import "DetailSubaoCtrller+AnimationManager.h"
 
 @interface DtOperationCell () <UICollectionViewDataSource,UICollectionViewDelegate,ArticleDelegate>
 //UIs
@@ -78,36 +79,41 @@
     
 }
 
+// from client
 - (void)getNewPraiseWithisLiked:(BOOL)isLiked
+                          delay:(float)delayTime
 {
     _bt_like.selected = isLiked ;
     
-    [ServerRequest getPraisedInfoWithArticleID:self.superArticle.a_id
-                                AndWithSinceID:0
-                                  AndWithMaxID:0
-                                  AndWithCount:15
-                                       Success:^(id json) {
-                                           
-        @synchronized(self.praiseList)
-        {
-            ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
-            [self.praiseList removeAllObjects] ;
-            NSArray *tempArticleList = [result.info objectForKey:@"article_praise"];
-            _superArticle.praiseCount = [[result.info objectForKey:@"article_praise_count"] intValue] ;
-            for (NSDictionary *articleDic in tempArticleList)
-            {
-                ArticlePraise *praise = [[ArticlePraise alloc] initWithDict:articleDic] ;
-                [self.praiseList addObject:praise] ;
-            }
-            _lb_countOfCmtAndPraise.attributedText = [self.superArticle getAttributeStrCmtCountRplyCount];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.collection_praisers reloadData] ;
-            }) ;
-        }
-                
-    } fail:nil] ;
+    __block BOOL bHasPraiseYet = NO ;
+    [self.praiseList enumerateObjectsUsingBlock:^(ArticlePraise *praise, NSUInteger idx, BOOL * _Nonnull stop)
+     {
+         if (praise.user.u_id == G_USER.u_id)
+         {
+             bHasPraiseYet = YES ;
+             if (!isLiked) {
+                 [self.praiseList removeObjectAtIndex:idx] ;
+             }
+             *stop = YES ;
+         }
+     }] ;
+    
+    if (!bHasPraiseYet && isLiked)
+    {
+        ArticlePraise *praiseWillAdd = [[ArticlePraise alloc] initByOwner] ;
+        [self.praiseList insertObject:praiseWillAdd atIndex:0] ;
+    }
+    
+    isLiked ? _superArticle.praiseCount ++ : _superArticle.praiseCount -- ;
+    
+    _lb_countOfCmtAndPraise.attributedText = [self.superArticle getAttributeStrCmtCountRplyCount];
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collection_praisers reloadData] ;
+    }) ;
+    
 }
+
 
 - (IBAction)moreButtonClickAction:(id)sender
 {
