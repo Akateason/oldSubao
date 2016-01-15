@@ -140,7 +140,7 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     }
     else
     {
-        // image Send animation .
+        // img Send animation .
         [self imgAnimateView] ;
 
         [UIView animateWithDuration:QUICKLY_ANIMATION_DURATION
@@ -226,9 +226,7 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     [UIView animateWithDuration:duration animations:^{
 
         self.wordView.frame = tfContainRect;
-        
         float theHeight = self.wordView.frame.origin.y - self.wordView.frame.size.height - 5.0f ;
-
         [self setflywordPropertyButtonsHeight:theHeight] ;
         
     }];
@@ -274,7 +272,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     NSLog(@"long press on commt at row %ld", (long)row) ;
     
     ArticleComment *cmt = (ArticleComment *)self.allComments[row] ;
-    
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:nil
                                                      andMessage:nil] ;
 
@@ -805,27 +802,46 @@ static float kSuspendOfEdge                 = 10. ;
 #pragma mark - UIScrollViewDelegate Methods
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
-    if (self.isMultiType) [self controlBottomBarShowOrNot] ;
-    
-    [self suspendButtonRunAnimation:NO] ;
+    if (self.isMultiType)
+    {
+        [self controlBottomBarShowOrNot] ;
+        [self suspendButtonRunAnimation:NO] ;
+        [self letSuspendBtOnOrOff] ;
+    }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if (self.isMultiType) [self controlBottomBarShowOrNot] ;
-    [self suspendButtonRunAnimation:YES] ;
+    if (self.isMultiType)
+    {
+        [self controlBottomBarShowOrNot] ;
+        [self suspendButtonRunAnimation:YES] ;
+        [self letSuspendBtOnOrOff] ;
+    }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (self.isMultiType && !decelerate)
-    {
+    if (self.isMultiType && !decelerate) {
         [self controlBottomBarShowOrNot] ;
-    }
-    
-    if (!decelerate) {
         [self suspendButtonRunAnimation:YES] ;
+        [self letSuspendBtOnOrOff] ;
     }
+}
+
+- (void)letSuspendBtOnOrOff
+{
+    __block BOOL bDtOperationCellIsOnShow = NO ;
+    [[_table visibleCells] enumerateObjectsUsingBlock:^(__kindof UITableViewCell * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop)
+     {
+         if ([obj isKindOfClass:[DtOperationCell class]]) {
+             bDtOperationCellIsOnShow = YES ;
+             *stop = YES ;
+         }
+     }] ;
+    
+    _bt_suspendLike.hidden = bDtOperationCellIsOnShow ;
+    _bt_suspendShare.hidden = bDtOperationCellIsOnShow ;
 }
 
 - (void)controlBottomBarShowOrNot
@@ -967,7 +983,9 @@ static float kSuspendOfEdge                 = 10. ;
         {
             return
             [self.articleSuper isMultyStyle] ?
-            [tableView fd_heightForCellWithIdentifier:CellId_DetailTitleCell cacheByIndexPath:indexPath configuration:^(DetailTitleCell *cell) {
+            [tableView fd_heightForCellWithIdentifier:CellId_DetailTitleCell
+                                     cacheByIndexPath:indexPath
+                                        configuration:^(DetailTitleCell *cell) {
                 [self configureDetailTitleCell:cell] ;
             }] :
             LINE_HEIGHT ;
@@ -975,7 +993,9 @@ static float kSuspendOfEdge                 = 10. ;
         // 2. superPic & superContent
         else if (row == 1)
         {
-            return [tableView fd_heightForCellWithIdentifier:CellId_DtSuperCell cacheByIndexPath:indexPath configuration:^(DtSuperCell *cell) {
+            return [tableView fd_heightForCellWithIdentifier:CellId_DtSuperCell
+                                            cacheByIndexPath:indexPath
+                                               configuration:^(DtSuperCell *cell) {
                 [self configureDtSuperCell:cell] ;
             }] ;
         }
@@ -983,7 +1003,8 @@ static float kSuspendOfEdge                 = 10. ;
     // SUB ARTICLEs
     else if ( (section > 0) && (section <= self.articleSuper.childList.count) )
     {
-        return [tableView fd_heightForCellWithIdentifier:CellId_DtSubCell configuration:^(DtSubCell *cell) {
+        return [tableView fd_heightForCellWithIdentifier:CellId_DtSubCell
+                                           configuration:^(DtSubCell *cell) {
             [self configureDtSubCell:cell subArticle:self.articleSuper.childList[section - 1]] ;
         }] ;
     }
@@ -999,7 +1020,9 @@ static float kSuspendOfEdge                 = 10. ;
     // replyLists
     else if (section == self.articleSuper.childList.count + 2)
     {
-        return [tableView fd_heightForCellWithIdentifier:CellId_replyCell cacheByIndexPath:indexPath configuration:^(ReplyCell *cell) {
+        return [tableView fd_heightForCellWithIdentifier:CellId_replyCell
+                                        cacheByIndexPath:indexPath
+                                           configuration:^(ReplyCell *cell) {
             [self configureReplyCell:cell comment:self.allComments[indexPath.row]] ;
         }] ;
     }

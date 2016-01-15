@@ -43,15 +43,12 @@
     [self.delegate topicSelected:[[self.superArticle articleTopicList] firstObject]] ;
 }
 
-
 - (void)setup
 {
     self.contentView.backgroundColor = COLOR_BACKGROUND ;
-    
     // hide share to check AppStore
     _bt_share.hidden = !G_BOOL_OPEN_APPSTORE ;
-    
-    //头像
+    //
     [self praiseList] ;
     _collection_praisers.delegate = self ;
     _collection_praisers.dataSource = self ;
@@ -76,7 +73,6 @@
     }
     
     [self.delegate hasPraised:!_bt_like.selected] ;
-    
 }
 
 // from client
@@ -113,7 +109,6 @@
     }) ;
     
 }
-
 
 - (IBAction)moreButtonClickAction:(id)sender
 {
@@ -237,10 +232,8 @@
     // Set up the reuse identifier
     UINib *nib = [UINib nibWithNibName:@"UserHeadCollectionCell" bundle: [NSBundle mainBundle]];
     [collectionView registerNib:nib forCellWithReuseIdentifier:@"UserHeadCollectionCell"];
-    
     // Set up the reuse identifier
     UserHeadCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"UserHeadCollectionCell" forIndexPath:indexPath] ;
-    
     // load the image for this cell
     cell.praise = self.praiseList[indexPath.row] ;
     
@@ -249,7 +242,6 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSLog(@"点用户头collection row : %@",@(indexPath.row)) ;
     int u_id = ((ArticlePraise *)self.praiseList[indexPath.row]).user.u_id ;
     [self.delegate clickUserHead:u_id] ;
 }
@@ -259,7 +251,7 @@
 {
     CGFloat orgHeight = 25.0f ;
     UIFont *font = [UIFont systemFontOfSize:16.0f] ;
-    CGSize size = CGSizeMake(APPFRAME.size.width - 13.0 * 2, 300);
+    CGSize size = CGSizeMake(APPFRAME.size.width - 13.0 * 2, 300) ;
     CGSize labelsize = [cmtStr boundingRectWithSize:size
                                          options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                       attributes:@{NSFontAttributeName:font}
@@ -268,13 +260,31 @@
     if (wordH < orgHeight) {
         wordH = orgHeight ;
     }
-    if (UNDER_IOS_VERSION(7.1)) // < 7.1
-    {
+    if (UNDER_IOS_VERSION(7.1)) {
         orgHeight += 5.0 ;
     }
-    
     return 126.0f - orgHeight + wordH ;
 }
+
++ (CGFloat)calculateHeightWithCmtStr:(NSString *)cmtStr
+{
+    CGFloat orgHeight = 25.0f ;
+    UIFont *font = [UIFont systemFontOfSize:16.0f] ;
+    CGSize size = CGSizeMake(APPFRAME.size.width - 13.0 * 2, 300) ;
+    CGSize labelsize = [cmtStr boundingRectWithSize:size
+                                            options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                         attributes:@{NSFontAttributeName:font}
+                                            context:nil].size ;
+    CGFloat wordH = labelsize.height ;
+    if (wordH < orgHeight) {
+        wordH = orgHeight ;
+    }
+    if (UNDER_IOS_VERSION(7.1)) {
+        orgHeight += 5.0 ;
+    }
+    return 126.0f - orgHeight + wordH ;
+}
+
 
 - (CGSize)sizeThatFits:(CGSize)size
 {
@@ -283,7 +293,6 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 

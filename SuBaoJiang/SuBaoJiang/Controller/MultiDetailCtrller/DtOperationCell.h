@@ -35,5 +35,6 @@
 @property (nonatomic,strong) Article *superArticle ;
 - (void)getNewPraiseWithisLiked:(BOOL)isLiked
                           delay:(float)delayTime ;
++ (CGFloat)calculateHeightWithCmtStr:(NSString *)cmtStr ;
 
 @end
