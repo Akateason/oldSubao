@@ -120,7 +120,6 @@
 		18A69B571B5CEE9100152743 /* NSMutableString+TagReplace.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A69B541B5CEE9100152743 /* NSMutableString+TagReplace.m */; };
 		18A69B581B5CEE9100152743 /* NSString+WPAttributedMarkup.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A69B561B5CEE9100152743 /* NSString+WPAttributedMarkup.m */; };
 		18A823941B438B2D000E275F /* UserAgreementCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A823931B438B2D000E275F /* UserAgreementCtrller.m */; };
-		18A823971B438B6D000E275F /* IntroductionCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A823961B438B6D000E275F /* IntroductionCtrller.m */; };
 		18A8239B1B438E29000E275F /* LogoAboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A823991B438E29000E275F /* LogoAboutCell.m */; };
 		18A8239C1B438E29000E275F /* LogoAboutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18A8239A1B438E29000E275F /* LogoAboutCell.xib */; };
 		18A823A01B438FD7000E275F /* AboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A8239E1B438FD7000E275F /* AboutCell.m */; };
@@ -664,8 +663,6 @@
 		18A69B561B5CEE9100152743 /* NSString+WPAttributedMarkup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WPAttributedMarkup.m"; sourceTree = "<group>"; };
 		18A823921B438B2D000E275F /* UserAgreementCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserAgreementCtrller.h; path = Controller/SettingCtrller/UserAgreementCtrller.h; sourceTree = "<group>"; };
 		18A823931B438B2D000E275F /* UserAgreementCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserAgreementCtrller.m; path = Controller/SettingCtrller/UserAgreementCtrller.m; sourceTree = "<group>"; };
-		18A823951B438B6D000E275F /* IntroductionCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IntroductionCtrller.h; path = Controller/SettingCtrller/IntroductionCtrller.h; sourceTree = "<group>"; };
-		18A823961B438B6D000E275F /* IntroductionCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IntroductionCtrller.m; path = Controller/SettingCtrller/IntroductionCtrller.m; sourceTree = "<group>"; };
 		18A823981B438E29000E275F /* LogoAboutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LogoAboutCell.h; path = Controller/SettingCtrller/LogoAboutCell.h; sourceTree = "<group>"; };
 		18A823991B438E29000E275F /* LogoAboutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LogoAboutCell.m; path = Controller/SettingCtrller/LogoAboutCell.m; sourceTree = "<group>"; };
 		18A8239A1B438E29000E275F /* LogoAboutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LogoAboutCell.xib; path = Controller/SettingCtrller/LogoAboutCell.xib; sourceTree = "<group>"; };
@@ -1862,8 +1859,6 @@
 			children = (
 				18A823921B438B2D000E275F /* UserAgreementCtrller.h */,
 				18A823931B438B2D000E275F /* UserAgreementCtrller.m */,
-				18A823951B438B6D000E275F /* IntroductionCtrller.h */,
-				18A823961B438B6D000E275F /* IntroductionCtrller.m */,
 			);
 			name = AboutSubCtrller;
 			sourceTree = "<group>";
@@ -3372,7 +3367,6 @@
 				18D69A171B1C714A00BC9475 /* SBJsonUTF8Stream.m in Sources */,
 				18D69A3D1B1C714B00BC9475 /* FBShimmeringLayer.m in Sources */,
 				18D699EA1B1C714A00BC9475 /* FMDatabaseQueue.m in Sources */,
-				18A823971B438B6D000E275F /* IntroductionCtrller.m in Sources */,
 				D7E8FDF91C16BFFD005E908F /* MJRefreshAutoFooter.m in Sources */,
 				18AAFCD91BA691C300901A15 /* PasterManagement.m in Sources */,
 				18D69A3C1B1C714B00BC9475 /* UICollectionViewLeftAlignedLayout.m in Sources */,

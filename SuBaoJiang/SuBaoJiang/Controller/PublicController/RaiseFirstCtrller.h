@@ -10,4 +10,6 @@
 
 @interface RaiseFirstCtrller : RootCtrl
 
++ (void)showGuidingWithController:(UIViewController *)ctrller ;
+
 @end

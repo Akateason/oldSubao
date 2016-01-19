@@ -28,7 +28,7 @@
  * DEVELOPER MODE SWITCHER
  * BOOL Args , ( DEFAULT is `NO`, BECOME `YES` WHEN U WANA TEST AND DEBUG . )
  */
-#define DEVELOPER_MODE_SWITCHER         NO
+#define DEVELOPER_MODE_SWITCHER         YES
 
 /*
  * judge iOS VERSION more than this .

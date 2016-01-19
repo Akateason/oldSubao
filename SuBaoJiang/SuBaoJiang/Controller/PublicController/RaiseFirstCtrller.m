@@ -7,29 +7,35 @@
 //
 
 #import "RaiseFirstCtrller.h"
-
 #import "GuideingScrollView.h"
 #import "LoginSelfCtrller.h"
 #import "CommonFunc.h"
 
 @interface RaiseFirstCtrller ()<GuideingScrollViewDelegate>
 
-@property (weak, nonatomic) IBOutlet GuideingScrollView *scrollV;
+@property (weak, nonatomic) IBOutlet GuideingScrollView *scrollV ; // in Class GuideingScrollView .
 
 @end
 
 @implementation RaiseFirstCtrller
 
++ (void)showGuidingWithController:(UIViewController *)ctrller
+{
+    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
+    RaiseFirstCtrller *raiseCtrller = [story instantiateViewControllerWithIdentifier:@"RaiseFirstCtrller"] ;
+    raiseCtrller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve ;
+    [ctrller presentViewController:raiseCtrller animated:YES completion:^{}] ;
+}
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    [super viewDidLoad] ;
     // Do any additional setup after loading the view.
-
+    
     self.myTitle = @"启动页" ;
     
-    _scrollV.hidden = YES ;
     _scrollV.guidingDelegate = self ;
-    _scrollV.currentCtrller = self ;
+    _scrollV.currentCtrller  = self ;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -40,7 +46,6 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO] ;
 }
 
-
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated] ;
@@ -49,46 +54,20 @@
     [self.navigationController setNavigationBarHidden:NO animated:NO] ;
 }
 
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated] ;
-    
-    BOOL isFirstLoadApp = [CommonFunc isFirstLoad] ;
-    
-//    test
-//    isFirstLoadApp = YES ;
-    
-    [self straightGo2Index:isFirstLoadApp] ;
-}
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)raiseToFirst
+#pragma mark --
+- (void)dismiss
 {
-    [self performSegueWithIdentifier:@"raise2tab" sender:nil] ;
+//    [self.navigationController popViewControllerAnimated:NO] ;
+    [self dismissViewControllerAnimated:YES completion:^{}] ;
 }
-
 
 #pragma mark --
-- (void)straightGo2Index:(BOOL)b
-{
-    if (!b)
-    {
-        _scrollV.hidden = YES ;
-        [self raiseToFirst] ;
-    }
-    else
-    {
-        _scrollV.hidden = NO ;
-    }
-}
-
 #pragma mark - guiding delegate
 - (void)logSelf
 {
@@ -99,7 +78,7 @@
 
 - (void)seeMore
 {
-    [self raiseToFirst] ;
+    [self dismiss] ;
 }
 
 /*

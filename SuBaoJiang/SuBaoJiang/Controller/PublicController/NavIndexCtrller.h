@@ -9,9 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "MyNavCtrller.h"
 
-
-
-
 @interface NavIndexCtrller : MyNavCtrller
 
 @end

@@ -9,6 +9,7 @@
 #import "AboutUsCtrller.h"
 #import "LogoAboutCell.h"
 #import "AboutCell.h"
+#import "RaiseFirstCtrller.h"
 
 #define LogoAboutID         @"LogoAboutCell"
 #define AboutCellID         @"AboutCell"
@@ -26,21 +27,18 @@
     // Do any additional setup after loading the view.
     self.myTitle = @"关于我们页" ;
     
-    
-    
-    _table.delegate     = self ;
-    _table.dataSource   = self ;
-    _table.separatorColor = COLOR_TABLE_SEP ;
-    _table.backgroundColor = COLOR_BACKGROUND ;
-    [self.table registerNib:[UINib nibWithNibName:LogoAboutID bundle:nil] forCellReuseIdentifier:LogoAboutID];
-    [self.table registerNib:[UINib nibWithNibName:AboutCellID bundle:nil] forCellReuseIdentifier:AboutCellID] ;
+    _table.delegate         = self ;
+    _table.dataSource       = self ;
+    _table.separatorColor   = COLOR_TABLE_SEP ;
+    _table.backgroundColor  = COLOR_BACKGROUND ;
+    [_table registerNib:[UINib nibWithNibName:LogoAboutID bundle:nil] forCellReuseIdentifier:LogoAboutID];
+    [_table registerNib:[UINib nibWithNibName:AboutCellID bundle:nil] forCellReuseIdentifier:AboutCellID] ;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark --
 #pragma mark - table view data source
@@ -126,7 +124,7 @@
         case 1:
         {
             //功能介绍
-            [self performSegueWithIdentifier:@"about2Intro" sender:nil] ;
+            [RaiseFirstCtrller showGuidingWithController:self] ;
         }
             break;
         default:

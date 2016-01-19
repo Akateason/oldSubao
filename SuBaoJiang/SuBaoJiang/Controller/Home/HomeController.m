@@ -27,18 +27,19 @@
 #import "NotificationCenterHeader.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "HomeUserTableHeaderView.h"
+#import "RaiseFirstCtrller.h"
 
-#define SIZE_OF_PAGE        20
+#define SIZE_OF_PAGE                    20
 
-#define NONE_HEIGHT         0.0f
+#define NONE_HEIGHT                     0.0f
 
 #define HEIGHT_bt_go2post               43.0
 #define WIDTH_bt_go2post                150.0
 
-#define ThemeCellID         @"ThemeCell"
-#define HomeCellID          @"HomeCell"
-#define SEintroCellID       @"SEintroCell"
-#define HeaderIdentifier    @"HomeUserTableHeaderView"
+#define ThemeCellID                     @"ThemeCell"
+#define HomeCellID                      @"HomeCell"
+#define SEintroCellID                   @"SEintroCell"
+#define HeaderIdentifier                @"HomeUserTableHeaderView"
 
 
 @interface HomeController () <UITableViewDataSource,UITableViewDelegate,RootTableViewDelegate,HomeCellDelegate,ThemeCellDelegate,MyTabbarCtrllerDelegate,SEintroCellDelegate,HomeUserTableHeaderViewDelegate>
@@ -102,7 +103,6 @@
     }
     
     if (IS_IOS_VERSION(8.0)) ctrller.navigationController.hidesBarsOnSwipe = NO ;
-    
     
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
     HomeController *homeCtrller = [story instantiateViewControllerWithIdentifier:@"HomeController"] ;
@@ -352,7 +352,7 @@
 }
 
 #pragma mark -- setup
-- (void)setup
+- (void)setupTable
 {
         [_table registerNib:[UINib nibWithNibName:ThemeCellID bundle:nil]
      forCellReuseIdentifier:ThemeCellID] ;
@@ -367,10 +367,39 @@
     _table.separatorStyle = UITableViewCellSeparatorStyleNone ;
     _table.backgroundColor = COLOR_BACKGROUND ;
     _table.xt_Delegate = self ;
-//    _table.automaticallyLoadMore = YES ;
     _table.customLoadMore = YES ;
-    
+//    _table.automaticallyLoadMore = YES ;
 //    _table.showsVerticalScrollIndicator = NO ;
+}
+
+- (void)configureHomeOrTopic
+{
+    // topic status
+    if (_topic != nil)
+    {
+        _titleView.titleStr = _topic.t_content ;
+        [XTAnimation animationPushRight:self.view] ;
+        self.myTitle = @"话题详情页" ;
+    }
+    // home status
+    else
+    {
+        self.myTitle = @"首页" ;
+        
+        //1 update App Version
+        if (!_topic && !m_isFirstTime) {
+            m_isFirstTime = YES ;
+            [CommonFunc updateLatestVersion] ;
+        }
+        
+        //2 tabbar ctrller - double tap Homepage tabbarItem Delegate
+        ((MyTabbarCtrller *)(self.tabBarController)).homePageDelegate = self ;
+    }
+}
+
+- (void)configureTeachingViews
+{
+    if ([CommonFunc isFirstHomePage]) self.guidingStrList = @[@"guiding_homePage"] ;
 }
 
 #pragma mark --
@@ -383,7 +412,6 @@
         [self.navigationController setNavigationBarHidden:NO animated:NO] ;
     }
 }
-
 
 - (void)putNavBarItem
 {
@@ -422,38 +450,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view
 
+    [self appIsFirstRaise] ;
+    
     // initial
     self.edgesForExtendedLayout = UIRectEdgeNone ;
-    [self setup] ;
+    [self setupTable] ;
     [self putNavBarItem] ;
     [self bt_go2post] ;
-    
-    // topic status
-    if (_topic != nil)
-    {
-        _titleView.titleStr = _topic.t_content ;
-        [XTAnimation animationPushRight:self.view] ;
-        self.myTitle = @"话题详情页" ;
-    }
-    // home status
-    else
-    {
-        self.myTitle = @"首页" ;
-        
-        //1 update App Version
-        if (!_topic && !m_isFirstTime) {
-            m_isFirstTime = YES ;
-            [CommonFunc updateLatestVersion] ;
-        }
-        
-        //2 tabbar ctrller - double tap Homepage tabbarItem Delegate
-        ((MyTabbarCtrller *)(self.tabBarController)).homePageDelegate = self ;
-    }
-    
-    if ([CommonFunc isFirstHomePage])
-    {
-        self.guidingStrList = @[@"guiding_homePage"] ;
-    }
+    [self configureHomeOrTopic] ;
+    [self configureTeachingViews] ;
+}
+
+- (BOOL)appIsFirstRaise
+{
+    BOOL isFirstLoadApp = DEVELOPER_MODE_SWITCHER ? YES : [CommonFunc isFirstLoad] ;
+    if (isFirstLoadApp) [RaiseFirstCtrller showGuidingWithController:self] ;
+    return isFirstLoadApp ;
 }
 
 - (void)didReceiveMemoryWarning
@@ -461,14 +473,14 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
     
-    if ([self.view window] == nil)
+    if (![self.view window])
     {
-        // Add code to preserve data stored in the views that might be
+        // Add code to preserve data stored in the views that might be.
         // needed later.
         self.m_articleList = nil ;
         self.m_themesList = nil ;
         
-        // Add code to clean up other strong references to the view in
+        // Add code to clean up other strong references to the view in.
         // the view hierarchy.
         m_switchButton = nil ;
         self.bt_go2post = nil ;
@@ -481,8 +493,8 @@
     [super viewWillAppear:animated] ;
 
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self ;
-    
 //    if (IS_IOS_VERSION(8.0) && !_topic && self.navigationController.hidesBarsOnSwipe == NO) self.navigationController.hidesBarsOnSwipe = YES ; // >=ios8 && isHomeIndexPage .
+    
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -846,32 +858,6 @@
         }
         return ; // BREAK IN topic ctrller
     }
-    
-    /*
-    //  hidden or show nav and tab  BARs .
-    if ( IS_IOS_VERSION(7.1) )   //   Unsupport  7.0
-    {
-        CGFloat flex = 0.0 ;
-        CGPoint translation = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
-        
-        if (translation.y > flex)
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-//                [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
-//                [self.navigationController setNavigationBarHidden:NO animated:YES] ;
-//                self.tabBarController.tabBar.hidden = NO ;
-            }) ;
-        }
-        else
-        {
-            dispatch_async(dispatch_get_main_queue(), ^{
-//                [[UIApplication sharedApplication] setStatusBarHidden:decelerate withAnimation:UIStatusBarAnimationNone] ;
-//                [self.navigationController setNavigationBarHidden:decelerate animated:YES] ;
-//                self.tabBarController.tabBar.hidden = decelerate ;
-            }) ;
-        }
-    }
-    */
     
 //    custom loadmore .
     if (_table.customLoadMore) {
