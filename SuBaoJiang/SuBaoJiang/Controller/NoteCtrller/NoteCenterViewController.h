@@ -8,6 +8,7 @@
 // New Note Ctrller In 1.1 @ADD@
 
 #import "RootCtrl.h"
+#import "PublicEnum.h"
 
 @interface NoteCenterViewController : RootCtrl
 

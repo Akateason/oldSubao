@@ -12,6 +12,8 @@
 #import "DtSubCell.h"
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "HomeUserTableHeaderView.h"
+#import "DigitInformation.h"
+
 
 #define LINE_HEIGHT             0.0f
 #define HeaderIdentifier    @"HomeUserTableHeaderView"

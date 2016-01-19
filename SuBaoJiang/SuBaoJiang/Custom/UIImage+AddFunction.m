@@ -7,6 +7,7 @@
 //
 
 #import "UIImage+AddFunction.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @implementation UIImage (AddFunction)
 

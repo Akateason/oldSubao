@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AssetsLibrary/AssetsLibrary.h>
-
+@class ALAsset ;
 
 @interface UIImage (AddFunction)
 

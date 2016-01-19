@@ -21,6 +21,7 @@
 #import "XTTickConvert.h"
 #import "CommonFunc.h"
 #import "UIImage+AddFunction.h"
+#import "AlbumOperation.h"
 
 #define COLUMN_NUMBER       3
 #define COLUMN_FLEX         3.0
@@ -28,13 +29,19 @@
 static long photoCount = 0 ;
 
 @interface NewCameaCtrller () <CHTCollectionViewDelegateWaterfallLayout,UICollectionViewDataSource,UICollectionViewDelegate,CameraGroupCtrllerDelegate,MultyPicChooseBarDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
+{
+    CGSize      m_collectionSize ;
+}
+@property  (nonatomic, strong) ALAssetsLibrary          *assetsLibrary ;
 
-@property  (nonatomic, strong)  NSMutableArray      *imageList ; // data source
-@property  (nonatomic, strong)  NSMutableArray      *multySelectedImageList ;
-@property  (strong, nonatomic)  UICollectionView    *collectionView ;
-@property  (nonatomic, strong)  ALAssetsLibrary     *assetsLibrary ;
-@property  (nonatomic, strong)  MultyPicChooseBar   *choosePicBar ;
-@property  (nonatomic, strong)  NSMutableArray      *resultImgList ;
+@property  (nonatomic, strong) NSMutableArray           *imageList ; // data source
+@property  (nonatomic, strong) NSMutableArray           *multySelectedImageList ;
+@property  (nonatomic, strong) NSMutableArray           *resultImgList ;
+
+@property  (strong, nonatomic) UICollectionView         *collectionView ;
+@property  (nonatomic, strong) MultyPicChooseBar        *choosePicBar ;
+
+@property  (nonatomic, strong) NSOperationQueue         *operationQueue ;
 
 @end
 
@@ -93,11 +100,11 @@ static long photoCount = 0 ;
     }
     
     [MultyEditCtrller finishedChoosePhotosWithImgList:self.resultImgList
-                                        superArticle:self.articleSuper
-                            bigestSubArticleClientID:self.bigestLastArticleClientID
-                                            strTopic:self.topicStr
-                                             ctrller:self
-                                       originCtrller:self.orginCtrller] ;
+                                         superArticle:self.articleSuper
+                             bigestSubArticleClientID:self.bigestLastArticleClientID
+                                             strTopic:self.topicStr
+                                              ctrller:self
+                                        originCtrller:self.orginCtrller] ;
     
 }
 
@@ -147,15 +154,36 @@ static long photoCount = 0 ;
 - (ALAssetsLibrary *)assetsLibrary
 {
     if (!_assetsLibrary) {
-        _assetsLibrary = [[ALAssetsLibrary alloc] init];
+        _assetsLibrary = [[ALAssetsLibrary alloc] init] ;
     }
-    return _assetsLibrary;
+    return _assetsLibrary ;
 }
+
+/*
+- (PHFetchResult *)allPhotosFetchResult
+{
+    if (!_allPhotosFetchResult) {
+        PHFetchOptions *options = [[PHFetchOptions alloc] init] ;
+        options.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"creationDate"
+                                                                           ascending:NO]] ; // descending .
+        _allPhotosFetchResult = [PHAsset fetchAssetsWithOptions:options] ;
+    }
+    return _allPhotosFetchResult ;
+}
+
+- (PHCachingImageManager *)cachingImgManager
+{
+    if (!_cachingImgManager) {
+        _cachingImgManager = [[PHCachingImageManager alloc] init] ;
+    }
+    return _cachingImgManager ;
+}
+*/
 
 - (NSMutableArray *)imageList
 {
     if (!_imageList) {
-        _imageList = [NSMutableArray array] ;
+        _imageList = [@[] mutableCopy] ;
     }
     return _imageList ;
 }
@@ -163,14 +191,14 @@ static long photoCount = 0 ;
 - (NSMutableArray *)multySelectedImageList
 {
     if (!_multySelectedImageList) {
-        _multySelectedImageList = [NSMutableArray array] ;
+        _multySelectedImageList = [@[] mutableCopy] ;
     }
     return _multySelectedImageList ;
 }
 
 - (NSMutableArray *)resultImgList
 {
-    _resultImgList = [NSMutableArray array] ;
+    _resultImgList = [@[] mutableCopy] ;
     
     for (NSNumber *number in self.multySelectedImageList)
     {
@@ -199,8 +227,7 @@ static long photoCount = 0 ;
         _collectionView = [[UICollectionView alloc] initWithFrame:rect collectionViewLayout:layout] ;
         
         static NSString *cellIDentifierAlbum = @"AlbumnCell" ;
-        UINib *nib = [UINib nibWithNibName:cellIDentifierAlbum
-                                    bundle:[NSBundle mainBundle]] ;
+        UINib *nib = [UINib nibWithNibName:cellIDentifierAlbum bundle:[NSBundle mainBundle]] ;
         [_collectionView registerNib:nib
           forCellWithReuseIdentifier:cellIDentifierAlbum] ;
         
@@ -210,8 +237,7 @@ static long photoCount = 0 ;
         _collectionView.backgroundColor = COLOR_BACKGROUND ;
         _collectionView.showsVerticalScrollIndicator = YES ;
         
-        if (![_collectionView superview])
-        {
+        if (![_collectionView superview]) {
             [self.view addSubview:_collectionView] ;
         }
     }
@@ -241,6 +267,15 @@ static long photoCount = 0 ;
     return _choosePicBar ;
 }
 
+- (NSOperationQueue *)operationQueue
+{
+    if (!_operationQueue) {
+        _operationQueue = [[NSOperationQueue alloc] init] ;
+        _operationQueue.maxConcurrentOperationCount = 15 ;
+    }
+    return _operationQueue ;
+}
+
 #pragma mark --
 #pragma mark - setup
 - (void)putNavBarItem
@@ -258,11 +293,12 @@ static long photoCount = 0 ;
 }
 
 #pragma mark --
-#pragma mark - Func
+#pragma mark - Function .
 - (void)getAllPictures
 {
-    // enumerate groups
-    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos usingBlock:^(ALAssetsGroup *group, BOOL *stop)
+    // enumerate groups In assetsLibrary way .
+    [self.assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupSavedPhotos
+                                      usingBlock:^(ALAssetsGroup *group, BOOL *stop)
     {
         [self showImgAssetsInGroup:group] ;
     } failureBlock:^(NSError *error) {
@@ -288,7 +324,7 @@ static long photoCount = 0 ;
             
             if (photoCount == self.imageList.count) {
                 [_collectionView reloadData] ;
-                return ;
+                *stop = YES ;
             }
             else if ([self.imageList count] % 30 == 0)
             {
@@ -301,17 +337,14 @@ static long photoCount = 0 ;
 #pragma mark - Multy Picture selected
 - (BOOL)thisPhotoIsSelectedWithRow:(NSInteger)row
 {
-    BOOL bHas = NO ;
-    for (int i = 0 ; i < self.multySelectedImageList.count ; i++)
-    {
-        int selectedRow = [self.multySelectedImageList[i] intValue] ;
-        if (selectedRow == row)
-        {
+    __block BOOL bHas = NO ;
+    [self.multySelectedImageList enumerateObjectsUsingBlock:^(NSNumber *number, NSUInteger idx, BOOL * _Nonnull stop) {
+        int selectedRow = [self.multySelectedImageList[idx] intValue] ;
+        if (selectedRow == row) {
             bHas = YES ;
-            break ;
+            *stop = YES  ;
         }
-    }
-//    NSLog(@"bHas : %d",bHas) ;
+    }] ;
     return bHas ;
 }
 
@@ -323,13 +356,16 @@ static long photoCount = 0 ;
     // Do any additional setup after loading the view.
 
     [ALAssetsLibrary disableSharedPhotoStreamsSupport]; // 开启 Photo Stream 容易导致 exception
-
-    self.myTitle = @"相册照相页" ;
     
+    self.myTitle = @"相册照相页" ;
+    float collectionSlider = ( APPFRAME.size.width - COLUMN_FLEX * ((float)COLUMN_NUMBER + 1) ) / (float)COLUMN_NUMBER ;
+    m_collectionSize = CGSizeMake(collectionSlider, collectionSlider) ;
+    
+    [self putNavBarItem] ;
+
     [self multySelectedImageList] ;
     [self imageList] ;
     [self getAllPictures] ;
-    [self putNavBarItem] ;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -340,11 +376,6 @@ static long photoCount = 0 ;
     [self.navigationController setNavigationBarHidden:NO] ;
     [[UIApplication sharedApplication] setStatusBarHidden:NO
                                             withAnimation:0] ;
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated] ;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -381,46 +412,57 @@ static long photoCount = 0 ;
                                                                  forIndexPath:indexPath] ;
     cell.bTakePhoto = NO ;
     cell.fetchMode = self.fetchMode ;
-
-    if (self.fetchMode == mode_single || self.fetchMode == mode_addSingle)
+    
+    if (self.fetchMode == mode_single || self.fetchMode == mode_addSingle) // single
     {
         if (!row)
         {
             cell.bTakePhoto = YES ;
-            cell.img.image = nil ;
-            
             return cell ;
         }
-
-        ALAsset *asset = (ALAsset *)self.imageList[row - 1] ;
-        
-//        CGImageRef thum = [asset thumbnail] ;
-//        cell.img.image = [UIImage imageWithCGImage:thum] ;
-        
-        CGImageRef thum = [asset aspectRatioThumbnail] ;
-        cell.img.image = [UIImage imageWithCGImage:thum] ;
-
     }
-    else
+    else // multy
     {
         cell.picSelected = [self thisPhotoIsSelectedWithRow:row] ;
-        
-        ALAsset *asset = (ALAsset *)self.imageList[row] ;
-
-//        CGImageRef thum = [asset thumbnail] ;
-//        cell.img.image = [UIImage imageWithCGImage:thum] ;
-        
-        CGImageRef thum = [asset aspectRatioThumbnail] ;
-        cell.img.image = [UIImage imageWithCGImage:thum] ;
     }
     
     return cell ;
 }
 
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(AlbumnCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger row = indexPath.row ;
+    
+    if (self.fetchMode == mode_single || self.fetchMode == mode_addSingle) // single
+    {
+        if (!row) return ;
+        
+        ALAsset *asset = (ALAsset *)self.imageList[row - 1] ;
+//        cell.asset = asset ;
+        AlbumOperation *operation = [[AlbumOperation alloc] initWithAsset:asset
+                                                                indexPath:indexPath
+                                                               completion:^(UIImage *resultImage) {
+            cell.img.image = resultImage ;
+        }];
+        [self.operationQueue addOperation:operation] ;
+    }
+    else // multy
+    {
+        ALAsset *asset = (ALAsset *)self.imageList[row] ;
+//        cell.asset = asset ;
+        AlbumOperation *operation = [[AlbumOperation alloc] initWithAsset:asset
+                                                                indexPath:indexPath
+                                                               completion:^(UIImage *resultImage) {
+            cell.img.image = resultImage ;
+        }];
+        [self.operationQueue addOperation:operation] ;
+    }
+}
+
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat slider = ( APPFRAME.size.width - COLUMN_FLEX * 4.0 ) / 3.0 ;
-    return CGSizeMake(slider, slider) ;
+    return m_collectionSize ;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -472,6 +514,37 @@ static long photoCount = 0 ;
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]] ;
         [self.choosePicBar setCount:self.multySelectedImageList.count] ;
     }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self cancelNotVisibleOperationsInQueue] ;
+}
+
+- (void)cancelNotVisibleOperationsInQueue
+{
+    NSArray *allOperations = [self.operationQueue operations] ; // operation
+    NSArray *visibleIndexPaths = [self.collectionView indexPathsForVisibleItems] ; // indexpaths
+   
+    NSMutableArray *tempNotVisibleOperations = [@[] mutableCopy] ;
+    [allOperations enumerateObjectsUsingBlock:^(AlbumOperation *operation, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (![visibleIndexPaths containsObject:operation.indexPath]) {
+            [tempNotVisibleOperations addObject:operation] ;
+        }
+    }] ;
+    
+    NSArray *NotVisibleOperations = tempNotVisibleOperations ;
+    [NotVisibleOperations enumerateObjectsUsingBlock:^(AlbumOperation *operation, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSInteger row = operation.indexPath.row ;
+        if (self.fetchMode == mode_single || self.fetchMode == mode_addSingle) {
+            // single
+            if (row) [operation cancel] ;
+        }
+        else {
+            // multy
+            [operation cancel] ;
+        }
+    }] ;
     
 }
 
@@ -479,12 +552,12 @@ static long photoCount = 0 ;
 #pragma mark - Open camera TuSDK
 - (void)openCamera
 {
-    [self startCameraControllerFromViewController: self
-                                    usingDelegate: self] ;
+    [self startCameraControllerFromViewController:self
+                                    usingDelegate:self] ;
 }
 
-- (BOOL) startCameraControllerFromViewController: (UIViewController*) controller
-                                   usingDelegate: (id <UIImagePickerControllerDelegate,
+- (BOOL) startCameraControllerFromViewController:(UIViewController*) controller
+                                   usingDelegate:(id <UIImagePickerControllerDelegate,
                                                    UINavigationControllerDelegate>) delegate
 {
     // here, check the device is available  or not
@@ -544,14 +617,6 @@ static long photoCount = 0 ;
     else if ([segue.identifier isEqualToString:@"camera2Preview"])
     {
         EditPrepareCtrller *cuttingCtrller = (EditPrepareCtrller *)[segue destinationViewController] ;
-        
-//        UIImage *sendImage = (UIImage *)sender ;
-//        if (self.fetchMode == mode_single || self.fetchMode == mode_addSingle)
-//        {
-//            sendImage = [sendImage imageCompressForSize:sendImage targetSize:CGSizeMake(640, 640)] ;
-//        }
-//        cuttingCtrller.imgSend = sendImage ;
-        
         cuttingCtrller.imgSend = (UIImage *)sender ;
         cuttingCtrller.topicStr = self.topicStr ;
     }

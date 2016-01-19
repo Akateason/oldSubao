@@ -8,6 +8,7 @@
 
 #import "SpinCtrller.h"
 #import "UIImage+AddFunction.h"
+#import "XTAnimation.h"
 
 @interface SpinCtrller ()
 {

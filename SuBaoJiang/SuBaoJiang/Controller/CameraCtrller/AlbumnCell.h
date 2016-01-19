@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class ALAsset ;
 
 typedef NS_ENUM(NSInteger, Mode_SingleOrMultiple)
 {
@@ -19,12 +20,10 @@ typedef NS_ENUM(NSInteger, Mode_SingleOrMultiple)
 @interface AlbumnCell : UICollectionViewCell
 
 //Attrs
-@property (nonatomic) BOOL bTakePhoto ;
-@property (nonatomic) Mode_SingleOrMultiple fetchMode ;
-@property (nonatomic) BOOL picSelected ;
-
+@property (nonatomic) BOOL                       bTakePhoto ;    // only in singleType . set a take photo icon .
+@property (nonatomic) Mode_SingleOrMultiple      fetchMode ;     // Mode_SingleOrMultiple
+@property (nonatomic) BOOL                       picSelected ;   // only in multyType
 //UIs
-@property (weak, nonatomic) IBOutlet UIImageView *img_takePhoto;
-@property (weak, nonatomic) IBOutlet UIImageView *img;
-@property (weak, nonatomic) IBOutlet UIImageView *img_picSelect;
+@property (weak, nonatomic) IBOutlet UIImageView *img ;
+
 @end

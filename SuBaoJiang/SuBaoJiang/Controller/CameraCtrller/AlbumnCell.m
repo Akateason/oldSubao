@@ -7,6 +7,14 @@
 //
 
 #import "AlbumnCell.h"
+#import <AssetsLibrary/AssetsLibrary.h>
+
+@interface AlbumnCell ()
+//UIs
+@property (weak, nonatomic) IBOutlet UIImageView *img_takePhoto;
+@property (weak, nonatomic) IBOutlet UIImageView *img_picSelect;
+
+@end
 
 @implementation AlbumnCell
 
@@ -25,7 +33,9 @@
 - (void)setBTakePhoto:(BOOL)bTakePhoto
 {
     _bTakePhoto = bTakePhoto ;
+    
     _img_takePhoto.hidden = !bTakePhoto ;
+    _img.hidden = bTakePhoto ;
 }
 
 - (void)setFetchMode:(Mode_SingleOrMultiple)fetchMode

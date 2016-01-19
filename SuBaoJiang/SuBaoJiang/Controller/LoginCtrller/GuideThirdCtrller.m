@@ -7,6 +7,7 @@
 //
 
 #import "GuideThirdCtrller.h"
+#import "XTAnimation.h"
 
 @interface GuideThirdCtrller ()
 @property (weak, nonatomic) IBOutlet UIImageView *word1;

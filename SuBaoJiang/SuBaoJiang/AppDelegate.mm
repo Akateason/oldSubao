@@ -17,9 +17,9 @@
 #import "WeiboSDK.h"
 #import "UMessage.h"
 #import "CommonFunc.h"
+#import "XTHudManager.h"
+#import "ServerRequest.h"
 
-
-#define _IPHONE80_ 80000
 
 @interface AppDelegate () <WeiboSDKDelegate>
 

@@ -8,6 +8,7 @@
 
 #import "CameraGroupCtrller.h"
 #import "CameraGroupCell.h"
+#import <AssetsLibrary/AssetsLibrary.h>
 
 #define CAMERAGROUP_CID        @"CameraGroupCell"
 #define LINE_HEIGHT            1.0f

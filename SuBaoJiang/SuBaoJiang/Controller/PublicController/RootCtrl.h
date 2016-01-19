@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "XTNetReloader.h"
 #import "ColorsHeader.h"
 #import "DigitInformation.h"
 #import "XTAnimation.h"
@@ -15,7 +16,6 @@
 #import "YXSpritesLoadingView.h"
 #import "XTHudManager.h"
 #import "RootTableView.h"
-#import "XTNetReloader.h"
 
 
 @interface RootCtrl : UIViewController

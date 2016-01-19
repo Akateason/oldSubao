@@ -164,7 +164,7 @@
     //set AppKey and AppSecret
     [UMessage startWithAppkey:UM_APPKEY launchOptions:launchOptions];
     
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= _IPHONE80_
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 80000
     if(UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0"))
     {
         //register remoteNotification types （iOS 8.0及其以上版本）
