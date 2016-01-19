@@ -33,6 +33,8 @@
 #import "UITableView+FDTemplateLayoutCell.h"
 #import "HomeUserTableHeaderView.h"
 #import "DetailSubaoCtrller+AnimationManager.h"
+#import "UIImage+AddFunction.h"
+#import "UIColor+HexString.h"
 
 #define SIZE_OF_PAGE                            50
 
@@ -585,7 +587,7 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
 static float kRightDistance_SuspendButton   = 0. ;
 static float kBtDistance                    = 0. ;
 static float kSuspendButtonWidth            = 50. ;
-static float kSuspendButtonOrginY           = 50. ;  //50. ;
+static float kSuspendButtonOrginY           = 50. ;
 static float kSuspendOfEdge                 = 10. ;
 
 - (UIButton *)bt_suspendLike
@@ -593,8 +595,18 @@ static float kSuspendOfEdge                 = 10. ;
     if (!_bt_suspendLike)
     {
         _bt_suspendLike = [[UIButton alloc] init] ;
-        [_bt_suspendLike setImage:[UIImage imageNamed:@"f_unlike"] forState:UIControlStateNormal] ;
-        [_bt_suspendLike setImage:[UIImage imageNamed:@"f_like"] forState:UIControlStateSelected] ;
+        //multiVC_like
+        UIImage *imgUnlike = [[UIImage imageNamed:@"multiVC_unlike"] imageWithColor:[UIColor colorWithHexString:@" d1d1d1"]] ;
+        UIImage *imgLike = [[UIImage imageNamed:@"multiVC_like"] imageWithColor:[UIColor colorWithHexString:@" d1d1d1"]] ;
+        [_bt_suspendLike setImage:imgUnlike forState:UIControlStateNormal] ;
+        [_bt_suspendLike setImage:imgLike forState:UIControlStateSelected] ;
+//        [_bt_suspendLike setImage:[UIImage imageNamed:@"f_unlike"] forState:UIControlStateNormal] ;
+//        [_bt_suspendLike setImage:[UIImage imageNamed:@"f_like"] forState:UIControlStateSelected] ;
+
+//        _bt_suspendLike.layer.shadowColor = [UIColor blackColor].CGColor;
+//        _bt_suspendLike.layer.shadowOffset = CGSizeMake(3,3);
+//        _bt_suspendLike.layer.shadowOpacity = 0.6;
+        
         CGRect likeFrame = CGRectZero ;
         likeFrame.origin = CGPointMake(APPFRAME_WIDTH - kRightDistance_SuspendButton - kSuspendButtonWidth ,
                                        kSuspendButtonOrginY) ;
@@ -638,7 +650,15 @@ static float kSuspendOfEdge                 = 10. ;
     if (!_bt_suspendShare && G_BOOL_OPEN_APPSTORE)
     {
         _bt_suspendShare = [[UIButton alloc] init] ;
-        [_bt_suspendShare setImage:[UIImage imageNamed:@"f_share"] forState:UIControlStateNormal] ;
+        //multiVC_share
+        UIImage *imgShare = [[UIImage imageNamed:@"multiVC_share"] imageWithColor:[UIColor colorWithHexString:@"d1d1d1"]] ;
+        [_bt_suspendShare setImage:imgShare forState:UIControlStateNormal] ;
+//        [_bt_suspendShare setImage:[UIImage imageNamed:@"f_share"] forState:UIControlStateNormal] ;
+        
+//        _bt_suspendShare.layer.shadowColor = [UIColor blackColor].CGColor;
+//        _bt_suspendShare.layer.shadowOffset = CGSizeMake(3,3);
+//        _bt_suspendShare.layer.shadowOpacity = 0.6;
+        
         CGRect likeFrame = CGRectZero ;
         likeFrame.size = CGSizeMake(kSuspendButtonWidth, kSuspendButtonWidth) ;
         likeFrame.origin = CGPointMake(APPFRAME_WIDTH - kRightDistance_SuspendButton - kSuspendButtonWidth * 2 - kBtDistance ,

@@ -56,7 +56,7 @@
     [self initialDB] ;
     
     //  Sand Box
-    [CommonFunc getSandBoxPath] ;
+    [self configureSandBox] ;
     
     //  My Style
     [self setMyStyleWithWindow:self.window] ;
@@ -259,7 +259,7 @@
 //initial DB
 - (void)initialDB
 {
-    dispatch_queue_t queue = dispatch_queue_create("initial_DB", NULL) ;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) ;
     dispatch_async(queue, ^{
         [[PicUploadTB shareInstance] creatTable] ;
         [[DraftTB shareInstance] creatTable] ;
@@ -267,10 +267,18 @@
     }) ;
 }
 
+- (void)configureSandBox
+{
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) ;
+    dispatch_async(queue, ^{
+        [CommonFunc getSandBoxPath] ;
+    }) ;
+}
+
 //initial paseter manegement and get pasterlist from server
 - (void)initialPastermanagement
 {
-    dispatch_queue_t queue = dispatch_queue_create("pasterInitial", NULL) ;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) ;
     dispatch_async(queue, ^{
         [[PasterManagement shareInstance] allPastersList] ;
     }) ;
@@ -279,7 +287,7 @@
 // initail Cate Colors
 - (void)initailCateColors
 {
-    dispatch_queue_t queue = dispatch_queue_create("getCateColorsQueue", NULL) ;
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) ;
     dispatch_async(queue, ^{
         [[DigitInformation shareInstance] cateColors] ;
     }) ;

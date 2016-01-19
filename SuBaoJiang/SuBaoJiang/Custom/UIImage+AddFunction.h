@@ -11,6 +11,8 @@
 
 @interface UIImage (AddFunction)
 
+- (UIImage *)imageWithColor:(UIColor *)color ;
+
 #pragma mark -- 
 #pragma mark - style
 //1.裁剪圆形 + 边框
