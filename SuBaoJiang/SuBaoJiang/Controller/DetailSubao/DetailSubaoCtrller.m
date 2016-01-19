@@ -63,8 +63,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     
 //  FirstTime
     BOOL                isFirstTime         ;
-    
-    UILabel             *t_Label            ;
 }
 //UIs
 @property (weak, nonatomic) IBOutlet RootTableView      *table          ;
@@ -745,6 +743,7 @@ static float kSuspendOfEdge                 = 10. ;
         self.imgAnimateView = nil ;
         self.cacheImage = nil ;
         self.imgArticleSend = nil ;
+        self.imgAnimateView = nil ;
         self.table = nil ;
         self.view = nil ;
     }

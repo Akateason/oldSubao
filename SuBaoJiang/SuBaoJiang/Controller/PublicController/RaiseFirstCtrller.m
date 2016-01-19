@@ -12,7 +12,7 @@
 #import "CommonFunc.h"
 
 @interface RaiseFirstCtrller ()<GuideingScrollViewDelegate>
-
+@property (nonatomic)       BOOL    bAboutUs ;
 @property (weak, nonatomic) IBOutlet GuideingScrollView *scrollV ; // in Class GuideingScrollView .
 
 @end
@@ -21,9 +21,15 @@
 
 + (void)showGuidingWithController:(UIViewController *)ctrller
 {
+    [self showGuidingWithController:ctrller aboutUs:NO] ;
+}
+
++ (void)showGuidingWithController:(UIViewController *)ctrller aboutUs:(BOOL)aboutUs
+{
     UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
     RaiseFirstCtrller *raiseCtrller = [story instantiateViewControllerWithIdentifier:@"RaiseFirstCtrller"] ;
     raiseCtrller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve ;
+    raiseCtrller.bAboutUs = aboutUs ;
     [ctrller presentViewController:raiseCtrller animated:YES completion:^{}] ;
 }
 
@@ -36,6 +42,7 @@
     
     _scrollV.guidingDelegate = self ;
     _scrollV.currentCtrller  = self ;
+    _scrollV.isAboutUS = self.bAboutUs ;
 }
 
 - (void)viewWillAppear:(BOOL)animated

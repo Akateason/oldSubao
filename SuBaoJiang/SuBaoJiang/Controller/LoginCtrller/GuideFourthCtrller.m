@@ -9,6 +9,9 @@
 #import "GuideFourthCtrller.h"
 
 @interface GuideFourthCtrller ()
+{
+    BOOL m_bShowed ;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *word1;
 @property (weak, nonatomic) IBOutlet UIImageView *img;
 @property (weak, nonatomic) IBOutlet UIImageView *word2;
@@ -34,10 +37,15 @@
 
 - (void)startAnimate
 {
+    if (m_bShowed && !DEVELOPER_MODE_SWITCHER) {
+        return ;
+    }
+    m_bShowed = YES ;
+        
     [self allHideInitial] ;
     
     [UIView animateWithDuration:0.5
-                          delay:0.1
+                          delay:0.
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
@@ -52,8 +60,8 @@
 
 - (void)imgAnimation
 {
-    [UIView animateWithDuration:0.5
-                          delay:0.4
+    [UIView animateWithDuration:0.2
+                          delay:0.2
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
@@ -69,7 +77,10 @@
 
 - (void)endAnimation
 {
-    [UIView animateWithDuration:0.1 delay:0.2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.1
+                          delay:0.4
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
         
         _word2.alpha = 1.0 ;
         

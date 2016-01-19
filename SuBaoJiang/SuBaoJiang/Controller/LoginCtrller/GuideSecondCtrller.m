@@ -9,9 +9,13 @@
 #import "GuideSecondCtrller.h"
 
 @interface GuideSecondCtrller ()
+{
+    BOOL m_bShowed ;
+}
 @property (weak, nonatomic) IBOutlet UIImageView *lb_word1;
 @property (weak, nonatomic) IBOutlet UIImageView *img;
 @property (weak, nonatomic) IBOutlet UIImageView *lb_word2;
+
 @end
 
 @implementation GuideSecondCtrller
@@ -36,10 +40,16 @@
 
 - (void)startAnimate
 {
+    if (m_bShowed && !DEVELOPER_MODE_SWITCHER) {
+        return ;
+    }
+    m_bShowed = YES ;
+    
+    
     [self allHideInitial] ;
     
     [UIView animateWithDuration:0.5
-                          delay:0.1
+                          delay:0.
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
@@ -55,7 +65,7 @@
 - (void)towerAnimation
 {
     [UIView animateWithDuration:0.5
-                          delay:0.4
+                          delay:0.2
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^{
                          
@@ -71,8 +81,12 @@
 - (void)phoneAnimation
 {
 
-    [UIView animateWithDuration:0.55 delay:0.4 options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        _img.alpha = 1.0 ;
+    [UIView animateWithDuration:0.2
+                          delay:0.4
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+
+                         _img.alpha = 1.0 ;
 
     } completion:^(BOOL finished) {
         if (finished) {
@@ -83,7 +97,10 @@
 
 - (void)wordsAnimation
 {
-    [UIView animateWithDuration:0.1 delay:0.2 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+    [UIView animateWithDuration:0.1
+                          delay:0.4
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
         _lb_word2.alpha = 1.0 ;
     } completion:^(BOOL finished) {
         if (finished) {

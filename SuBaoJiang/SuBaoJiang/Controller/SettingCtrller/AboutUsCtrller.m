@@ -124,7 +124,7 @@
         case 1:
         {
             //功能介绍
-            [RaiseFirstCtrller showGuidingWithController:self] ;
+            [RaiseFirstCtrller showGuidingWithController:self aboutUs:YES] ;
         }
             break;
         default:

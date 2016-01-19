@@ -15,7 +15,11 @@
 #import "AppDelegate.h"
 #import "NotificationCenterHeader.h"
 
+
 @interface ThirdLoginCtrller ()
+{
+    BOOL m_bShowed ;
+}
 // buttons
 @property (weak, nonatomic) IBOutlet UIButton *bt_weixin;
 @property (weak, nonatomic) IBOutlet UIButton *bt_weibo;
@@ -208,9 +212,15 @@
 
 - (void)startAnimate
 {
+    if (m_bShowed && !DEVELOPER_MODE_SWITCHER) {
+        return ;
+    }
+    m_bShowed = YES ;
+    
     [self allHideInitial] ;
     
-    [UIView animateWithDuration:0.88f animations:^{
+    [UIView animateWithDuration:0.2f
+                     animations:^{
         _img_fromHere.alpha = 1.0f ;
         _img_train.transform = CGAffineTransformMakeTranslation(APPFRAME.size.width, 0);
     } completion:^(BOOL finished) {
@@ -238,7 +248,7 @@
 {
     _img_train.hidden = NO ;
     
-    [UIView animateWithDuration:0.8f animations:^{
+    [UIView animateWithDuration:0.1f animations:^{
 
         _img_wdTop.alpha = 1.0f ;
 
@@ -253,7 +263,7 @@
 
 - (void)flowerDown
 {
-    [UIView animateWithDuration:0.62f animations:^{
+    [UIView animateWithDuration:0.2f animations:^{
         
         _img_flower.alpha = 1.0f ;
         
@@ -266,7 +276,7 @@
 
 - (void)shake
 {
-    [UIView animateWithDuration:0.65 animations:^{
+    [UIView animateWithDuration:0.45 animations:^{
         
 //        [XTAnimation shakeRandomDirectionWithDuration:0.45 AndWithView:_bt_weixin];
 //        [XTAnimation shakeRandomDirectionWithDuration:0.85 AndWithView:_bt_weibo];

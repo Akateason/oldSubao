@@ -11,5 +11,6 @@
 @interface RaiseFirstCtrller : RootCtrl
 
 + (void)showGuidingWithController:(UIViewController *)ctrller ;
++ (void)showGuidingWithController:(UIViewController *)ctrller aboutUs:(BOOL)aboutUs ;
 
 @end
