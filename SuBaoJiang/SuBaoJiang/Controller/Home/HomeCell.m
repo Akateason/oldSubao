@@ -185,17 +185,31 @@
     
     _bt_likeOrNot.selected = !_bt_likeOrNot.selected ;
     
-    [ServerRequest praiseThisArticle:_article.a_id AndWithBool:_bt_likeOrNot.selected Success:^(id json) {
+    [self getNewPraiseAndRefreshCollectionFromLocal] ;
+    
+    [ServerRequest praiseThisArticle:_article.a_id
+                         AndWithBool:_bt_likeOrNot.selected
+                             Success:^(id json) {
+                                 
         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
         NSLog(@"message : %@",result.message) ;
-        
-        [self getNewPraiseAndRefreshCollection] ;
+//        [self getNewPraiseAndRefreshCollectionFromServer] ;
         
     } fail:^{}] ;
     
 }
 
-- (void)getNewPraiseAndRefreshCollection
+- (void)getNewPraiseAndRefreshCollectionFromLocal
+{
+    BOOL isPraised = _bt_likeOrNot.selected ;
+    
+    isPraised ? _article.praiseCount++ : _article.praiseCount-- ;
+    _lb_commentCount_likeCout.attributedText = [_article getAttributeStrCmtCountRplyCount] ;
+    [self setNeedsDisplay] ;
+//    [self setNeedsLayout] ;
+}
+
+- (void)getNewPraiseAndRefreshCollectionFromServer
 {
     [ServerRequest getPraisedInfoWithArticleID:_article.a_id AndWithSinceID:0 AndWithMaxID:0 AndWithCount:15 Success:^(id json) {
         

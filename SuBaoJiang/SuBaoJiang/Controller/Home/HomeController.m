@@ -494,7 +494,6 @@
 
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self ;
 //    if (IS_IOS_VERSION(8.0) && !_topic && self.navigationController.hidesBarsOnSwipe == NO) self.navigationController.hidesBarsOnSwipe = YES ; // >=ios8 && isHomeIndexPage .
-    
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
