@@ -35,7 +35,7 @@
 {
     self = [super initWithReuseIdentifier:reuseIdentifier] ;
     if (self) {
-
+        
     }
     return self ;
 }
@@ -44,7 +44,7 @@
 {
     self = [super initWithCoder:aDecoder] ;
     if (self) {
-
+        
     }
     return self ;
 }
@@ -56,13 +56,12 @@
     _img_user.layer.borderColor = COLOR_USERHEAD_BORDER.CGColor ;
     _img_user.layer.masksToBounds = YES ;
     _img_user.layer.drawsAsynchronously = YES ;
-
+    
     self.backgroundView = ({
         UIView *back = [[UIView alloc] initWithFrame:self.bounds] ;
         back.backgroundColor = [UIColor whiteColor] ;
         back ;
     }) ;
-    
 }
 
 - (void)awakeFromNib
@@ -81,21 +80,13 @@
     
     [_img_user sd_setImageWithURL:[NSURL URLWithString:article.userCurrent.u_headpic]
                  placeholderImage:IMG_HEAD_NO
-                        completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
-                            
-                            //                            self.img_user.image = [image roundedCornerImage:image.size.height / 2.0
-                            //                                                                 borderSize:ONE_PIXEL_VALUE] ;
-                            
-                        }
-     ] ;
+                        completed:nil] ;
     
-    if (!article.a_id && !article.client_AID) {
+    if (!article.a_id && !article.client_AID)
+    {
         _lb_uName.text = @"暂无" ;
     }
-
 }
-
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

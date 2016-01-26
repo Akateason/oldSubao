@@ -15,7 +15,7 @@
 #import "NoteViewController.h"
 #import "MyWebController.h"
 #import "HomeController.h"
-#import "DetailSubaoCtrller.h"
+#import "DetailSubaoCtrller+TaskModuleTransition.h"
 
 #define NONE_HEIGHT                 0.0f
 #define SIZE_OF_PAGE                50

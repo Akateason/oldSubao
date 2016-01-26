@@ -31,7 +31,6 @@ static int indexCache = 0 ;
         
         self.tabBar.tintColor = COLOR_MAIN ;
         self.delegate = self ;
-        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
     }
     return self ;
 }

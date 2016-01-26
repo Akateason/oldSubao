@@ -12,7 +12,7 @@
 #import "Acategory.h"
 #import "TopicHeader.h"
 #import "TalkCtrller.h"
-#import "HomeController.h"
+#import "HomeController+TaskModuleTransition.h"
 
 
 #define NONE_HEIGHT                     1.0

@@ -11,7 +11,7 @@
 #import "ArticleTopic.h"
 #import "TopicCell.h"
 #import "TopicHeader.h"
-#import "HomeController.h"
+#import "HomeController+TaskModuleTransition.h"
 
 #define SIZE_OF_PAGE    20
 #define NONE_HEIGHT     1.0f

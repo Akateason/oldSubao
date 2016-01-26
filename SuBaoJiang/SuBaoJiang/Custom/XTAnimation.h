@@ -18,13 +18,13 @@
 + (CABasicAnimation *)smallBigBestInCell ;
 + (void)smallBigBestInCell:(UIView *)view ;
 //永久闪烁的动画
-+ (CABasicAnimation *)opacityForever_Animation:(float)time  ;
++ (CABasicAnimation *)opacityForever_Animation:(float)time ;
 //有闪烁次数的动画
 + (CABasicAnimation *)opacityTimes_Animation:(float)repeatTimes durTimes:(float)time ;
 //横向移动
-+ (CABasicAnimation *)moveX:(float)time X:(NSNumber *)x  ;
++ (CABasicAnimation *)moveX:(float)time X:(NSNumber *)x ;
 //纵向移动
-+ (CABasicAnimation *)moveY:(float)time Y:(NSNumber *)y AndWithReciever:(id)reciever  ;     //纵向移动
++ (CABasicAnimation *)moveY:(float)time Y:(NSNumber *)y AndWithReciever:(id)reciever ;     //纵向移动
 //缩放
 + (CABasicAnimation *)scale:(NSNumber *)Multiple orgin:(NSNumber *)orginMultiple durTimes:(float)time Rep:(float)repeatTimes ;
 //组合动画

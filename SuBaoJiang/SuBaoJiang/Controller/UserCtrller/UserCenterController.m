@@ -14,7 +14,7 @@
 #import "MySubaoCell.h"
 #import "ArticleComment.h"
 #import "MyCommentsCell.h"
-#import "DetailSubaoCtrller.h"
+#import "DetailSubaoCtrller+TaskModuleTransition.h"
 #import "NavLogCtller.h"
 #import "CommonFunc.h"
 #import "SettingCtrller.h"

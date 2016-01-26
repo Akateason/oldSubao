@@ -16,21 +16,11 @@
 @property (nonatomic) int superArticleID ; // current super article ID ;
 @property (nonatomic) int replyCommentID ; // exist when reply it ;
 
-+ (void)jump2DetailSubaoCtrller:(UIViewController *)ctrller
-               AndWithArticleID:(int)aID ;
+@property (nonatomic)                CGRect             fromRect ;
+@property (nonatomic)                CGRect             toRect ;
+@property (nonatomic,strong)         UIImage            *imgArticleSend ;
 
-+ (void)jump2DetailSubaoCtrller:(UIViewController *)ctrller
-               AndWithArticleID:(int)aID
-               AndWithCommentID:(int)commentID ;
-
-+ (void)jump2DetailSubaoCtrller:(UIViewController *)ctrller
-               AndWithArticleID:(int)aID
-               AndWithCommentID:(int)commentID
-                       FromRect:(CGRect)fromRect
-                        imgSend:(UIImage *)imgSend ;
-
-@property (nonatomic)  CGRect toRect ;
+@property (nonatomic,strong)         HomeController     *homeCtrller ;
 - (void)startReverseAnmation ;
-@property (nonatomic,strong) HomeController *homeCtrller ;
 
 @end

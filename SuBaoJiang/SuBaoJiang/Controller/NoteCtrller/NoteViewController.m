@@ -8,7 +8,7 @@
 //
 
 #import "NoteViewController.h"
-#import "DetailSubaoCtrller.h"
+#import "DetailSubaoCtrller+TaskModuleTransition.h"
 #import "Article.h"
 #import "UserCenterController.h"
 #import "AppDelegate.h"

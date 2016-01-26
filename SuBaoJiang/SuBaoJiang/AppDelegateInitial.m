@@ -100,7 +100,8 @@
 - (void)setMyStyleWithWindow:(UIWindow *)window
 {
     [[UIApplication sharedApplication] keyWindow].tintColor = COLOR_MAIN ;
-    
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+
     //1 base white at window not black background
     UIView *baseView = [[UIView alloc] initWithFrame:APPFRAME] ;
     baseView.backgroundColor = [UIColor whiteColor] ;
@@ -196,9 +197,9 @@
     }
 #else
     //register remoteNotification types (iOS 8.0以下)
-    [UMessage registerForRemoteNotificationTypes:UIRemoteNotificationTypeBadge
-     |UIRemoteNotificationTypeSound
-     |UIRemoteNotificationTypeAlert];
+    [UMessage registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge
+                                                | UIRemoteNotificationTypeSound
+                                                | UIRemoteNotificationTypeAlert];
     
 #endif
     //for log

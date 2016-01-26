@@ -186,6 +186,9 @@
     _bt_likeOrNot.selected = !_bt_likeOrNot.selected ;
     
     [self getNewPraiseAndRefreshCollectionFromLocal] ;
+
+    [self.delegate articleHasPraised:_bt_likeOrNot.selected
+                           articleID:_article.a_id] ;
     
     [ServerRequest praiseThisArticle:_article.a_id
                          AndWithBool:_bt_likeOrNot.selected
@@ -194,32 +197,29 @@
         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
         NSLog(@"message : %@",result.message) ;
 //        [self getNewPraiseAndRefreshCollectionFromServer] ;
-        
     } fail:^{}] ;
     
 }
 
 - (void)getNewPraiseAndRefreshCollectionFromLocal
 {
-    BOOL isPraised = _bt_likeOrNot.selected ;
-    
-    isPraised ? _article.praiseCount++ : _article.praiseCount-- ;
+    _bt_likeOrNot.selected ? _article.praiseCount++ : _article.praiseCount-- ;
     _lb_commentCount_likeCout.attributedText = [_article getAttributeStrCmtCountRplyCount] ;
+
     [self setNeedsDisplay] ;
-//    [self setNeedsLayout] ;
 }
 
-- (void)getNewPraiseAndRefreshCollectionFromServer
-{
-    [ServerRequest getPraisedInfoWithArticleID:_article.a_id AndWithSinceID:0 AndWithMaxID:0 AndWithCount:15 Success:^(id json) {
-        
-        ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
-        _article.praiseCount = [[result.info objectForKey:@"article_praise_count"] intValue] ;
-        
-        _lb_commentCount_likeCout.attributedText = [_article getAttributeStrCmtCountRplyCount];
-        
-    } fail:^{}] ;
-}
+//- (void)getNewPraiseAndRefreshCollectionFromServer
+//{
+//    [ServerRequest getPraisedInfoWithArticleID:_article.a_id AndWithSinceID:0 AndWithMaxID:0 AndWithCount:15 Success:^(id json) {
+//        
+//        ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
+//        _article.praiseCount = [[result.info objectForKey:@"article_praise_count"] intValue] ;
+//        
+//        _lb_commentCount_likeCout.attributedText = [_article getAttributeStrCmtCountRplyCount];
+//        
+//    } fail:^{}] ;
+//}
 
 - (CGSize)sizeThatFits:(CGSize)size
 {

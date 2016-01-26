@@ -195,7 +195,6 @@
 		18D690D21B1C440000BC9475 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 18D690D11B1C440000BC9475 /* AppDelegate.mm */; };
 		18D690D81B1C440000BC9475 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18D690D61B1C440000BC9475 /* Main.storyboard */; };
 		18D690DA1B1C440000BC9475 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D690D91B1C440000BC9475 /* Images.xcassets */; };
-		18D690DD1B1C440000BC9475 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18D690DB1B1C440000BC9475 /* LaunchScreen.xib */; };
 		18D690E91B1C440000BC9475 /* SuBaoJiangTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D690E81B1C440000BC9475 /* SuBaoJiangTests.m */; };
 		18D690F71B1C4FE000BC9475 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D690F61B1C4FE000BC9475 /* Foundation.framework */; };
 		18D690F91B1C4FE700BC9475 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D690F81B1C4FE700BC9475 /* UIKit.framework */; };
@@ -380,6 +379,12 @@
 		D70FD7F61B68A0C400B4159D /* SEMCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D70FD7F41B68A0C400B4159D /* SEMCollectionCell.xib */; };
 		D70FD7F91B68AC7800B4159D /* TopicCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = D70FD7F81B68AC7800B4159D /* TopicCategory.m */; };
 		D71071481C4DD75F00E2F1C1 /* AlbumOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = D71071471C4DD75F00E2F1C1 /* AlbumOperation.m */; };
+		D71071501C50958600E2F1C1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D710714E1C50958600E2F1C1 /* LaunchScreen.xib */; };
+		D71071571C50BC2D00E2F1C1 /* LaunchScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71071561C50BC2D00E2F1C1 /* LaunchScreenViewController.m */; };
+		D710715A1C50BC9500E2F1C1 /* LaunchCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = D71071591C50BC9500E2F1C1 /* LaunchCtrller.m */; };
+		D710715D1C50FFC100E2F1C1 /* HomeController+TaskModuleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D710715C1C50FFC000E2F1C1 /* HomeController+TaskModuleTransition.m */; };
+		D71071601C51021300E2F1C1 /* HomeController+AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D710715F1C51021300E2F1C1 /* HomeController+AnimationManager.m */; };
+		D71071AF1C560F7A00E2F1C1 /* DetailSubaoCtrller+TaskModuleTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = D71071AE1C560F7A00E2F1C1 /* DetailSubaoCtrller+TaskModuleTransition.m */; };
 		D733EB4C1BA9826600363235 /* UserEditController.m in Sources */ = {isa = PBXBuildFile; fileRef = D733EB4B1BA9826600363235 /* UserEditController.m */; };
 		D733EB5B1BAA6B2700363235 /* UEHeadPicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D733EB591BAA6B2700363235 /* UEHeadPicCell.m */; };
 		D733EB5C1BAA6B2700363235 /* UEHeadPicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D733EB5A1BAA6B2700363235 /* UEHeadPicCell.xib */; };
@@ -809,7 +814,6 @@
 		18D690D11B1C440000BC9475 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		18D690D71B1C440000BC9475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18D690D91B1C440000BC9475 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		18D690DC1B1C440000BC9475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		18D690E21B1C440000BC9475 /* subaoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = subaoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D690E71B1C440000BC9475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D690E81B1C440000BC9475 /* SuBaoJiangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuBaoJiangTests.m; sourceTree = "<group>"; };
@@ -1142,6 +1146,19 @@
 		D70FD7F81B68AC7800B4159D /* TopicCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopicCategory.m; path = Model/TopicCategory.m; sourceTree = "<group>"; };
 		D71071461C4DD75F00E2F1C1 /* AlbumOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumOperation.h; path = Controller/CameraCtrller/AlbumOperation.h; sourceTree = "<group>"; };
 		D71071471C4DD75F00E2F1C1 /* AlbumOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumOperation.m; path = Controller/CameraCtrller/AlbumOperation.m; sourceTree = "<group>"; };
+		D710714F1C50958600E2F1C1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		D71071551C50BC2D00E2F1C1 /* LaunchScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchScreenViewController.h; sourceTree = "<group>"; };
+		D71071561C50BC2D00E2F1C1 /* LaunchScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchScreenViewController.m; sourceTree = "<group>"; };
+		D71071581C50BC9500E2F1C1 /* LaunchCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchCtrller.h; sourceTree = "<group>"; };
+		D71071591C50BC9500E2F1C1 /* LaunchCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchCtrller.m; sourceTree = "<group>"; };
+		D710715B1C50FFC000E2F1C1 /* HomeController+TaskModuleTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HomeController+TaskModuleTransition.h"; path = "SuBaoJiang/Controller/Home/HomeController+TaskModuleTransition.h"; sourceTree = SOURCE_ROOT; };
+		D710715C1C50FFC000E2F1C1 /* HomeController+TaskModuleTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HomeController+TaskModuleTransition.m"; path = "SuBaoJiang/Controller/Home/HomeController+TaskModuleTransition.m"; sourceTree = SOURCE_ROOT; };
+		D710715E1C51021300E2F1C1 /* HomeController+AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "HomeController+AnimationManager.h"; path = "SuBaoJiang/Controller/Home/HomeController+AnimationManager.h"; sourceTree = SOURCE_ROOT; };
+		D710715F1C51021300E2F1C1 /* HomeController+AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "HomeController+AnimationManager.m"; path = "SuBaoJiang/Controller/Home/HomeController+AnimationManager.m"; sourceTree = SOURCE_ROOT; };
+		D71071AC1C5602BB00E2F1C1 /* HomeControllerHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HomeControllerHeader.h; path = SuBaoJiang/Controller/Home/HomeControllerHeader.h; sourceTree = SOURCE_ROOT; };
+		D71071AD1C560F7A00E2F1C1 /* DetailSubaoCtrller+TaskModuleTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DetailSubaoCtrller+TaskModuleTransition.h"; path = "SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller+TaskModuleTransition.h"; sourceTree = SOURCE_ROOT; };
+		D71071AE1C560F7A00E2F1C1 /* DetailSubaoCtrller+TaskModuleTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DetailSubaoCtrller+TaskModuleTransition.m"; path = "SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller+TaskModuleTransition.m"; sourceTree = SOURCE_ROOT; };
+		D71071B01C56157A00E2F1C1 /* DetailSubaoCtrllerHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = DetailSubaoCtrllerHeader.h; path = SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrllerHeader.h; sourceTree = SOURCE_ROOT; };
 		D733EB4A1BA9826600363235 /* UserEditController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserEditController.h; path = Controller/UserCtrller/UserEditController.h; sourceTree = "<group>"; };
 		D733EB4B1BA9826600363235 /* UserEditController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserEditController.m; path = Controller/UserCtrller/UserEditController.m; sourceTree = "<group>"; };
 		D733EB581BAA6B2700363235 /* UEHeadPicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UEHeadPicCell.h; path = Controller/UserCtrller/UEHeadPicCell.h; sourceTree = "<group>"; };
@@ -1300,8 +1317,15 @@
 		182318411B1D88E7001CE919 /* HomeCtrller */ = {
 			isa = PBXGroup;
 			children = (
+				D71071AC1C5602BB00E2F1C1 /* HomeControllerHeader.h */,
 				1823184A1B1DA02E001CE919 /* HomeController.h */,
 				1823184B1B1DA02E001CE919 /* HomeController.m */,
+				D710715B1C50FFC000E2F1C1 /* HomeController+TaskModuleTransition.h */,
+				D710715C1C50FFC000E2F1C1 /* HomeController+TaskModuleTransition.m */,
+				D710715E1C51021300E2F1C1 /* HomeController+AnimationManager.h */,
+				D710715F1C51021300E2F1C1 /* HomeController+AnimationManager.m */,
+				D71071581C50BC9500E2F1C1 /* LaunchCtrller.h */,
+				D71071591C50BC9500E2F1C1 /* LaunchCtrller.m */,
 				182318421B1D892C001CE919 /* NavTitleView.h */,
 				182318431B1D892C001CE919 /* NavTitleView.m */,
 				D74D49541C3B798800FBF02A /* HomeUserTableHeaderView.h */,
@@ -1324,8 +1348,11 @@
 		182318551B1DC47B001CE919 /* DetailSuBaoCtrller */ = {
 			isa = PBXGroup;
 			children = (
+				D71071B01C56157A00E2F1C1 /* DetailSubaoCtrllerHeader.h */,
 				182318561B1DC4D8001CE919 /* DetailSubaoCtrller.h */,
 				182318571B1DC4D8001CE919 /* DetailSubaoCtrller.m */,
+				D71071AD1C560F7A00E2F1C1 /* DetailSubaoCtrller+TaskModuleTransition.h */,
+				D71071AE1C560F7A00E2F1C1 /* DetailSubaoCtrller+TaskModuleTransition.m */,
 				D74D49611C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.h */,
 				D74D49621C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.m */,
 				18A4D5E81B788A3500CCE555 /* MultiDetail */,
@@ -2149,7 +2176,7 @@
 				18D69A401B1C730900BC9475 /* Controller */,
 				18D690D91B1C440000BC9475 /* Images.xcassets */,
 				18D690D61B1C440000BC9475 /* Main.storyboard */,
-				18D690DB1B1C440000BC9475 /* LaunchScreen.xib */,
+				D710714E1C50958600E2F1C1 /* LaunchScreen.xib */,
 				18D690CC1B1C440000BC9475 /* Supporting Files */,
 			);
 			path = SuBaoJiang;
@@ -2227,6 +2254,7 @@
 		18D697CB1B1C714900BC9475 /* Help */ = {
 			isa = PBXGroup;
 			children = (
+				D71071541C50BC2D00E2F1C1 /* LaunchScreenVC */,
 				D75CC7351C310E4300E590E6 /* FDTemplateLayoutCell */,
 				D7E8FDCC1C16BFFD005E908F /* MJRefresh */,
 				D7FDB7B91BB15BA7004046A6 /* HWWeakerTimer */,
@@ -2593,7 +2621,7 @@
 		18D69A401B1C730900BC9475 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				18D69A411B1C757A00BC9475 /* Basic */,
+				18D69A411B1C757A00BC9475 /* SuperClass */,
 				1848A7C31B3294480063C177 /* Login */,
 				182318411B1D88E7001CE919 /* HomeCtrller */,
 				18A4D6171B7DFF0700CCE555 /* SaveAlbumnCtrller */,
@@ -2610,7 +2638,7 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
-		18D69A411B1C757A00BC9475 /* Basic */ = {
+		18D69A411B1C757A00BC9475 /* SuperClass */ = {
 			isa = PBXGroup;
 			children = (
 				D7E8FE0C1C16CD63005E908F /* RootTableView.h */,
@@ -2627,7 +2655,7 @@
 				1823186A1B1EE8E3001CE919 /* MyNavCtrller.m */,
 				182318681B1EE895001CE919 /* navGroup */,
 			);
-			name = Basic;
+			name = SuperClass;
 			path = Controller/PublicController;
 			sourceTree = "<group>";
 		};
@@ -2919,6 +2947,15 @@
 				18EC3E961B721A720041E9DB /* UIImage+KIAdditions.m */,
 			);
 			path = CropImageView;
+			sourceTree = "<group>";
+		};
+		D71071541C50BC2D00E2F1C1 /* LaunchScreenVC */ = {
+			isa = PBXGroup;
+			children = (
+				D71071551C50BC2D00E2F1C1 /* LaunchScreenViewController.h */,
+				D71071561C50BC2D00E2F1C1 /* LaunchScreenViewController.m */,
+			);
+			path = LaunchScreenVC;
 			sourceTree = "<group>";
 		};
 		D733EB491BA9823400363235 /* UserEditController */ = {
@@ -3246,6 +3283,7 @@
 				182318621B1EB9DD001CE919 /* UserHeadCollectionCell.xib in Resources */,
 				1848A8001B33BBE00063C177 /* UMSLoginViewController.xib in Resources */,
 				1848A7FF1B33BBE00063C177 /* UMShareEditViewControlleriPad.xib in Resources */,
+				D71071501C50958600E2F1C1 /* LaunchScreen.xib in Resources */,
 				182318671B1ED7F0001CE919 /* ReplyCell.xib in Resources */,
 				18DC51EC1B2EBA4800A2BEFF /* PraisedCollectionCell.xib in Resources */,
 				182318A31B1EFE45001CE919 /* WordSendView.xib in Resources */,
@@ -3283,7 +3321,6 @@
 				18E3CEFF1B7072FC00F4DB52 /* TopicHeader.xib in Resources */,
 				18E3CEFB1B7072B000F4DB52 /* AlbumnCell.xib in Resources */,
 				18D699CC1B1C714A00BC9475 /* flotageBackgroud@2x.png in Resources */,
-				18D690DD1B1C440000BC9475 /* LaunchScreen.xib in Resources */,
 				D733EB5C1BAA6B2700363235 /* UEHeadPicCell.xib in Resources */,
 				187CCE7F1B1FEB3400360B54 /* FlywordInputView.xib in Resources */,
 				18E3CF0B1B709D2000F4DB52 /* pg_edit_sdk_resource.bundle in Resources */,
@@ -3362,6 +3399,7 @@
 				187CCEA41B203B8400360B54 /* AFHTTPRequestOperation.m in Sources */,
 				18D699B91B1C714A00BC9475 /* Reachability.m in Sources */,
 				18D699ED1B1C714A00BC9475 /* HMSegmentedControl.m in Sources */,
+				D71071AF1C560F7A00E2F1C1 /* DetailSubaoCtrller+TaskModuleTransition.m in Sources */,
 				187CCEDA1B2553C900360B54 /* PraisedController.m in Sources */,
 				18D699E81B1C714A00BC9475 /* FMDatabaseAdditions.m in Sources */,
 				18D69A171B1C714A00BC9475 /* SBJsonUTF8Stream.m in Sources */,
@@ -3403,6 +3441,7 @@
 				18A4D6151B7DFA9700CCE555 /* ReuseCellContent.m in Sources */,
 				18D699EE1B1C714A00BC9475 /* JsonToModel.m in Sources */,
 				18DC51E01B2EB77600A2BEFF /* MySubaoCell.m in Sources */,
+				D710715A1C50BC9500E2F1C1 /* LaunchCtrller.m in Sources */,
 				D733EB5B1BAA6B2700363235 /* UEHeadPicCell.m in Sources */,
 				182318581B1DC4D8001CE919 /* DetailSubaoCtrller.m in Sources */,
 				18DC51EB1B2EBA4800A2BEFF /* PraisedCollectionCell.m in Sources */,
@@ -3572,11 +3611,13 @@
 				187CCE8E1B2009F500360B54 /* PCStackMenu.m in Sources */,
 				184C1D781B857F850033CC4C /* MESuperArticleCell.m in Sources */,
 				18D699F51B1C714A00BC9475 /* MBProgressHUD.m in Sources */,
+				D71071601C51021300E2F1C1 /* HomeController+AnimationManager.m in Sources */,
 				18BABBF41B3D5E4D0024E871 /* QNHttpManager.m in Sources */,
 				184C1D971B8B13310033CC4C /* FMMoveTableViewCell.m in Sources */,
 				187CCE821B1FEB4C00360B54 /* FlywordInputView.m in Sources */,
 				18D69AED1B1D703B00BC9475 /* RaiseFirstCtrller.m in Sources */,
 				18D699C91B1C714A00BC9475 /* NSString+MD5.m in Sources */,
+				D71071571C50BC2D00E2F1C1 /* LaunchScreenViewController.m in Sources */,
 				D74D49631C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.m in Sources */,
 				18A4D60C1B7DFA5400CCE555 /* ShareAlertView.m in Sources */,
 				18DC51F71B2FC15D00A2BEFF /* MyCmtCell.m in Sources */,
@@ -3622,6 +3663,7 @@
 				18D699AC1B1C714A00BC9475 /* ASIDataDecompressor.m in Sources */,
 				18A4D60A1B7DFA5400CCE555 /* AlertBackgroundView.m in Sources */,
 				18D699CB1B1C714A00BC9475 /* BATableViewIndex.m in Sources */,
+				D710715D1C50FFC100E2F1C1 /* HomeController+TaskModuleTransition.m in Sources */,
 				18D69A131B1C714A00BC9475 /* SBJsonStreamWriter.m in Sources */,
 				D7E8FE051C16BFFD005E908F /* MJRefreshNormalHeader.m in Sources */,
 				D7E8FE091C16BFFD005E908F /* UIScrollView+MJExtension.m in Sources */,
@@ -3667,10 +3709,10 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		18D690DB1B1C440000BC9475 /* LaunchScreen.xib */ = {
+		D710714E1C50958600E2F1C1 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				18D690DC1B1C440000BC9475 /* Base */,
+				D710714F1C50958600E2F1C1 /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";

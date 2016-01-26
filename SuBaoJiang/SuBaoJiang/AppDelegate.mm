@@ -20,23 +20,20 @@
 #import "XTHudManager.h"
 #import "ServerRequest.h"
 
-
 @interface AppDelegate () <WeiboSDKDelegate>
 
 @end
 
 @implementation AppDelegate
 
+
 #pragma mark --
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    AppDelegateInitial *appInitial = [[AppDelegateInitial alloc] initWithApplication:application
-                                                                             options:launchOptions
-                                                                              window:_window] ;
-    [appInitial setup] ;
+    [[[AppDelegateInitial alloc] initWithApplication:application options:launchOptions window:_window] setup];
     
-    return YES;
+    return YES ;
 }
 
 #pragma mark --

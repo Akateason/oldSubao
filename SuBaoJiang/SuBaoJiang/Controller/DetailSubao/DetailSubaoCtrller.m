@@ -7,47 +7,7 @@
 //
 
 #import "DetailSubaoCtrller.h"
-#import "NSObject+MKBlockTimer.h"
-#import "WordSendView.h"
-#import "FlywordInputView.h"
-#import "ServerRequest.h"
-#import "ArticleTopic.h"
-#import "PraisedController.h"
-#import "UserCenterController.h"
-#import "UMSocial.h"
-#import "SDImageCache.h"
-#import "UIImageView+WebCache.h"
-#import "NavLogCtller.h"
-#import "ShareAlertV.h"
-#import "CommonFunc.h"
-#import "SIAlertView.h"
-#import "NSString+Extend.h"
-#import "HomeController.h"
-#import "ShareUtils.h"
-#import "DetailTitleCell.h"
-#import "DtSuperCell.h"
-#import "DtSubCell.h"
-#import "DtOperationCell.h"
-#import "ReplyCell.h"
-#import "SaveAlbumnCtrller.h"
-#import "UITableView+FDTemplateLayoutCell.h"
-#import "HomeUserTableHeaderView.h"
-#import "DetailSubaoCtrller+AnimationManager.h"
-#import "UIImage+AddFunction.h"
-#import "UIColor+HexString.h"
-
-#define SIZE_OF_PAGE                            50
-
-#define TAG_ACSHEET_DEL_ART                     88871
-#define TAG_ACSHEET_DEL_CMT                     88872
-#define TAG_ACSHEET_REPORT                      88873
-
-#define LINE_HEIGHT                             0.0f
-
-#define OBSERVER_KEY_PATH_CURRENT_ARTICLE       @"OBSERVER_KEY_PATH_CURRENT_ARTICLE"
-#define HeaderIdentifier                        @"HomeUserTableHeaderView"
-static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" ;
-
+#import "DetailSubaoCtrllerHeader.h"
 
 @interface DetailSubaoCtrller ()<UITableViewDataSource,UITableViewDelegate,FlywordInputViewDelegate,WordSendViewDelegate,RootTableViewDelegate,ReplyCellDelegate,ShareAlertVDelegate,DtOperationCellDelegate,DtSuperCellDelegate,DtSubCellDelegate,HomeUserTableHeaderViewDelegate>
 {
@@ -56,13 +16,16 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     int                 m_lastCommentID     ;
     NSInteger           m_rowWillDelete     ; // delete cmt ;
     
-// Share switch
+//  Share switch
     BOOL                m_bWeiboSelect      ;
     BOOL                m_bWeixinSelect     ;
     BOOL                m_bWxTimelineSelect ;
     
 //  FirstTime
     BOOL                isFirstTime         ;
+    
+//
+    BOOL                m_operationCellExist ;
 }
 //UIs
 @property (weak, nonatomic) IBOutlet RootTableView      *table          ;
@@ -78,8 +41,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
 
 @property (nonatomic,strong)         NSMutableArray     *allComments    ; // all comments in super and sub articles
 
-@property (nonatomic)                CGRect             fromRect ;
-@property (nonatomic,strong)         UIImage            *imgArticleSend ;
 @property (nonatomic,strong)         UIImageView        *imgAnimateView ;
 
 // suspending buttons : like and share .
@@ -92,70 +53,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
 
 #pragma mark --
 #pragma mark - Public
-+ (void)jump2DetailSubaoCtrller:(UIViewController *)ctrller
-               AndWithArticleID:(int)aID 
-{
-    [self jump2DetailSubaoCtrller:ctrller
-                 AndWithArticleID:aID
-                 AndWithCommentID:0] ;
-}
-
-+ (void)jump2DetailSubaoCtrller:(UIViewController *)ctrller
-               AndWithArticleID:(int)aID
-               AndWithCommentID:(int)commentID
-{
-    [self jump2DetailSubaoCtrller:ctrller
-                 AndWithArticleID:aID
-                 AndWithCommentID:commentID
-                         FromRect:CGRectZero
-                          imgSend:nil] ;
-}
-
-+ (void)jump2DetailSubaoCtrller:(UIViewController *)ctrller
-               AndWithArticleID:(int)aID
-               AndWithCommentID:(int)commentID
-                       FromRect:(CGRect)fromRect
-                        imgSend:(UIImage *)imgSend
-{
-    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
-    DetailSubaoCtrller *detailCtrller = [story instantiateViewControllerWithIdentifier:@"DetailSubaoCtrller"] ;
-    
-    detailCtrller.superArticleID = aID ;
-    detailCtrller.replyCommentID = commentID ;
-    detailCtrller.fromRect = fromRect ;
-    detailCtrller.imgArticleSend = imgSend ;
-    if ([ctrller isKindOfClass:[HomeController class]]) {
-        detailCtrller.homeCtrller = (HomeController *)ctrller ;
-    }
-    
-    [detailCtrller setHidesBottomBarWhenPushed:YES] ;
-    [ctrller.navigationController pushViewController:detailCtrller animated:NO] ;
-}
-
-- (void)imageSendAnimation
-{
-    if (!self.imgArticleSend)
-    {
-//        [XTAnimation animationPushRight:self.view] ;
-    }
-    else
-    {
-        // img Send animation .
-        [self imgAnimateView] ;
-
-        [UIView animateWithDuration:QUICKLY_ANIMATION_DURATION
-                         animations:^{
-                             CGFloat yFlex = self.isMultiType ? 48.0f + 52.0f : 48.0f ;
-                             self.imgAnimateView.frame = CGRectMake(0, yFlex, APPFRAME.size.width, APPFRAME.size.width) ;
-                             self.toRect = self.imgAnimateView.frame ;
-                         } completion:^(BOOL finished) {
-                             if (finished) {
-                                 self.imgAnimateView.hidden = YES ;
-                             }
-                         }] ;
-    }
-}
-
 - (void)startReverseAnmation
 {
     [self.homeCtrller reverseImageSendAnimationWithRect:self.toRect] ;
@@ -181,7 +78,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
                                                      name:UIKeyboardWillChangeFrameNotification
                                                    object:nil];
     }
-    
     return self;
 }
 
@@ -200,7 +96,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     NSDictionary* info = [notification userInfo];
-
     CGFloat duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
 
     [UIView animateWithDuration:duration animations:^{
@@ -218,17 +113,13 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     NSDictionary *info = [notification userInfo];
     CGFloat duration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
     CGRect endKeyboardRect = [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
     CGRect tfContainRect = self.wordView.frame ;
-
     tfContainRect.origin.y = self.view.frame.size.height - endKeyboardRect.size.height - tfContainRect.size.height;
     
     [UIView animateWithDuration:duration animations:^{
-
         self.wordView.frame = tfContainRect;
         float theHeight = self.wordView.frame.origin.y - self.wordView.frame.size.height - 5.0f ;
         [self setflywordPropertyButtonsHeight:theHeight] ;
-        
     }];
 }
 
@@ -303,7 +194,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
                               
                               UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
                               pasteboard.string = cmt.c_content ;
-                              
                               [self performSelector:@selector(showHud:) withObject:WD_HUD_COPY_SUCCESS afterDelay:0.5] ;
                           }];
     //举报
@@ -329,8 +219,7 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     if (self.replyCommentID && isFirstTime)
     {
         [self.allComments enumerateObjectsUsingBlock:^(ArticleComment *cmt, NSUInteger idx, BOOL * _Nonnull stop) {
-            if (self.replyCommentID == cmt.c_id)
-            {
+            if (self.replyCommentID == cmt.c_id) {
                 [self replyWithCmt:cmt] ;
                 *stop = YES ;
             }
@@ -455,11 +344,9 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
 
 - (int)focusOn_aid
 {
-    if (!_focusOn_aid)
-    {
+    if (!_focusOn_aid) {
         _focusOn_aid = self.superArticleID ;
     }
-    
     return _focusOn_aid ;
 }
 
@@ -504,7 +391,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
         self.flex_bottom.constant = 48.0f ;
         self.wordView.hidden = NO ;
     }) ;
-    
 }
 
 - (void)setSuperArticleID:(int)superArticleID
@@ -514,25 +400,22 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     [ServerRequest getArticleDetailWithArticleID:superArticleID
                                          Success:^(id json)
     {
-        
         ResultParsered *result = [[ResultParsered alloc] initWithDic:json] ;
         Article *arti = [[Article alloc] initWithDict:result.info] ;
         self.articleSuper = arti ;
 
         dispatch_async(dispatch_get_main_queue(), ^{
             self.table.hidden = NO ;
-            [self imageSendAnimation] ;
+            [self imageSendAnimationWithisMultyType:self.isMultiType
+                                     imgAnimateView:self.imgAnimateView] ;
         }) ;
-        
     } fail:^{
-        
         dispatch_async(dispatch_get_main_queue(), ^{
             [XTHudManager showWordHudWithTitle:WD_HUD_FAIL_RETRY] ;
             self.table.hidden = NO ;
             self.wordView.hidden = YES ;
             _flex_bottom.constant = 0.0 ;
         }) ;
-        
     }] ;
 }
 
@@ -541,18 +424,14 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     if (!_wordView)
     {
         _wordView = (WordSendView *)[[[NSBundle mainBundle] loadNibNamed:@"WordSendView" owner:self options:nil] lastObject] ;
-        
         _wordView.delegate = self ;
-        
         _wordView.backgroundColor = [UIColor whiteColor] ;
-        
         CGRect frame = CGRectZero ;
         frame.origin.x = 0.0f ;
         frame.origin.y = APPFRAME.size.height - 48.0f - NAVIGATIONBAR_HEIGHT - STATUSBAR_HEIGHT ;
         frame.size.width = APPFRAME.size.width ;
         frame.size.height = 48.0f ;
         _wordView.frame = frame ;
-        
         if (![_wordView superview])
         {
             [self.view addSubview:_wordView] ;
@@ -582,11 +461,6 @@ static NSString *kEmptyHeaderFooterIdentifier = @"kEmptyHeaderFooterIdentifier" 
     return _cacheImage ;
 }
 
-static float kRightDistance_SuspendButton   = 0. ;
-static float kBtDistance                    = 0. ;
-static float kSuspendButtonWidth            = 50. ;
-static float kSuspendButtonOrginY           = 50. ;
-static float kSuspendOfEdge                 = 10. ;
 
 - (UIButton *)bt_suspendLike
 {
@@ -594,29 +468,20 @@ static float kSuspendOfEdge                 = 10. ;
     {
         _bt_suspendLike = [[UIButton alloc] init] ;
         //multiVC_like
-        UIImage *imgUnlike = [[UIImage imageNamed:@"multiVC_unlike"] imageWithColor:[UIColor colorWithHexString:@" d1d1d1"]] ;
-        UIImage *imgLike = [[UIImage imageNamed:@"multiVC_like"] imageWithColor:[UIColor colorWithHexString:@" d1d1d1"]] ;
+        UIImage *imgUnlike = [[UIImage imageNamed:@"multiVC_unlike"] imageWithColor:[UIColor colorWithHexString:@"d1d1d1"]] ; // f_unlike
+        UIImage *imgLike = [[UIImage imageNamed:@"multiVC_like"] imageWithColor:[UIColor colorWithHexString:@"d1d1d1"]] ; // f_like
         [_bt_suspendLike setImage:imgUnlike forState:UIControlStateNormal] ;
         [_bt_suspendLike setImage:imgLike forState:UIControlStateSelected] ;
-//        [_bt_suspendLike setImage:[UIImage imageNamed:@"f_unlike"] forState:UIControlStateNormal] ;
-//        [_bt_suspendLike setImage:[UIImage imageNamed:@"f_like"] forState:UIControlStateSelected] ;
-
-//        _bt_suspendLike.layer.shadowColor = [UIColor blackColor].CGColor;
-//        _bt_suspendLike.layer.shadowOffset = CGSizeMake(3,3);
-//        _bt_suspendLike.layer.shadowOpacity = 0.6;
         
-        CGRect likeFrame = CGRectZero ;
-        likeFrame.origin = CGPointMake(APPFRAME_WIDTH - kRightDistance_SuspendButton - kSuspendButtonWidth ,
-                                       kSuspendButtonOrginY) ;
-        likeFrame.size = CGSizeMake(kSuspendButtonWidth, kSuspendButtonWidth) ;
-        _bt_suspendLike.frame = likeFrame ;
+        _bt_suspendLike.layer.shadowColor = [UIColor blackColor].CGColor;
+        _bt_suspendLike.layer.shadowOffset = CGSizeMake(3,3);
+        _bt_suspendLike.layer.shadowOpacity = 0.6;
+        
+        _bt_suspendLike.frame = [[self class] getRectOfBtSuspendLike] ;
         [_bt_suspendLike setImageEdgeInsets:UIEdgeInsetsMake(kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge)] ;
         [_bt_suspendLike addTarget:self
                             action:@selector(suspendLikePressed)
                   forControlEvents:UIControlEventTouchUpInside] ;
-        if (![_bt_suspendLike superview]) {
-            [self.view addSubview:_bt_suspendLike] ;
-        }
     }
     return _bt_suspendLike ;
 }
@@ -649,26 +514,19 @@ static float kSuspendOfEdge                 = 10. ;
     {
         _bt_suspendShare = [[UIButton alloc] init] ;
         //multiVC_share
-        UIImage *imgShare = [[UIImage imageNamed:@"multiVC_share"] imageWithColor:[UIColor colorWithHexString:@"d1d1d1"]] ;
+        UIImage *imgShare = [[UIImage imageNamed:@"multiVC_share"] imageWithColor:[UIColor colorWithHexString:@"d1d1d1"]] ; // f_share
         [_bt_suspendShare setImage:imgShare forState:UIControlStateNormal] ;
-//        [_bt_suspendShare setImage:[UIImage imageNamed:@"f_share"] forState:UIControlStateNormal] ;
+
+        _bt_suspendShare.frame = [[self class] getRectOfBtSuspendShare] ;
+
+        _bt_suspendShare.layer.shadowColor = [UIColor blackColor].CGColor;
+        _bt_suspendShare.layer.shadowOffset = CGSizeMake(3,3);
+        _bt_suspendShare.layer.shadowOpacity = 0.6;
         
-//        _bt_suspendShare.layer.shadowColor = [UIColor blackColor].CGColor;
-//        _bt_suspendShare.layer.shadowOffset = CGSizeMake(3,3);
-//        _bt_suspendShare.layer.shadowOpacity = 0.6;
-        
-        CGRect likeFrame = CGRectZero ;
-        likeFrame.size = CGSizeMake(kSuspendButtonWidth, kSuspendButtonWidth) ;
-        likeFrame.origin = CGPointMake(APPFRAME_WIDTH - kRightDistance_SuspendButton - kSuspendButtonWidth * 2 - kBtDistance ,
-                                       kSuspendButtonOrginY) ;
-        _bt_suspendShare.frame = likeFrame ;
         [_bt_suspendShare setImageEdgeInsets:UIEdgeInsetsMake(kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge, kSuspendOfEdge)] ;
         [_bt_suspendShare addTarget:self
                              action:@selector(suspendSharePressed)
                    forControlEvents:UIControlEventTouchUpInside] ;
-        if (![_bt_suspendShare superview]) {
-            [self.view addSubview:_bt_suspendShare] ;
-        }
     }
     return _bt_suspendShare ;
 }
@@ -692,14 +550,24 @@ static float kSuspendOfEdge                 = 10. ;
     [self setupSth] ;
     [self wordView] ;
     [self putNavBarItem] ;
-    
 }
 
 - (void)setupSuspendButton
 {
     [self bt_suspendLike] ;
     [self bt_suspendShare] ;
+    if (![_bt_suspendLike superview]) {
+        [self.view addSubview:_bt_suspendLike] ;
+    }
+    if (![_bt_suspendShare superview]) {
+        [self.view addSubview:_bt_suspendShare] ;
+    }
+    
+    [self runTransitionAnimationWithButtonOne:_bt_suspendLike
+                                    ButtonTwo:_bt_suspendShare
+                             pullUpOrPullDown:YES] ;
 }
+
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -824,8 +692,10 @@ static float kSuspendOfEdge                 = 10. ;
     if (self.isMultiType)
     {
         [self controlBottomBarShowOrNot] ;
-        [self suspendButtonRunAnimation:NO] ;
-        [self letSuspendBtOnOrOff] ;
+        [self suspendButtonRunAnimation:NO
+                                 likeBt:_bt_suspendLike
+                                shareBt:_bt_suspendShare] ;
+//        [self letSuspendBtOnOrOff] ;
     }
 }
 
@@ -834,16 +704,21 @@ static float kSuspendOfEdge                 = 10. ;
     if (self.isMultiType)
     {
         [self controlBottomBarShowOrNot] ;
-        [self suspendButtonRunAnimation:YES] ;
+        [self suspendButtonRunAnimation:YES
+                                 likeBt:_bt_suspendLike
+                                shareBt:_bt_suspendShare] ;
         [self letSuspendBtOnOrOff] ;
     }
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    if (self.isMultiType && !decelerate) {
+    if (self.isMultiType && !decelerate)
+    {
         [self controlBottomBarShowOrNot] ;
-        [self suspendButtonRunAnimation:YES] ;
+        [self suspendButtonRunAnimation:YES
+                                 likeBt:_bt_suspendLike
+                                shareBt:_bt_suspendShare] ;
         [self letSuspendBtOnOrOff] ;
     }
 }
@@ -859,8 +734,15 @@ static float kSuspendOfEdge                 = 10. ;
          }
      }] ;
     
-    _bt_suspendLike.hidden = bDtOperationCellIsOnShow ;
-    _bt_suspendShare.hidden = bDtOperationCellIsOnShow ;
+    if (bDtOperationCellIsOnShow != m_operationCellExist)
+    {
+        m_operationCellExist = bDtOperationCellIsOnShow ;
+        
+        [self runTransitionAnimationWithButtonOne:_bt_suspendLike
+                                        ButtonTwo:_bt_suspendShare
+                                 pullUpOrPullDown:!bDtOperationCellIsOnShow] ;
+    }
+    
 }
 
 - (void)controlBottomBarShowOrNot
@@ -869,39 +751,16 @@ static float kSuspendOfEdge                 = 10. ;
     self.wordView.hidden = NO ;
 }
 
-- (void)suspendButtonRunAnimation:(BOOL)showOrHide
-{
-    if (!_bt_suspendLike) return ;
-
-    if (showOrHide) {
-        if (_bt_suspendLike != nil && _bt_suspendLike.alpha != 1.0)
-        {
-            [UIView animateWithDuration:0.35
-                             animations:^{
-                                 _bt_suspendLike.alpha = 1.0 ;
-                                 _bt_suspendShare.alpha = 1.0 ;
-                             }] ;
-        }
-    }
-    else {
-        [UIView animateWithDuration:0.35
-                         animations:^{
-                             _bt_suspendLike.alpha = 0.35 ;
-                             _bt_suspendShare.alpha = 0.35 ;
-                         }] ;
-    }
-}
-
 #pragma mark --
 #pragma mark - ios8 table view seperator line full screen
 - (void)viewDidLayoutSubviews
 {
-    if ([self.table respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.table setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)] ;
+    if ([_table respondsToSelector:@selector(setSeparatorInset:)]) {
+        [_table setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)] ;
     }
     
-    if ([self.table respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.table setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)] ;
+    if ([_table respondsToSelector:@selector(setLayoutMargins:)]) {
+        [_table setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)] ;
     }
 }
 
@@ -1001,12 +860,14 @@ static float kSuspendOfEdge                 = 10. ;
         if (row == 0)
         {
             return
-            [self.articleSuper isMultyStyle] ?
+            [self.articleSuper isMultyStyle]
+            ?
             [tableView fd_heightForCellWithIdentifier:CellId_DetailTitleCell
                                      cacheByIndexPath:indexPath
                                         configuration:^(DetailTitleCell *cell) {
                 [self configureDetailTitleCell:cell] ;
-            }] :
+            }]
+            :
             LINE_HEIGHT ;
         }
         // 2. superPic & superContent
@@ -1024,7 +885,8 @@ static float kSuspendOfEdge                 = 10. ;
     {
         return [tableView fd_heightForCellWithIdentifier:CellId_DtSubCell
                                            configuration:^(DtSubCell *cell) {
-            [self configureDtSubCell:cell subArticle:self.articleSuper.childList[section - 1]] ;
+            [self configureDtSubCell:cell
+                          subArticle:self.articleSuper.childList[section - 1]] ;
         }] ;
     }
     // operation Infomation
@@ -1042,7 +904,8 @@ static float kSuspendOfEdge                 = 10. ;
         return [tableView fd_heightForCellWithIdentifier:CellId_replyCell
                                         cacheByIndexPath:indexPath
                                            configuration:^(ReplyCell *cell) {
-            [self configureReplyCell:cell comment:self.allComments[indexPath.row]] ;
+            [self configureReplyCell:cell
+                             comment:self.allComments[indexPath.row]] ;
         }] ;
     }
     
@@ -1230,14 +1093,14 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
                                  type:SIAlertViewButtonTypeDestructive
                               handler:^(SIAlertView *alertView) {
                                   [self delCmt] ;
-                              }];
+                              }] ;
         
         [alertView addButtonWithTitle:WD_CANCEL
                                  type:SIAlertViewButtonTypeDefault
-                              handler:nil];
+                              handler:nil] ;
         
         alertView.positionStyle = SIALertViewPositionBottom ;
-        [alertView show];
+        [alertView show] ;
     }
 }
 
@@ -1250,9 +1113,9 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
     
     // section have to in reply cells
     ArticleComment *cmt = self.allComments[indexPath.row] ;
-    BOOL bMyCmt = ( cmt.userCurrent.u_id == G_USER.u_id ) ;
+    BOOL isMyCmt = ( cmt.userCurrent.u_id == G_USER.u_id ) ;
     
-    return bMyCmt ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone ;
+    return isMyCmt ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone ;
 }
 
 #pragma mark --
@@ -1276,7 +1139,7 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
     }) ;
 }
 
-//长按子图,保存图片
+// SAVEING PICTURES WHEN LONG PRESSED THE PICTURES .
 - (void)longPressedCallback:(Article *)article
 {
     SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:nil
@@ -1329,6 +1192,7 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
     shareAlert.aDelegate = self ;
 }
 
+#pragma mark --
 #pragma mark - ShareAlertVDelegate
 - (void)clickIndex:(NSInteger)index
 {
@@ -1449,9 +1313,8 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
     [alertView addButtonWithTitle:WD_CANCEL
                              type:SIAlertViewButtonTypeDefault
                           handler:nil];
-    
     alertView.positionStyle = SIALertViewPositionBottom ;
-    [alertView show];
+    [alertView show] ;
 }
 
 // 举报
@@ -1472,9 +1335,8 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
     [alertView addButtonWithTitle:WD_CANCEL
                              type:SIAlertViewButtonTypeDestructive
                           handler:nil];
-    
     alertView.positionStyle = SIALertViewPositionBottom ;
-    [alertView show];
+    [alertView show] ;
 }
 
 // 已经点赞
@@ -1546,7 +1408,7 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
                 [subArticle.articleCommentList enumerateObjectsUsingBlock:^(ArticleComment *cmt, NSUInteger idxCmt, BOOL * _Nonnull stopCmt) {
                     if (cmt.c_id == cmtWillDelete.c_id) {
                         [subArticle.articleCommentList removeObjectAtIndex:idxCmt] ;
-                       
+                        
                         *stopCmt = YES ;
                     }
                 }] ;
@@ -1561,7 +1423,7 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
         [self.articleSuper.articleCommentList removeObject:cmtWillDelete] ;
     }
 
-    [_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:sectionReply]] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [_table deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:row inSection:sectionReply]] withRowAnimation:UITableViewRowAnimationAutomatic] ;
     
     [ServerRequest deleteMyCmt:cmtWillDelete.c_id
                        Success:^(id json) {

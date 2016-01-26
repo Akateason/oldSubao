@@ -12,7 +12,7 @@
 #import "ArticleTopic.h"
 #import "TalkCtrller.h"
 #import "TopicCategoryCtrller.h"
-#import "HomeController.h"
+#import "HomeController+TaskModuleTransition.h"
 
 #define NONE_HEIGHT                     1.0
 #define SIZE_OF_PAGE                    50

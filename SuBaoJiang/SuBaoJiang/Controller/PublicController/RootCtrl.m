@@ -141,8 +141,10 @@
 
 - (UIImageView *)guidingImageView
 {
-    if (!_guidingImageView) {
+    if (!_guidingImageView)
+    {
         _guidingImageView = [[UIImageView alloc] init] ;
+        _guidingImageView.alpha = 0. ;
         CGRect rectGuiding = APPFRAME ;
         rectGuiding.size.height = ( DEVICE_IS_IPHONE5 ) ? APPFRAME.size.height : APPFRAME.size.width / 9.0 * 16.0 ;
         _guidingImageView.frame = rectGuiding ;
@@ -151,9 +153,16 @@
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickGuidingImageView)] ;
         [_guidingImageView addGestureRecognizer:tapGesture] ;
     }
-    if (![_guidingImageView superview]) {
+    
+    if (![_guidingImageView superview])
+    {
         [[UIApplication sharedApplication].keyWindow addSubview:_guidingImageView] ;
+        [UIView animateWithDuration:0.5
+                         animations:^{
+            _guidingImageView.alpha = 1. ;
+        }] ;
     }
+    
     return _guidingImageView ;
 }
 

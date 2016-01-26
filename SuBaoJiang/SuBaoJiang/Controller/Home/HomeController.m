@@ -5,62 +5,26 @@
 //  Created by apple on 15/6/2.
 //  Copyright (c) 2015年 teason. All rights reserved.
 //
-
 #import "HomeController.h"
-#import "HomeCell.h"
-#import "MyNavCtrller.h"
-#import "Article.h"
-#import "Themes.h"
-#import "ThemeCell.h"
-#import "DetailSubaoCtrller.h"
-#import "ArticleTopic.h"
-#import "NavTitleView.h"
-#import "UserCenterController.h"
-#import "PostSubaoCtrller.h"
-#import "NavLogCtller.h"
-#import "MyWebController.h"
-#import "MyTabbarCtrller.h"
-#import "SEintroCell.h"
-#import "NavCameraCtrller.h"
-#import "CommonFunc.h"
-#import "UIImageView+WebCache.h"
-#import "NotificationCenterHeader.h"
-#import "UITableView+FDTemplateLayoutCell.h"
-#import "HomeUserTableHeaderView.h"
-#import "RaiseFirstCtrller.h"
-
-#define SIZE_OF_PAGE                    20
-
-#define NONE_HEIGHT                     0.0f
-
-#define HEIGHT_bt_go2post               43.0
-#define WIDTH_bt_go2post                150.0
-
-#define ThemeCellID                     @"ThemeCell"
-#define HomeCellID                      @"HomeCell"
-#define SEintroCellID                   @"SEintroCell"
-#define HeaderIdentifier                @"HomeUserTableHeaderView"
-
+#import "HomeControllerHeader.h"
 
 @interface HomeController () <UITableViewDataSource,UITableViewDelegate,RootTableViewDelegate,HomeCellDelegate,ThemeCellDelegate,MyTabbarCtrllerDelegate,SEintroCellDelegate,HomeUserTableHeaderViewDelegate>
 {
     BOOL                bSwitchFlyword      ; // 弹幕开关   DEFAULT IS TRUE
     UIBarButtonItem     *m_switchButton     ;
-    
     long long           m_lastUpdateTime    ; // 首页最新的updateTime && 话题页
     
-    BOOL                m_isFirstTime       ; // default is false ; if false -> firsttime
+    BOOL                m_isFirstTime       ; // DEFAULT IS false .
+    BOOL                m_isFirstTeach      ; // DEFAULT IS false .
 }
 
 @property (weak, nonatomic) IBOutlet RootTableView *table ;
 @property (weak, nonatomic) IBOutlet NavTitleView  *titleView ;
 
-@property (nonatomic,strong)         UIButton      *bt_go2post ;
+@property (nonatomic,strong) UIButton              *bt_go2post ;
 @property (atomic, strong)  NSMutableArray         *m_articleList ; // 文章 datasource
 @property (atomic, strong)  NSMutableArray         *m_themesList  ; // 主题list
 
-@property (nonatomic)        CGRect                fromRect ;
-@property (nonatomic,strong) UIImage               *imgTempWillSend ;
 
 @end
 
@@ -69,70 +33,9 @@
 @synthesize m_articleList = _m_articleList ,
             m_themesList  = _m_themesList  ;
 
-#pragma mark - Public
-+ (void)jumpToTopicHomeCtrller:(ArticleTopic *)topic
-                 originCtrller:(UIViewController *)ctrller
-{
-    [self jumpToTopicHomeCtrller:topic originCtrller:ctrller animated:NO] ;
-}
 
-+ (void)jumpToTopicHomeCtrller:(ArticleTopic *)topic
-                 originCtrller:(UIViewController *)ctrller
-                      animated:(BOOL)animated
-{
-    
-    NSArray *ctrllersInNav = [ctrller.navigationController viewControllers] ;
-    
-    if (!ctrllersInNav || !ctrllersInNav.count) return ;
-    
-    [ctrllersInNav enumerateObjectsUsingBlock:^(UIViewController *tempCtrl, NSUInteger idx, BOOL * _Nonnull stop) {
-        if ([tempCtrl isKindOfClass:[HomeController class]])
-        {
-            HomeController *homeTempCtrl = (HomeController *)tempCtrl ;
-            if (topic.t_id == homeTempCtrl.topicID) {
-                [ctrller.navigationController popToViewController:homeTempCtrl animated:YES] ;
-                *stop = YES ;
-            }
-        }
-    }] ;
-    
-    BOOL isKindOfTopicCtrller = [ctrller isKindOfClass:[HomeController class]] ;
-    if (isKindOfTopicCtrller) { // current ctrller is Topic
-        BOOL isSameTopic = ((HomeController *)ctrller).topic.t_id == topic.t_id ;
-        if (isSameTopic) return ; // same Topic Not Jump
-    }
-    
-    if (IS_IOS_VERSION(8.0)) ctrller.navigationController.hidesBarsOnSwipe = NO ;
-    
-    UIStoryboard *story = [UIStoryboard storyboardWithName:@"Main" bundle:nil] ;
-    HomeController *homeCtrller = [story instantiateViewControllerWithIdentifier:@"HomeController"] ;
-    homeCtrller.topic = topic ;
-    [homeCtrller setHidesBottomBarWhenPushed:YES] ;
-    homeCtrller.tabBarController.tabBar.hidden = YES ;
-    [ctrller.navigationController pushViewController:homeCtrller
-                                            animated:animated] ;
-}
-
-- (void)reverseImageSendAnimationWithRect:(CGRect)toRect
-{
-    UIImageView *imgView = [[UIImageView alloc] initWithFrame:toRect] ;
-    imgView.image = self.imgTempWillSend ;
-    [self.view addSubview:imgView] ;
-    
-    [UIView animateWithDuration:QUICKLY_ANIMATION_DURATION
-                     animations:^{
-                         
-                         imgView.frame = self.fromRect ;
-                         
-                     } completion:^(BOOL finished) {
-                         if (finished) {
-                             [imgView removeFromSuperview] ;
-                         }
-                     }] ;
-        
-}
-
-#pragma mark -
+#pragma mark --
+#pragma mark - Properties
 - (UIButton *)bt_go2post
 {
     if (!_bt_go2post)
@@ -201,7 +104,7 @@
 {
     if (!_m_articleList)
     {
-        _m_articleList = [NSMutableArray array] ;
+        _m_articleList = [@[] mutableCopy] ;
     }
     return _m_articleList ;
 }
@@ -214,7 +117,7 @@
 - (NSMutableArray *)m_themesList
 {
     if (!_m_themesList) {
-        _m_themesList = [NSMutableArray array] ;
+        _m_themesList = [@[] mutableCopy] ;
     }
     return _m_themesList ;
 }
@@ -264,9 +167,7 @@
     Article *artiInsert = [notification object] ;
     [self.m_articleList insertObject:artiInsert atIndex:0] ;
 
-    if (self.m_articleList.count == 1) {
-        return ;
-    }
+    if (self.m_articleList.count == 1) return ;
     
     [_table insertSections:[NSIndexSet indexSetWithIndex:1]
           withRowAnimation:UITableViewRowAnimationFade] ;
@@ -297,8 +198,6 @@
     if (!self.m_articleList.count) return ;
 
     [self.table pullDownRefreshHeader] ;
-
-    if (IS_IOS_VERSION(8.0)) self.navigationController.hidesBarsOnSwipe = NO ;
 }
 
 #pragma mark -- SEintroCellDelegate
@@ -321,6 +220,16 @@
 - (void)topicSelected:(ArticleTopic *)topic
 {
     [HomeController jumpToTopicHomeCtrller:topic originCtrller:self animated:YES] ;
+}
+
+- (void)articleHasPraised:(BOOL)hasPraised articleID:(int)articleID
+{
+    [self.m_articleList enumerateObjectsUsingBlock:^(Article *article, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (article.a_id == articleID) {
+            article.has_praised = hasPraised ;
+            *stop = YES ;
+        }
+    }] ;
 }
 
 #pragma mark -- ThemeCellDelegate
@@ -387,9 +296,12 @@
         self.myTitle = @"首页" ;
         
         //1 update App Version
-        if (!_topic && !m_isFirstTime) {
-            m_isFirstTime = YES ;
-            [CommonFunc updateLatestVersion] ;
+        if (!_topic)
+        {
+            static dispatch_once_t onceToken;
+            dispatch_once(&onceToken, ^{
+                [CommonFunc updateLatestVersion] ;
+            });
         }
         
         //2 tabbar ctrller - double tap Homepage tabbarItem Delegate
@@ -406,7 +318,6 @@
 - (void)showAllBars
 {
     //Close Hides Bars On Swipe
-//    if (IS_IOS_VERSION(8.0)) self.navigationController.hidesBarsOnSwipe = NO ;
     //Show Nav if necessary
     if (self.navigationController.navigationBarHidden == YES) {
         [self.navigationController setNavigationBarHidden:NO animated:NO] ;
@@ -449,8 +360,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view
-
-    [self appIsFirstRaise] ;
     
     // initial
     self.edgesForExtendedLayout = UIRectEdgeNone ;
@@ -458,7 +367,6 @@
     [self putNavBarItem] ;
     [self bt_go2post] ;
     [self configureHomeOrTopic] ;
-    [self configureTeachingViews] ;
 }
 
 - (BOOL)appIsFirstRaise
@@ -492,8 +400,31 @@
 {
     [super viewWillAppear:animated] ;
 
+    if (m_isFirstTeach) {
+        [self configureTeachingViews] ; // teach user how to use home page .
+    }
+    
+    if (m_isFirstTime) // default is false .
+    {
+        // in condition . app pop back from launchCtrller .
+        // 1. go to RaiseFirstctrller if necessary .
+        [self appIsFirstRaise] ; // go 2 introduction .
+        // 2. configureTeachingViews in NextTime
+        m_isFirstTeach = YES ;
+        // 3. show fade in animation if necessary .
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            [self selfViewFadeIn] ;
+        });
+    }
+    
+    static dispatch_once_t onceToken ;
+    dispatch_once(&onceToken, ^{
+        [self performSegueWithIdentifier:@"segue_launcher" sender:nil] ; // jump to prepare for segue .
+        return ;
+    }) ;
+    
     self.navigationController.interactivePopGestureRecognizer.delegate = (id)self ;
-//    if (IS_IOS_VERSION(8.0) && !_topic && self.navigationController.hidesBarsOnSwipe == NO) self.navigationController.hidesBarsOnSwipe = YES ; // >=ios8 && isHomeIndexPage .
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
@@ -588,7 +519,6 @@
             [mutableList addObject:arti] ;
         }] ;        
         self.m_articleList = mutableList ;
-        
         m_lastUpdateTime = ((Article *)[self.m_articleList lastObject]).a_updatetime ;
     }
     
@@ -598,18 +528,14 @@
 - (BOOL)getTopicDetailFromServerWithPullUpDown:(BOOL)bUpDown
 {
     if (bUpDown) m_lastUpdateTime = 0 ;
-    
     ResultParsered *result = [ServerRequest getArticleWithTopicID:_topicID
                                                    AndWithSinceID:0
                                                      AndWithMaxID:m_lastUpdateTime
                                                      AndWithCount:SIZE_OF_PAGE] ;
     if (!result) return NO ;
-    
     BOOL bHas = [self parserTopicResult:result
                                  getNew:bUpDown] ;
-    
     if (!bUpDown && !bHas) return NO ;
-    
     return YES   ;
 }
 
@@ -743,35 +669,6 @@
     return nil ;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSInteger section = indexPath.section ;
-    if (!section)
-    {
-        if (self.m_themesList.count)
-        {
-            return [tableView fd_heightForCellWithIdentifier:ThemeCellID cacheByIndexPath:indexPath configuration:^(ThemeCell *cell) {
-                [self configureThemeCell:cell] ;
-            }] ;
-        }
-        else if (self.topic && ![self.topic.t_detail isEqualToString:@""])
-        {
-            return [tableView fd_heightForCellWithIdentifier:SEintroCellID configuration:^(SEintroCell *cell) {
-                [self configureSEintroCell:cell] ;
-            }] ;
-        }
-        else
-        {
-            return NONE_HEIGHT ;
-        }        
-    }
-    @synchronized (self.m_articleList) {
-        return [tableView fd_heightForCellWithIdentifier:HomeCellID cacheByIndexPath:indexPath configuration:^(HomeCell *cell) {
-            [self configureHomeCell:cell atIndexPath:indexPath] ;
-        }] ;
-    }
-}
-
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -797,6 +694,35 @@
                                            FromRect:self.fromRect
                                             imgSend:self.imgTempWillSend
          ] ;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger section = indexPath.section ;
+    if (!section)
+    {
+        if (self.m_themesList.count)
+        {
+            return [tableView fd_heightForCellWithIdentifier:ThemeCellID cacheByIndexPath:indexPath configuration:^(ThemeCell *cell) {
+                [self configureThemeCell:cell] ;
+            }] ;
+        }
+        else if (self.topic && ![self.topic.t_detail isEqualToString:@""])
+        {
+            return [tableView fd_heightForCellWithIdentifier:SEintroCellID configuration:^(SEintroCell *cell) {
+                [self configureSEintroCell:cell] ;
+            }] ;
+        }
+        else
+        {
+            return NONE_HEIGHT ;
+        }
+    }
+    @synchronized (self.m_articleList) {
+        return [tableView fd_heightForCellWithIdentifier:HomeCellID cacheByIndexPath:indexPath configuration:^(HomeCell *cell) {
+            [self configureHomeCell:cell atIndexPath:indexPath] ;
+        }] ;
     }
 }
 
@@ -831,7 +757,6 @@
     return NONE_HEIGHT ;
 }
 
-
 #pragma mark --
 #pragma mark - UIScrollViewDelegate Methods
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -841,17 +766,13 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    if (self.topicID != 0) {
-        [self showPostButtonIfNeccessary] ; // SHOW POST BUTTON
-        return ; // BREAK IN topic ctrller
-    }
+    if (self.topicID != 0) [self showPostButtonIfNeccessary] ; // SHOW POST BUTTON
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView
                   willDecelerate:(BOOL)decelerate
 {
-    if (self.topicID != 0)
-    {
+    if (self.topicID != 0) {
         if (!decelerate) {
             [self showPostButtonIfNeccessary] ; // SHOW POST BUTTON
         }
@@ -874,8 +795,7 @@
 
 - (void)showPostButtonIfNeccessary
 {
-    if (self.bt_go2post.alpha != 1.0)
-    {
+    if (self.bt_go2post.alpha != 1.0) {
         [UIView animateWithDuration:0.35
                          animations:^{
             self.bt_go2post.alpha = 1.0 ;
@@ -887,9 +807,10 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     [segue.destinationViewController setHidesBottomBarWhenPushed:YES] ;
+    if ([segue.identifier isEqualToString:@"segue_launcher"]) {
+        m_isFirstTime = YES ;
+    }
 }
 
 @end

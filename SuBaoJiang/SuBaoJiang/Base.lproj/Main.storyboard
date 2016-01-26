@@ -112,6 +112,24 @@
             </objects>
             <point key="canvasLocation" x="2047" y="268"/>
         </scene>
+        <!--Launch Ctrller-->
+        <scene sceneID="M3o-75-44L">
+            <objects>
+                <viewController id="PBQ-4W-AWk" customClass="LaunchCtrller" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1JX-38-Ck7"/>
+                        <viewControllerLayoutGuide type="bottom" id="ckh-xV-j3l"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="obO-dY-aYh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="En6-A0-kdg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="975" y="-1365"/>
+        </scene>
         <!--Home Controller-->
         <scene sceneID="esb-28-lSg">
             <objects>
@@ -157,6 +175,7 @@
                         <outlet property="table" destination="QP5-pz-hDY" id="Qbj-SJ-NTg"/>
                         <outlet property="titleView" destination="QID-MH-1d5" id="ipZ-ws-k3w"/>
                         <segue destination="g6J-yI-nJ2" kind="push" identifier="home2SubaoDetail" id="wih-8F-0q1"/>
+                        <segue destination="PBQ-4W-AWk" kind="modal" identifier="segue_launcher" modalTransitionStyle="crossDissolve" id="U5p-uS-yDK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nn1-KB-UN4" userLabel="First Responder" sceneMemberID="firstResponder"/>

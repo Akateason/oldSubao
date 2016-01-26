@@ -15,13 +15,8 @@
 @property (nonatomic,strong) ArticleTopic *topic    ;
 @property (nonatomic)        int           topicID  ;
 
-+ (void)jumpToTopicHomeCtrller:(ArticleTopic *)topic
-                 originCtrller:(UIViewController *)ctrller ;
-
-+ (void)jumpToTopicHomeCtrller:(ArticleTopic *)topic
-                 originCtrller:(UIViewController *)ctrller
-                      animated:(BOOL)animated ;
-
-- (void)reverseImageSendAnimationWithRect:(CGRect)toRect ;
+@property (nonatomic)        CGRect        fromRect ;
+@property (nonatomic,strong) UIImage       *imgTempWillSend ;
+//- (void)reverseImageSendAnimationWithRect:(CGRect)toRect ;
 
 @end

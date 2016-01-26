@@ -12,14 +12,19 @@
 @class ArticleTopic ;
 
 @protocol HomeCellDelegate <NSObject>
+
 - (void)goToLogin ;
 - (void)topicSelected:(ArticleTopic *)topic ;
+- (void)articleHasPraised:(BOOL)hasPraised articleID:(int)articleID ;
+
 @end
 
 @interface HomeCell : UITableViewCell
+
 @property (nonatomic,weak) id <HomeCellDelegate> delegate ;
 @property (nonatomic,strong) Article    *article ;
 @property (nonatomic)        BOOL       isflywordShow ; // 弹幕开关 . 通过ctrller控制
 
 + (CGFloat)calculateHomeCellHeight:(NSString *)content ;
+
 @end
