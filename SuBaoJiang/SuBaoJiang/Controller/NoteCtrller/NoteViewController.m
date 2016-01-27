@@ -20,7 +20,7 @@
 #define IDENTIFIER_MYCMTCELL        @"MyCmtCell"
 
 #define NONE_HEIGHT                 1.0f
-#define SIZE_OF_PAGE                30
+#define SIZE_OF_PAGE                20
 
 @interface NoteViewController () <UITableViewDataSource,UITableViewDelegate,RootTableViewDelegate>
 {

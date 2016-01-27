@@ -22,24 +22,19 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    
+    self.headTitle = _lb_word1 ;
+    self.mainContents = _img_map ;
+    self.tailTitle = _lb_word2 ;
+
     self.myTitle = @"引导页" ;
     
-    [self allHideInitial] ;
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)allHideInitial
-{
-    _lb_word1.alpha = 0.0 ;
-    _img_map.alpha = 0.0 ;
-    _lb_word2.alpha = 0.0 ;
 }
 
 - (void)startAnimate
@@ -49,54 +44,9 @@
     }
     m_bShowed = YES ;
     
-    
-    [self allHideInitial] ;
-    
-    [UIView animateWithDuration:0.5
-                          delay:0.
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         
-                         _lb_word1.alpha = 1.0 ;
-                         
-                     } completion:^(BOOL finished) {
-                         [self objectA] ;
-                     }] ;
+    [self startingAnimation] ;
 }
 
-- (void)objectA
-{
-    _img_map.alpha = 1.0 ;
-
-    [UIView animateWithDuration:0.2
-                          delay:0.2
-                        options:(UIViewAnimationOptionCurveEaseInOut)
-                     animations:^{
-
-                            [XTAnimation animationRotateAndScaleDownUp:_img_map] ;
-                            
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [self boxAnimate] ;
-        }
-    }] ;
-}
-
-- (void)boxAnimate
-{
-    [UIView animateWithDuration:0.1
-                          delay:0.4
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-        _lb_word2.alpha = 1.0 ;
-    } completion:^(BOOL finished) {
-        
-        if (finished) {
-            [XTAnimation animationRippleEffect:_lb_word2] ;
-        }
-        
-    }] ;
-}
 
 /*
 #pragma mark - Navigation

@@ -33,6 +33,7 @@
     [ctrller presentViewController:raiseCtrller animated:YES completion:^{}] ;
 }
 
+#pragma mark --
 - (void)viewDidLoad
 {
     [super viewDidLoad] ;
@@ -42,7 +43,7 @@
     
     _scrollV.guidingDelegate = self ;
     _scrollV.currentCtrller  = self ;
-    _scrollV.isAboutUS = self.bAboutUs ;
+    _scrollV.isAboutUS       = self.bAboutUs ;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -51,6 +52,13 @@
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone] ;
     [self.navigationController setNavigationBarHidden:YES animated:NO] ;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated] ;
+    
+    [_scrollV startAnimation] ;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -70,7 +78,6 @@
 #pragma mark --
 - (void)dismiss
 {
-//    [self.navigationController popViewControllerAnimated:NO] ;
     [self dismissViewControllerAnimated:YES completion:^{}] ;
 }
 

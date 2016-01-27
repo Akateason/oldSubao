@@ -13,7 +13,6 @@
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 
 #import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
 #import "ColorsHeader.h"
 #import "WordsHeader.h"
 #import "PictureHeader.h"
@@ -28,8 +27,8 @@
  * DEVELOPER MODE SWITCHER
  * BOOL Args , ( DEFAULT is `NO`, BECOME `YES` WHEN U WANA TEST AND DEBUG . )
  */
-// YES NO //
-#define DEVELOPER_MODE_SWITCHER         NO
+// `YES` OR `NO` //
+#define DEVELOPER_MODE_SWITCHER         YES
 
 
 /*

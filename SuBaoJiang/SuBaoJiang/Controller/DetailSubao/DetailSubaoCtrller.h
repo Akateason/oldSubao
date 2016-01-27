@@ -13,14 +13,14 @@
 
 @interface DetailSubaoCtrller : RootCtrl
 
-@property (nonatomic) int superArticleID ; // current super article ID ;
-@property (nonatomic) int replyCommentID ; // exist when reply it ;
+@property (nonatomic)               int                superArticleID ; // current super article ID ;
+@property (nonatomic)               int                replyCommentID ; // exist when reply it ;
 
-@property (nonatomic)                CGRect             fromRect ;
-@property (nonatomic)                CGRect             toRect ;
-@property (nonatomic,strong)         UIImage            *imgArticleSend ;
+@property (nonatomic)               CGRect             fromRect ;
+@property (nonatomic)               CGRect             toRect ;
+@property (nonatomic,strong)        UIImage            *imgArticleSend ;
 
-@property (nonatomic,strong)         HomeController     *homeCtrller ;
+@property (nonatomic,strong)        HomeController     *homeCtrller ;
 - (void)startReverseAnmation ;
 
 @end

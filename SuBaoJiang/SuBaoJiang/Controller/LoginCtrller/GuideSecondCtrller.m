@@ -21,21 +21,19 @@
 @implementation GuideSecondCtrller
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self allHideInitial] ;
+    
+    self.headTitle = _lb_word1 ;
+    self.mainContents = _img ;
+    self.tailTitle = _lb_word2 ;
+    
+    [super viewDidLoad] ;
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)allHideInitial
-{
-    _lb_word1.alpha = 0.0 ;
-    _img.alpha = 0.0 ;
-    _lb_word2.alpha = 0.0 ;
 }
 
 - (void)startAnimate
@@ -45,69 +43,9 @@
     }
     m_bShowed = YES ;
     
-    
-    [self allHideInitial] ;
-    
-    [UIView animateWithDuration:0.5
-                          delay:0.
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         
-                         _lb_word1.alpha = 1.0 ;
-                         
-                     } completion:^(BOOL finished) {
-                         if (finished) {
-                            [self towerAnimation] ;
-                         }
-                     }] ;
+    [self startingAnimation] ;
 }
 
-- (void)towerAnimation
-{
-    [UIView animateWithDuration:0.5
-                          delay:0.2
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         
-                         _img.alpha = 1.0 ;
-
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [self phoneAnimation] ;
-        }
-    }] ;
-}
-
-- (void)phoneAnimation
-{
-
-    [UIView animateWithDuration:0.2
-                          delay:0.4
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-
-                         _img.alpha = 1.0 ;
-
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [self wordsAnimation] ;
-        }
-    }] ;
-}
-
-- (void)wordsAnimation
-{
-    [UIView animateWithDuration:0.1
-                          delay:0.4
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-        _lb_word2.alpha = 1.0 ;
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [XTAnimation animationRippleEffect:_lb_word2] ;
-        }
-    }] ;
-}
 
 /*
 #pragma mark - Navigation

@@ -19,27 +19,22 @@
     // Do any additional setup after loading the view.
 }
 
-static float kDuration = 1. ;
+static float kDuration = 0.8 ;
+static float kTransfromScaleRate = 1.6 ;
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewDidAppear:animated] ;
     
     [UIView animateWithDuration:kDuration
                      animations:^{
-                         
         self.view.alpha = 0. ;
-        self.view.layer.transform = CATransform3DScale(CATransform3DIdentity, 1.2, 1.2, 1);
-                         
+        self.view.layer.transform = CATransform3DScale(CATransform3DIdentity, kTransfromScaleRate, kTransfromScaleRate, 1) ;
     } completion:^(BOOL finished) {
-        
+        [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
+        self.view.hidden = YES ;
         [self dismissViewControllerAnimated:NO
-                                 completion:^{
-                                     
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent] ;
-                                     
-        }];
-        
+                                 completion:nil] ;
     }] ;
 }
 

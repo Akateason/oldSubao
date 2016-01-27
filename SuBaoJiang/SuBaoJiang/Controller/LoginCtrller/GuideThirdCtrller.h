@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 teason. All rights reserved.
 //
 
-#import "RootCtrl.h"
+#import "GuidingSuperCtrller.h"
 
-@interface GuideThirdCtrller : RootCtrl
+@interface GuideThirdCtrller : GuidingSuperCtrller
 - (void)startAnimate ;
 @end

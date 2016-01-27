@@ -18,7 +18,7 @@
 #import "DetailSubaoCtrller+TaskModuleTransition.h"
 
 #define NONE_HEIGHT                 0.0f
-#define SIZE_OF_PAGE                50
+#define SIZE_OF_PAGE                10
 
 #define IDENTIFIER_NoteAlamCell     @"NoteAlamCell"
 #define IDENTIFIER_NoteInfoCell     @"NoteInfoCell"

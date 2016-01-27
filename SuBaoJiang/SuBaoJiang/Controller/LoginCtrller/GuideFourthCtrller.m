@@ -20,19 +20,14 @@
 
 @implementation GuideFourthCtrller
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
+    self.headTitle = _word1 ;
+    self.mainContents = _img ;
+    self.tailTitle = _word2 ;
+    
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self allHideInitial] ;
-
-}
-
-
-- (void)allHideInitial
-{
-    _word1.alpha = 0.0 ;
-    _img.alpha = 0.0 ;
-    _word2.alpha = 0.0 ;
 }
 
 - (void)startAnimate
@@ -41,54 +36,8 @@
         return ;
     }
     m_bShowed = YES ;
-        
-    [self allHideInitial] ;
     
-    [UIView animateWithDuration:0.5
-                          delay:0.
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         
-                         _word1.alpha = 1.0 ;
-                         
-                     } completion:^(BOOL finished) {
-                         if (finished) {
-                             [self imgAnimation] ;
-                         }
-                     }] ;
-}
-
-- (void)imgAnimation
-{
-    [UIView animateWithDuration:0.2
-                          delay:0.2
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-                         
-                         _img.alpha = 1.0 ;
-                         
-                     } completion:^(BOOL finished) {
-                         if (finished) {
-                             [self endAnimation] ;
-                         }
-                     }] ;
-    
-}
-
-- (void)endAnimation
-{
-    [UIView animateWithDuration:0.1
-                          delay:0.4
-                        options:UIViewAnimationOptionCurveEaseInOut
-                     animations:^{
-        
-        _word2.alpha = 1.0 ;
-        
-    } completion:^(BOOL finished) {
-        if (finished) {
-            [XTAnimation animationRippleEffect:_word2] ;
-        }
-    }] ;
+    [self startingAnimation] ;
 }
 
 - (void)didReceiveMemoryWarning {

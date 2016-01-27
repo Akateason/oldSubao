@@ -411,11 +411,12 @@
         [self appIsFirstRaise] ; // go 2 introduction .
         // 2. configureTeachingViews in NextTime
         m_isFirstTeach = YES ;
+        m_isFirstTime  = NO ;
         // 3. show fade in animation if necessary .
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            [self selfViewFadeIn] ;
-        });
+//        static dispatch_once_t onceToken;
+//        dispatch_once(&onceToken, ^{
+//            [self selfViewFadeIn] ;
+//        });
     }
     
     static dispatch_once_t onceToken ;

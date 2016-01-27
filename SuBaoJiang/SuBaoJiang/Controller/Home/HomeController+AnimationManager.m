@@ -20,8 +20,8 @@
 
 - (void)selfViewFadeIn
 {
-    self.view.alpha = 0.1 ;
-    [UIView animateWithDuration:0.65
+    self.view.alpha = 0.6 ;
+    [UIView animateWithDuration:0.35
                      animations:^{
                          self.view.alpha = 1. ;
                      }] ;

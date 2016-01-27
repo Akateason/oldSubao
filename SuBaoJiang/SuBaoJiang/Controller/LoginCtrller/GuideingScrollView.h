@@ -20,4 +20,6 @@
 @property (nonatomic)           BOOL                            isAboutUS ;
 @property (nonatomic, strong)   UIViewController                *currentCtrller ;
 
+- (void)startAnimation ;
+
 @end

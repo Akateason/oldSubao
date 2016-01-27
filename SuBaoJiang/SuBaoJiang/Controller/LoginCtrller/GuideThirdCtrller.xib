@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -22,21 +22,21 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide3_bg" translatesAutoresizingMaskIntoConstraints="NO" id="4LO-Ao-gXP">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide3_word1" translatesAutoresizingMaskIntoConstraints="NO" id="DMy-N3-XPY">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide3_word1" translatesAutoresizingMaskIntoConstraints="NO" id="DMy-N3-XPY">
                     <rect key="frame" x="40" y="41" width="240" height="68"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="240" id="Lxv-xe-lCT"/>
                         <constraint firstAttribute="height" constant="68" id="bKS-Ma-B7z"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide3_word2" translatesAutoresizingMaskIntoConstraints="NO" id="w6F-Vh-znS">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide3_word2" translatesAutoresizingMaskIntoConstraints="NO" id="w6F-Vh-znS">
                     <rect key="frame" x="40" y="487" width="240" height="37"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="37" id="1v8-Rj-mhK"/>
                         <constraint firstAttribute="width" constant="240" id="Hf3-2A-2Kl"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide3_img" translatesAutoresizingMaskIntoConstraints="NO" id="eZj-An-1QD">
+                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guide3_img" translatesAutoresizingMaskIntoConstraints="NO" id="eZj-An-1QD">
                     <rect key="frame" x="40" y="147" width="240" height="273"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="eZj-An-1QD" secondAttribute="height" multiplier="80:91" id="Ryh-Tj-JU7"/>

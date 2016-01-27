@@ -516,7 +516,7 @@
         //multiVC_share
         UIImage *imgShare = [[UIImage imageNamed:@"multiVC_share"] imageWithColor:[UIColor colorWithHexString:@"d1d1d1"]] ; // f_share
         [_bt_suspendShare setImage:imgShare forState:UIControlStateNormal] ;
-
+        
         _bt_suspendShare.frame = [[self class] getRectOfBtSuspendShare] ;
 
         _bt_suspendShare.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -567,7 +567,6 @@
                                     ButtonTwo:_bt_suspendShare
                              pullUpOrPullDown:YES] ;
 }
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -622,24 +621,20 @@
 - (BOOL)getFromServer
 {
     ResultParsered *result = [ServerRequest getArticleDetailWithArticleID:self.superArticleID] ;
-
+    
     dispatch_async(dispatch_get_main_queue(), ^{
         self.table.hidden = NO ;
     }) ;
     
     if (!result) return NO ;
-    
     BOOL bHas = [self parserResult:result] ;
-
     return bHas ;
 }
 
 - (BOOL)parserResult:(ResultParsered *)result
 {
     self.articleSuper = [[Article alloc] initWithDict:result.info] ;
-    
     [self getlastCommentID] ;
-    
     return YES ;
 }
 

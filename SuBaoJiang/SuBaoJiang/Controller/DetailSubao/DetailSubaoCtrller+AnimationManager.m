@@ -83,12 +83,11 @@ static float kSuspendHeartBeatDuration = 0.6 ;
                                  likeButton.alpha = 1.0 ;
                                  shareButton.alpha = 1.0 ;
                                  
-                                 likeButton.layer.shadowColor = [UIColor blackColor].CGColor;
                                  likeButton.layer.shadowOffset = CGSizeMake(3,3);
-                                 
-                                 shareButton.layer.shadowColor = [UIColor blackColor].CGColor;
                                  shareButton.layer.shadowOffset = CGSizeMake(3,3);
-                                 
+                                 likeButton.layer.shadowOpacity = 0.6;
+                                 shareButton.layer.shadowOpacity = 0.6;
+
                              }];
         }
     }
@@ -100,11 +99,10 @@ static float kSuspendHeartBeatDuration = 0.6 ;
                              shareButton.alpha = 0.35 ;
                              
                              likeButton.layer.shadowOffset = CGSizeMake(0,0);
-                             likeButton.layer.shadowOpacity = 0.1;
-                             
                              shareButton.layer.shadowOffset = CGSizeMake(0,0);
+                             likeButton.layer.shadowOpacity = 0.1;
                              shareButton.layer.shadowOpacity = 0.1;
-                             
+
                          }] ;
     }
 }
@@ -116,28 +114,19 @@ static float kSuspendHeartBeatDuration = 0.6 ;
 
     [self transformBiggerAnimation:btSuspend
                   pullUpOrPullDown:bUpOrDown] ;
-    [self strechAnimation:btSuspend
-         pullUpOrPullDown:bUpOrDown] ;
-    [self pullDownAnimation:btSuspend
-           pullUpOrPullDown:(BOOL)bUpOrDown] ;
-
 
 }
 
 static float kBiggerRate        = 1.2 ;
-static float kDurationTransf    = 0.1 ;
-static float kDurationStrench   = 0.3 ;
+static float kDurationTransf    = 0.3 ;
+static float kDurationStrench   = 0.2 ;
 static float kDurationPull      = 0.4 ;
 
 - (void)transformBiggerAnimation:(UIView *)whichView
                 pullUpOrPullDown:(BOOL)bUpOrDown
 {
-    CGRect imgRect = whichView.frame ;
-    
-    CGRect rectAboveScreen = imgRect ;
-    rectAboveScreen.origin.y =  - whichView.frame.size.height ;
-    whichView.frame = rectAboveScreen ;
-    
+    if (whichView.alpha != 1.) whichView.alpha = 1. ;
+
     [UIView animateWithDuration:kDurationTransf
                           delay:0.
                         options:UIViewAnimationOptionCurveLinear
@@ -145,48 +134,44 @@ static float kDurationPull      = 0.4 ;
                          whichView.transform = CGAffineTransformMakeScale(kBiggerRate, kBiggerRate) ;
                      }
                      completion:^(BOOL finished) {
+                         [self reverseAnimation:whichView pullUpOrPullDown:bUpOrDown] ;
                      }] ;
 }
 
-- (void)strechAnimation:(UIView *)whichView
-       pullUpOrPullDown:(BOOL)bUpOrDown
+- (void)reverseAnimation:(UIView *)whichView
+        pullUpOrPullDown:(BOOL)bUpOrDown
 
 {
-    [UIView animateWithDuration:kDurationStrench
-                          delay:kDurationTransf + kDurationStrench
-                        options:UIViewAnimationOptionCurveLinear
-                     animations:^{
-                         whichView.transform = CGAffineTransformMakeScale(1, 1.3) ;
-                     } completion:^(BOOL finished) {
-                         
-                         whichView.transform = CGAffineTransformIdentity ;
-
-                     }] ;
+    [UIView transitionWithView:whichView
+                      duration:kDurationStrench
+                       options:UIViewAnimationOptionTransitionFlipFromTop
+                    animations:^{
+                            whichView.transform = CGAffineTransformIdentity ;
+                    }
+                    completion:^(BOOL finished) {
+                        [self pullDownAnimation:whichView pullUpOrPullDown:bUpOrDown] ;
+                    }] ;
+    
 }
-
 
 - (void)pullDownAnimation:(UIView *)whichView
          pullUpOrPullDown:(BOOL)bUpOrDown
 {
-    CGRect newRect = whichView.frame ;
-    newRect.origin.y = [[self class] getRectOfBtSuspendShare].origin.y ;
+    CGRect orgRect = whichView.frame ;
+    orgRect.origin.y = - kSuspendButtonWidth ;
     
-    whichView.frame = bUpOrDown ? whichView.frame : newRect ;
-    NSLog(@"whichView.frame : %@", NSStringFromCGRect(whichView.frame)) ;
-    float kMoveDistance = kSuspendButtonOrginY + fabs(whichView.frame.origin.y) ;
-    NSLog(@"kMoveDistance   : %@", @(kMoveDistance)) ;
+    CGRect newRect = orgRect ;
+    newRect.origin.y = kSuspendButtonOrginY ;
     
     [UIView animateWithDuration:kDurationPull
-                          delay:kDurationTransf + kDurationStrench + kDurationPull
-         usingSpringWithDamping:10.
-          initialSpringVelocity:1.
-                        options:UIViewAnimationOptionCurveEaseOut
+                          delay:0.
+         usingSpringWithDamping:0.5
+          initialSpringVelocity:10.
+                        options:UIViewAnimationOptionAllowUserInteraction
                      animations:^{
-                         
-                         whichView.transform = bUpOrDown ? CGAffineTransformMakeTranslation(0, kMoveDistance) : CGAffineTransformMakeTranslation(0, - kMoveDistance) ;
-                         
+                         whichView.frame = !bUpOrDown ? orgRect : newRect ;
                      } completion:^(BOOL finished) {
-
+                         
                      }] ;
     
 }
@@ -195,10 +180,14 @@ static float kDurationPull      = 0.4 ;
                                   ButtonTwo:(UIButton * __nullable)bt2
                            pullUpOrPullDown:(BOOL)bUpOrDown
 {
-    [self handleSuspendButton:bt1 pullUpOrPullDown:bUpOrDown] ;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self handleSuspendButton:bt2 pullUpOrPullDown:bUpOrDown] ;
-        // finail complete .
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self handleSuspendButton:bt1 pullUpOrPullDown:bUpOrDown] ;
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)) , dispatch_get_main_queue(), ^{
+
+            [self handleSuspendButton:bt2 pullUpOrPullDown:bUpOrDown] ;
+        }) ;
     }) ;
 }
 

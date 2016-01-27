@@ -429,6 +429,7 @@
 		D7E8FE0B1C16BFFD005E908F /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E8FDF81C16BFFD005E908F /* UIView+MJExtension.m */; };
 		D7E8FE0E1C16CD63005E908F /* RootTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E8FE0D1C16CD63005E908F /* RootTableView.m */; };
 		D7E8FE5E1C1807EE005E908F /* XTNetReloader.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E8FE5D1C1807EE005E908F /* XTNetReloader.m */; };
+		D7F167771C58DEA3001388A1 /* GuidingSuperCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F167761C58DEA3001388A1 /* GuidingSuperCtrller.m */; };
 		D7FDB7AF1BAFABC5004046A6 /* UEWriteCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7AE1BAFABC5004046A6 /* UEWriteCtrller.m */; };
 		D7FDB7B31BAFAF2A004046A6 /* UETextViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B21BAFAF2A004046A6 /* UETextViewCell.m */; };
 		D7FDB7B61BAFAF7A004046A6 /* UESelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7FDB7B51BAFAF7A004046A6 /* UESelectCell.m */; };
@@ -1241,6 +1242,8 @@
 		D7E8FE0D1C16CD63005E908F /* RootTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTableView.m; sourceTree = "<group>"; };
 		D7E8FE5C1C1807EE005E908F /* XTNetReloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTNetReloader.h; sourceTree = "<group>"; };
 		D7E8FE5D1C1807EE005E908F /* XTNetReloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTNetReloader.m; sourceTree = "<group>"; };
+		D7F167751C58DEA3001388A1 /* GuidingSuperCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GuidingSuperCtrller.h; path = Controller/LoginCtrller/GuidingSuperCtrller.h; sourceTree = "<group>"; };
+		D7F167761C58DEA3001388A1 /* GuidingSuperCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GuidingSuperCtrller.m; path = Controller/LoginCtrller/GuidingSuperCtrller.m; sourceTree = "<group>"; };
 		D7FDB7AD1BAFABC5004046A6 /* UEWriteCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UEWriteCtrller.h; path = Controller/UserCtrller/UEWriteCtrller.h; sourceTree = "<group>"; };
 		D7FDB7AE1BAFABC5004046A6 /* UEWriteCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UEWriteCtrller.m; path = Controller/UserCtrller/UEWriteCtrller.m; sourceTree = "<group>"; };
 		D7FDB7B11BAFAF2A004046A6 /* UETextViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UETextViewCell.h; path = Controller/UserCtrller/UETextViewCell.h; sourceTree = "<group>"; };
@@ -2173,7 +2176,7 @@
 				18D697AC1B1C714900BC9475 /* Custom */,
 				18D3F4111B65DCFC00B35AC3 /* DataBase */,
 				18D697CB1B1C714900BC9475 /* Help */,
-				18D69A401B1C730900BC9475 /* Controller */,
+				18D69A401B1C730900BC9475 /* MVC */,
 				18D690D91B1C440000BC9475 /* Images.xcassets */,
 				18D690D61B1C440000BC9475 /* Main.storyboard */,
 				D710714E1C50958600E2F1C1 /* LaunchScreen.xib */,
@@ -2618,7 +2621,7 @@
 			path = FBShimmering;
 			sourceTree = "<group>";
 		};
-		18D69A401B1C730900BC9475 /* Controller */ = {
+		18D69A401B1C730900BC9475 /* MVC */ = {
 			isa = PBXGroup;
 			children = (
 				18D69A411B1C757A00BC9475 /* SuperClass */,
@@ -2635,7 +2638,7 @@
 				18D9657A1B394B77007A9CC1 /* SettingCtrller */,
 				18A823A21B4390BB000E275F /* AboutCtrller */,
 			);
-			name = Controller;
+			name = MVC;
 			sourceTree = "<group>";
 		};
 		18D69A411B1C757A00BC9475 /* SuperClass */ = {
@@ -2664,6 +2667,8 @@
 			children = (
 				18A823A31B439C1A000E275F /* GuideingScrollView.h */,
 				18A823A41B439C1A000E275F /* GuideingScrollView.m */,
+				D7F167751C58DEA3001388A1 /* GuidingSuperCtrller.h */,
+				D7F167761C58DEA3001388A1 /* GuidingSuperCtrller.m */,
 				18D965701B390D84007A9CC1 /* GuideFirstCtrller.h */,
 				18D965711B390D84007A9CC1 /* GuideFirstCtrller.m */,
 				18D965721B390D84007A9CC1 /* GuideFirstCtrller.xib */,
@@ -3621,6 +3626,7 @@
 				D74D49631C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.m in Sources */,
 				18A4D60C1B7DFA5400CCE555 /* ShareAlertView.m in Sources */,
 				18DC51F71B2FC15D00A2BEFF /* MyCmtCell.m in Sources */,
+				D7F167771C58DEA3001388A1 /* GuidingSuperCtrller.m in Sources */,
 				1823184C1B1DA02E001CE919 /* HomeController.m in Sources */,
 				18D699E71B1C714A00BC9475 /* FMDatabase.m in Sources */,
 				18D699971B1C714A00BC9475 /* XTAnimation.m in Sources */,
@@ -3815,11 +3821,12 @@
 					"$(PROJECT_DIR)/SuBaoJiang/help/GPUImage",
 					"$(PROJECT_DIR)/SuBaoJiang/help/Camera360",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_4.2.3/TencentOpenAPI",
+					"$(PROJECT_DIR)/SuBaoJiang/help/pop",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SuBaoJiang/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3857,11 +3864,12 @@
 					"$(PROJECT_DIR)/SuBaoJiang/help/GPUImage",
 					"$(PROJECT_DIR)/SuBaoJiang/help/Camera360",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_4.2.3/TencentOpenAPI",
+					"$(PROJECT_DIR)/SuBaoJiang/help/pop",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
 				INFOPLIST_FILE = SuBaoJiang/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

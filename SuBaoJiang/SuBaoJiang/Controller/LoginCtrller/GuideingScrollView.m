@@ -47,6 +47,11 @@
     [self showScrollView] ;
 }
 
+- (void)startAnimation
+{
+    [m_firstCtrller startAnimate] ;
+}
+
 #pragma mark --
 #pragma mark - showScrollView
 - (void)showScrollView
@@ -86,11 +91,13 @@
         _x += APPFRAME.size.width ;
     }
     
-    [m_firstCtrller startAnimate] ;
+//    [m_firstCtrller startAnimate] ;
     
     [self pageCtrl] ;
 //    [self bt_Skip] ;
 }
+
+
 
 - (UIPageControl *)pageCtrl
 {

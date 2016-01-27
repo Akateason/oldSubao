@@ -3,8 +3,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,16 +13,12 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchContent" translatesAutoresizingMaskIntoConstraints="NO" id="GNk-SE-P82">
                     <rect key="frame" x="120" y="60" width="240" height="240"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="GNk-SE-P82" secondAttribute="height" multiplier="1:1" id="YfS-fz-tqT"/>
-                    </constraints>
                 </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="GNk-SE-P82" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-60" id="N9f-so-FSu"/>
-                <constraint firstItem="GNk-SE-P82" firstAttribute="leading" relation="lessThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="leading" multiplier="3:1" constant="120" id="RyZ-Kg-4AR"/>
-                <constraint firstItem="GNk-SE-P82" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Yw8-I6-8pl"/>
+                <constraint firstItem="GNk-SE-P82" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-60" id="Mif-tn-2tk"/>
+                <constraint firstItem="GNk-SE-P82" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="XUw-to-eiW"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

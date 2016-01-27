@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "LaunchScreenViewController.h"
 
-@interface LaunchCtrller : LaunchScreenViewController //UIViewController
+@interface LaunchCtrller : LaunchScreenViewController 
 
 @end
