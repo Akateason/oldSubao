@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller.m"
-            timestampString = "475498941.219855"
+            timestampString = "475753243.509604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "689"
-            endingLineNumber = "689"
+            startingLineNumber = "694"
+            endingLineNumber = "694"
             landmarkName = "-scrollViewWillBeginDragging:"
             landmarkType = "5">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller.m"
-            timestampString = "475498941.219855"
+            timestampString = "475753243.509604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "713"
-            endingLineNumber = "713"
+            startingLineNumber = "718"
+            endingLineNumber = "718"
             landmarkName = "-scrollViewDidEndDragging:willDecelerate:"
             landmarkType = "5">
          </BreakpointContent>
@@ -52,11 +52,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller.m"
-            timestampString = "475499005.728855"
+            timestampString = "475753243.509604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "735"
-            endingLineNumber = "735"
+            startingLineNumber = "740"
+            endingLineNumber = "740"
             landmarkName = "-letSuspendBtOnOrOff"
             landmarkType = "5">
          </BreakpointContent>
@@ -68,11 +68,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller.m"
-            timestampString = "475572130.926271"
+            timestampString = "475753243.509604"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "705"
-            endingLineNumber = "705"
+            startingLineNumber = "710"
+            endingLineNumber = "710"
             landmarkName = "-scrollViewDidEndDecelerating:"
             landmarkType = "5">
          </BreakpointContent>

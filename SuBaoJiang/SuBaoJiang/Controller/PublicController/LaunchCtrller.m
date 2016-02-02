@@ -20,7 +20,7 @@
 }
 
 static float kDuration = 0.8 ;
-static float kTransfromScaleRate = 1.6 ;
+static float kTransfromScaleRate = 1.4 ;
 
 - (void)viewDidAppear:(BOOL)animated
 {

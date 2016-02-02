@@ -18,18 +18,20 @@
 #import "PictureHeader.h"
 #import "ArchiveHeader.h"
 #import "KeyChainHeader.h"
+#import "FrameHeader.h"
 
 /*
- * Version 1.20.5
+ * Version.InDevelop    1.20.6
+ * Version.Online       1.20.5
  * Build 1.29.23 upload to Appstore is Checked SWITH IN NO STATUS .
  * Build 1.29.17 upload to TestFlight .
- * 20151207 uploaded By Teason
+ * 20151207 uploaded By @Teason
+ *
  * DEVELOPER MODE SWITCHER
- * BOOL Args , ( DEFAULT is `NO`, BECOME `YES` WHEN U WANA TEST AND DEBUG . )
+ * BOOL Args , ( DEFAULT IS `NO`, BECOME `YES` WHEN IN TEST AND DEBUG MODE. )
+ * REMEMBER CHANGE IT TO `NO` WHEN YOU PUT APP ON APPSTORE .
  */
-// `YES` OR `NO` //
-#define DEVELOPER_MODE_SWITCHER         YES
-
+#define DEVELOPER_MODE_SWITCHER         NO
 
 /*
  * judge iOS VERSION more than this .
@@ -50,31 +52,6 @@
  */
 #define DEVICE_IS_IPHONE5               ([[UIScreen mainScreen] bounds].size.height >= 568)
 
-//Global App Frame
-#define APPFRAME                        [UIScreen mainScreen].bounds
-
-#define APPFRAME_WIDTH                  APPFRAME.size.width
-#define APPFRAME_HEIGHT                 APPFRAME.size.height
-
-
-//Origin NavigationBar Height
-#define NAVIGATIONBAR_HEIGHT            44.0f
-
-//Origin StatusBar Height
-#define STATUSBAR_HEIGHT                20.0f
-
-//global pulldown wating time
-#define WAIT_TIME                       0.28f
-
-//all CORNER RADIUS
-#define CORNER_RADIUS_ALL               6.0f
-
-//custom height of tabbar
-#define MY_TABBAR_HEIGHT                50.0
-
-#define ONE_PIXEL_VALUE                 0.5f
-
-#define QUICKLY_ANIMATION_DURATION      0.25f
 
 #endif
 

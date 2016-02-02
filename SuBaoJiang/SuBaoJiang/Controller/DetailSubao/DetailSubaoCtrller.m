@@ -488,6 +488,11 @@
 
 - (void)suspendLikePressed
 {
+    if (!G_TOKEN || !G_USER.u_id) {
+        [self goToLogin] ;
+        return ;
+    }
+    
     [DetailSubaoCtrller loadLikeAnimation:_bt_suspendLike
                                completion:^(BOOL finished)
     {

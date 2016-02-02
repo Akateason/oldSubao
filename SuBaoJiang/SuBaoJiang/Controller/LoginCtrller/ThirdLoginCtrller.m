@@ -169,9 +169,13 @@
 
     self.myTitle = @"微博微信登录页" ;
     
-    [self allHideInitial] ;
-
     [self flowerRain] ;
+
+    _img_train.transform = CGAffineTransformMakeTranslation(APPFRAME.size.width, 0) ;
+    _img_fromHere.hidden = YES ;
+    _img_wdTop.hidden = YES ;
+    _img_flower.hidden = YES ;
+    _img_people.hidden = YES ;
     
     if (self.bAboutUs)
     {
@@ -182,7 +186,7 @@
         
         return ;
     }
-
+    
     //审核开关
     _bt_logOrReg.hidden = G_BOOL_OPEN_APPSTORE ;
     _bt_weibo.hidden = !G_BOOL_OPEN_APPSTORE ;
@@ -203,13 +207,6 @@
     if (_bLaunchInNav) [self startAnimate] ;
 }
 
-- (void)allHideInitial
-{
-    _img_train.hidden = YES ;
-    _img_fromHere.alpha = 0.0 ;
-    _img_wdTop.alpha = 0 ;
-}
-
 - (void)startAnimate
 {
     if (m_bShowed && !DEVELOPER_MODE_SWITCHER) {
@@ -217,85 +214,91 @@
     }
     m_bShowed = YES ;
     
-    [self allHideInitial] ;
-    
-    [UIView animateWithDuration:0.2f
-                     animations:^{
-        _img_fromHere.alpha = 1.0f ;
-        _img_train.transform = CGAffineTransformMakeTranslation(APPFRAME.size.width, 0);
-    } completion:^(BOOL finished) {
-        [self showTopword] ;
-    }] ;
-    
+    [self people] ;
 }
 
 - (void)people
 {
-    CATransform3D tran = CATransform3DMakeScale(1.02, 1.02, 1) ;
-    CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"transform"] ;
-    animation.toValue= [NSValue valueWithCATransform3D:tran] ;
-    animation.duration= 0.23 ;
-    animation.autoreverses = YES ;
-    animation.cumulative = YES ;
-    animation.removedOnCompletion = YES ;
-    animation.fillMode = kCAFillModeForwards ;
-    animation.repeatCount= 1 ;
-    [_img_people.layer addAnimation:animation forKey:@"people"] ;
+    _img_people.layer.transform = CATransform3DMakeScale(1.2, 1.2, 1) ;
+
+    [UIView transitionWithView:_img_people
+                      duration:1.2
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+
+                        _img_people.hidden = NO ;
+                        _img_people.layer.transform = CATransform3DIdentity ;
+                        
+                    } completion:^(BOOL finished) {
+                        
+                        [self fromHere] ;
+                        [self showTopword] ;
+
+                    }] ;
 }
 
+- (void)fromHere
+{
+    [UIView transitionWithView:_img_fromHere
+                      duration:0.4
+                       options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionTransitionFlipFromTop
+                    animations:^{
+                        _img_fromHere.hidden = NO ;
+                    } completion:^(BOOL finished) {
+                        
+                        
+                    }] ;
+}
 
 - (void)showTopword
 {
-    _img_train.hidden = NO ;
+    [UIView transitionWithView:_img_wdTop
+                      duration:0.6
+                       options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionTransitionFlipFromBottom
+                    animations:^{
+                        
+                        _img_wdTop.hidden = NO ;
+                        
+                    } completion:^(BOOL finished) {
+                        
+                        [self flowerDown] ;
+                        
+                    }] ;
     
-    [UIView animateWithDuration:0.1f animations:^{
-
-        _img_wdTop.alpha = 1.0f ;
-
-        [self people] ;
-
-    } completion:^(BOOL finished) {
-        
-        [self flowerDown] ;
-
-    }] ;
 }
 
 - (void)flowerDown
 {
-    [UIView animateWithDuration:0.2f animations:^{
-        
-        _img_flower.alpha = 1.0f ;
-        
-    } completion:^(BOOL finished) {
-        
-        [self shake] ;
-        
-    }] ;
-}
-
-- (void)shake
-{
-    [UIView animateWithDuration:0.45 animations:^{
-        
-//        [XTAnimation shakeRandomDirectionWithDuration:0.45 AndWithView:_bt_weixin];
-//        [XTAnimation shakeRandomDirectionWithDuration:0.85 AndWithView:_bt_weibo];
-        
-    } completion:^(BOOL finished) {
-
-        [self train] ;
-        
-    }] ;
+//    _img_flower.transform = CGAffineTransformMakeTranslation(0, - _img_flower.frame.origin.y - _img_flower.frame.size.height) ;
+    
+    [UIView transitionWithView:_img_flower
+                      duration:0.8
+                       options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        _img_flower.hidden = NO ;
+//                        _img_flower.transform = CGAffineTransformIdentity ;
+                    } completion:^(BOOL finished) {
+                        [self train] ;
+                    }] ;
 }
 
 - (void)train
 {
-    [UIView animateWithDuration:1.65f animations:^{
-        _img_train.transform = CGAffineTransformMakeTranslation(0, 0);
-    } completion:^(BOOL finished) {
-        CABasicAnimation *animat = [XTAnimation opacityForever_Animation:0.3] ;
-        [_img_flower.layer addAnimation:animat forKey:@"flower"] ;
-    }] ;
+    [UIView transitionWithView:_img_train
+                      duration:1.65f
+                       options:UIViewAnimationOptionCurveEaseOut
+                    animations:^{
+
+                        _img_train.hidden = NO ;
+                        _img_train.transform = CGAffineTransformIdentity ;
+
+                    } completion:^(BOOL finished) {
+                        
+                        CABasicAnimation *animat = [XTAnimation opacityForever_Animation:0.6] ;
+                        [_img_flower.layer addAnimation:animat forKey:@"flower"] ;
+                        
+                    }] ;
+
 }
 
 - (void)flowerRain

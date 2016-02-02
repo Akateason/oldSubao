@@ -177,11 +177,26 @@
     
     [self changeButtonSelectInfo] ;
     
-    [UIView animateWithDuration:0.35 animations:^{
-        CGRect rect = _imgSelectView.frame ;
-        rect.origin.x = self.btWidth * index ;
-        _imgSelectView.frame = rect ;
-    }] ;
+//    [UIView animateWithDuration:0.35 animations:^{
+//        CGRect rect = _imgSelectView.frame ;
+//        rect.origin.x = self.btWidth * index ;
+//        _imgSelectView.frame = rect ;
+//    }] ;
+    
+    [UIView animateWithDuration:0.4
+                          delay:0.
+         usingSpringWithDamping:0.55
+          initialSpringVelocity:10.
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         
+                         CGRect rect = _imgSelectView.frame ;
+                         rect.origin.x = self.btWidth * index ;
+                         _imgSelectView.frame = rect ;
+                         
+                     } completion:^(BOOL finished) {
+                         
+                     }] ;
 }
 
 

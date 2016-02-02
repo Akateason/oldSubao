@@ -38,14 +38,17 @@
     _headTitle.transform = CGAffineTransformMakeTranslation(0, -100) ;
     
     [UIView transitionWithView:_headTitle
-                      duration:1.3
+                      duration:0.8
                        options:UIViewAnimationOptionCurveEaseOut
                     animations:^{
                         _headTitle.hidden = NO ;
                         _headTitle.transform = CGAffineTransformIdentity ;
                     }
                     completion:^(BOOL finished) {
+
                         [self animationContent] ;
+                        [self animationTailTitle] ;
+
                     }] ;
 
 }
@@ -62,7 +65,6 @@
                         _mainContents.transform = CGAffineTransformIdentity ;
                     }
                     completion:^(BOOL finished) {
-                        [self animationTailTitle] ;
                     }] ;
 
 }

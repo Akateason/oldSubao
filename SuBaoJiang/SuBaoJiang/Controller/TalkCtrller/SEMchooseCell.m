@@ -65,28 +65,39 @@
     [self.delegate clickChooseButtonIndex:(int)button.tag - TAG_bt_semc_1] ;
 }
 
+static CGFloat duration = 0.7 ;
 
 - (void)animationForIcon
 {
-    CGFloat duration = 0.25 ;
+    CATransform3D rotationTransform  = CATransform3DMakeRotation(M_PI , 0 , 1 ,0) ;
     
-    CATransform3D rotationTransform  = CATransform3DMakeRotation(M_PI_2, 0, 1 ,0);
-    [UIView animateWithDuration:duration animations:^{
-        [bt_semc_1.imageView.layer setTransform:rotationTransform] ;
-    } completion:^(BOOL finished) {
-
-        CATransform3D transform  = CATransform3DMakeRotation(0, 0, 0 ,0);
-        [bt_semc_1.imageView.layer setTransform:transform] ;
-
-        [UIView animateWithDuration:duration animations:^{
-            [bt_semc_2.imageView.layer setTransform:rotationTransform] ;
-        } completion:^(BOOL finished) {
-            if (finished) {
-                [bt_semc_2.imageView.layer setTransform:transform] ;
-            }
-        }] ;
-    }] ;
+    bt_semc_1.imageView.layer.transform = rotationTransform ;
+    [UIView animateWithDuration:duration
+                          delay:0
+         usingSpringWithDamping:.5
+          initialSpringVelocity:10
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         
+                         bt_semc_1.imageView.layer.transform = CATransform3DIdentity ;
+                         
+                     } completion:^(BOOL finished) {
+                         
+                     }] ;
     
+    bt_semc_2.imageView.layer.transform = rotationTransform ;
+    [UIView animateWithDuration:duration
+                          delay:0.2
+         usingSpringWithDamping:.5
+          initialSpringVelocity:10
+                        options:UIViewAnimationOptionAllowUserInteraction
+                     animations:^{
+                         
+                         bt_semc_2.imageView.layer.transform = CATransform3DIdentity ;
+                         
+                     } completion:^(BOOL finished) {
+                         
+                     }] ;
 }
 
 - (void)removeAnimation
@@ -98,7 +109,6 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
     // Configure the view for the selected state
 }
 
