@@ -21,10 +21,11 @@
 @interface ThirdLoginCtrller : RootCtrl
 
 //ADDITION
-@property (nonatomic)   BOOL    bAboutUs ; // DEFAULT IS NO;
-@property (nonatomic,weak) id <ThirdLoginCtrllerDelegate> delegate ;
+@property (nonatomic)       BOOL    bAboutUs ; // DEFAULT IS NO;
+@property (nonatomic,weak)  id <ThirdLoginCtrllerDelegate> delegate ;
 
-@property (nonatomic)   BOOL    bLaunchInNav ;
+@property (nonatomic)       BOOL    bLaunchInNav ;
 - (void)startAnimate ;
+- (void)endAnimate ;
 
 @end

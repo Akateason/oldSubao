@@ -278,6 +278,7 @@
         <!--Raise First Ctrller-->
         <scene sceneID="JuG-LV-4fb">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MON-Xm-7RD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="RaiseFirstCtrller" id="gUX-nB-trP" customClass="RaiseFirstCtrller" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xHa-pO-By9"/>
@@ -304,7 +305,6 @@
                         <outlet property="scrollV" destination="mit-82-oe7" id="J37-B0-g22"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MON-Xm-7RD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-720" y="3774"/>
         </scene>
@@ -643,17 +643,34 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXa-kW-QBq" userLabel="bottomView">
                                 <rect key="frame" x="0.0" y="391" width="320" height="177"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YPf-7J-uo6">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PxM-8O-k3s">
                                         <rect key="frame" x="5" y="0.0" width="310" height="177"/>
-                                    </scrollView>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="EBg-FF-e2t">
+                                            <size key="itemSize" width="110" height="177"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="pfH-IK-o2o">
+                                                <rect key="frame" x="0.0" y="0.0" width="110" height="177"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="110" height="177"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.070588235294117646" green="0.074509803921568626" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="YPf-7J-uo6" secondAttribute="bottom" id="OVp-W7-UT7"/>
+                                    <constraint firstItem="PxM-8O-k3s" firstAttribute="leading" secondItem="PXa-kW-QBq" secondAttribute="leading" constant="5" id="Dcg-yO-h3H"/>
                                     <constraint firstAttribute="height" constant="177" id="UFf-hR-XMR"/>
-                                    <constraint firstItem="YPf-7J-uo6" firstAttribute="leading" secondItem="PXa-kW-QBq" secondAttribute="leading" constant="5" id="con-bq-TVx"/>
-                                    <constraint firstItem="YPf-7J-uo6" firstAttribute="top" secondItem="PXa-kW-QBq" secondAttribute="top" id="sWi-Fb-ukH"/>
-                                    <constraint firstAttribute="trailing" secondItem="YPf-7J-uo6" secondAttribute="trailing" constant="5" id="u5L-mj-Cun"/>
+                                    <constraint firstAttribute="bottom" secondItem="PxM-8O-k3s" secondAttribute="bottom" id="YKH-UI-yJd"/>
+                                    <constraint firstItem="PxM-8O-k3s" firstAttribute="top" secondItem="PXa-kW-QBq" secondAttribute="top" id="mv7-ST-fcW"/>
+                                    <constraint firstAttribute="trailing" secondItem="PxM-8O-k3s" secondAttribute="trailing" constant="5" id="zM8-ci-Fgm"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -669,7 +686,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="scrollPaster" destination="YPf-7J-uo6" id="DGJ-3C-qHA"/>
+                        <outlet property="collectionViewPasters" destination="PxM-8O-k3s" id="fjx-wW-nhU"/>
                         <outlet property="topBar" destination="dB3-tw-Fya" id="oQU-m9-zYj"/>
                     </connections>
                 </viewController>

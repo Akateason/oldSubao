@@ -18,15 +18,21 @@
 {
     _group = group ;
     
-    CGImageRef poster = [group posterImage];
-    _img.image = [UIImage imageWithCGImage:poster] ;
-    NSString *strShow = [NSString stringWithFormat:@"%@（%d）",[group valueForProperty:ALAssetsGroupPropertyName],(int)[group numberOfAssets]] ;
-    _lb.text = strShow ;
+    @autoreleasepool {
+        _img.image = [UIImage imageWithCGImage:[group posterImage]] ;
+        NSString *strShow = [NSString stringWithFormat:@"%@（%d）",[group valueForProperty:ALAssetsGroupPropertyName],(int)[group numberOfAssets]] ;
+        _lb.text = strShow ;
+    }
 }
 
 - (void)awakeFromNib
 {
     // Initialization code
+}
+
+- (void)dealloc
+{
+    _group = nil ;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated

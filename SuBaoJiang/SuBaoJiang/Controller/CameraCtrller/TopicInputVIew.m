@@ -18,10 +18,10 @@
     self = [super initWithCoder:coder];
     if (self)
     {
+        
     }
     return self;
 }
-
 
 - (void)dealloc
 {
@@ -33,7 +33,6 @@
         [_textfield resignFirstResponder] ;
     }
 }
-
 
 - (void)awakeFromNib
 {
@@ -47,8 +46,7 @@
     
     [self.textfield addTarget:self
                        action:@selector(myTextFieldChanged:)
-             forControlEvents:UIControlEventEditingChanged];
-    
+             forControlEvents:UIControlEventEditingChanged];    
 }
 
 
@@ -65,23 +63,6 @@
 //    [self.delegate newTopicConfirmed:textField.text] ;
     return YES;
 }
-
-//- (void)textFieldDidEndEditing:(UITextField *)textField
-//{
-////    [self.delegate newTopicConfirmed:textField.text] ;
-//}
-
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string   // return NO to not change text
-//{
-//    if ([string isEqualToString:@"\n"]) {
-//        [textField resignFirstResponder] ;
-//        return NO ;
-//    }
-//    
-//    [self.delegate newTopicConfirmed:_textfield.text] ;
-//
-//    return YES ;
-//}
 
 - (BOOL)textFieldShouldClear:(UITextField *)textField
 {

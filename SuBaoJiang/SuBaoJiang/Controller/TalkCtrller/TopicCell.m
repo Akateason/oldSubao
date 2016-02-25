@@ -11,6 +11,7 @@
 #import "UIImageView+WebCache.h"
 
 @interface TopicCell ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *img_topic;
 @property (weak, nonatomic) IBOutlet UILabel *lb_topic;
 @property (weak, nonatomic) IBOutlet UILabel *lb_content;
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *img_su_timeStatus;
 
 @property (nonatomic)       BOOL    hiddenImgs ;
+
 @end
 
 @implementation TopicCell
@@ -27,7 +29,6 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    
     _img_topic.layer.borderWidth = ONE_PIXEL_VALUE ;
     _img_topic.layer.borderColor = COLOR_BORDER_GRAY.CGColor ;
     _img_topic.layer.cornerRadius = 6.0 ;

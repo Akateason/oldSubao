@@ -30,6 +30,11 @@
     // Do any additional setup after loading the view from its nib.
 }
 
+- (void)dealloc
+{
+    
+}
+
 - (void)startAnimate
 {
     if (m_bShowed && !DEVELOPER_MODE_SWITCHER) {

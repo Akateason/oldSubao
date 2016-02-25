@@ -25,11 +25,14 @@
     self.headTitle = _lb_word1 ;
     self.mainContents = _img_map ;
     self.tailTitle = _lb_word2 ;
-
-    self.myTitle = @"引导页" ;
     
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)dealloc
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {

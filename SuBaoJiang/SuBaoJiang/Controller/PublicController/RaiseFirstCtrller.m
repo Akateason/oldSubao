@@ -12,8 +12,9 @@
 #import "CommonFunc.h"
 
 @interface RaiseFirstCtrller ()<GuideingScrollViewDelegate>
-@property (nonatomic)       BOOL    bAboutUs ;
-@property (weak, nonatomic) IBOutlet GuideingScrollView *scrollV ; // in Class GuideingScrollView .
+
+@property (nonatomic)                   BOOL                bAboutUs ;
+@property (weak, nonatomic) IBOutlet    GuideingScrollView  *scrollV ; // in Class GuideingScrollView .
 
 @end
 
@@ -33,6 +34,13 @@
     [ctrller presentViewController:raiseCtrller animated:YES completion:^{}] ;
 }
 
+- (void)dealloc
+{
+    _scrollV.guidingDelegate = nil ;
+    _scrollV.currentCtrller  = nil ;
+
+}
+
 #pragma mark --
 - (void)viewDidLoad
 {
@@ -41,9 +49,12 @@
     
     self.myTitle = @"启动页" ;
     
-    _scrollV.guidingDelegate = self ;
-    _scrollV.currentCtrller  = self ;
-    _scrollV.isAboutUS       = self.bAboutUs ;
+    __weak RaiseFirstCtrller *weakSelf = self ;
+    
+    _scrollV.guidingDelegate = weakSelf ;
+    _scrollV.currentCtrller  = weakSelf ;
+    _scrollV.isAboutUS       = weakSelf.bAboutUs ;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -76,12 +87,6 @@
 }
 
 #pragma mark --
-- (void)dismiss
-{
-    [self dismissViewControllerAnimated:YES completion:^{}] ;
-}
-
-#pragma mark --
 #pragma mark - guiding delegate
 - (void)logSelf
 {
@@ -92,8 +97,14 @@
 
 - (void)seeMore
 {
-    [self dismiss] ;
+    [_scrollV ending] ;
+    
+    if (self.view.window != nil) {
+        [self dismissViewControllerAnimated:YES completion:^{}] ;
+    }
 }
+
+
 
 /*
 #pragma mark - Navigation

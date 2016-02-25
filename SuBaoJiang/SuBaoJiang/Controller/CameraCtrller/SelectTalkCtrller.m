@@ -19,16 +19,16 @@
 {
     NSMutableArray *m_topicList ;
     
-    BOOL            bCreateOrSelect ; // default is NO --> select , YES -- > create
+    BOOL           bCreateOrSelect ; // default is NO --> select , YES -- > create
     
     int            m_currentPage ;
     
     TopicHeader    *header ;
 }
-@property (weak, nonatomic) IBOutlet UIView *upView ;
-@property (weak, nonatomic) IBOutlet RootTableView *table ;
-@property (nonatomic, strong)TopicInputVIew *topicInputVIew ;
-@property (nonatomic, strong)NSArray        *myTopicList ;
+@property (weak, nonatomic) IBOutlet    UIView          *upView ;
+@property (weak, nonatomic) IBOutlet    RootTableView   *table ;
+@property (nonatomic, strong)           TopicInputVIew  *topicInputVIew ;
+@property (nonatomic, strong)           NSArray         *myTopicList ;
 
 @end
 
@@ -44,24 +44,10 @@
     return _myTopicList ;
 }
 
-- (void)setMyTopicList:(NSArray *)myTopicList
-{
-
-//    if (myTopicList.count) {
-//        for (int i = 0; i < myTopicList.count; i++) {
-//            for (int j = i+1; j < myTopicList.count - 1; j++) {
-//                ArticleTopic *topic1 = myTopicList[i] ;
-//                ArticleTopic *topic2 = myTopicList[j] ;
-//                if (topic1.t_id && topic2.t_id && topic1.t_id == topic2.t_id) {
-//                    return ;
-//                }
-//            }
-//        }
-//    }
-    
-    _myTopicList = myTopicList ;
-
-}
+//- (void)setMyTopicList:(NSArray *)myTopicList
+//{
+//    _myTopicList = myTopicList ;
+//}
 
 - (TopicInputVIew *)topicInputVIew
 {
@@ -74,7 +60,6 @@
             [self.upView addSubview:_topicInputVIew] ;
         }
     }
-    
     return _topicInputVIew ;
 }
 
@@ -82,11 +67,10 @@
 {
     _table.delegate = self ;
     _table.dataSource = self ;
-//    _table.separatorStyle = UITableViewCellSeparatorStyleNone ;
     _table.backgroundColor = COLOR_BACKGROUND ;
     _table.xt_Delegate = self ;
-    _table.separatorColor     = COLOR_TABLE_SEP ;
-    _table.separatorInset     = UIEdgeInsetsMake(0, 26, 0, 0) ;
+    _table.separatorColor = COLOR_TABLE_SEP ;
+    _table.separatorInset = UIEdgeInsetsMake(0, 26, 0, 0) ;
 }
 
 - (void)setupDataSource
@@ -112,7 +96,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 
 #pragma mark --
 #pragma mark - parser
@@ -153,7 +136,6 @@
     return YES ;
 }
 
-
 #pragma mark -- RootTableViewDelegate
 - (void)loadNewData
 {
@@ -167,7 +149,6 @@
 
 #pragma mark --
 #pragma mark - table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -180,13 +161,12 @@
     @synchronized(self.myTopicList) {
         return bCreateOrSelect ? [self.myTopicList count] : [m_topicList count] ;
     }
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentiferId = @"TopicCell";
-    TopicCell * cell = [tableView dequeueReusableCellWithIdentifier:CellIdentiferId] ;
+    TopicCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentiferId] ;
     if (!cell)
     {
         [tableView registerNib:[UINib nibWithNibName:CellIdentiferId bundle:nil] forCellReuseIdentifier:CellIdentiferId];
@@ -200,7 +180,6 @@
     
     return cell;
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -222,7 +201,6 @@
     if (!header) {
         header = (TopicHeader *)[[[NSBundle mainBundle] loadNibNamed:@"TopicHeader" owner:self options:nil] lastObject] ;
     }
-    
     header.title = bCreateOrSelect ? @"相关" : @"热门" ;
     
     return header ;
@@ -282,9 +260,7 @@
          [self operateNewTopicList:searchList topicStr:topicStr] ;
          
      } fail:nil] ;
-    
 }
-
 
 - (void)operateNewTopicList:(NSArray *)searchList
                    topicStr:(NSString *)topicStr

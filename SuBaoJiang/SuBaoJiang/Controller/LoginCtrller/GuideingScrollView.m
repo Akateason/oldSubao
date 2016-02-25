@@ -36,8 +36,12 @@
     {
         
     }
-    
     return self;
+}
+
+- (void)dealloc
+{
+    [self ending] ;
 }
 
 - (void)layoutSubviews
@@ -50,6 +54,33 @@
 - (void)startAnimation
 {
     [m_firstCtrller startAnimate] ;
+}
+
+- (void)ending
+{
+    [self removeCtrller:m_firstCtrller] ;
+    [self removeCtrller:m_secondCtrller] ;
+    [self removeCtrller:m_thirdCtrller] ;
+    [self removeCtrller:m_fourthCtrller] ;
+    [m_loginCtrller endAnimate] ;
+    [self removeCtrller:m_loginCtrller] ;
+    
+    m_guidelist = nil ;
+    self.currentCtrller = nil ;
+    self.guidingDelegate = nil ;
+}
+
+- (void)removeCtrller:(UIViewController *)ctrller
+{
+    if (ctrller) {
+        for (UIView *subView in [ctrller.view subviews]) {
+            [subView.layer removeAllAnimations] ;
+            [subView removeFromSuperview] ;
+        }
+        
+        [ctrller.view.layer removeAllAnimations] ;
+        ctrller = nil ;
+    }
 }
 
 #pragma mark --
@@ -91,13 +122,9 @@
         _x += APPFRAME.size.width ;
     }
     
-//    [m_firstCtrller startAnimate] ;
-    
     [self pageCtrl] ;
 //    [self bt_Skip] ;
 }
-
-
 
 - (UIPageControl *)pageCtrl
 {
@@ -119,6 +146,7 @@
     return _pageCtrl ;
 }
 
+/*
 - (UIButton *)bt_Skip
 {
     if (!_bt_Skip)
@@ -158,23 +186,15 @@
     NSLog(@"skipClickAction") ;
     
     [self.guidingDelegate seeMore] ;
-    
-//    CGFloat wid = APPFRAME.size.width * 4 ;
-//    self.pageCtrl.currentPage = 4 ;
-//    [self scrollRectToVisible:CGRectMake(wid, 0, APPFRAME.size.width, APPFRAME.size.height)
-//                     animated:YES] ;
 }
-
+*/
 
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    
     int current = scrollView.contentOffset.x / APPFRAME.size.width;
     self.pageCtrl.currentPage = current ;
-    
     m_pre = current ;
-    NSLog(@"current,%d",current) ;
     
     switch (current)
     {
@@ -216,7 +236,9 @@
 
 - (void)seeMore
 {
-    [self.guidingDelegate seeMore] ;
+    if ([self.guidingDelegate respondsToSelector:@selector(seeMore)]) {
+        [self.guidingDelegate seeMore] ;
+    }
 }
 
 @end

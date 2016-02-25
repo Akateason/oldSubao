@@ -14,6 +14,8 @@
 @end
 
 @interface PasterCtrller : RootCtrl
+
 @property (nonatomic,weak)   id <PasterCtrllerDelegate> delegate ;
 @property (nonatomic,strong) UIImage *imageWillHandle ;
+
 @end

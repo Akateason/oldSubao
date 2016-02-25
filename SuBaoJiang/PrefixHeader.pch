@@ -22,10 +22,10 @@
 
 /*
  * Version.InDevelop    1.20.6
- * Version.Online       1.20.5
- * Build 1.29.23 upload to Appstore is Checked SWITH IN NO STATUS .
+ * Version.Online       1.20.6
+ * Build 1.29.24 upload to Appstore is Checked SWITH IN NO STATUS .
  * Build 1.29.17 upload to TestFlight .
- * 20151207 uploaded By @Teason
+ * latest uploaded By @Teason in 20160202 .
  *
  * DEVELOPER MODE SWITCHER
  * BOOL Args , ( DEFAULT IS `NO`, BECOME `YES` WHEN IN TEST AND DEBUG MODE. )
@@ -41,14 +41,14 @@
 #define IS_IOS_VERSION(FLOAT_X)         ([[[UIDevice currentDevice] systemVersion] floatValue] >= FLOAT_X)
 
 /*
- * Under iOS VERSION <
+ *  iOS VERSION less than
  * X -- float
  * e.g. ios7.0 , ios7.1
  */
 #define UNDER_IOS_VERSION(FLOAT_X)      ([[[UIDevice currentDevice] systemVersion] floatValue] < FLOAT_X)
 
 /*
- * judge iPhone5 type
+ * judge iPhone5 DEVICE
  */
 #define DEVICE_IS_IPHONE5               ([[UIScreen mainScreen] bounds].size.height >= 568)
 

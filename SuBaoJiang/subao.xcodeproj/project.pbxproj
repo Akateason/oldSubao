@@ -366,8 +366,6 @@
 		18E3CF141B709DA400F4DB52 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3CF131B709DA400F4DB52 /* CoreData.framework */; };
 		18E3CF161B709DB800F4DB52 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18E3CF151B709DB800F4DB52 /* CoreImage.framework */; };
 		18EC3E7D1B71BFFF0041E9DB /* PasterCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EC3E7C1B71BFFF0041E9DB /* PasterCtrller.m */; };
-		18EC3E7F1B71CEFF0041E9DB /* PasterChooseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18EC3E7E1B71CEFF0041E9DB /* PasterChooseView.xib */; };
-		18EC3E821B71DDA20041E9DB /* PasterChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EC3E811B71DDA20041E9DB /* PasterChooseView.m */; };
 		18EC3E8A1B7207C60041E9DB /* SpinCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EC3E891B7207C60041E9DB /* SpinCtrller.m */; };
 		18EC3E8E1B7207FB0041E9DB /* EditPrepareCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EC3E8D1B7207FB0041E9DB /* EditPrepareCtrller.m */; };
 		18EC3E911B72083A0041E9DB /* CutCtrller.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EC3E901B72083A0041E9DB /* CutCtrller.m */; };
@@ -397,6 +395,15 @@
 		D74D495C1C3D09C600FBF02A /* XTZoomPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D495B1C3D09C600FBF02A /* XTZoomPicture.m */; };
 		D74D49601C3E518600FBF02A /* XTJson.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D495F1C3E518600FBF02A /* XTJson.m */; };
 		D74D49631C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D74D49621C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.m */; };
+		D7504F0C1C7EE0D400B97662 /* NSObject+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = D7504EFF1C7EE0D400B97662 /* NSObject+MemoryLeak.m */; };
+		D7504F0D1C7EE0D400B97662 /* UINavigationController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = D7504F011C7EE0D400B97662 /* UINavigationController+MemoryLeak.m */; };
+		D7504F0E1C7EE0D400B97662 /* UIPageViewController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = D7504F031C7EE0D400B97662 /* UIPageViewController+MemoryLeak.m */; };
+		D7504F0F1C7EE0D400B97662 /* UISplitViewController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = D7504F051C7EE0D400B97662 /* UISplitViewController+MemoryLeak.m */; };
+		D7504F101C7EE0D400B97662 /* UITabBarController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = D7504F071C7EE0D400B97662 /* UITabBarController+MemoryLeak.m */; };
+		D7504F111C7EE0D400B97662 /* UIView+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = D7504F091C7EE0D400B97662 /* UIView+MemoryLeak.m */; };
+		D7504F121C7EE0D400B97662 /* UIViewController+MemoryLeak.m in Sources */ = {isa = PBXBuildFile; fileRef = D7504F0B1C7EE0D400B97662 /* UIViewController+MemoryLeak.m */; };
+		D7504F161C7EEA4300B97662 /* PasterChooseCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7504F141C7EEA4300B97662 /* PasterChooseCollectionCell.m */; };
+		D7504F171C7EEA4300B97662 /* PasterChooseCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7504F151C7EEA4300B97662 /* PasterChooseCollectionCell.xib */; };
 		D75CC73F1C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC7381C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m */; };
 		D75CC7401C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC73A1C310E4300E590E6 /* UITableView+FDKeyedHeightCache.m */; };
 		D75CC7411C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D75CC73C1C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m */; };
@@ -1124,9 +1131,6 @@
 		18E3CF151B709DB800F4DB52 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		18EC3E7B1B71BFFF0041E9DB /* PasterCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasterCtrller.h; path = Controller/CameraCtrller/PasterCtrller/PasterCtrller.h; sourceTree = "<group>"; };
 		18EC3E7C1B71BFFF0041E9DB /* PasterCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasterCtrller.m; path = Controller/CameraCtrller/PasterCtrller/PasterCtrller.m; sourceTree = "<group>"; };
-		18EC3E7E1B71CEFF0041E9DB /* PasterChooseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PasterChooseView.xib; path = Controller/CameraCtrller/PasterCtrller/PasterChooseView.xib; sourceTree = "<group>"; };
-		18EC3E801B71DDA20041E9DB /* PasterChooseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasterChooseView.h; path = Controller/CameraCtrller/PasterCtrller/PasterChooseView.h; sourceTree = "<group>"; };
-		18EC3E811B71DDA20041E9DB /* PasterChooseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasterChooseView.m; path = Controller/CameraCtrller/PasterCtrller/PasterChooseView.m; sourceTree = "<group>"; };
 		18EC3E881B7207C60041E9DB /* SpinCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SpinCtrller.h; path = Controller/CameraCtrller/SpinCtrller/SpinCtrller.h; sourceTree = "<group>"; };
 		18EC3E891B7207C60041E9DB /* SpinCtrller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SpinCtrller.m; path = Controller/CameraCtrller/SpinCtrller/SpinCtrller.m; sourceTree = "<group>"; };
 		18EC3E8C1B7207FB0041E9DB /* EditPrepareCtrller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditPrepareCtrller.h; path = Controller/CameraCtrller/PreviewCtrller/EditPrepareCtrller.h; sourceTree = "<group>"; };
@@ -1181,6 +1185,24 @@
 		D74D495F1C3E518600FBF02A /* XTJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTJson.m; sourceTree = "<group>"; };
 		D74D49611C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "DetailSubaoCtrller+AnimationManager.h"; path = "SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller+AnimationManager.h"; sourceTree = SOURCE_ROOT; };
 		D74D49621C3F8CF400FBF02A /* DetailSubaoCtrller+AnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "DetailSubaoCtrller+AnimationManager.m"; path = "SuBaoJiang/Controller/DetailSubao/DetailSubaoCtrller+AnimationManager.m"; sourceTree = SOURCE_ROOT; };
+		D7504EFD1C7EE0D400B97662 /* MLeaksFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MLeaksFinder.h; sourceTree = "<group>"; };
+		D7504EFE1C7EE0D400B97662 /* NSObject+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+MemoryLeak.h"; sourceTree = "<group>"; };
+		D7504EFF1C7EE0D400B97662 /* NSObject+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+MemoryLeak.m"; sourceTree = "<group>"; };
+		D7504F001C7EE0D400B97662 /* UINavigationController+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationController+MemoryLeak.h"; sourceTree = "<group>"; };
+		D7504F011C7EE0D400B97662 /* UINavigationController+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationController+MemoryLeak.m"; sourceTree = "<group>"; };
+		D7504F021C7EE0D400B97662 /* UIPageViewController+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPageViewController+MemoryLeak.h"; sourceTree = "<group>"; };
+		D7504F031C7EE0D400B97662 /* UIPageViewController+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPageViewController+MemoryLeak.m"; sourceTree = "<group>"; };
+		D7504F041C7EE0D400B97662 /* UISplitViewController+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UISplitViewController+MemoryLeak.h"; sourceTree = "<group>"; };
+		D7504F051C7EE0D400B97662 /* UISplitViewController+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UISplitViewController+MemoryLeak.m"; sourceTree = "<group>"; };
+		D7504F061C7EE0D400B97662 /* UITabBarController+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBarController+MemoryLeak.h"; sourceTree = "<group>"; };
+		D7504F071C7EE0D400B97662 /* UITabBarController+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITabBarController+MemoryLeak.m"; sourceTree = "<group>"; };
+		D7504F081C7EE0D400B97662 /* UIView+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MemoryLeak.h"; sourceTree = "<group>"; };
+		D7504F091C7EE0D400B97662 /* UIView+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MemoryLeak.m"; sourceTree = "<group>"; };
+		D7504F0A1C7EE0D400B97662 /* UIViewController+MemoryLeak.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+MemoryLeak.h"; sourceTree = "<group>"; };
+		D7504F0B1C7EE0D400B97662 /* UIViewController+MemoryLeak.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+MemoryLeak.m"; sourceTree = "<group>"; };
+		D7504F131C7EEA4300B97662 /* PasterChooseCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PasterChooseCollectionCell.h; path = Controller/CameraCtrller/PasterCtrller/PasterChooseCollectionCell.h; sourceTree = "<group>"; };
+		D7504F141C7EEA4300B97662 /* PasterChooseCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PasterChooseCollectionCell.m; path = Controller/CameraCtrller/PasterCtrller/PasterChooseCollectionCell.m; sourceTree = "<group>"; };
+		D7504F151C7EEA4300B97662 /* PasterChooseCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PasterChooseCollectionCell.xib; path = Controller/CameraCtrller/PasterCtrller/PasterChooseCollectionCell.xib; sourceTree = "<group>"; };
 		D75CC7371C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDIndexPathHeightCache.h"; sourceTree = "<group>"; };
 		D75CC7381C310E4300E590E6 /* UITableView+FDIndexPathHeightCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+FDIndexPathHeightCache.m"; sourceTree = "<group>"; };
 		D75CC7391C310E4300E590E6 /* UITableView+FDKeyedHeightCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+FDKeyedHeightCache.h"; sourceTree = "<group>"; };
@@ -2132,6 +2154,7 @@
 		18D690C01B1C43FF00BC9475 = {
 			isa = PBXGroup;
 			children = (
+				D7504EFC1C7EE0D400B97662 /* MLeaksFinder */,
 				18D69A591B1D47FA00BC9475 /* PrefixHeader.pch */,
 				187CCE831B1FFB0C00360B54 /* Prefix */,
 				18D690CB1B1C440000BC9475 /* SuBaoJiang */,
@@ -2905,9 +2928,9 @@
 			children = (
 				18EC3E7B1B71BFFF0041E9DB /* PasterCtrller.h */,
 				18EC3E7C1B71BFFF0041E9DB /* PasterCtrller.m */,
-				18EC3E801B71DDA20041E9DB /* PasterChooseView.h */,
-				18EC3E811B71DDA20041E9DB /* PasterChooseView.m */,
-				18EC3E7E1B71CEFF0041E9DB /* PasterChooseView.xib */,
+				D7504F131C7EEA4300B97662 /* PasterChooseCollectionCell.h */,
+				D7504F141C7EEA4300B97662 /* PasterChooseCollectionCell.m */,
+				D7504F151C7EEA4300B97662 /* PasterChooseCollectionCell.xib */,
 			);
 			name = PasterCtrller;
 			sourceTree = "<group>";
@@ -2997,6 +3020,29 @@
 				D74D495F1C3E518600FBF02A /* XTJson.m */,
 			);
 			name = XTJson;
+			sourceTree = "<group>";
+		};
+		D7504EFC1C7EE0D400B97662 /* MLeaksFinder */ = {
+			isa = PBXGroup;
+			children = (
+				D7504EFD1C7EE0D400B97662 /* MLeaksFinder.h */,
+				D7504EFE1C7EE0D400B97662 /* NSObject+MemoryLeak.h */,
+				D7504EFF1C7EE0D400B97662 /* NSObject+MemoryLeak.m */,
+				D7504F001C7EE0D400B97662 /* UINavigationController+MemoryLeak.h */,
+				D7504F011C7EE0D400B97662 /* UINavigationController+MemoryLeak.m */,
+				D7504F021C7EE0D400B97662 /* UIPageViewController+MemoryLeak.h */,
+				D7504F031C7EE0D400B97662 /* UIPageViewController+MemoryLeak.m */,
+				D7504F041C7EE0D400B97662 /* UISplitViewController+MemoryLeak.h */,
+				D7504F051C7EE0D400B97662 /* UISplitViewController+MemoryLeak.m */,
+				D7504F061C7EE0D400B97662 /* UITabBarController+MemoryLeak.h */,
+				D7504F071C7EE0D400B97662 /* UITabBarController+MemoryLeak.m */,
+				D7504F081C7EE0D400B97662 /* UIView+MemoryLeak.h */,
+				D7504F091C7EE0D400B97662 /* UIView+MemoryLeak.m */,
+				D7504F0A1C7EE0D400B97662 /* UIViewController+MemoryLeak.h */,
+				D7504F0B1C7EE0D400B97662 /* UIViewController+MemoryLeak.m */,
+			);
+			name = MLeaksFinder;
+			path = SuBaoJiang/help/MLeaksFinder;
 			sourceTree = "<group>";
 		};
 		D75CC7351C310E4300E590E6 /* FDTemplateLayoutCell */ = {
@@ -3351,7 +3397,6 @@
 				18D965821B394C70007A9CC1 /* BindInfoCell.xib in Resources */,
 				18B3BD761B74569E0092DA79 /* PostMainCell.xib in Resources */,
 				18B65B021B9E901300228E02 /* GuideFourthCtrller.xib in Resources */,
-				18EC3E7F1B71CEFF0041E9DB /* PasterChooseView.xib in Resources */,
 				1848A7CA1B329A290063C177 /* ThirdLoginCtrller.xib in Resources */,
 				1848A8011B33BBE00063C177 /* UMSnsAccountViewController.xib in Resources */,
 				184C1D901B8B07780033CC4C /* MESuperAddCell.xib in Resources */,
@@ -3373,6 +3418,7 @@
 				1848A8021B33BBE00063C177 /* UMSShareListController.xib in Resources */,
 				18DC51FD1B2FD73700A2BEFF /* MyCommentsCell.xib in Resources */,
 				18B3BD781B74569E0092DA79 /* PostShareCell.xib in Resources */,
+				D7504F171C7EEA4300B97662 /* PasterChooseCollectionCell.xib in Resources */,
 				18A823A11B438FD7000E275F /* AboutCell.xib in Resources */,
 				18D690DA1B1C440000BC9475 /* Images.xcassets in Resources */,
 				D7E8FE071C16BFFD005E908F /* MJRefresh.bundle in Resources */,
@@ -3440,6 +3486,7 @@
 				18D699ED1B1C714A00BC9475 /* HMSegmentedControl.m in Sources */,
 				D71071AF1C560F7A00E2F1C1 /* DetailSubaoCtrller+TaskModuleTransition.m in Sources */,
 				187CCEDA1B2553C900360B54 /* PraisedController.m in Sources */,
+				D7504F111C7EE0D400B97662 /* UIView+MemoryLeak.m in Sources */,
 				18D699E81B1C714A00BC9475 /* FMDatabaseAdditions.m in Sources */,
 				18D69A171B1C714A00BC9475 /* SBJsonUTF8Stream.m in Sources */,
 				18D69A3D1B1C714B00BC9475 /* FBShimmeringLayer.m in Sources */,
@@ -3470,6 +3517,7 @@
 				182318441B1D892C001CE919 /* NavTitleView.m in Sources */,
 				D7674D351B6A0CDE0090B760 /* TopicCategoryCtrller.m in Sources */,
 				18A4D60B1B7DFA5400CCE555 /* ShareAlertV.m in Sources */,
+				D7504F0E1C7EE0D400B97662 /* UIPageViewController+MemoryLeak.m in Sources */,
 				18BABBF21B3D5E4D0024E871 /* QNUrlSafeBase64.m in Sources */,
 				D7E8FDFC1C16BFFD005E908F /* MJRefreshFooter.m in Sources */,
 				18D699BC1B1C714A00BC9475 /* ASIS3BucketRequest.m in Sources */,
@@ -3492,6 +3540,7 @@
 				18D69A0F1B1C714A00BC9475 /* SBJsonStreamParser.m in Sources */,
 				184C1D9A1B8C09730033CC4C /* SequenceTB.m in Sources */,
 				18B65AB41B9D374900228E02 /* SGFocusImageFrame.m in Sources */,
+				D7504F0F1C7EE0D400B97662 /* UISplitViewController+MemoryLeak.m in Sources */,
 				18D69A4B1B1C757A00BC9475 /* ImageScrollView.m in Sources */,
 				D7674D431B6B4E710090B760 /* SEintroCell.m in Sources */,
 				D75CC7411C310E4300E590E6 /* UITableView+FDTemplateLayoutCell.m in Sources */,
@@ -3531,6 +3580,7 @@
 				18B65AA81B96E39800228E02 /* UserInfoView.m in Sources */,
 				187CCEC81B215C1000360B54 /* NSDate+Addition.m in Sources */,
 				187CCEDE1B25545700360B54 /* UserSimpleCell.m in Sources */,
+				D7504F0C1C7EE0D400B97662 /* NSObject+MemoryLeak.m in Sources */,
 				18D965B91B3A669C007A9CC1 /* SDWebImagePrefetcher.m in Sources */,
 				1848A7C91B329A290063C177 /* ThirdLoginCtrller.m in Sources */,
 				187CCECE1B21BA0E00360B54 /* MyTabbar.m in Sources */,
@@ -3553,6 +3603,7 @@
 				18D965731B390D84007A9CC1 /* GuideFirstCtrller.m in Sources */,
 				187CCEC51B21447800360B54 /* ArticleComment.m in Sources */,
 				D7674D391B6A11A50090B760 /* TopicCateCell.m in Sources */,
+				D7504F161C7EEA4300B97662 /* PasterChooseCollectionCell.m in Sources */,
 				18BABBF61B3D5E4D0024E871 /* QNSessionManager.m in Sources */,
 				18D69A3F1B1C714B00BC9475 /* YXSpritesLoadingView.m in Sources */,
 				182318A11B1EFE33001CE919 /* WordSendView.m in Sources */,
@@ -3572,6 +3623,7 @@
 				18C065BC1B6793DD0094FF5D /* SEMchooseCell.m in Sources */,
 				18BABBBC1B3D2F260024E871 /* SelectTalkCtrller.m in Sources */,
 				18DC51D11B2E804600A2BEFF /* MenuHrizontal.m in Sources */,
+				D7504F0D1C7EE0D400B97662 /* UINavigationController+MemoryLeak.m in Sources */,
 				18D699BE1B1C714A00BC9475 /* ASIS3Request.m in Sources */,
 				D7FDB7AF1BAFABC5004046A6 /* UEWriteCtrller.m in Sources */,
 				187CCEB71B213E1000360B54 /* Themes.m in Sources */,
@@ -3637,6 +3689,7 @@
 				187CCEAB1B203B8400360B54 /* AFURLResponseSerialization.m in Sources */,
 				18DC51FC1B2FD73700A2BEFF /* MyCommentsCell.m in Sources */,
 				18D699951B1C714A00BC9475 /* PinkButton.m in Sources */,
+				D7504F121C7EE0D400B97662 /* UIViewController+MemoryLeak.m in Sources */,
 				18EC3E8E1B7207FB0041E9DB /* EditPrepareCtrller.m in Sources */,
 				1848A7D01B32A67F0063C177 /* LoginSelfCtrller.m in Sources */,
 				182318661B1ED7F0001CE919 /* ReplyCell.m in Sources */,
@@ -3664,7 +3717,6 @@
 				1823184C1B1DA02E001CE919 /* HomeController.m in Sources */,
 				18D699E71B1C714A00BC9475 /* FMDatabase.m in Sources */,
 				18D699971B1C714A00BC9475 /* XTAnimation.m in Sources */,
-				18EC3E821B71DDA20041E9DB /* PasterChooseView.m in Sources */,
 				18B3BD791B74569E0092DA79 /* PostSubaoCtrller.m in Sources */,
 				184C1D741B8578BB0033CC4C /* MultyEditCtrller.m in Sources */,
 				18D965C01B3A669C007A9CC1 /* UIView+WebCacheOperation.m in Sources */,
@@ -3688,6 +3740,7 @@
 				18D9657D1B394BAA007A9CC1 /* SettingCtrller.m in Sources */,
 				D74D49601C3E518600FBF02A /* XTJson.m in Sources */,
 				D7E8FDFF1C16BFFD005E908F /* MJRefreshAutoNormalFooter.m in Sources */,
+				D7504F101C7EE0D400B97662 /* UITabBarController+MemoryLeak.m in Sources */,
 				18A8239B1B438E29000E275F /* LogoAboutCell.m in Sources */,
 				18D965781B39134E007A9CC1 /* GuideSecondCtrller.m in Sources */,
 				18D699EF1B1C714A00BC9475 /* KeyBoardTopBar.m in Sources */,
@@ -3796,7 +3849,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -3833,7 +3886,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

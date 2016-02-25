@@ -7,43 +7,33 @@
 //
 
 #import "PasterCtrller.h"
-#import "PasterChooseView.h"
 #import "XTPasterStageView.h"
 #import "XTPasterView.h"
 #import "PasterManagement.h"
 #import "SDImageCache.h"
+#import "PasterChooseCollectionCell.h"
 
-static const CGFloat width_pasterChoose = 110.0f ;
+static NSString *kPasterChooseCollectionCellName  = @"PasterChooseCollectionCell" ;
 
-@interface PasterCtrller () <UIScrollViewDelegate,PasterChooseViewDelegate>
+@interface PasterCtrller () <UIScrollViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate>
+
 // UIs
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollPaster;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionViewPasters ;
 @property (strong, nonatomic)        XTPasterStageView *stageView ;
-@property (weak, nonatomic) IBOutlet UIView *topBar;
+@property (weak, nonatomic) IBOutlet UIView            *topBar ;
 // Attrs
-@property (nonatomic,copy) NSArray *pasterList ;
+@property (nonatomic,copy)           NSArray           *pasterList ;
+
 @end
 
 @implementation PasterCtrller
 
-#pragma mark - PasterChooseViewDelegate
-- (void)pasterClick:(Paster *)paster
-{
-    UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:paster.url withCacheWidth:640] ;
-
-    if (!image) return ;
-    
-    [_stageView addPasterWithImg:image] ;
-}
-
 #pragma mark - Property
 - (NSArray *)pasterList
 {
-    if (!_pasterList)
-    {
+    if (!_pasterList) {
         _pasterList = [[PasterManagement shareInstance] allPastersList] ;
     }
-    
     return _pasterList ;
 }
 
@@ -67,7 +57,7 @@ static const CGFloat width_pasterChoose = 110.0f ;
     CGRect rectImage = CGRectZero ;
     CGFloat length = APPFRAME.size.width - sideFlex * 2 ;
     rectImage.size = CGSizeMake(length, length) ;
-    CGFloat y = (APPFRAME.size.height - self.scrollPaster.frame.size.height - length) ;
+    CGFloat y = (APPFRAME.size.height - self.collectionViewPasters.frame.size.height - length) ;
     rectImage.origin.x = sideFlex ;
     rectImage.origin.y = y ;
     
@@ -81,49 +71,50 @@ static const CGFloat width_pasterChoose = 110.0f ;
     [self.view bringSubviewToFront:self.topBar] ;
 }
 
+- (void)dealloc
+{
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.myTitle = @"贴纸页" ;
-    
     [self setup] ;
-    [self scrollviewSetup] ;
+    
+    UINib *nib = [UINib nibWithNibName:kPasterChooseCollectionCellName bundle: [NSBundle mainBundle]];
+    [_collectionViewPasters registerNib:nib forCellWithReuseIdentifier:kPasterChooseCollectionCellName];
+    
+    self.collectionViewPasters.dataSource = self ;
+    self.collectionViewPasters.delegate = self ;
 }
 
-
-- (void)scrollviewSetup
+#pragma mark --
+#pragma mark - UICollectionViewDataSource
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    _scrollPaster.delegate = self ;
-    _scrollPaster.pagingEnabled = NO ;
-    _scrollPaster.showsVerticalScrollIndicator = NO ;
-    _scrollPaster.showsHorizontalScrollIndicator = NO ;
-    _scrollPaster.bounces = YES ;
-    _scrollPaster.contentSize = CGSizeMake(width_pasterChoose * self.pasterList.count,
-                                           self.scrollPaster.frame.size.height) ;
-    
-    int _x = 0 ;
-    
-    for (int i = 0; i < self.pasterList.count; i++)
-    {
-        CGRect rect = CGRectMake(_x, 0, width_pasterChoose, self.scrollPaster.frame.size.height) ;
-        PasterChooseView *pView = (PasterChooseView *)[[[NSBundle mainBundle] loadNibNamed:@"PasterChooseView" owner:self options:nil] lastObject] ;
-        pView.frame = rect ;
-//        pView.pasterName = self.pasterList[i] ;
-        pView.aPaster = self.pasterList[i] ;
-
-        pView.delegate = self ;
-        [_scrollPaster addSubview:pView] ;
-        
-        _x += width_pasterChoose ;
-    }
+    return self.pasterList.count ;
 }
 
-#pragma mark - UIScrollView Delegate
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+// The cell that is returned must be retrieved from a call to -dequeueReusableCellWithReuseIdentifier:forIndexPath:
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    PasterChooseCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kPasterChooseCollectionCellName forIndexPath:indexPath] ;
+    cell.aPaster = self.pasterList[indexPath.row] ;
     
+    return cell ;
+}
+
+#pragma mark --
+#pragma mark - UICollectionViewDelegate
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    Paster *paster = self.pasterList[indexPath.row] ;
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:paster.url withCacheWidth:640] ;
+    if (!image) return ;
+    [_stageView addPasterWithImg:image] ;
 }
 
 - (void)didReceiveMemoryWarning

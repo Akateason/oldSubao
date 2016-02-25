@@ -26,12 +26,11 @@
 
 @implementation AppDelegate
 
-
 #pragma mark --
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
-    [[[AppDelegateInitial alloc] initWithApplication:application options:launchOptions window:_window] setup];
+    [[[AppDelegateInitial alloc] initWithApplication:application options:launchOptions window:_window] setup] ;
     
     return YES ;
 }

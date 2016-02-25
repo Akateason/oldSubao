@@ -18,7 +18,8 @@
 
 @interface ThirdLoginCtrller ()
 {
-    BOOL m_bShowed ;
+    BOOL            m_bShowed ;
+    CAEmitterLayer  *m_snowEmitter ;
 }
 // buttons
 @property (weak, nonatomic) IBOutlet UIButton *bt_weixin;
@@ -37,34 +38,16 @@
 
 @implementation ThirdLoginCtrller
 
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(logSuccess)
-                                                     name:NSNOTIFICATION_USER_CHANGE
-                                                   object:nil] ;
-        
-        ((AppDelegate *)[UIApplication sharedApplication].delegate).thirdLoginCtrller = self ;
-    }
-    
-    return self ;
-}
 
-- (instancetype)initWithCoder:(NSCoder *)coder
+- (void)setup
 {
-    self = [super initWithCoder:coder];
-    if (self) {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(logSuccess)
-                                                     name:NSNOTIFICATION_USER_CHANGE
-                                                   object:nil] ;
-        
-        ((AppDelegate *)[UIApplication sharedApplication].delegate).thirdLoginCtrller = self ;
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(logSuccess)
+                                                 name:NSNOTIFICATION_USER_CHANGE
+                                               object:nil] ;
     
-    return self ;
+    __weak ThirdLoginCtrller *weakSelf = self ;
+    ((AppDelegate *)[UIApplication sharedApplication].delegate).thirdLoginCtrller = weakSelf ;
 }
 
 - (void)dealloc
@@ -76,8 +59,11 @@
 
 - (void)logSuccess
 {
-    [self.delegate seeMore] ; // dismiss ;
+    if ([self.delegate respondsToSelector:@selector(seeMore)]) {
+        [self.delegate seeMore] ;
+    }
 }
+
 
 #pragma mark -- Actions
 - (IBAction)weixinLoginAction:(id)sender
@@ -142,22 +128,32 @@
     }
     else
     {
-        [self.delegate logSelf] ;
+        if ([self.delegate respondsToSelector:@selector(logSelf)]) {
+            [self.delegate logSelf] ;
+        }
     }
 }
 
 - (IBAction)backAction:(id)sender
 {
-    if (_bAboutUs) {
-        [self.delegate seeMore] ;
+    if (_bAboutUs)
+    {
+        if ([self.delegate respondsToSelector:@selector(seeMore)]) {
+            [self.delegate seeMore] ;
+        }
+        
         return ;
     }
     
-    if (self.delegate == nil) {
+    if (self.delegate == nil)
+    {
         [self dismissViewControllerAnimated:YES completion:^{}] ;
     }
-    else {
-        [self.delegate seeMore] ;
+    else
+    {
+        if ([self.delegate respondsToSelector:@selector(seeMore)]) {
+            [self.delegate seeMore] ;
+        }
     }
 }
 
@@ -168,8 +164,8 @@
     // Do any additional setup after loading the view from its nib.
 
     self.myTitle = @"微博微信登录页" ;
-    
-    [self flowerRain] ;
+    [self setup] ;
+    [self addFlowerRainLayer] ;
 
     _img_train.transform = CGAffineTransformMakeTranslation(APPFRAME.size.width, 0) ;
     _img_fromHere.hidden = YES ;
@@ -205,6 +201,13 @@
     [self.navigationController setNavigationBarHidden:YES animated:NO] ;
     
     if (_bLaunchInNav) [self startAnimate] ;
+}
+
+- (void)endAnimate
+{
+    ((AppDelegate *)[UIApplication sharedApplication].delegate).thirdLoginCtrller = nil ;
+    [m_snowEmitter removeAllAnimations] ;
+    [m_snowEmitter removeFromSuperlayer] ;
 }
 
 - (void)startAnimate
@@ -268,15 +271,13 @@
 }
 
 - (void)flowerDown
-{
-//    _img_flower.transform = CGAffineTransformMakeTranslation(0, - _img_flower.frame.origin.y - _img_flower.frame.size.height) ;
-    
+{    
     [UIView transitionWithView:_img_flower
                       duration:0.8
                        options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
                         _img_flower.hidden = NO ;
-//                        _img_flower.transform = CGAffineTransformIdentity ;
+
                     } completion:^(BOOL finished) {
                         [self train] ;
                     }] ;
@@ -301,18 +302,18 @@
 
 }
 
-- (void)flowerRain
+- (void)addFlowerRainLayer
 {
     // Configure the particle emitter to the top edge of the screen
-    CAEmitterLayer *snowEmitter = [CAEmitterLayer layer]                        ;
+    m_snowEmitter = [CAEmitterLayer layer]                        ;
 //    snowEmitter.emitterPosition = CGPointMake(self.view.bounds.size.width / 2.0, 300);
 //    snowEmitter.emitterSize		= CGSizeMake(self.view.bounds.size.width * 2.0, 0.0) ;
-    snowEmitter.emitterPosition = CGPointMake(self.view.bounds.size.width / 2.0, 0.0);
-    snowEmitter.emitterSize		= CGSizeMake(self.view.bounds.size.width , 0.0) ;
-    snowEmitter.velocity = 0.2 ;
+    m_snowEmitter.emitterPosition = CGPointMake(self.view.bounds.size.width / 2.0, 0.0);
+    m_snowEmitter.emitterSize		= CGSizeMake(self.view.bounds.size.width , 0.0) ;
+    m_snowEmitter.velocity = 0.2 ;
     // Spawn points for the flakes are within on the outline of the line
-    snowEmitter.emitterMode		= kCAEmitterLayerOutline    ;
-    snowEmitter.emitterShape	= kCAEmitterLayerSphere ;//kCAEmitterLayerSphere     ; //kCAEmitterLayerLine;
+    m_snowEmitter.emitterMode		= kCAEmitterLayerOutline    ;
+    m_snowEmitter.emitterShape	= kCAEmitterLayerSphere ;//kCAEmitterLayerSphere     ; //kCAEmitterLayerLine;
     // Configure the snowflake emitter cell
     CAEmitterCell *cell = [CAEmitterCell emitterCell]  ;
 //	snowflake.emissionLongitude = 1 ;
@@ -347,18 +348,16 @@
     cell.scaleSpeed = 0.08 ;
     
     // Make the flakes seem inset in the background
-    snowEmitter.shadowOpacity = 1.0;
-    snowEmitter.shadowRadius  = 0.0;
-    snowEmitter.shadowOffset  = CGSizeMake(0.0, 1.0);
-    snowEmitter.shadowColor   = [[UIColor whiteColor] CGColor];
+    m_snowEmitter.shadowOpacity = 1.0;
+    m_snowEmitter.shadowRadius  = 0.0;
+    m_snowEmitter.shadowOffset  = CGSizeMake(0.0, 1.0);
+    m_snowEmitter.shadowColor   = [[UIColor whiteColor] CGColor];
     
     // Add everything to our backing layer below the UIContol defined in the storyboard
-    snowEmitter.emitterCells = [NSArray arrayWithObject:cell];
+    m_snowEmitter.emitterCells = [NSArray arrayWithObject:cell];
 
-    [self.view.layer addSublayer:snowEmitter];
-
+    [self.view.layer addSublayer:m_snowEmitter];
 }
-
 
 /*
 #pragma mark - Navigation

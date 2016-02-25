@@ -21,5 +21,6 @@
 @property (nonatomic, strong)   UIViewController                *currentCtrller ;
 
 - (void)startAnimation ;
+- (void)ending ;
 
 @end

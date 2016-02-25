@@ -48,7 +48,6 @@
          NSLog(@"Enumerate the asset groups failed.");
          [_table reloadData] ;
      }] ;
-
 }
 
 - (void)viewDidLoad
@@ -152,7 +151,6 @@
 {
     return LINE_HEIGHT ;
 }
-
 
 /*
 #pragma mark - Navigation

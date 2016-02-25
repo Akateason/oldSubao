@@ -23,6 +23,14 @@
     self.tailTitle.hidden = YES ;
 }
 
+- (void)dealloc
+{
+    self.headTitle = nil ;
+    self.mainContents = nil ;
+    self.tailTitle = nil ;
+
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

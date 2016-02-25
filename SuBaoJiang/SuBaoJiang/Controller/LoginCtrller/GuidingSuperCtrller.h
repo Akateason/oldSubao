@@ -10,9 +10,9 @@
 
 @interface GuidingSuperCtrller : RootCtrl
 
-@property (nonatomic,strong) UIView *headTitle ;
-@property (nonatomic,strong) UIView *mainContents ;
-@property (nonatomic,strong) UIView *tailTitle ;
+@property (nonatomic,weak) UIView *headTitle ;
+@property (nonatomic,weak) UIView *mainContents ;
+@property (nonatomic,weak) UIView *tailTitle ;
 
 - (void)startingAnimation ;
 

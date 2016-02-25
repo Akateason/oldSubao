@@ -48,7 +48,6 @@
     int             m_fromRowWillInsert ;
     int             m_clientAid_respond ;
     
-    
     int             share_articleID ;
     NSString        *share_topicStr ;
     NSString        *share_content ;
@@ -59,6 +58,7 @@
 @property (atomic,strong)           NSMutableArray     *childsList ; // sub articles .
 @property (nonatomic,strong)        NSArray            *sequenceListOfChild ;
 @property (nonatomic)               int                maxClientSubA_ID ;
+
 @end
 
 @implementation MultyEditCtrller
@@ -832,7 +832,6 @@
 
     self.myTitle = @"多图编辑发布页" ;
     
-    ((AppDelegate *)([UIApplication sharedApplication].delegate)).multyPostCtrller = self ;
     
     [self putNavBarItem] ;
     
@@ -850,7 +849,17 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:NO] ;
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:0] ;
+    
+    ((AppDelegate *)([UIApplication sharedApplication].delegate)).multyPostCtrller = self ;
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated] ;
+    
+    ((AppDelegate *)([UIApplication sharedApplication].delegate)).multyPostCtrller = nil ;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -207,8 +207,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    ((AppDelegate *)([UIApplication sharedApplication].delegate)).postSubaoCtrller = self ;
-    
     self.myTitle = @"单图发布页" ;
 
     [self.navigationController setNavigationBarHidden:NO animated:NO] ;
@@ -229,6 +227,8 @@
 {
     [super viewWillAppear:animated] ;
     
+    ((AppDelegate *)([UIApplication sharedApplication].delegate)).postSubaoCtrller = self ;
+
     [self.navigationController setNavigationBarHidden:NO animated:NO] ;
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationNone] ;
 }
@@ -236,7 +236,11 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated] ;
+    
     isFirstTime = NO ;
+    
+    ((AppDelegate *)([UIApplication sharedApplication].delegate)).postSubaoCtrller = nil ;
+
 }
 
 - (void)didReceiveMemoryWarning
