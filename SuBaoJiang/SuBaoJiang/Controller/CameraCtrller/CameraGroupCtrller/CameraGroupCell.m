@@ -9,9 +9,12 @@
 #import "CameraGroupCell.h"
 
 @interface CameraGroupCell ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *img;
 @property (weak, nonatomic) IBOutlet UILabel *lb;
+
 @end
+
 @implementation CameraGroupCell
 
 - (void)setGroup:(ALAssetsGroup *)group
