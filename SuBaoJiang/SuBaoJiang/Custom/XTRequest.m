@@ -102,7 +102,6 @@
     [self POSTWithUrl:url hud:YES parameters:dict success:success fail:fail] ;
 }
 
-
 + (ResultParsered *)getJsonWithURLstr:(NSString *)urlstr
          AndWithParamer:(NSDictionary *)dict
             AndWithMode:(METHOD_REQUEST)mode
@@ -165,7 +164,6 @@
     return nil ;
 }
 
-
 + (NSString *)getUrlInGetModeWithDic:(NSDictionary *)dict
 {
     NSArray *allKeys = [dict allKeys] ;
@@ -190,7 +188,5 @@
     
     return appendingStr ;
 }
-
-
 
 @end

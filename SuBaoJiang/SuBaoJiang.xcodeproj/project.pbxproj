@@ -815,14 +815,14 @@
 		18D3F4161B65DD9D00B35AC3 /* PicWillUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PicWillUpload.m; path = DB/PicWillUpload.m; sourceTree = "<group>"; };
 		18D3F4181B66048100B35AC3 /* XTPicCacheUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTPicCacheUploadManager.h; sourceTree = "<group>"; };
 		18D3F4191B66048100B35AC3 /* XTPicCacheUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTPicCacheUploadManager.m; sourceTree = "<group>"; };
-		18D690C91B1C440000BC9475 /* subao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = subao.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D690C91B1C440000BC9475 /* SuBaoJiang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuBaoJiang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D690CD1B1C440000BC9475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D690CE1B1C440000BC9475 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18D690D01B1C440000BC9475 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18D690D11B1C440000BC9475 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		18D690D71B1C440000BC9475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18D690D91B1C440000BC9475 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		18D690E21B1C440000BC9475 /* subaoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = subaoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D690E21B1C440000BC9475 /* SuBaoJiang.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuBaoJiang.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D690E71B1C440000BC9475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D690E81B1C440000BC9475 /* SuBaoJiangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuBaoJiangTests.m; sourceTree = "<group>"; };
 		18D690F61B1C4FE000BC9475 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -2167,8 +2167,8 @@
 		18D690CA1B1C440000BC9475 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18D690C91B1C440000BC9475 /* subao.app */,
-				18D690E21B1C440000BC9475 /* subaoTests.xctest */,
+				18D690C91B1C440000BC9475 /* SuBaoJiang.app */,
+				18D690E21B1C440000BC9475 /* SuBaoJiang.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3268,9 +3268,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		18D690C81B1C440000BC9475 /* subao */ = {
+		18D690C81B1C440000BC9475 /* SuBaoJiang */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18D690EC1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "subao" */;
+			buildConfigurationList = 18D690EC1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "SuBaoJiang" */;
 			buildPhases = (
 				18D690C51B1C440000BC9475 /* Sources */,
 				18D690C61B1C440000BC9475 /* Frameworks */,
@@ -3280,14 +3280,14 @@
 			);
 			dependencies = (
 			);
-			name = subao;
+			name = SuBaoJiang;
 			productName = SuBaoJiang;
-			productReference = 18D690C91B1C440000BC9475 /* subao.app */;
+			productReference = 18D690C91B1C440000BC9475 /* SuBaoJiang.app */;
 			productType = "com.apple.product-type.application";
 		};
-		18D690E11B1C440000BC9475 /* subaoTests */ = {
+		18D690E11B1C440000BC9475 /* SuBaoJiangTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18D690EF1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "subaoTests" */;
+			buildConfigurationList = 18D690EF1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "SuBaoJiangTests" */;
 			buildPhases = (
 				18D690DE1B1C440000BC9475 /* Sources */,
 				18D690DF1B1C440000BC9475 /* Frameworks */,
@@ -3298,9 +3298,9 @@
 			dependencies = (
 				18D690E41B1C440000BC9475 /* PBXTargetDependency */,
 			);
-			name = subaoTests;
+			name = SuBaoJiangTests;
 			productName = SuBaoJiangTests;
-			productReference = 18D690E21B1C440000BC9475 /* subaoTests.xctest */;
+			productReference = 18D690E21B1C440000BC9475 /* SuBaoJiang.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -3327,7 +3327,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 18D690C41B1C43FF00BC9475 /* Build configuration list for PBXProject "subao" */;
+			buildConfigurationList = 18D690C41B1C43FF00BC9475 /* Build configuration list for PBXProject "SuBaoJiang" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -3341,8 +3341,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				18D690C81B1C440000BC9475 /* subao */,
-				18D690E11B1C440000BC9475 /* subaoTests */,
+				18D690C81B1C440000BC9475 /* SuBaoJiang */,
+				18D690E11B1C440000BC9475 /* SuBaoJiangTests */,
 			);
 		};
 /* End PBXProject section */
@@ -3779,7 +3779,7 @@
 /* Begin PBXTargetDependency section */
 		18D690E41B1C440000BC9475 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 18D690C81B1C440000BC9475 /* subao */;
+			target = 18D690C81B1C440000BC9475 /* SuBaoJiang */;
 			targetProxy = 18D690E31B1C440000BC9475 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -3902,13 +3902,14 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/SuBaoJiang/help/QQsdk",
-					"$(PROJECT_DIR)/SuBaoJiang/help/TuSDK-for-iOS-1.8.4",
 					"$(PROJECT_DIR)/SuBaoJiang/help/GPUImage",
 					"$(PROJECT_DIR)/SuBaoJiang/help/Camera360",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_4.2.3/TencentOpenAPI",
 					"$(PROJECT_DIR)/SuBaoJiang/help/pop",
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
@@ -3916,7 +3917,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_4.2.3",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_Extra_Frameworks/Sina",
@@ -3924,13 +3924,15 @@
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMessage_Sdk_1.1.0",
 					"$(PROJECT_DIR)/SuBaoJiang/help/libWeiboSDK",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_4.2.3/TencentOpenAPI",
+					"$(inherited)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_NAME = subao;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subao.sbj;
+				PRODUCT_NAME = SuBaoJiang;
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -3945,13 +3947,14 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/SuBaoJiang/help/QQsdk",
-					"$(PROJECT_DIR)/SuBaoJiang/help/TuSDK-for-iOS-1.8.4",
 					"$(PROJECT_DIR)/SuBaoJiang/help/GPUImage",
 					"$(PROJECT_DIR)/SuBaoJiang/help/Camera360",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_4.2.3/TencentOpenAPI",
 					"$(PROJECT_DIR)/SuBaoJiang/help/pop",
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/PrefixHeader.pch";
@@ -3959,7 +3962,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_4.2.3",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_Extra_Frameworks/Sina",
@@ -3967,13 +3969,15 @@
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMessage_Sdk_1.1.0",
 					"$(PROJECT_DIR)/SuBaoJiang/help/libWeiboSDK",
 					"$(PROJECT_DIR)/SuBaoJiang/help/UMSocial_Sdk_4.2.3/TencentOpenAPI",
+					"$(inherited)",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_NAME = subao;
+				PRODUCT_BUNDLE_IDENTIFIER = com.subao.sbj;
+				PRODUCT_NAME = SuBaoJiang;
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -3993,7 +3997,7 @@
 				);
 				INFOPLIST_FILE = SuBaoJiangTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = subaoTests;
+				PRODUCT_NAME = SuBaoJiang;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuBaoJiang.app/SuBaoJiang";
 			};
 			name = Debug;
@@ -4008,7 +4012,7 @@
 				);
 				INFOPLIST_FILE = SuBaoJiangTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = subaoTests;
+				PRODUCT_NAME = SuBaoJiang;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuBaoJiang.app/SuBaoJiang";
 			};
 			name = Release;
@@ -4016,7 +4020,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		18D690C41B1C43FF00BC9475 /* Build configuration list for PBXProject "subao" */ = {
+		18D690C41B1C43FF00BC9475 /* Build configuration list for PBXProject "SuBaoJiang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18D690EA1B1C440000BC9475 /* Debug */,
@@ -4025,7 +4029,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18D690EC1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "subao" */ = {
+		18D690EC1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "SuBaoJiang" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18D690ED1B1C440000BC9475 /* Debug */,
@@ -4034,7 +4038,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18D690EF1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "subaoTests" */ = {
+		18D690EF1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "SuBaoJiangTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18D690F01B1C440000BC9475 /* Debug */,

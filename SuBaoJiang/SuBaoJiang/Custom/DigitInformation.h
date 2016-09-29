@@ -34,7 +34,7 @@
 @property (nonatomic,strong)    User            *g_currentUser ; // 当前用户
 
 // dataBase
-@property (atomic,retain)       FMDatabase      *db;
+@property (atomic,strong)       FMDatabase      *db;
 
 // 审核开关 , 服务端控制开关
 @property (nonatomic)           BOOL            g_openAPPStore ;

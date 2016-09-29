@@ -25,7 +25,6 @@
 @property (atomic, strong)  NSMutableArray         *m_articleList ; // 文章 datasource
 @property (atomic, strong)  NSMutableArray         *m_themesList  ; // 主题list
 
-
 @end
 
 @implementation HomeController
@@ -72,7 +71,7 @@
 - (void)setTopicID:(int)topicID
 {
     _topicID = topicID ;
-
+    
     // post button type
     if (topicID) {
         // ADD 2 Post Button

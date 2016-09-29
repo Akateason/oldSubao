@@ -30,7 +30,7 @@
     [self.delegate clickUserHead:_article.userCurrent.u_id] ;
 }
 
-
+    
 - (instancetype)initWithReuseIdentifier:(nullable NSString *)reuseIdentifier
 {
     self = [super initWithReuseIdentifier:reuseIdentifier] ;

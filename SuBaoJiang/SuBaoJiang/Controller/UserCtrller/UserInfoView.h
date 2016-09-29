@@ -20,4 +20,5 @@
 @property (nonatomic,strong) User *theUser ;
 - (void)setRotateAnimationProgress:(float)time ;
 - (void)setOtherFaceAnimation:(float)time ;
+
 @end

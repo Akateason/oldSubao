@@ -302,7 +302,7 @@
     
     [self _refreshing] ;
     
-    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(APPFRAME), 230)];
+    _pathCover = [[XHPathCover alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(APPFRAME), 230)] ;
     _pathCover.userObj = self.theUser ;
     [self fetchUserHead] ;
     _pathCover.isZoomingEffect = YES ;

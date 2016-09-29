@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+
 @interface CameraGroupCell : UITableViewCell
+
 @property (nonatomic,strong) ALAssetsGroup *group ;
+
 @end
