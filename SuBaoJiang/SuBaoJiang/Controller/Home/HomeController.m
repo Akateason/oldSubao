@@ -165,7 +165,7 @@
 {
     Article *artiInsert = [notification object] ;
     [self.m_articleList insertObject:artiInsert atIndex:0] ;
-
+    
     if (self.m_articleList.count == 1) return ;
     
     [_table insertSections:[NSIndexSet indexSetWithIndex:1]
@@ -340,8 +340,8 @@
     NSString *imgStr = !bSwitchFlyword ? @"fw_show" : @"fw_hide" ;
     [m_switchButton setImage:[UIImage imageNamed:imgStr]] ;
     
-    NSString *hudStr = bSwitchFlyword ? WD_HUD_FLYWORD_OPEN : WD_HUD_FLYWORD_CLOSE ;
-    [XTHudManager showWordHudWithTitle:hudStr] ;
+//    NSString *hudStr = bSwitchFlyword ? WD_HUD_FLYWORD_OPEN : WD_HUD_FLYWORD_CLOSE ;
+//    [XTHudManager showWordHudWithTitle:hudStr] ;
     
     [_table reloadData] ;
 }

@@ -772,7 +772,7 @@
         else
         {
             dispatch_async(dispatch_get_main_queue(), ^{
-                [XTHudManager showWordHudWithTitle:WD_HUD_NOMORE delay:1.0] ;
+                [XTHudManager showWordHudWithTitle:WD_HUD_NOMORE] ;
                 _reloadingFoot = NO ;
             }) ;
         }

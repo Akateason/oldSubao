@@ -28,7 +28,6 @@
     self.headTitle = nil ;
     self.mainContents = nil ;
     self.tailTitle = nil ;
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,6 +38,9 @@
 - (void)startingAnimation
 {
     [self animationHeadTitle] ;
+    [self animationContent] ;
+    [self animationTailTitle] ;
+    
 }
 
 - (void)animationHeadTitle
@@ -54,8 +56,6 @@
                     }
                     completion:^(BOOL finished) {
 
-                        [self animationContent] ;
-                        [self animationTailTitle] ;
 
                     }] ;
 
@@ -79,14 +79,12 @@
 
 - (void)animationTailTitle
 {
-//    _tailTitle.transform = CGAffineTransformMakeTranslation(0, 100) ;
     
     [UIView transitionWithView:_tailTitle
                       duration:1.3
                        options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionTransitionFlipFromBottom
                     animations:^{
                         _tailTitle.hidden = NO ;
-//                        _tailTitle.transform = CGAffineTransformIdentity ;
                     }
                     completion:^(BOOL finished) {
                     }] ;

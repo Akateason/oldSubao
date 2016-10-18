@@ -86,7 +86,6 @@
 + (UIImage *)getSuBaoJiangWaterMask:(UIImage *)orgImage
 {
     orgImage = [orgImage imageCompressForWidth:orgImage targetWidth:640] ;
-//    orgImage = [orgImage imageCompressForSize:orgImage targetSize:CGSizeMake(640, 640)] ;
     CGRect rect = CGRectMake(18, orgImage.size.height - 66 - 8, 44, 66) ;
     orgImage = [orgImage imageWithWaterMask:[UIImage imageNamed:@"waterMask"] inRect:rect] ;
     
@@ -208,7 +207,7 @@
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [contoller dismissViewControllerAnimated:YES completion:^{
-                [XTHudManager showWordHudWithTitle:WD_LOGIN_SUCCESS] ;
+//                [XTHudManager showWordHudWithTitle:WD_LOGIN_SUCCESS] ;
             }] ;
             [[NSNotificationCenter defaultCenter] postNotificationName:NSNOTIFICATION_USER_CHANGE object:nil] ;
         }) ;

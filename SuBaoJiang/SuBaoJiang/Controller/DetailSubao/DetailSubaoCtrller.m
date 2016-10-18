@@ -1471,8 +1471,7 @@ static NSString * const CellId_replyCell = @"ReplyCell" ;
 
 - (void)showHud:(NSString *)content
 {
-    [XTHudManager showWordHudWithTitle:content
-                                  delay:2.0] ;
+    [XTHudManager showWordHudWithTitle:content] ;
 }
 
 #pragma mark --

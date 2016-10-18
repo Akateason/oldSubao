@@ -21,6 +21,7 @@
 #import "WeiboSDK.h"
 #import "PasterManagement.h"
 #import "UMessage.h"
+#import "SVProgressHUD.h"
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)            ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
@@ -32,7 +33,9 @@
 
 @implementation AppDelegateInitial
 
-- (instancetype)initWithApplication:(UIApplication *)application options:(NSDictionary *)launchOptions window:(UIWindow *)window
+- (instancetype)initWithApplication:(UIApplication *)application
+                            options:(NSDictionary *)launchOptions
+                             window:(UIWindow *)window
 {
     self = [super init];
     if (self) {
@@ -93,6 +96,9 @@
     
     //  Back Ground Fetch
     [self.application setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum] ;
+    
+    // HUD
+    [SVProgressHUD setMinimumDismissTimeInterval:2.] ;
 }
 
 #pragma mark --

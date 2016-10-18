@@ -157,10 +157,10 @@
             self.wbCurrentUserID = userID;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-            if (sendMessageToWeiboResponse.statusCode == WeiboSDKResponseStatusCodeSuccess)
-            {
-                [XTHudManager showWordHudWithTitle:WD_HUD_SHARE_SUCCESS] ;
-            }
+//            if (sendMessageToWeiboResponse.statusCode == WeiboSDKResponseStatusCodeSuccess)
+//            {
+////                [XTHudManager showWordHudWithTitle:WD_HUD_SHARE_SUCCESS] ;
+//            }
             [self.postSubaoCtrller shareArticleNow] ;
             [self.multyPostCtrller shareArticleNow] ;
         }) ;

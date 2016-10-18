@@ -32,26 +32,6 @@
     return _strVersion ;
 }
 
-/*
-- (CGFloat)cacheNum
-{
-    if (_cacheNum == -1) {
-        return 0 ;
-    }
-    
-    if (!_cacheNum)
-    {
-        //    cache
-        NSString *homePath = NSHomeDirectory() ;
-        NSString *path = [homePath stringByAppendingPathComponent:PATH_IMG_CACHE] ;
-        CGFloat f = [XTFileManager folderSizeAtPath3:path] ;
-        _cacheNum = f / 1024.0 / 1024.0 ;
-    }
-    
-    return _cacheNum ;
-}
-*/
-
 - (void)setupTable
 {
     _table.delegate = self ;
@@ -119,7 +99,6 @@
     
     [self setupTable] ;
     [self setupExitButton] ;
-//    [self cacheNum] ;
 }
 
 #pragma mark -- clearCacheClickedAction

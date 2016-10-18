@@ -38,6 +38,11 @@
 
 @implementation ThirdLoginCtrller
 
+- (BOOL)willDealloc
+{
+    return NO ;
+}
+
 
 - (void)setup
 {
@@ -55,6 +60,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:NSNOTIFICATION_USER_CHANGE
                                                   object:nil] ;
+    
 }
 
 - (void)logSuccess
@@ -203,6 +209,13 @@
     if (_bLaunchInNav) [self startAnimate] ;
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated] ;
+    
+    [self endAnimate] ;
+}
+
 - (void)endAnimate
 {
     ((AppDelegate *)[UIApplication sharedApplication].delegate).thirdLoginCtrller = nil ;
@@ -218,6 +231,7 @@
     m_bShowed = YES ;
     
     [self people] ;
+    [self train] ;
 }
 
 - (void)people
@@ -236,7 +250,7 @@
                         
                         [self fromHere] ;
                         [self showTopword] ;
-
+                        
                     }] ;
 }
 
@@ -279,14 +293,14 @@
                         _img_flower.hidden = NO ;
 
                     } completion:^(BOOL finished) {
-                        [self train] ;
+
                     }] ;
 }
 
 - (void)train
 {
     [UIView transitionWithView:_img_train
-                      duration:1.65f
+                      duration:1.91f
                        options:UIViewAnimationOptionCurveEaseOut
                     animations:^{
 
@@ -320,7 +334,7 @@
     cell.velocity		=  1;				// falling down slowly
     cell.velocityRange  =  1;
 
-    cell.birthRate		= 1.8   ;
+    cell.birthRate		= 3.5   ;
     cell.lifetime		= 7.1   ;
     
     cell.alphaRange    = 0.6    ;

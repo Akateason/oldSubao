@@ -81,7 +81,7 @@
 
 - (void)defaultPublicAPIs
 {
-    self.showRefreshDetail = YES ;
+    self.showRefreshDetail = NO ;
     self.automaticallyLoadMore = NO ;
     self.automaticallyLoadNew = YES ;
 //    self.customLoadMore = NO ;

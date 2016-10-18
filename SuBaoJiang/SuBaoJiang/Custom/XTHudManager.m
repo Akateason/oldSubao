@@ -7,82 +7,19 @@
 //
 
 #import "XTHudManager.h"
-#import "DigitInformation.h"
-#import "NSObject+MKBlockTimer.h"
-
-
-static XTHudManager *instance ;
+#import "SVProgressHUD.h"
 
 @implementation XTHudManager
 
-+ (XTHudManager *)shareInstance
-{
-    if (!instance) {
-        instance = [[XTHudManager alloc] init];
-    }
-    return instance;
-}
 
 #pragma mark --
 #pragma mark - SHOW HUD
 + (void)showWordHudWithTitle:(NSString *)title
 {
-    [self showWordHudWithTitle:title delay:1.1f] ;
+    [SVProgressHUD showInfoWithStatus:title] ;
 }
 
-+ (void)showWordHudWithTitle:(NSString *)title
-                       delay:(float)delay
-{
-//    if ([UIApplication sharedApplication].keyWindow == nil) return ;
-    
-    if (![XTHudManager shareInstance].HUD)
-    {
-//        [XTHudManager shareInstance].HUD = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].keyWindow] ;
-        [XTHudManager shareInstance].HUD = [[MBProgressHUD alloc] initWithView:[UIApplication sharedApplication].delegate.window] ;
 
-    }
-    
-    if (![[XTHudManager shareInstance].HUD superview]) {
-//        [[UIApplication sharedApplication].keyWindow addSubview:[XTHudManager shareInstance].HUD];
-        [[UIApplication sharedApplication].delegate.window addSubview:[XTHudManager shareInstance].HUD];
-    }
-    
-//    [[UIApplication sharedApplication].keyWindow bringSubviewToFront:[XTHudManager shareInstance].HUD] ;
-    [[UIApplication sharedApplication].delegate.window bringSubviewToFront:[XTHudManager shareInstance].HUD] ;
-    [[XTHudManager shareInstance].HUD show:YES] ;
-    
-    [XTHudManager shareInstance].HUD.detailsLabelText = title ;
-    [XTHudManager shareInstance].HUD.dimBackground = NO ;
-    [XTHudManager shareInstance].HUD.mode = MBProgressHUDModeText ;
-    [[XTHudManager shareInstance].HUD hide:YES afterDelay:delay] ;
-}
-
-+ (void)showHudWhileExecutingBlock:(dispatch_block_t)block
-                       AndComplete:(dispatch_block_t)complete
-                     AndWithMinSec:(float)sec
-{
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(0, 0) ;
-    dispatch_async(queue, ^{
-        
-        __block unsigned int seconds = [self logTimeTakenToRunBlock:^{
-            block();
-        } withPrefix:@"result time"] ;
-        
-        float smallsec = seconds / 1000.0f ;
-        if (sec > smallsec) {
-            float stayTime = sec - smallsec ;
-            dispatch_async(dispatch_get_main_queue(), ^() {
-                sleep(stayTime) ;
-                complete();
-            });
-        } else {
-            dispatch_async(dispatch_get_main_queue(), ^() {
-                complete();
-            });
-        }
-    });
-}
 
 
 

@@ -415,6 +415,11 @@
 		D7674D3F1B6A13B90090B760 /* TCateCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7674D3D1B6A13B90090B760 /* TCateCollectionCell.xib */; };
 		D7674D431B6B4E710090B760 /* SEintroCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D7674D411B6B4E710090B760 /* SEintroCell.m */; };
 		D7674D441B6B4E710090B760 /* SEintroCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D7674D421B6B4E710090B760 /* SEintroCell.xib */; };
+		D7CE2A341DB6042000FF452C /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CE2A2B1DB6042000FF452C /* SVIndefiniteAnimatedView.m */; };
+		D7CE2A351DB6042000FF452C /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CE2A2D1DB6042000FF452C /* SVProgressAnimatedView.m */; };
+		D7CE2A361DB6042000FF452C /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D7CE2A2F1DB6042000FF452C /* SVProgressHUD.bundle */; };
+		D7CE2A371DB6042000FF452C /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CE2A311DB6042000FF452C /* SVProgressHUD.m */; };
+		D7CE2A381DB6042000FF452C /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = D7CE2A331DB6042000FF452C /* SVRadialGradientLayer.m */; };
 		D7E8FDF91C16BFFD005E908F /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E8FDCF1C16BFFD005E908F /* MJRefreshAutoFooter.m */; };
 		D7E8FDFA1C16BFFD005E908F /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E8FDD11C16BFFD005E908F /* MJRefreshBackFooter.m */; };
 		D7E8FDFB1C16BFFD005E908F /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = D7E8FDD31C16BFFD005E908F /* MJRefreshComponent.m */; };
@@ -815,14 +820,14 @@
 		18D3F4161B65DD9D00B35AC3 /* PicWillUpload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PicWillUpload.m; path = DB/PicWillUpload.m; sourceTree = "<group>"; };
 		18D3F4181B66048100B35AC3 /* XTPicCacheUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTPicCacheUploadManager.h; sourceTree = "<group>"; };
 		18D3F4191B66048100B35AC3 /* XTPicCacheUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTPicCacheUploadManager.m; sourceTree = "<group>"; };
-		18D690C91B1C440000BC9475 /* SuBaoJiang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SuBaoJiang.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D690C91B1C440000BC9475 /* subao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = subao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D690CD1B1C440000BC9475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D690CE1B1C440000BC9475 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18D690D01B1C440000BC9475 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		18D690D11B1C440000BC9475 /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
 		18D690D71B1C440000BC9475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18D690D91B1C440000BC9475 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		18D690E21B1C440000BC9475 /* SuBaoJiang.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SuBaoJiang.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D690E21B1C440000BC9475 /* subao.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = subao.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D690E71B1C440000BC9475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18D690E81B1C440000BC9475 /* SuBaoJiangTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SuBaoJiangTests.m; sourceTree = "<group>"; };
 		18D690F61B1C4FE000BC9475 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1222,6 +1227,16 @@
 		D7674D401B6B4E710090B760 /* SEintroCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SEintroCell.h; path = SuBaoJiang/Controller/Home/SEintroCell.h; sourceTree = SOURCE_ROOT; };
 		D7674D411B6B4E710090B760 /* SEintroCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SEintroCell.m; path = SuBaoJiang/Controller/Home/SEintroCell.m; sourceTree = SOURCE_ROOT; };
 		D7674D421B6B4E710090B760 /* SEintroCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SEintroCell.xib; path = SuBaoJiang/Controller/Home/SEintroCell.xib; sourceTree = SOURCE_ROOT; };
+		D7CE2A2A1DB6042000FF452C /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
+		D7CE2A2B1DB6042000FF452C /* SVIndefiniteAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVIndefiniteAnimatedView.m; sourceTree = "<group>"; };
+		D7CE2A2C1DB6042000FF452C /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
+		D7CE2A2D1DB6042000FF452C /* SVProgressAnimatedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressAnimatedView.m; sourceTree = "<group>"; };
+		D7CE2A2E1DB6042000FF452C /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
+		D7CE2A2F1DB6042000FF452C /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		D7CE2A301DB6042000FF452C /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		D7CE2A311DB6042000FF452C /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
+		D7CE2A321DB6042000FF452C /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
+		D7CE2A331DB6042000FF452C /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		D7E8FDCE1C16BFFD005E908F /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		D7E8FDCF1C16BFFD005E908F /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		D7E8FDD01C16BFFD005E908F /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -2167,8 +2182,8 @@
 		18D690CA1B1C440000BC9475 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				18D690C91B1C440000BC9475 /* SuBaoJiang.app */,
-				18D690E21B1C440000BC9475 /* SuBaoJiang.xctest */,
+				18D690C91B1C440000BC9475 /* subao.app */,
+				18D690E21B1C440000BC9475 /* subao.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2267,6 +2282,7 @@
 		18D697CB1B1C714900BC9475 /* Vender */ = {
 			isa = PBXGroup;
 			children = (
+				D7CE2A291DB6042000FF452C /* SVProgressHUD */,
 				D71071541C50BC2D00E2F1C1 /* LaunchScreenVC */,
 				D75CC7351C310E4300E590E6 /* FDTemplateLayoutCell */,
 				D7E8FDCC1C16BFFD005E908F /* MJRefresh */,
@@ -3083,6 +3099,23 @@
 			name = TopicCategoryCtrller;
 			sourceTree = "<group>";
 		};
+		D7CE2A291DB6042000FF452C /* SVProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				D7CE2A2A1DB6042000FF452C /* SVIndefiniteAnimatedView.h */,
+				D7CE2A2B1DB6042000FF452C /* SVIndefiniteAnimatedView.m */,
+				D7CE2A2C1DB6042000FF452C /* SVProgressAnimatedView.h */,
+				D7CE2A2D1DB6042000FF452C /* SVProgressAnimatedView.m */,
+				D7CE2A2E1DB6042000FF452C /* SVProgressHUD-Prefix.pch */,
+				D7CE2A2F1DB6042000FF452C /* SVProgressHUD.bundle */,
+				D7CE2A301DB6042000FF452C /* SVProgressHUD.h */,
+				D7CE2A311DB6042000FF452C /* SVProgressHUD.m */,
+				D7CE2A321DB6042000FF452C /* SVRadialGradientLayer.h */,
+				D7CE2A331DB6042000FF452C /* SVRadialGradientLayer.m */,
+			);
+			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
 		D7E8FDCC1C16BFFD005E908F /* MJRefresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -3268,9 +3301,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		18D690C81B1C440000BC9475 /* SuBaoJiang */ = {
+		18D690C81B1C440000BC9475 /* subao */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18D690EC1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "SuBaoJiang" */;
+			buildConfigurationList = 18D690EC1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "subao" */;
 			buildPhases = (
 				18D690C51B1C440000BC9475 /* Sources */,
 				18D690C61B1C440000BC9475 /* Frameworks */,
@@ -3280,14 +3313,14 @@
 			);
 			dependencies = (
 			);
-			name = SuBaoJiang;
+			name = subao;
 			productName = SuBaoJiang;
-			productReference = 18D690C91B1C440000BC9475 /* SuBaoJiang.app */;
+			productReference = 18D690C91B1C440000BC9475 /* subao.app */;
 			productType = "com.apple.product-type.application";
 		};
-		18D690E11B1C440000BC9475 /* SuBaoJiangTests */ = {
+		18D690E11B1C440000BC9475 /* subaoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 18D690EF1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "SuBaoJiangTests" */;
+			buildConfigurationList = 18D690EF1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "subaoTests" */;
 			buildPhases = (
 				18D690DE1B1C440000BC9475 /* Sources */,
 				18D690DF1B1C440000BC9475 /* Frameworks */,
@@ -3298,9 +3331,9 @@
 			dependencies = (
 				18D690E41B1C440000BC9475 /* PBXTargetDependency */,
 			);
-			name = SuBaoJiangTests;
+			name = subaoTests;
 			productName = SuBaoJiangTests;
-			productReference = 18D690E21B1C440000BC9475 /* SuBaoJiang.xctest */;
+			productReference = 18D690E21B1C440000BC9475 /* subao.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -3327,7 +3360,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 18D690C41B1C43FF00BC9475 /* Build configuration list for PBXProject "SuBaoJiang" */;
+			buildConfigurationList = 18D690C41B1C43FF00BC9475 /* Build configuration list for PBXProject "subao" */;
 			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -3341,8 +3374,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				18D690C81B1C440000BC9475 /* SuBaoJiang */,
-				18D690E11B1C440000BC9475 /* SuBaoJiangTests */,
+				18D690C81B1C440000BC9475 /* subao */,
+				18D690E11B1C440000BC9475 /* subaoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -3371,6 +3404,7 @@
 				D71071501C50958600E2F1C1 /* LaunchScreen.xib in Resources */,
 				182318671B1ED7F0001CE919 /* ReplyCell.xib in Resources */,
 				18DC51EC1B2EBA4800A2BEFF /* PraisedCollectionCell.xib in Resources */,
+				D7CE2A361DB6042000FF452C /* SVProgressHUD.bundle in Resources */,
 				182318A31B1EFE45001CE919 /* WordSendView.xib in Resources */,
 				18D2DDDA1B82FDF6005636DF /* PostMoreCell.xib in Resources */,
 				184C1D791B857F850033CC4C /* MESuperArticleCell.xib in Resources */,
@@ -3583,6 +3617,7 @@
 				D7504F0C1C7EE0D400B97662 /* NSObject+MemoryLeak.m in Sources */,
 				18D965B91B3A669C007A9CC1 /* SDWebImagePrefetcher.m in Sources */,
 				1848A7C91B329A290063C177 /* ThirdLoginCtrller.m in Sources */,
+				D7CE2A371DB6042000FF452C /* SVProgressHUD.m in Sources */,
 				187CCECE1B21BA0E00360B54 /* MyTabbar.m in Sources */,
 				18D6999B1B1C714A00BC9475 /* AFViewShaker.m in Sources */,
 				1823186B1B1EE8E3001CE919 /* MyNavCtrller.m in Sources */,
@@ -3641,6 +3676,7 @@
 				D7E8FE031C16BFFD005E908F /* MJRefreshBackStateFooter.m in Sources */,
 				18D699F71B1C714A00BC9475 /* NSObject+MKBlockTimer.m in Sources */,
 				18B65AAB1B9BEE6F00228E02 /* XTlineSpaceLabel.m in Sources */,
+				D7CE2A351DB6042000FF452C /* SVProgressAnimatedView.m in Sources */,
 				D7FDB7CA1BB3FA28004046A6 /* XTBarrageItemView.m in Sources */,
 				18D69A3E1B1C714B00BC9475 /* FBShimmeringView.m in Sources */,
 				18A4D61A1B7DFF3D00CCE555 /* SaveAlbumnCtrller.m in Sources */,
@@ -3703,6 +3739,7 @@
 				187CCE8E1B2009F500360B54 /* PCStackMenu.m in Sources */,
 				184C1D781B857F850033CC4C /* MESuperArticleCell.m in Sources */,
 				18D699F51B1C714A00BC9475 /* MBProgressHUD.m in Sources */,
+				D7CE2A341DB6042000FF452C /* SVIndefiniteAnimatedView.m in Sources */,
 				D71071601C51021300E2F1C1 /* HomeController+AnimationManager.m in Sources */,
 				18BABBF41B3D5E4D0024E871 /* QNHttpManager.m in Sources */,
 				184C1D971B8B13310033CC4C /* FMMoveTableViewCell.m in Sources */,
@@ -3720,6 +3757,7 @@
 				18B3BD791B74569E0092DA79 /* PostSubaoCtrller.m in Sources */,
 				184C1D741B8578BB0033CC4C /* MultyEditCtrller.m in Sources */,
 				18D965C01B3A669C007A9CC1 /* UIView+WebCacheOperation.m in Sources */,
+				D7CE2A381DB6042000FF452C /* SVRadialGradientLayer.m in Sources */,
 				18D699B11B1C714A00BC9475 /* ASINetworkQueue.m in Sources */,
 				18D3F40C1B622F3700B35AC3 /* ShareUtils.m in Sources */,
 				187CCEA61B203B8400360B54 /* AFHTTPSessionManager.m in Sources */,
@@ -3779,7 +3817,7 @@
 /* Begin PBXTargetDependency section */
 		18D690E41B1C440000BC9475 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 18D690C81B1C440000BC9475 /* SuBaoJiang */;
+			target = 18D690C81B1C440000BC9475 /* subao */;
 			targetProxy = 18D690E31B1C440000BC9475 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -3931,8 +3969,8 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.subao.sbj;
-				PRODUCT_NAME = SuBaoJiang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoyoxing.subao;
+				PRODUCT_NAME = subao;
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -3976,8 +4014,8 @@
 					"-ObjC",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.subao.sbj;
-				PRODUCT_NAME = SuBaoJiang;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoyoxing.subao;
+				PRODUCT_NAME = subao;
 				PROVISIONING_PROFILE = "";
 				VALID_ARCHS = "armv7 armv7s arm64";
 			};
@@ -3997,8 +4035,8 @@
 				);
 				INFOPLIST_FILE = SuBaoJiangTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = SuBaoJiang;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuBaoJiang.app/SuBaoJiang";
+				PRODUCT_NAME = subao;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/subao.app/subao";
 			};
 			name = Debug;
 		};
@@ -4012,15 +4050,15 @@
 				);
 				INFOPLIST_FILE = SuBaoJiangTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = SuBaoJiang;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SuBaoJiang.app/SuBaoJiang";
+				PRODUCT_NAME = subao;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/subao.app/subao";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		18D690C41B1C43FF00BC9475 /* Build configuration list for PBXProject "SuBaoJiang" */ = {
+		18D690C41B1C43FF00BC9475 /* Build configuration list for PBXProject "subao" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18D690EA1B1C440000BC9475 /* Debug */,
@@ -4029,7 +4067,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18D690EC1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "SuBaoJiang" */ = {
+		18D690EC1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "subao" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18D690ED1B1C440000BC9475 /* Debug */,
@@ -4038,7 +4076,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		18D690EF1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "SuBaoJiangTests" */ = {
+		18D690EF1B1C440000BC9475 /* Build configuration list for PBXNativeTarget "subaoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				18D690F01B1C440000BC9475 /* Debug */,

@@ -402,7 +402,7 @@
                               atScrollPosition:UITableViewScrollPositionTop
                                       animated:NO] ;
             
-            [XTHudManager showWordHudWithTitle:WD_HUD_TITLE_NULL delay:1.8] ;
+            [XTHudManager showWordHudWithTitle:WD_HUD_TITLE_NULL] ;
             
             MESuperArticleCell *cell = (MESuperArticleCell *)[self.table cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] ;
             [cell mainTitleAnimateAction] ;

@@ -128,7 +128,7 @@
         textView.text = [textView.text substringToIndex:maxCount] ;
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            [XTHudManager showWordHudWithTitle:[NSString stringWithFormat:@"最多不能超过%@个字哟",@(maxCount)] delay:1.8] ;
+            [XTHudManager showWordHudWithTitle:[NSString stringWithFormat:@"最多不能超过%@个字哟",@(maxCount)]] ;
             [textView resignFirstResponder] ;
         }) ;
     }

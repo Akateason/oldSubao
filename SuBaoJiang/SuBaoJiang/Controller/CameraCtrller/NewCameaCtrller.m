@@ -471,11 +471,11 @@ static long photoCount = 0 ;
     NSNumber *numRow = [NSNumber numberWithInteger:row] ;
     NSLog(@"ROW : %@",numRow) ;
     
-    if (!G_TOKEN || !G_USER.u_id)
-    {
-        [NavLogCtller modalLogCtrllerWithCurrentController:self] ;        
-        return ;
-    }
+//    if (!G_TOKEN || !G_USER.u_id)
+//    {
+//        [NavLogCtller modalLogCtrllerWithCurrentController:self] ;        
+//        return ;
+//    }
     
     if (self.fetchMode == mode_single || self.fetchMode == mode_addSingle)
     {

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "18D690C81B1C440000BC9475"
-               BuildableName = "subao.app"
-               BlueprintName = "SuBaoJiang"
-               ReferencedContainer = "container:SuBaoJiang.xcodeproj">
+               BuildableName = "SuBaoJiang.app"
+               BlueprintName = "subao"
+               ReferencedContainer = "container:subao.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "18D690E11B1C440000BC9475"
-               BuildableName = "SuBaoJiang.xctest"
-               BlueprintName = "SuBaoJiangTests"
-               ReferencedContainer = "container:SuBaoJiang.xcodeproj">
+               BuildableName = "subao.xctest"
+               BlueprintName = "subaoTests"
+               ReferencedContainer = "container:subao.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "18D690E11B1C440000BC9475"
-               BuildableName = "SuBaoJiang.xctest"
-               BlueprintName = "SuBaoJiangTests"
-               ReferencedContainer = "container:SuBaoJiang.xcodeproj">
+               BuildableName = "subao.xctest"
+               BlueprintName = "subaoTests"
+               ReferencedContainer = "container:subao.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18D690C81B1C440000BC9475"
-            BuildableName = "subao.app"
-            BlueprintName = "SuBaoJiang"
-            ReferencedContainer = "container:SuBaoJiang.xcodeproj">
+            BuildableName = "SuBaoJiang.app"
+            BlueprintName = "subao"
+            ReferencedContainer = "container:subao.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18D690C81B1C440000BC9475"
-            BuildableName = "subao.app"
-            BlueprintName = "SuBaoJiang"
-            ReferencedContainer = "container:SuBaoJiang.xcodeproj">
+            BuildableName = "SuBaoJiang.app"
+            BlueprintName = "subao"
+            ReferencedContainer = "container:subao.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +99,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18D690C81B1C440000BC9475"
-            BuildableName = "subao.app"
-            BlueprintName = "SuBaoJiang"
-            ReferencedContainer = "container:SuBaoJiang.xcodeproj">
+            BuildableName = "SuBaoJiang.app"
+            BlueprintName = "subao"
+            ReferencedContainer = "container:subao.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -10,6 +10,8 @@
 #import "NavIndexCtrller.h"
 #import "NavCameraCtrller.h"
 #import "AppDelegate.h"
+#import "NavLogCtller.h"
+#import "DigitInformation.h"
 
 @interface MyTabbarCtrller ()
 {
@@ -62,12 +64,23 @@ static int indexCache = 0 ;
     NSLog(@"did selectedIndex %@",@(tabBarController.selectedIndex)) ;
 
 //  1. to camera .
-    if (tabBarController.selectedIndex == 2) {
-        [NavCameraCtrller jump2NavCameraCtrllerWithOriginCtrller:self.selectedViewController] ;
-        tabBarController.selectedIndex = lastSelectedIndex ;
+    if (tabBarController.selectedIndex == 2 || tabBarController.selectedIndex == 3 || tabBarController.selectedIndex == 4)
+    {
+        if (!G_TOKEN || !G_USER.u_id)
+        {
+            [NavLogCtller modalLogCtrllerWithCurrentController:self] ;
+            tabBarController.selectedIndex = lastSelectedIndex ;
+        }
+        else {
+            if (tabBarController.selectedIndex == 2)
+            {
+                [NavCameraCtrller jump2NavCameraCtrllerWithOriginCtrller:self.selectedViewController] ;
+                tabBarController.selectedIndex = lastSelectedIndex ;
+            }
+        }
     }
-    lastSelectedIndex = tabBarController.selectedIndex ;
     
+    lastSelectedIndex = tabBarController.selectedIndex ;
 //  2. animation
     [self clickItemAnimation:tabBarController] ;
 }
