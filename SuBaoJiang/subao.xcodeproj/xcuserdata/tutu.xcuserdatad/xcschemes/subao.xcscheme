@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "18D690C81B1C440000BC9475"
-               BuildableName = "SuBaoJiang.app"
+               BuildableName = "subao.app"
                BlueprintName = "subao"
                ReferencedContainer = "container:subao.xcodeproj">
             </BuildableReference>
@@ -57,7 +57,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18D690C81B1C440000BC9475"
-            BuildableName = "SuBaoJiang.app"
+            BuildableName = "subao.app"
             BlueprintName = "subao"
             ReferencedContainer = "container:subao.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18D690C81B1C440000BC9475"
-            BuildableName = "SuBaoJiang.app"
+            BuildableName = "subao.app"
             BlueprintName = "subao"
             ReferencedContainer = "container:subao.xcodeproj">
          </BuildableReference>
@@ -99,7 +99,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18D690C81B1C440000BC9475"
-            BuildableName = "SuBaoJiang.app"
+            BuildableName = "subao.app"
             BlueprintName = "subao"
             ReferencedContainer = "container:subao.xcodeproj">
          </BuildableReference>

@@ -232,6 +232,9 @@
     
     [self people] ;
     [self train] ;
+    [self fromHere] ;
+    [self showTopword] ;
+
 }
 
 - (void)people
@@ -248,8 +251,6 @@
                         
                     } completion:^(BOOL finished) {
                         
-                        [self fromHere] ;
-                        [self showTopword] ;
                         
                     }] ;
 }
@@ -257,7 +258,7 @@
 - (void)fromHere
 {
     [UIView transitionWithView:_img_fromHere
-                      duration:0.4
+                      duration:1.5
                        options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionTransitionFlipFromTop
                     animations:^{
                         _img_fromHere.hidden = NO ;
@@ -270,7 +271,7 @@
 - (void)showTopword
 {
     [UIView transitionWithView:_img_wdTop
-                      duration:0.6
+                      duration:1.5
                        options:UIViewAnimationOptionCurveEaseOut | UIViewAnimationOptionTransitionFlipFromBottom
                     animations:^{
                         

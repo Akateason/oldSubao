@@ -67,7 +67,12 @@
     BOOL result = [UMSocialSnsService handleOpenURL:url] ;
     if (result == FALSE) {
         //调用其他SDK，例如新浪微博SDK等
-        return [WeiboSDK handleOpenURL:url delegate:self] ;
+        if ([url.absoluteString containsString:@"wb2546810282"]) {
+            return [WeiboSDK handleOpenURL:url delegate:self] ;
+        }
+        else if ([url.absoluteString containsString:@"subao"]) {
+            return YES ;
+        }
     }
     
     return result ;
@@ -81,7 +86,13 @@
     BOOL result = [UMSocialSnsService handleOpenURL:url];
     if (result == FALSE) {
         //调用其他SDK，例如新浪微博SDK等
-        return [WeiboSDK handleOpenURL:url delegate:self] ;
+        if ([url.absoluteString containsString:@"wb2546810282"]) {
+            return [WeiboSDK handleOpenURL:url delegate:self] ;
+        }
+        else if ([url.absoluteString containsString:@"subao"]) {
+            return YES ;
+        }
+        
     }
     
     return result ;

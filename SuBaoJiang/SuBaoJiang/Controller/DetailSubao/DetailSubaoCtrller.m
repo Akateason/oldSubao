@@ -86,6 +86,11 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self ];
 }
 
+- (BOOL)willDealloc
+{
+    return NO ;
+}
+
 #pragma mark --
 #pragma mark - notification
 - (void)keyboardWillShow:(NSNotification *)notification
