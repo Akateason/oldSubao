@@ -57,6 +57,12 @@
 
 - (void)btPostTopicClickAction
 {
+    if (!G_TOKEN || !G_USER.u_id)
+    {
+        [self goToLogin] ;
+        return ;
+    }
+    
     [NavCameraCtrller jump2NavCameraCtrllerWithOriginCtrller:self
                                             AndWithTopicName:self.topic.t_content] ;
 }

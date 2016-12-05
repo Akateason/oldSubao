@@ -69,24 +69,24 @@ static dispatch_once_t onceToken ;
 
 - (BOOL)g_openAPPStore
 {
-// --- test BEGIN --- //
-// --- Update In PrefixHeader.pch if necessary --- //
-    if (DEVELOPER_MODE_SWITCHER) return YES ;
-// --- Update In PrefixHeader.pch if necessary --- //
-// --- test END --- //
-    
-    if (!_g_openAPPStore && !timeCount)
-    {
-        timeCount++ ;
-        
-//        CGFloat vers = [CommonFunc getVersionOfMyAPP] ;
-        NSString *verstionStr = [CommonFunc getVersionStrOfMyAPP] ;
-        ResultParsered *result = [ServerRequest getCheckSwitchWithCurrentAppVersion:verstionStr] ;
-        if (!result) return NO ;
-        _g_openAPPStore = [[result.info objectForKey:@"switch"] boolValue] ;
-    }
-    
-    return _g_openAPPStore ;
+    return YES ;
+//// --- test BEGIN --- //
+//// --- Update In PrefixHeader.pch if necessary --- //
+//    if (DEVELOPER_MODE_SWITCHER) return YES ;
+//// --- Update In PrefixHeader.pch if necessary --- //
+//// --- test END --- //
+//    
+//    if (!_g_openAPPStore && !timeCount)
+//    {
+//        timeCount++ ;
+//        
+//        NSString *verstionStr = [CommonFunc getVersionStrOfMyAPP] ;
+//        ResultParsered *result = [ServerRequest getCheckSwitchWithCurrentAppVersion:verstionStr] ;
+//        if (!result) return NO ;
+//        _g_openAPPStore = [[result.info objectForKey:@"switch"] boolValue] ;
+//    }
+//    
+//    return _g_openAPPStore ;
 }
 
 
